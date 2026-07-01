@@ -19,7 +19,7 @@ export default function MedspaRevenueRecovery() {
       "name": "Scrutexity",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://scrutexity.com/scrutexity-logo.png"
+        "url": "https://scrutexity.com/logo-icon.png"
       }
     },
     "mainEntity": {
@@ -38,7 +38,7 @@ export default function MedspaRevenueRecovery() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal flex flex-col">
+    <div className="min-h-screen bg-cream text-espresso flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -46,9 +46,9 @@ export default function MedspaRevenueRecovery() {
 
       <main className="pt-40 pb-24 px-6 max-w-4xl mx-auto font-sans flex-1">
         <span className="section-kicker mb-4 block">Pillar Guide</span>
-        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-[#221f1b] mb-8 leading-tight tracking-tight">Medspa Revenue Recovery &amp; HIPAA-Compliant Booking Optimization NYC</h1>
+        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-espresso mb-8 leading-tight tracking-tight">Medspa Revenue Recovery &amp; HIPAA-Compliant Booking Optimization NYC</h1>
 
-        <article className="prose prose-lg max-w-none font-sans text-[#5f574f] leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-[#221f1b] prose-strong:text-[#221f1b]">
+        <article className="prose prose-lg max-w-none font-sans text-mist leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-espresso prose-strong:text-espresso">
           <p className="text-xl leading-relaxed mb-8 font-medium">
             In the highly competitive NYC medical aesthetics market, acquiring a lead for high-ticket procedures like Morpheus8 or injectables is only the first step. The true bottleneck for clinics generating over $2M+ annually is revenue leakage—specifically, the structural failure to convert high-intent consultations into paid, booked appointments.
           </p>

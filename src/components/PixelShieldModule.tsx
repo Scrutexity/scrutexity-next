@@ -3,7 +3,7 @@ import { ShieldCheck, ShieldAlert } from 'lucide-react';
  
 export default function PixelShieldModule() {
   return (
-    <div className="text-[#1A1A1A] py-24 px-6 lg:px-12 w-full font-sans">
+    <div className="text-espresso py-24 px-6 lg:px-12 w-full font-sans">
       <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-center gap-16">
         
         {/* Left Column: The Abstract Security Image */}
@@ -23,7 +23,7 @@ export default function PixelShieldModule() {
           <span className="text-[#6B8576] font-semibold tracking-[0.15em] text-sm uppercase mb-4 font-mono">
             The Compliance Airlock
           </span>
-          <h2 className="font-display text-4xl lg:text-5xl text-[#1A1A1A] leading-tight mb-6">
+          <h2 className="font-display text-4xl lg:text-5xl text-espresso leading-tight mb-6">
             Run Profitable Ads. <br /> Built for HIPAA-Conscious Marketing.
           </h2>
           <p className="text-lg text-[#6E6E6C] mb-10 leading-relaxed max-w-lg">
@@ -50,9 +50,9 @@ export default function PixelShieldModule() {
             <div className="p-6 rounded-xl bg-[#6B8576]/10 border border-[#6B8576]/25 shadow-sm">
               <div className="flex items-center gap-3 mb-4">
                 <ShieldCheck className="text-[#6B8576]" size={20} />
-                <h3 className="font-semibold text-[#1A1A1A] font-mono text-xs uppercase tracking-wider">Scrutexity Airlock</h3>
+                <h3 className="font-semibold text-espresso font-mono text-xs uppercase tracking-wider">Scrutexity Airlock</h3>
               </div>
-              <ul className="space-y-3 text-xs text-[#1A1A1A]">
+              <ul className="space-y-3 text-xs text-espresso">
                 <li className="flex items-start gap-2"><span className="text-[#6B8576] font-bold">✓</span> Pixels removed from site</li>
                 <li className="flex items-start gap-2"><span className="text-[#6B8576] font-bold">✓</span> PHI stripped on our server</li>
                 <li className="flex items-start gap-2"><span className="text-[#6B8576] font-bold">✓</span> Anonymized conversions sent</li>

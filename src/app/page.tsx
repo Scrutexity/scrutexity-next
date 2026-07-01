@@ -1,5 +1,5 @@
-import PremiumHomepage from '@/components/PremiumHomepage';
+import UmbrellaHomepage from '@/components/scrutexity/umbrella-homepage';
 
 export default function HomePage() {
-  return <PremiumHomepage />;
+  return <UmbrellaHomepage />;
 }

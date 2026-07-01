@@ -1,9 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, useSpring, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { playHaptic } from '../lib/audio';
 import { Activity, ShieldAlert, CheckCircle } from 'lucide-react';
+import ScrollReveal from './motion/ScrollReveal';
+
+const enabled = process.env.NEXT_PUBLIC_ENABLE_2026_UI === 'true';
 
 const AnimatedNumber = ({ value }: { value: number }) => {
   const spring = useSpring(value, { mass: 0.8, stiffness: 75, damping: 15 });
@@ -20,13 +23,18 @@ export default function RevenueBridge() {
   const [traffic, setTraffic] = useState(3000);
   const [rate, setRate] = useState(2.5);
   const [ticket, setTicket] = useState(1200);
-  const [leakage, setLeakage] = useState(498960);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
+  const reducedMotion = useReducedMotion();
+  const animateUI = enabled && !reducedMotion;
 
-  useEffect(() => {
-    // Preserved formula
-    const leakageValue = (traffic * ((8 - rate) / 100) * 0.6) * ticket * 4.2;
-    setLeakage(Math.round(leakageValue));
-  }, [traffic, rate, ticket]);
+  const markTouched = (field: string) => {
+    setTouchedFields((current) => new Set(current).add(field));
+  };
+  const progress = Math.round((touchedFields.size / 3) * 100);
+
+  // Preserved formula, derived directly from current inputs.
+  const leakage = Math.round((traffic * ((8 - rate) / 100) * 0.6) * ticket * 4.2);
 
   // Recovery Tiers (projected monthly recovery)
   const monthlyLeakage = leakage / 12;
@@ -45,17 +53,29 @@ export default function RevenueBridge() {
 
   return (
     <section id="audit" className="relative py-24 w-full max-w-6xl mx-auto px-6 font-sans bg-[#FBFBFA]">
-      <div className="text-center mb-16">
+      <ScrollReveal className="text-center mb-12">
         <span className="text-[#6B8576] font-mono tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">
           FINANCIAL LEAKAGE DIAGNOSTIC
         </span>
-        <h2 className="text-4xl md:text-5xl font-display text-[#1A1A1A] mb-6">
-          Quantify Your Clinic's Revenue Leak
+        <h2 className="text-4xl md:text-5xl font-display text-espresso mb-6">
+          Quantify Your Clinic&apos;s Revenue Leak
         </h2>
         <p className="text-lg text-[#6E6E6C] max-w-2xl mx-auto leading-relaxed">
           Drag the sliders to match your current clinic metrics and see how much high-ticket demand is slip-streaming into competitor calendars.
         </p>
-      </div>
+        <div className="mx-auto mt-7 max-w-md" aria-label={`Audit input progress: ${progress}%`}>
+          <div className="mb-2 flex justify-between text-[10px] font-semibold uppercase tracking-[0.16em] text-[#7f8f78]">
+            <span>Inputs reviewed</span><span>{progress}%</span>
+          </div>
+          <div className="h-1.5 overflow-hidden rounded-full bg-[#e5e3df]">
+            <motion.div
+              className="h-full rounded-full bg-[#6b8576]"
+              animate={{ width: `${progress}%` }}
+              transition={animateUI ? { type: 'spring', stiffness: 240, damping: 28 } : { duration: 0 }}
+            />
+          </div>
+        </div>
+      </ScrollReveal>
 
       <div className="glass-card overflow-hidden bg-[#F7F5F0] border border-[#E5E3DF] rounded-3xl shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#E5E3DF]">
@@ -68,7 +88,7 @@ export default function RevenueBridge() {
             </h3>
             
             <div className="space-y-10">
-              <div className="group">
+              <motion.div animate={{ scale: animateUI && focusedField === 'traffic' ? 1.012 : 1 }} transition={animateUI ? { type: 'spring', stiffness: 360, damping: 28 } : { duration: 0 }} className={`group rounded-2xl p-3 transition-shadow ${focusedField === 'traffic' ? 'shadow-[0_0_0_3px_rgba(107,133,118,0.14)]' : ''}`}>
                 <div className="flex justify-between text-xs font-mono text-gray-500 mb-4 uppercase tracking-wider">
                   <span>Monthly Traffic</span>
                   <span className="text-[#6B8576] font-bold text-sm">{traffic.toLocaleString()} visitors</span>
@@ -80,12 +100,14 @@ export default function RevenueBridge() {
                   max="50000" 
                   step="100" 
                   value={traffic}
-                  onChange={(e) => { setTraffic(Number(e.target.value)); playHaptic('hover'); }}
+                  onFocus={() => setFocusedField('traffic')}
+                  onBlur={() => setFocusedField(null)}
+                  onChange={(e) => { setTraffic(Number(e.target.value)); markTouched('traffic'); playHaptic('hover'); }}
                   aria-label="Monthly Website Traffic"
                 />
-              </div>
+              </motion.div>
 
-              <div className="group">
+              <motion.div animate={{ scale: animateUI && focusedField === 'rate' ? 1.012 : 1 }} transition={animateUI ? { type: 'spring', stiffness: 360, damping: 28 } : { duration: 0 }} className={`group rounded-2xl p-3 transition-shadow ${focusedField === 'rate' ? 'shadow-[0_0_0_3px_rgba(107,133,118,0.14)]' : ''}`}>
                 <div className="flex justify-between text-xs font-mono text-gray-500 mb-4 uppercase tracking-wider">
                   <span>Booking Conversion Rate</span>
                   <span className="text-[#6B8576] font-bold text-sm">{rate.toFixed(1)}%</span>
@@ -97,12 +119,14 @@ export default function RevenueBridge() {
                   max="8" 
                   step="0.1" 
                   value={rate}
-                  onChange={(e) => { setRate(Number(e.target.value)); playHaptic('hover'); }}
+                  onFocus={() => setFocusedField('rate')}
+                  onBlur={() => setFocusedField(null)}
+                  onChange={(e) => { setRate(Number(e.target.value)); markTouched('rate'); playHaptic('hover'); }}
                   aria-label="Booking Rate"
                 />
-              </div>
+              </motion.div>
 
-              <div className="group">
+              <motion.div animate={{ scale: animateUI && focusedField === 'ticket' ? 1.012 : 1 }} transition={animateUI ? { type: 'spring', stiffness: 360, damping: 28 } : { duration: 0 }} className={`group rounded-2xl p-3 transition-shadow ${focusedField === 'ticket' ? 'shadow-[0_0_0_3px_rgba(107,133,118,0.14)]' : ''}`}>
                 <div className="flex justify-between text-xs font-mono text-gray-500 mb-4 uppercase tracking-wider">
                   <span>Average Treatment Ticket</span>
                   <span className="text-[#6B8576] font-bold text-sm">${ticket.toLocaleString()}</span>
@@ -114,10 +138,12 @@ export default function RevenueBridge() {
                   max="5000" 
                   step="50" 
                   value={ticket}
-                  onChange={(e) => { setTicket(Number(e.target.value)); playHaptic('hover'); }}
+                  onFocus={() => setFocusedField('ticket')}
+                  onBlur={() => setFocusedField(null)}
+                  onChange={(e) => { setTicket(Number(e.target.value)); markTouched('ticket'); playHaptic('hover'); }}
                   aria-label="Average Ticket Value"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
 
@@ -130,7 +156,7 @@ export default function RevenueBridge() {
                 <span className="flex items-center gap-1.5 text-[#6B1D2F] font-mono tracking-widest text-[9px] font-semibold mb-2">
                   <ShieldAlert className="w-3.5 h-3.5" /> EST. REVENUE LEAKAGE (ANNUAL)
                 </span>
-                <span className="block text-4xl lg:text-5xl font-bold text-[#1A1A1A] mb-2 tracking-tight">
+                <span className="block text-4xl lg:text-5xl font-bold text-espresso mb-2 tracking-tight">
                   $<AnimatedNumber value={leakage} />
                 </span>
                 <span className="text-[11px] text-[#6E6E6C] font-mono">Based on 8% target booking baseline</span>
@@ -194,7 +220,7 @@ export default function RevenueBridge() {
                 Pilot Engagement Terms
               </div>
               <div className="text-gray-600 leading-normal">
-                Figures above are an estimated opportunity range — they require manual verification against your own records and are not a promise of results. The mid-range estimate of <span className="font-bold text-[#1A1A1A]">${expectedRecovered.toLocaleString()}</span> (an estimated <span className="font-bold text-[#6B8576]">{expectedROI.toFixed(1)}x</span> vs. the Recovery tier fee) is illustrative. The 14-day pilot is $0 if missed-demand recovery isn&apos;t demonstrated in your written Day-14 report.
+                Figures above are an estimated opportunity range — they require manual verification against your own records and are not a promise of results. The mid-range estimate of <span className="font-bold text-espresso">${expectedRecovered.toLocaleString()}</span> (an estimated <span className="font-bold text-[#6B8576]">{expectedROI.toFixed(1)}x</span> vs. the Recovery tier fee) is illustrative. The 14-day pilot is $0 if missed-demand recovery isn&apos;t demonstrated in your written Day-14 report.
               </div>
             </motion.div>
             

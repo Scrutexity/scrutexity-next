@@ -28,28 +28,28 @@ export default function PilotWaitlist({
 }: PilotWaitlistProps) {
   return (
     <div
-      className={`rounded-2xl border border-[#e1d4c5] bg-[#fffaf2] p-6 ${className}`}
+      className={`rounded-2xl border border-sand-deep bg-cream p-6 ${className}`}
     >
       <div className="flex items-center gap-2 mb-4">
-        <div className="h-2 w-2 rounded-full bg-terracotta animate-pulse" />
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9b6a51]">
+        <div className="h-2 w-2 rounded-full bg-clay animate-pulse" />
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-clay-deep">
           Pilot Queue Active
         </span>
       </div>
 
       <div className="grid grid-cols-2 gap-4 mb-5">
-        <div className="rounded-xl bg-[#fbf7ef] p-4 text-center">
-          <Users className="mx-auto mb-2 h-5 w-5 text-terracotta" />
-          <p className="font-mono text-2xl font-semibold text-[#221f1b]">
+        <div className="rounded-xl bg-cream p-4 text-center">
+          <Users className="mx-auto mb-2 h-5 w-5 text-clay" />
+          <p className="font-mono text-2xl font-semibold text-espresso">
             {totalQueue}
           </p>
           <p className="text-[10px] uppercase tracking-widest text-[#7a7066]">
             Clinics in queue
           </p>
         </div>
-        <div className="rounded-xl bg-[#fbf7ef] p-4 text-center">
-          <Clock className="mx-auto mb-2 h-5 w-5 text-terracotta" />
-          <p className="font-mono text-2xl font-semibold text-[#221f1b]">
+        <div className="rounded-xl bg-cream p-4 text-center">
+          <Clock className="mx-auto mb-2 h-5 w-5 text-clay" />
+          <p className="font-mono text-2xl font-semibold text-espresso">
             ~{waitDays}d
           </p>
           <p className="text-[10px] uppercase tracking-widest text-[#7a7066]">
@@ -58,14 +58,14 @@ export default function PilotWaitlist({
         </div>
       </div>
 
-      <p className="text-sm leading-6 text-[#5f574f] mb-4">
+      <p className="text-sm leading-6 text-mist mb-4">
         We only onboard {position} new clinic{position !== 1 ? 's' : ''} per cohort.
-        Next available slot: <span className="font-semibold text-[#221f1b]">~{waitDays} days</span>.
+        Next available slot: <span className="font-semibold text-espresso">~{waitDays} days</span>.
       </p>
 
       <Link
         href="/pilot"
-        className="govbtn flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition"
+        className="clay-cta px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2 transition-all flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition"
       >
         Join the queue
         <ArrowRight className="h-4 w-4" />

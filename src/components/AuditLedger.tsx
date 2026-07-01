@@ -23,7 +23,7 @@ export default function AuditLedger({ clinicId }: { clinicId: string }) {
           >
             <div className="flex justify-between text-slate-300 items-center">
               <span className="font-medium text-emerald-400 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span className="w-2 h-2 rounded-full bg-creammerald-400"></span>
                 {event.event_type.toUpperCase()}
               </span>
               <span>{new Date(event.timestamp).toLocaleTimeString()}</span>

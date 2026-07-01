@@ -15,8 +15,8 @@ export async function POST(request: NextRequest) {
       const resend = new Resend(process.env.RESEND_API_KEY);
 
       await resend.emails.send({
-        from: 'Scrutexity <founder@scrutexity.com>',
-        to: 'founder@scrutexity.com',
+        from: 'Scrutexity <nick@scrutexity.com>',
+        to: 'nick@scrutexity.com',
         subject: `Revenue Leak Snapshot request: ${clinic}`,
         text: [
           `New Revenue Leak Snapshot request:`,
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       });
 
       await resend.emails.send({
-        from: 'Nick <founder@scrutexity.com>',
+        from: 'Nick <nick@scrutexity.com>',
         to: email,
         subject: 'Your Revenue Leak Snapshot is being prepared',
         text: [
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
           `Best,`,
           `Nick`,
           `Founder, Scrutexity`,
-          `founder@scrutexity.com`,
+          `nick@scrutexity.com`,
         ].join('\n'),
       });
     } catch (emailError) {

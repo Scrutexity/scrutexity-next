@@ -67,7 +67,7 @@ export default function CaseStudy() {
             </div>
             <div className="grid grid-cols-3 gap-8">
               <div>
-                <div className="text-terracotta">
+                <div className="text-clay">
                   <AnimatedCounter value={COPY.caseStudy.metric1} />
                 </div>
                 <div className="text-sm font-sans text-gray-200/60 uppercase tracking-wider">{COPY.caseStudy.metric1Label}</div>

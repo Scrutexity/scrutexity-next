@@ -1,4 +1,4 @@
-export default function ScrutexityLogo({ className = "h-7 w-auto text-[#1A1A1A]" }: { className?: string }) {
+export default function ScrutexityLogo({ className = "h-7 w-auto text-espresso" }: { className?: string }) {
   return (
     <div className="flex items-center gap-3 text-current select-none">
       {/* Vector Logo Mark (Solid Black/currentColor) */}

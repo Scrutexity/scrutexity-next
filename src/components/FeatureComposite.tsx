@@ -17,16 +17,16 @@ export default function FeatureComposite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full lg:w-1/2 flex flex-col items-start"
         >
-          <span className="text-terracotta font-semibold tracking-[0.15em] text-sm uppercase mb-4">
+          <span className="text-clay font-semibold tracking-[0.15em] text-sm uppercase mb-4">
             Bimodal Demand Capture
           </span>
-          <h2 className="font-display text-4xl lg:text-5xl text-charcoal leading-tight mb-6">
+          <h2 className="font-display text-4xl lg:text-5xl text-espresso leading-tight mb-6">
             Intercept high-ticket queries. <br />Book them instantly.
           </h2>
-          <p className="text-lg text-charcoal/70 mb-10 leading-relaxed max-w-lg">
+          <p className="text-lg text-espresso/70 mb-10 leading-relaxed max-w-lg">
             When a patient searches for Morpheus8 after hours, our compliance airlock intercepts the inquiry, answers their non-clinical questions, and seamlessly drops the booking onto your calendar.
           </p>
-          <button className="text-terracotta font-semibold uppercase tracking-widest text-sm flex items-center gap-2 hover:opacity-70 transition-opacity">
+          <button className="text-clay font-semibold uppercase tracking-widest text-sm flex items-center gap-2 hover:opacity-70 transition-opacity">
             Explore Triage Architecture <span>→</span>
           </button>
         </motion.div>
@@ -35,7 +35,7 @@ export default function FeatureComposite() {
         <div className="w-full lg:w-1/2 relative mt-12 lg:mt-0">
           
           {/* 1. The Soft Background Canvas */}
-          <div className="absolute inset-0 bg-ivory rounded-[2.5rem] transform translate-x-4 translate-y-4 scale-105 z-0" />
+          <div className="absolute inset-0 bg-cream rounded-[2.5rem] transform translate-x-4 translate-y-4 scale-105 z-0" />
 
           {/* 2. The Main Photo */}
           <motion.div 
@@ -64,14 +64,14 @@ export default function FeatureComposite() {
           >
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-charcoal flex items-center justify-center shrink-0">
-                <MessageSquareWarning size={14} className="text-terracotta" />
+                <MessageSquareWarning size={14} className="text-clay" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-charcoal mb-1">Incoming AI Query</p>
-                <p className="text-[11px] text-charcoal/60 leading-tight">
+                <p className="text-xs font-semibold text-espresso mb-1">Incoming AI Query</p>
+                <p className="text-[11px] text-espresso/60 leading-tight">
                   &ldquo;How much does the P-Shot cost? Are you open tomorrow?&rdquo;
                 </p>
-                <span className="inline-block mt-2 text-[9px] uppercase tracking-wider font-semibold text-terracotta bg-terracotta/10 px-2 py-0.5 rounded">
+                <span className="inline-block mt-2 text-[9px] uppercase tracking-wider font-semibold text-clay bg-clay/10 px-2 py-0.5 rounded">
                   Intent: Pricing
                 </span>
               </div>
@@ -87,7 +87,7 @@ export default function FeatureComposite() {
             className="absolute z-20 -bottom-10 -right-4 md:-right-8 w-56 bg-charcoal text-ivory rounded-2xl p-5 shadow-2xl border border-white/10"
           >
             <div className="flex justify-between items-center mb-3">
-              <CalendarCheck size={18} className="text-terracotta" />
+              <CalendarCheck size={18} className="text-clay" />
               <span className="text-[10px] text-white/40 uppercase tracking-widest">Secured</span>
             </div>
             <p className="text-sm font-semibold mb-1">Morpheus8 Consult</p>

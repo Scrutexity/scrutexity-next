@@ -42,7 +42,7 @@ export default function RecoveryPilot() {
 
           <h3 className="text-2xl font-display font-semibold mb-4 text-charcoal mt-8">3. Re-Engagement Conversion</h3>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            Of the reachable patients, how many agreed to re-enter the booking pipeline? This is typically 15–30%, depending on how long ago the original inquiry was made.
+            Of the reachable patients, how many agreed to re-enter the booking pipeline? This depends heavily on how long ago the original inquiry was made and on the nature of the service — and is measured per practice, not assumed.
           </p>
 
           <h3 className="text-2xl font-display font-semibold mb-4 text-charcoal mt-8">4. Booking Completion</h3>
@@ -52,7 +52,7 @@ export default function RecoveryPilot() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Realistic Yields</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            Based on operational data: a mid-sized location (250–400 monthly inquiries) typically surfaces 40–60 missed leads in a 90-day lookback. After contact and re-engagement, 15–25% convert to bookings. At $400–$600 average service value, this yields $2,400–$9,000 in incremental revenue per location during the 14-day pilot.
+            As an illustrative walk-through of the method: a mid-sized location reviews its inquiries over a 90-day lookback, surfaces the missed leads, contacts them, and books a share of those who re-engage. Multiplying the booked count by the location&rsquo;s own average service value gives the incremental revenue. Every input here is measured from your data during the pilot — these are estimates that require verification, not promised outcomes.
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">

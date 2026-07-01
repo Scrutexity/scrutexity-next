@@ -1,506 +1,390 @@
 'use client';
 
-import { useEffect } from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Check, FileCheck2, Network, ShieldCheck } from 'lucide-react';
+import { MagneticButton, cinematicEase } from './MotionKit';
+
+type Feature = {
+  title: string;
+  desc: string;
+  icon: ReactNode;
+  accent: 'clay' | 'pine';
+};
+
+const trustPoints = ['BAA on request', 'PHI-minimized', 'No migration', 'No obligation'];
+
+const features: Feature[] = [
+  {
+    title: 'Governed AI',
+    desc: 'Deterministic clinical stop-rule. The AI never gives medical advice.',
+    icon: <ShieldCheck className="h-5 w-5" />,
+    accent: 'pine',
+  },
+  {
+    title: 'Verifiable ledger',
+    desc: 'Source + transcript + deposit. Every recovery is fully auditable.',
+    icon: <FileCheck2 className="h-5 w-5" />,
+    accent: 'clay',
+  },
+  {
+    title: 'PMS-agnostic',
+    desc: 'Read-only across Boulevard, Mangomint, Zenoti. No stack migration.',
+    icon: <Network className="h-5 w-5" />,
+    accent: 'pine',
+  },
+];
+
+const rawLogs = [
+  {
+    raw: 'BOULEVARD: Missed call - (310) 555-0198',
+    intent: 'Consult Call',
+    treatment: 'Unknown',
+    status: 'Recovered',
+    value: '$450',
+  },
+  {
+    raw: "MANGOMINT: Form abandon - 'Laser Hair Removal'",
+    intent: 'High-Intent Lead',
+    treatment: 'Laser Hair Removal',
+    status: 'Booked',
+    value: '$1,200',
+  },
+  {
+    raw: 'ZENOTI: Dormant 6mo - Botox 40 units',
+    intent: 'Reactivation',
+    treatment: 'Injectables',
+    status: 'Deposit Secured',
+    value: '$650',
+  },
+  {
+    raw: 'BOULEVARD: Morpheus8 inquiry stalled',
+    intent: 'Stalled Pipeline',
+    treatment: 'Morpheus8',
+    status: 'Booked',
+    value: '$2,800',
+  },
+  {
+    raw: 'MANGOMINT: Web chat left early',
+    intent: 'Information Request',
+    treatment: 'Needs Triage',
+    status: 'Triage Escalated',
+    value: '-',
+  },
+];
 
 export function ArchitectureVisualWidget({ onBookCall }: { onBookCall?: () => void }) {
+  const containerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: '0px' });
+  const prefersReducedMotion = useReducedMotion();
+  const [activeLogIndex, setActiveLogIndex] = useState(0);
+
   useEffect(() => {
-    /* ── Number count-up ── */
-    function countUp(el: HTMLElement, target: number, duration: number, decimals: number) {
-      const start = performance.now();
-      const fmt = (v: number) => decimals > 0
-        ? v.toFixed(decimals)
-        : Math.round(v).toLocaleString('en-US');
-      (function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(target * eased);
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = fmt(target);
-      })(start);
-    }
+    if (!isInView || prefersReducedMotion) return;
 
-    const v1 = document.getElementById('v1');
-    const v2 = document.getElementById('v2');
-    const v3 = document.getElementById('v3');
-    const recoveryLayer = document.getElementById('recovery-layer');
-    const ownership = document.getElementById('ownership');
+    const interval = window.setInterval(() => {
+      setActiveLogIndex((prev) => (prev + 1) % rawLogs.length);
+    }, 1900);
 
-    /* Start counters when stat cards animate in (~3.95s delay) */
-    setTimeout(() => {
-      if (v1) countUp(v1, 2000, 700, 0);
-      setTimeout(() => { if (v2) countUp(v2, 4000, 800, 0); }, 150);
-      setTimeout(() => { if (v3) countUp(v3, 1.3,  500, 1); }, 300);
-    }, 3950);
-
-    /* ── Post-animation glow states ── */
-    setTimeout(() => {
-      if (recoveryLayer) recoveryLayer.classList.add('glowing');
-    }, 2100);
-
-    setTimeout(() => {
-      if (ownership) ownership.classList.add('pulsing');
-    }, 3700);
-  }, []);
+    return () => window.clearInterval(interval);
+  }, [isInView, prefersReducedMotion]);
 
   return (
-    <>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          /* ─── Tokens ─── */
-          :root {
-            --ivory:      #FDF8F0;
-            --card:       #FEFAF5;
-            --band:       #F9F2E7;
-            --terracotta: #C48A5C;
-            --terra-dark: #a3713f;
-            --charcoal:   #2C2418;
-            --muted:      #6B5A48;
-            --soft:       #6B5A48;
-            --border:     #EADBC6;
-            --sage:       #7f8f78;
-            --sage-bg:    #eef3ea;
-            --shadow:     0 24px 70px rgba(44,36,24,0.09);
-            --ease-lux:   cubic-bezier(0.22, 0.68, 0, 1.0);
-          }
+    <section
+      ref={containerRef}
+      className="relative isolate overflow-hidden bg-ink px-5 py-24 text-bone sm:px-8 lg:py-32"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(184,125,107,0.18),transparent_34%),radial-gradient(circle_at_85%_18%,rgba(47,93,74,0.18),transparent_28%),linear-gradient(180deg,#1C1814_0%,#15110E_100%)]" />
+      <div className="absolute inset-0 luxury-noise opacity-[0.08]" />
+      <div className="absolute left-1/2 top-0 h-px w-[88%] -translate-x-1/2 bg-gradient-to-r from-transparent via-bone/20 to-transparent" />
 
-          .vis-body {
-            background: var(--ivory);
-            background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(196,138,92,0.07), transparent);
-            color: var(--charcoal);
-            font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 2.5rem 1rem 4rem;
-          }
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ duration: 0.7, ease: cinematicEase }}
+            className="text-xs font-bold uppercase tracking-[0.26em] text-clay"
+          >
+            Architecture &amp; Unification
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 18 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ duration: 0.8, delay: 0.08, ease: cinematicEase }}
+            className="mt-4 font-display text-4xl leading-tight text-bone sm:text-5xl lg:text-6xl"
+          >
+            The engine room behind recovered demand.
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ duration: 0.8, delay: 0.16, ease: cinematicEase }}
+            className="mx-auto mt-5 max-w-2xl text-base leading-8 text-porcelain/72"
+          >
+            Watch chaotic, multi-location data from Boulevard, Mangomint, and Zenoti get stripped, classified, and converted into recovery-ready records.
+          </motion.p>
+        </div>
 
-          /* ─── Keyframes ─── */
-          @keyframes pageIn   { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-          @keyframes fadeUp   { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-          @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
-          @keyframes drawLine { from { stroke-dashoffset: var(--dash); } to { stroke-dashoffset: 0; } }
-          @keyframes recoveryGlow {
-            0%,100% { filter: drop-shadow(0 0 0 transparent); }
-            50%     { filter: drop-shadow(0 0 10px rgba(196,138,92,0.28)); }
-          }
-          @keyframes pulseOwnership {
-            0%,100% { filter: drop-shadow(0 0 0 transparent); }
-            50%     { filter: drop-shadow(0 0 8px rgba(196,138,92,0.35)); }
-          }
-          @keyframes badgeSlide {
-            from { opacity:0; transform: translateX(10px); }
-            to   { opacity:1; transform: translateX(0); }
-          }
+        <motion.div
+          initial="hidden"
+          animate={isInView ? 'show' : 'hidden'}
+          variants={{
+            hidden: { opacity: 0 },
+            show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.22 } },
+          }}
+          className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-3"
+        >
+          {trustPoints.map((point) => (
+            <motion.div
+              key={point}
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: cinematicEase } },
+              }}
+              className="flex items-center gap-2 rounded-full border border-bone/10 bg-creamone/[0.035] px-4 py-2 text-sm text-porcelain/78 backdrop-blur-sm"
+            >
+              <Check className="h-4 w-4 text-pine" />
+              <span>{point}</span>
+            </motion.div>
+          ))}
+        </motion.div>
 
-          /* ─── Page card ─── */
-          .vis-page {
-            width: 100%;
-            max-width: 880px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 1.75rem;
-            padding: 2.75rem 3rem 2.5rem;
-            box-shadow: var(--shadow);
-            animation: pageIn 0.75s var(--ease-lux) both;
-          }
+        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <EngineBentoCell key={feature.title} feature={feature} index={index} isInView={isInView} />
+          ))}
+        </div>
 
-          /* ─── Header ─── */
-          .vis-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            animation: fadeUp 0.6s var(--ease-lux) 0.2s both;
-          }
-          .vis-kicker {
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--terracotta);
-            margin-bottom: 8px;
-          }
-          .vis-page-title {
-            font-family: 'Fraunces', var(--font-instrument-serif), Georgia, serif;
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 1.15;
-            color: var(--charcoal);
-            letter-spacing: -0.01em;
-          }
-          .vis-badge {
-            background: var(--band);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 6px 16px;
-            font-size: 11.5px;
-            font-weight: 600;
-            color: var(--soft);
-            white-space: nowrap;
-            flex-shrink: 0;
-            align-self: flex-start;
-            margin-top: 4px;
-            animation: badgeSlide 0.5s var(--ease-lux) 0.45s both;
-          }
+        <LiveDataTerminal
+          activeLogIndex={activeLogIndex}
+          isInView={isInView}
+          prefersReducedMotion={Boolean(prefersReducedMotion)}
+        />
 
-          /* ─── SVG ─── */
-          .vis-flow-wrap { margin: 0 -0.5rem; }
-          .vis-svg { width: 100%; height: auto; display: block; overflow: visible; }
-
-          .svg-kicker {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 9.5px;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            fill: var(--terracotta);
-            animation: fadeIn 0.5s ease-out 0.4s both;
-          }
-          .svg-h   { font-family: 'Fraunces', Georgia, serif; font-size: 13.5px; fill: var(--charcoal); }
-          .svg-h-lg{ font-family: 'Fraunces', Georgia, serif; font-size: 15.5px; fill: var(--charcoal); }
-          .svg-sub { font-family: 'Instrument Sans', sans-serif; font-size: 11px; fill: #4e4740; }
-
-          #leak-1 { animation: fadeIn 0.45s ease-out 0.55s both; }
-          #leak-2 { animation: fadeIn 0.45s ease-out 0.72s both; }
-          #leak-3 { animation: fadeIn 0.45s ease-out 0.89s both; }
-
-          .c-coral rect { fill: var(--band); stroke: var(--terracotta); stroke-width: 1.5; transition: fill 0.2s; }
-          .c-coral:hover rect { fill: #ece0d0; cursor: default; }
-
-          .arr-down {
-            stroke: var(--terracotta); stroke-width: 1.5; opacity: 0.55; fill: none;
-            --dash: 60;
-            stroke-dasharray: 60;
-            animation: drawLine 0.5s ease-out both;
-          }
-          #ad1 { animation-delay: 1.05s; }
-          #ad2 { animation-delay: 1.1s;  }
-          #ad3 { animation-delay: 1.15s; }
-
-          #recovery-layer { animation: fadeIn 0.65s ease-out 1.35s both; }
-          #recovery-layer.glowing rect { animation: recoveryGlow 2.8s ease-in-out infinite; }
-          .c-purple rect { fill: #fff9f4; stroke: var(--terracotta); stroke-width: 2; }
-
-          .arr-mid {
-            stroke: var(--terracotta); stroke-width: 1.5; opacity: 0.55; fill: none;
-            --dash: 55;
-            stroke-dasharray: 55;
-            animation: drawLine 0.45s ease-out both;
-          }
-          #am1 { animation-delay: 1.9s; }
-          #am2 { animation-delay: 1.95s; }
-
-          #outcome-1 { animation: fadeIn 0.4s ease-out 2.2s both; }
-          #outcome-2 { animation: fadeIn 0.4s ease-out 2.35s both; }
-          .c-teal rect { fill: var(--sage-bg); stroke: var(--sage); stroke-width: 1.5; transition: fill 0.2s; }
-          .c-teal:hover rect { fill: #daecd5; }
-
-          #af {
-            stroke: var(--terracotta); stroke-width: 1.5; opacity: 0.55; fill: none;
-            --dash: 55;
-            stroke-dasharray: 55;
-            animation: drawLine 0.45s ease-out 2.65s both;
-          }
-
-          #ownership { animation: fadeIn 0.6s ease-out 2.95s both; }
-          #ownership.pulsing rect { animation: pulseOwnership 2.5s ease-in-out infinite; }
-          .c-gray rect { fill: var(--band); stroke: var(--border); stroke-width: 1.5; }
-
-          /* ─── HTML sections ─── */
-          .vis-section { margin-top: 1.875rem; }
-          .vis-section-label {
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--terracotta);
-            margin-bottom: 12px;
-          }
-          #timeline-section .vis-section-label { animation: fadeUp 0.4s ease-out 3.2s both; }
-          #math-section    .vis-section-label { animation: fadeUp 0.4s ease-out 3.85s both; }
-
-          .vis-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-            gap: 12px;
-          }
-          .vis-card {
-            background: var(--ivory);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.1rem 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            animation: fadeUp 0.45s ease-out both;
-          }
-          .vis-card:hover {
-            border-color: rgba(196,138,92,0.4);
-            box-shadow: 0 8px 24px rgba(44,36,24,0.08);
-          }
-          #timeline-section .vis-card:nth-child(1) { animation-delay: 3.3s;  }
-          #timeline-section .vis-card:nth-child(2) { animation-delay: 3.45s; }
-          #timeline-section .vis-card:nth-child(3) { animation-delay: 3.6s;  }
-          #timeline-section .vis-card:nth-child(4) { animation-delay: 3.75s; }
-
-          .vis-card-day {
-            font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--terracotta); margin-bottom: 6px;
-          }
-          .vis-card-title {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 17px; color: var(--charcoal); margin-bottom: 4px;
-          }
-          .vis-card-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
-
-          .vis-stat-card {
-            background: var(--ivory);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.1rem 1rem;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            animation: fadeUp 0.45s ease-out both;
-          }
-          .vis-stat-card:hover {
-            border-color: rgba(196,138,92,0.4);
-            box-shadow: 0 8px 24px rgba(44,36,24,0.08);
-          }
-          .vis-stat-card.highlight {
-            background: var(--band);
-            border-color: rgba(196,138,92,0.45);
-          }
-          #math-section .vis-stat-card:nth-child(1) { animation-delay: 3.95s; }
-          #math-section .vis-stat-card:nth-child(2) { animation-delay: 4.1s;  }
-          #math-section .vis-stat-card:nth-child(3) { animation-delay: 4.25s; }
-          #math-section .vis-stat-card:nth-child(4) { animation-delay: 4.4s;  }
-
-          .vis-stat-label { font-size: 11px; font-weight: 600; color: var(--soft); margin-bottom: 5px; }
-          .vis-stat-value {
-            font-family: 'Fraunces', Georgia, serif;
-            font-size: 30px; color: var(--charcoal); line-height: 1.05;
-          }
-          .vis-stat-value .unit { font-family: 'Instrument Sans', sans-serif; font-size: 13px; color: var(--soft); }
-          .vis-stat-note { font-size: 11.5px; color: var(--muted); margin-top: 5px; }
-
-          .vis-fine-print {
-            font-size: 11px; color: var(--soft); line-height: 1.75;
-            border-top: 1px solid var(--border); padding-top: 12px; margin-top: 14px;
-            animation: fadeIn 0.5s ease-out 4.55s both;
-          }
-          .vis-cta-row {
-            display: flex; gap: 10px; flex-wrap: wrap;
-            margin-top: 1.875rem; padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            animation: fadeUp 0.5s var(--ease-lux) 4.8s both;
-          }
-          .vis-btn-primary {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: var(--terracotta); color: #fff;
-            border: none; border-radius: 100px; padding: 11px 22px;
-            font-size: 13px; font-weight: 600; font-family: 'Instrument Sans', sans-serif;
-            cursor: pointer; text-decoration: none;
-            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 8px 22px -6px rgba(196,138,92,0.45);
-          }
-          .vis-btn-primary:hover { background: var(--terra-dark); transform: translateY(-1px); box-shadow: 0 12px 28px -6px rgba(196,138,92,0.55); }
-          .vis-btn-ghost {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: transparent; color: var(--charcoal);
-            border: 1px solid var(--border); border-radius: 100px; padding: 11px 22px;
-            font-size: 13px; font-weight: 600; font-family: 'Instrument Sans', sans-serif;
-            cursor: pointer; text-decoration: none;
-            transition: background 0.2s, transform 0.15s, border-color 0.2s;
-          }
-          .vis-btn-ghost:hover { background: var(--band); transform: translateY(-1px); border-color: rgba(196,138,92,0.35); }
-
-          @media print {
-            .vis-body { background: white; padding: 0; }
-            .vis-page { box-shadow: none; border: none; border-radius: 0; max-width: 100%; padding: 1.5rem;
-                    animation: none; opacity: 1; transform: none; }
-            * { animation: none !important; opacity: 1 !important; transform: none !important;
-                stroke-dashoffset: 0 !important; }
-            .vis-cta-row { display: none; }
-          }
-          @media (max-width: 640px) {
-            .vis-page { padding: 1.75rem 1.25rem; border-radius: 1.25rem; }
-            .vis-page-title { font-size: 1.5rem; }
-            .vis-badge { display: none; }
-          }
-        `
-      }} />
-
-      <div className="vis-body">
-        <article className="vis-page">
-          {/* Header */}
-          <div className="vis-header">
-            <div>
-              <p className="vis-kicker">Scrutexity · What you're actually buying</p>
-              <h1 className="vis-page-title">The path from leaked inquiry<br/>to verified booking</h1>
-            </div>
-            <span className="vis-badge">Your Boulevard stays. Your ads stay.</span>
-          </div>
-
-          {/* Flow diagram */}
-          <div className="vis-flow-wrap">
-            <svg viewBox="0 0 680 478" role="img" xmlns="http://www.w3.org/2000/svg" className="vis-svg">
-              <title>Leak-to-ledger flow</title>
-              <desc>Three leak sources flow into the Scrutexity recovery layer, which books into the existing PMS and logs every recovery to an auditable ledger the clinic owns.</desc>
-              <defs>
-                <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M2 1L8 5L2 9" fill="none" stroke="#C48A5C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </marker>
-              </defs>
-
-              <text className="svg-kicker" x="40" y="30">Where money leaks today</text>
-
-              {/* Leak source nodes */}
-              <g id="leak-1" className="node c-coral">
-                <rect x="40" y="44" width="180" height="60" rx="10"/>
-                <text className="svg-h"   x="130" y="68" textAnchor="middle" dominantBaseline="central">Missed call</text>
-                <text className="svg-sub" x="130" y="90" textAnchor="middle" dominantBaseline="central">Text back in 30 seconds</text>
-              </g>
-              <g id="leak-2" className="node c-coral">
-                <rect x="250" y="44" width="180" height="60" rx="10"/>
-                <text className="svg-h"   x="340" y="68" textAnchor="middle" dominantBaseline="central">No-show</text>
-                <text className="svg-sub" x="340" y="90" textAnchor="middle" dominantBaseline="central">Rebook within 1 hr</text>
-              </g>
-              <g id="leak-3" className="node c-coral">
-                <rect x="460" y="44" width="180" height="60" rx="10"/>
-                <text className="svg-h"   x="550" y="68" textAnchor="middle" dominantBaseline="central">11pm DM</text>
-                <text className="svg-sub" x="550" y="90" textAnchor="middle" dominantBaseline="central">Booked while asleep</text>
-              </g>
-
-              {/* Down arrows to recovery */}
-              <line id="ad1" className="arr-down" x1="130" y1="104" x2="130" y2="148" markerEnd="url(#arr)"/>
-              <line id="ad2" className="arr-down" x1="340" y1="104" x2="340" y2="148" markerEnd="url(#arr)"/>
-              <line id="ad3" className="arr-down" x1="550" y1="104" x2="550" y2="148" markerEnd="url(#arr)"/>
-
-              {/* Recovery layer */}
-              <g id="recovery-layer" className="c-purple">
-                <rect x="40" y="156" width="600" height="100" rx="14"/>
-                <text className="svg-h-lg" x="340" y="188" textAnchor="middle" dominantBaseline="central">Scrutexity recovery layer</text>
-                <text className="svg-sub"  x="340" y="213" textAnchor="middle" dominantBaseline="central">Re-engages in your clinic's voice within minutes</text>
-                <text className="svg-sub"  x="340" y="234" textAnchor="middle" dominantBaseline="central">Clinical questions route to your staff — never the AI</text>
-              </g>
-
-              {/* Mid arrows to outcomes */}
-              <line id="am1" className="arr-mid" x1="200" y1="256" x2="200" y2="298" markerEnd="url(#arr)"/>
-              <line id="am2" className="arr-mid" x1="480" y1="256" x2="480" y2="298" markerEnd="url(#arr)"/>
-
-              {/* Outcome nodes */}
-              <g id="outcome-1" className="node c-teal">
-                <rect x="70" y="305" width="260" height="64" rx="10"/>
-                <text className="svg-h"   x="200" y="329" textAnchor="middle" dominantBaseline="central">Booked into Boulevard</text>
-                <text className="svg-sub" x="200" y="352" textAnchor="middle" dominantBaseline="central">Deposit-paid appointment</text>
-              </g>
-              <g id="outcome-2" className="node c-teal">
-                <rect x="350" y="305" width="260" height="64" rx="10"/>
-                <text className="svg-h"   x="480" y="329" textAnchor="middle" dominantBaseline="central">Logged to your ledger</text>
-                <text className="svg-sub" x="480" y="352" textAnchor="middle" dominantBaseline="central">Source + transcript + deposit</text>
-              </g>
-
-              {/* Final arrow */}
-              <line id="af" x1="340" y1="369" x2="340" y2="412" markerEnd="url(#arr)"/>
-
-              {/* Ownership box */}
-              <g id="ownership" className="c-gray">
-                <rect x="150" y="420" width="380" height="46" rx="10"/>
-                <text className="svg-h" x="340" y="443" textAnchor="middle" dominantBaseline="central">You own the proof — keep it even if you cancel</text>
-              </g>
-            </svg>
-          </div>
-
-          {/* Timeline cards */}
-          <div id="timeline-section" className="vis-section">
-            <p className="vis-section-label">The 14-day pilot — $0 during the window</p>
-            <div className="vis-card-grid">
-              <div className="vis-card">
-                <p className="vis-card-day">Day 1</p>
-                <p className="vis-card-title">Demand audit</p>
-                <p className="vis-card-body">Map your last 30 days of missed calls, unworked forms, and abandoned bookings</p>
-              </div>
-              <div className="vis-card">
-                <p className="vis-card-day">Days 2–4</p>
-                <p className="vis-card-title">Quiet install</p>
-                <p className="vis-card-body">Read-only access, BAA signed before activation, no staff retraining</p>
-              </div>
-              <div className="vis-card">
-                <p className="vis-card-day">Days 5–10</p>
-                <p className="vis-card-title">Recovery window</p>
-                <p className="vis-card-body">Every inquiry tracked to source, clinical questions escalated to your team</p>
-              </div>
-              <div className="vis-card">
-                <p className="vis-card-day">Day 14</p>
-                <p className="vis-card-title">Owner brief</p>
-                <p className="vis-card-body">Full report — every recovery, transcript, deposit status. Yours to keep either way</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Math cards */}
-          <div id="math-section" className="vis-section">
-            <p className="vis-section-label">The offer, in numbers</p>
-            <div className="vis-card-grid">
-              <div className="vis-stat-card">
-                <p className="vis-stat-label">14-day pilot</p>
-                <p className="vis-stat-value">$0</p>
-                <p className="vis-stat-note">No integration fee. No commitment.</p>
-              </div>
-              <div className="vis-stat-card">
-                <p className="vis-stat-label">Recovery plan — after pilot</p>
-                <p className="vis-stat-value">$<span id="v1">0</span><span className="unit">/mo</span></p>
-              </div>
-              <div className="vis-stat-card highlight">
-                <p className="vis-stat-label">Guarantee floor — first 30 days</p>
-                <p className="vis-stat-value">$<span id="v2">0</span></p>
-                <p className="vis-stat-note">Verified missed-demand recovery or first month free</p>
-              </div>
-              <div className="vis-stat-card">
-                <p className="vis-stat-label">Break-even</p>
-                <p className="vis-stat-value">~<span id="v3">0</span><span className="unit"> consults/mo</span></p>
-                <p className="vis-stat-note">About one recovered Morpheus8 inquiry at $1,500 avg ticket</p>
-              </div>
-            </div>
-            <p className="vis-fine-print">
-              A verified recovery = source logged + conversation transcript + completed booking deposit.
-              Success criteria agreed in writing before Day 1.
-              Break-even math is illustrative, based on a $1,500 average treatment value — verify against your own numbers.
-            </p>
-          </div>
-
-          {/* Renewal bridge */}
-          <div className="vis-section" style={{ marginTop: '20px' }}>
-            <p className="vis-section-label">After the pilot — you decide</p>
-            <div className="vis-stat-card" style={{ textAlign: 'center', padding: '1.25rem' }}>
-              <p style={{ fontFamily: '"Fraunces", Georgia, serif', fontSize: '18px', color: 'var(--charcoal)', marginBottom: '6px' }}>$2,000/mo, month to month</p>
-              <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '480px', margin: '0 auto' }}>
-                The recovery layer stays active. You keep the ledger. Cancel anytime —<br/>
-                no equipment to return, no data lost, no exit call.
-              </p>
-            </div>
-          </div>
-
-          {/* CTAs */}
-          <div className="vis-cta-row">
-            {onBookCall ? (
-              <button onClick={onBookCall} className="vis-btn-primary">
-                Start your 14-day pilot →
-              </button>
-            ) : (
-              <Link href="/pilot" className="vis-btn-primary">
-                Start your 14-day pilot →
-              </Link>
-            )}
-            <Link href="/sample-owner-brief" className="vis-btn-ghost">
-              See a sample owner brief ↗
-            </Link>
-          </div>
-
-        </article>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.75, delay: 0.75, ease: cinematicEase }}
+          className="mt-10 flex flex-col items-center justify-between gap-5 rounded-3xl border border-bone/10 bg-creamone/[0.035] p-5 backdrop-blur-md sm:flex-row"
+        >
+          <p className="max-w-2xl text-sm leading-6 text-porcelain/72">
+            The output is not a chatbot transcript. It is a normalized recovery record with source, context, routing state, and audit evidence attached.
+          </p>
+          {onBookCall ? (
+            <MagneticButton onClick={onBookCall} className="shrink-0 bg-clay text-bone hover:bg-[#A86E5E]">
+              See the engine in your data
+              <ArrowRight className="h-4 w-4" />
+            </MagneticButton>
+          ) : (
+            <MagneticButton href="/revenue-leak-audit" className="shrink-0 bg-clay text-bone hover:bg-[#A86E5E]">
+              See the engine in your data
+              <ArrowRight className="h-4 w-4" />
+            </MagneticButton>
+          )}
+        </motion.div>
       </div>
-    </>
+    </section>
+  );
+}
+
+function EngineBentoCell({
+  feature,
+  index,
+  isInView,
+}: {
+  feature: Feature;
+  index: number;
+  isInView: boolean;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const glow = feature.accent === 'pine' ? 'rgba(47,93,74,0.16)' : 'rgba(184,125,107,0.16)';
+  const accentClass = feature.accent === 'pine' ? 'text-pine' : 'text-clay';
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.85, delay: index * 0.12, ease: cinematicEase }}
+      className="group relative min-h-[17rem] overflow-hidden rounded-[2rem] border border-bone/10 bg-creamone/[0.035] p-8 shadow-[inset_0_1px_1px_rgba(245,240,232,0.06),0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-md transition-[border-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-clay/35"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(420px circle at ${mousePos.x}px ${mousePos.y}px, ${glow}, transparent 42%)`,
+        }}
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bone/30 to-transparent" />
+
+      <div className="relative z-10 flex h-full flex-col">
+        <div className={`mb-7 flex h-12 w-12 items-center justify-center rounded-full border border-bone/10 bg-creamone/[0.045] ${accentClass}`}>
+          {feature.icon}
+        </div>
+        <h3 className="font-mono text-sm font-semibold uppercase tracking-[0.22em] text-bone">
+          {feature.title}
+        </h3>
+        <p className="mt-4 text-sm leading-7 text-porcelain/66">
+          {feature.desc}
+        </p>
+        <div className="mt-auto pt-7">
+          <span className={`inline-flex h-1.5 w-16 rounded-full ${feature.accent === 'pine' ? 'bg-pine' : 'bg-clay'} opacity-70`} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function LiveDataTerminal({
+  activeLogIndex,
+  isInView,
+  prefersReducedMotion,
+}: {
+  activeLogIndex: number;
+  isInView: boolean;
+  prefersReducedMotion: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.95, delay: 0.5, ease: cinematicEase }}
+      className="mt-6 overflow-hidden rounded-[2rem] border border-bone/10 bg-creamone/[0.028] shadow-[0_30px_110px_rgba(0,0,0,0.28)] backdrop-blur-lg"
+    >
+      <div className="flex flex-wrap items-center gap-3 border-b border-bone/10 bg-creamone/[0.025] px-5 py-4">
+        <div className="flex gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-clay/55" />
+          <span className="h-2.5 w-2.5 rounded-full bg-creamone/18" />
+          <span className="h-2.5 w-2.5 rounded-full bg-pine/55" />
+        </div>
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-porcelain/48">
+          engine.triage_process() - live normalization feed
+        </span>
+      </div>
+
+      <div className="relative grid min-h-[25rem] grid-cols-1 md:grid-cols-[1fr_auto_1fr]">
+        <div className="relative overflow-hidden border-b border-bone/10 p-6 md:border-b-0 md:p-10">
+          <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-ink via-transparent to-ink" />
+          <div className="relative z-0 mb-6 flex items-center justify-between">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-clay">01. Raw ingestion</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-porcelain/35">PMS residue</p>
+          </div>
+          <div className="relative z-0 flex min-h-[17rem] flex-col justify-center space-y-4">
+            {rawLogs.map((log, index) => {
+              const rawDistance = Math.abs(activeLogIndex - index);
+              const distance = Math.min(rawDistance, rawLogs.length - rawDistance);
+              const isActive = index === activeLogIndex;
+              const isVisible = distance <= 2;
+
+              return (
+                <motion.div
+                  key={log.raw}
+                  animate={{
+                    opacity: isActive ? 1 : isVisible ? 0.32 : 0.08,
+                    scale: isActive ? 1 : 0.96,
+                    x: isActive && !prefersReducedMotion ? 10 : 0,
+                    y: prefersReducedMotion ? 0 : (activeLogIndex - index) * -4,
+                  }}
+                  transition={{ duration: 0.55, ease: cinematicEase }}
+                  className={`relative truncate rounded-xl border px-4 py-3 font-mono text-sm sm:text-base ${
+                    isActive
+                      ? 'border-clay/30 bg-clay/10 text-clay shadow-[0_0_34px_rgba(184,125,107,0.16)]'
+                      : 'border-transparent bg-transparent text-porcelain/55'
+                  }`}
+                >
+                  <span className="mr-2 text-porcelain/35">&gt;</span>
+                  {log.raw}
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative hidden w-px bg-creamone/10 md:block">
+          <motion.div
+            className="absolute left-[-1px] h-32 w-[3px] bg-gradient-to-b from-transparent via-pine to-transparent"
+            animate={prefersReducedMotion ? { top: '35%' } : { top: ['-20%', '112%'] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'linear' }}
+          />
+          <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-pine/25 bg-ink shadow-[0_0_42px_rgba(47,93,74,0.28)]">
+            <ShieldCheck className="h-5 w-5 text-pine" />
+          </div>
+        </div>
+
+        <div className="bg-pine/[0.06] p-6 md:p-10">
+          <div className="mb-6 flex items-center justify-between">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-pine">02. Cleaned &amp; structured</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-porcelain/40">Recovery-ready</p>
+          </div>
+
+          <div className="relative min-h-[15rem]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeLogIndex}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 10, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, y: -10, filter: 'blur(4px)' }}
+                transition={{ duration: 0.45, ease: cinematicEase }}
+                className="absolute w-full rounded-2xl border border-pine/20 bg-ink/70 p-6 font-mono text-sm shadow-[0_0_34px_rgba(47,93,74,0.12),inset_0_1px_0_rgba(245,240,232,0.05)]"
+              >
+                <div className="mb-5 flex items-start justify-between gap-5 border-b border-bone/10 pb-5">
+                  <div>
+                    <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-porcelain/45">Identified intent</p>
+                    <p className="font-sans text-base font-medium text-bone">{rawLogs[activeLogIndex].intent}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-porcelain/45">Recoverable</p>
+                    <p className="font-mono text-lg text-pine">{rawLogs[activeLogIndex].value}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {[
+                    ['source', 'normalized'],
+                    ['treatment', rawLogs[activeLogIndex].treatment],
+                    ['routing', 'queued_for_recovery'],
+                  ].map(([key, value], index) => (
+                    <div key={key} className="leading-7 text-bone">
+                      <span className="text-clay">&quot;{key}&quot;</span>: <span className="text-pine">&quot;{value}&quot;</span>{index < 2 ? ',' : ''}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center gap-2 border-t border-bone/10 pt-4">
+                  <ShieldCheck className="h-4 w-4 text-pine" />
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-pine">
+                    {rawLogs[activeLogIndex].status}
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+            {['Context kept', 'PHI boundary', 'Ledger sealed'].map((item, index) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 12 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                transition={{ duration: 0.6, delay: 0.7 + index * 0.08, ease: cinematicEase }}
+                className="rounded-xl border border-pine/15 bg-pine/10 px-3 py-3 text-center font-mono text-[11px] uppercase tracking-[0.12em] text-pine"
+              >
+                {item}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

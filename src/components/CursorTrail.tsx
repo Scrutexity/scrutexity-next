@@ -1,51 +1,59 @@
 'use client';
 
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { useEffect, useRef } from 'react';
+
+const enabled = process.env.NEXT_PUBLIC_ENABLE_2026_UI === 'true';
+const DOT_COUNT = 10;
 
 export default function CursorTrail() {
-  const cursorRef = useRef<HTMLDivElement>(null)
-  const trailRef = useRef<(HTMLDivElement | null)[]>([])
+  const dotRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
   useEffect(() => {
-    const trailElements = trailRef.current.filter(Boolean) as HTMLDivElement[]
-    let mouseX = 0, mouseY = 0
+    if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if ((navigator.hardwareConcurrency ?? 4) < 4 || !window.matchMedia('(hover: hover)').matches) return;
 
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
+    const positions = Array.from({ length: DOT_COUNT }, () => ({ x: -40, y: -40 }));
+    const pointer = { x: -40, y: -40 };
+    let frame = 0;
 
-      // Move main cursor
-      gsap.to(cursorRef.current, { x: mouseX, y: mouseY, duration: 0.1, ease: 'power2.out' })
+    const onMove = (event: PointerEvent) => {
+      pointer.x = event.clientX;
+      pointer.y = event.clientY;
+    };
 
-      // Create trailing effect by shifting the pooled elements
-      const activeTrail = trailElements.shift()
-      if (activeTrail) {
-        trailElements.push(activeTrail)
-        gsap.fromTo(activeTrail, 
-          { x: mouseX, y: mouseY, scale: 1, opacity: 0.8 },
-          { x: mouseX + (Math.random() - 0.5) * 50, y: mouseY + (Math.random() - 0.5) * 50, scale: 0, opacity: 0, duration: 0.8, ease: 'power3.out' }
-        )
-      }
-    }
+    const animate = () => {
+      let x = pointer.x;
+      let y = pointer.y;
+      positions.forEach((position, index) => {
+        position.x += (x - position.x) * 0.28;
+        position.y += (y - position.y) * 0.28;
+        x = position.x;
+        y = position.y;
+        const dot = dotRefs.current[index];
+        if (dot) dot.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`;
+      });
+      frame = requestAnimationFrame(animate);
+    };
 
-    window.addEventListener('mousemove', onMouseMove)
-    return () => window.removeEventListener('mousemove', onMouseMove)
-  }, [])
+    window.addEventListener('pointermove', onMove, { passive: true });
+    frame = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
+  if (!enabled) return null;
   return (
-    <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden mix-blend-screen">
-      {/* Main Cursor Dot */}
-      <div ref={cursorRef} className="absolute w-2 h-2 bg-white rounded-full -ml-1 -mt-1 shadow-[0_0_10px_#00FFB2]" />
-      
-      {/* Pre-allocated Trail Pool */}
-      {[...Array(15)].map((_, i) => (
-        <div 
-          key={i}
-          ref={el => { if (el) trailRef.current[i] = el }}
-          className="absolute w-1.5 h-1.5 bg-terracotta rounded-full -ml-[3px] -mt-[3px] opacity-0 shadow-[0_0_10px_#00FFB2]" 
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[100] hidden md:block">
+      {Array.from({ length: DOT_COUNT }, (_, index) => (
+        <span
+          key={index}
+          ref={(element) => { dotRefs.current[index] = element; }}
+          className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-[#d695b8] will-change-transform"
+          style={{ opacity: (DOT_COUNT - index) / DOT_COUNT * 0.34 }}
         />
       ))}
     </div>
-  )
+  );
 }

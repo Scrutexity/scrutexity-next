@@ -87,7 +87,7 @@ export default function ZenotiMindbodyPipelines() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Revenue Optimization Implication</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            For revenue recovery infrastructure, latency matters. A Zenoti operator can detect a missed inquiry and trigger re-engagement within 5 minutes. A Mindbody operator may not detect it for 10–15 minutes, reducing recoverability by 15–25%.
+            For revenue recovery infrastructure, latency matters. A Zenoti operator can detect a missed inquiry and trigger re-engagement quickly via webhooks; a Mindbody operator relying on polling may detect it somewhat later. All else equal, a slower detection window tends to reduce how much demand is still recoverable.
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">

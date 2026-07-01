@@ -56,7 +56,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      className="backdrop:bg-[#221f1b]/50 backdrop:backdrop-blur-sm bg-[#fbf7ef] rounded-2xl p-0 shadow-2xl overflow-hidden max-w-3xl w-full mx-auto outline-none"
+      className="backdrop:bg-[#221f1b]/50 backdrop:backdrop-blur-sm bg-cream rounded-2xl p-0 shadow-2xl overflow-hidden max-w-3xl w-full mx-auto outline-none"
     >
       {children}
     </dialog>

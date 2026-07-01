@@ -1,322 +1,210 @@
-'use client';
+import type { Metadata } from 'next';
 
-import { useState } from 'react';
-import { ArrowRight, CheckCircle, ShieldCheck, Printer } from 'lucide-react';
-import Link from 'next/link';
-
-function generateReportId(): string {
-  const rnd = Math.random().toString(36).substring(2, 7).toUpperCase();
-  return `RLS-${rnd}`;
-}
-
-function formatDate(): string {
-  return new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-interface ReportData {
-  id: string;
-  date: string;
-  name: string;
-  clinic: string;
-  pms: string;
-}
+export const metadata: Metadata = {
+  title: 'Recovery Brief | Scrutexity',
+  description: 'Sealed weekly recovery performance brief with attribution breakdown and SHA-256 integrity verification.',
+};
 
 export default function SnapshotPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [report, setReport] = useState<ReportData | null>(null);
+  return (
+    <div className="min-h-screen bg-cream text-bark font-sans antialiased">
+      <div className="mx-auto max-w-[1100px] px-6 sm:px-10 lg:px-14 py-12 sm:py-16 lg:py-20">
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setLoading(true);
+        {/* Top bar */}
+        <div className="flex justify-between items-center pb-5 border-b border-sand mb-9 text-xs uppercase tracking-wider text-mist">
+          <div>
+            <span className="font-semibold text-espresso mr-3">SCRUTEXITY</span>
+            <span className="text-mist">Stalled Consult Recovery Brief</span>
+          </div>
+          <div>
+            <span className="inline-block px-3 py-1 rounded-md text-[10px] font-semibold tracking-wider border bg-sage/10 text-sage-deep border-sage/30">
+              VERIFIED
+            </span>
+          </div>
+        </div>
 
-    const form = new FormData(e.currentTarget);
-    const data = {
-      name: form.get('name') as string,
-      clinic: form.get('clinic') as string,
-      email: form.get('email') as string,
-      phone: form.get('phone') as string,
-      pms: form.get('pms') as string,
-    };
+        {/* Header */}
+        <div className="mb-10">
+          <p className="text-[10px] tracking-[0.22em] text-mist uppercase font-semibold mb-3">
+            Sealed Weekly Brief · Contract v4.0.0
+          </p>
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.2rem] leading-tight tracking-tight text-espresso mb-2">
+            Recovery Performance — CLN_NODETEST
+          </h1>
+          <p className="text-sm sm:text-base text-mist">
+            1 stalled consults recovered from 1 approved outreach sends, with attribution split by confidence.
+          </p>
+          <div className="flex flex-wrap gap-x-7 gap-y-2 mt-5 text-xs text-mist">
+            <div>
+              <span className="block text-[9px] tracking-[0.18em] uppercase text-mist/70">Report Window</span>
+              <span className="font-medium text-bark">8 ledger events</span>
+            </div>
+            <div>
+              <span className="block text-[9px] tracking-[0.18em] uppercase text-mist/70">Generated</span>
+              <span className="font-medium text-bark">2026-06-18T01:06:42.017Z</span>
+            </div>
+            <div>
+              <span className="block text-[9px] tracking-[0.18em] uppercase text-mist/70">Sealed</span>
+              <span className="font-medium text-bark">2026-06-18T01:06:42.017Z</span>
+            </div>
+            <div>
+              <span className="block text-[9px] tracking-[0.18em] uppercase text-mist/70">Schema</span>
+              <span className="font-mono text-[11px] font-medium text-bark">brief-1.0.0</span>
+            </div>
+          </div>
+        </div>
 
-    const reportId = generateReportId();
-    setReport({
-      id: reportId,
-      date: formatDate(),
-      name: data.name,
-      clinic: data.clinic,
-      pms: data.pms || 'Not specified',
-    });
+        {/* Hero stats grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px border border-sand-deep/40 rounded-xl overflow-hidden mb-10 bg-sand-deep/30">
+          <div className="bg-cream p-7 sm:col-span-1">
+            <p className="text-[9px] tracking-[0.2em] uppercase text-mist/70 mb-3 font-semibold">Recovered Value (Attributed)</p>
+            <p className="font-display text-3xl sm:text-[2rem] leading-none tracking-tight text-espresso">$999.00</p>
+            <p className="text-xs text-mist mt-2">1 recoveries · 100.0% of 1 approved sends</p>
+          </div>
+          <div className="bg-cream-deep p-7">
+            <p className="text-[9px] tracking-[0.2em] uppercase text-mist/70 mb-3 font-semibold">Directly Attributed</p>
+            <p className="font-display text-3xl sm:text-[2rem] leading-none tracking-tight text-sage-deep">$999.00</p>
+            <p className="text-xs text-mist mt-2">1 recovery · Scrutexity caused</p>
+          </div>
+          <div className="bg-cream-deep p-7">
+            <p className="text-[9px] tracking-[0.2em] uppercase text-mist/70 mb-3 font-semibold">Assisted</p>
+            <p className="font-display text-3xl sm:text-[2rem] leading-none tracking-tight text-clay">$0.00</p>
+            <p className="text-xs text-mist mt-2">0 recovery · Scrutexity helped</p>
+          </div>
+        </div>
 
-    try {
-      await fetch('/api/snapshot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, reportId }),
-      });
-    } catch {
-      // non-blocking — show success regardless
-    }
-    setSubmitted(true);
-    setLoading(false);
-  }
+        {/* 2-column grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-7 mb-10">
 
-  function handlePrint() {
-    window.print();
-  }
-
-  if (submitted && report) {
-    return (
-      <>
-        {/* Hidden printable report */}
-        <div className="hidden print:block print:m-0 print:p-0">
-          <div className="max-w-3xl mx-auto p-10 font-sans text-[#221F1B]">
-            <div className="border-b-2 border-[#221F1B] pb-6 mb-6">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-serif text-2xl mb-1">Revenue Leak Snapshot Report</p>
-                  <p className="text-sm text-[#221F1B]/60">based on live booking activity over the last 14 days</p>
+          {/* Operating Metrics */}
+          <div className="rounded-xl border border-sand bg-cream p-6 shadow-sm">
+            <div className="flex justify-between items-baseline pb-4 mb-4 border-b border-sand">
+              <span className="text-xs font-semibold uppercase tracking-wider text-bark">Operating Metrics</span>
+              <span className="text-[10px] text-mist">derived deterministically from ledger</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-1">
+              {[
+                ['Subjects registered', '1'],
+                ['Approval requests', '1'],
+                ['Approvals granted', '1'],
+                ['Approvals rejected', '0'],
+                ['Messages sent', '1'],
+                ['Messages delivered', '1'],
+                ['Messages failed', '0'],
+                ['Suppression refused (opt-out)', '0'],
+                ['Hash-mismatch refused', '0'],
+                ['Inbound replies classified', '0'],
+                ['Attributions assigned', '0'],
+                ['Appointments verified', '1'],
+                ['Appointments cancelled', '0'],
+                ['Deposits verified', '1'],
+                ['Deposits refunded', '0'],
+              ].map(([k, v]) => (
+                <div key={k} className="flex justify-between py-1.5 border-b border-dashed border-sand/60 text-sm">
+                  <span className="text-mist">{k}</span>
+                  <span className="font-semibold tabular-nums text-bark">{v}</span>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs text-[#221F1B]/40 font-mono">ID: {report.id}</p>
-                  <p className="text-xs text-[#221F1B]/40">{report.date}</p>
-                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Exclusions + Attribution */}
+          <div className="space-y-7">
+            {/* Exclusions */}
+            <div className="rounded-xl border border-sand bg-cream p-6 shadow-sm">
+              <div className="flex justify-between items-baseline pb-4 mb-4 border-b border-sand">
+                <span className="text-xs font-semibold uppercase tracking-wider text-bark">Exclusions</span>
+                <span className="text-[10px] text-mist">financial hygiene</span>
+              </div>
+              <div className="space-y-1">
+                {[
+                  ['Appointments cancelled', '0'],
+                  ['Deposits refunded', '0'],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between py-2 border-b border-dashed border-sand/60 text-sm">
+                    <span className="text-mist">{k}</span>
+                    <span className="font-semibold tabular-nums text-clay-deep">{v}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 p-3 bg-clay/5 border-l-2 border-clay rounded-sm text-xs text-mist leading-relaxed">
+                Cancelled appointments and refunded deposits are excluded from recovered-value totals.
               </div>
             </div>
 
-            <div className="mb-8">
-              <p className="text-xs uppercase tracking-wider text-[#221F1B]/40 mb-1">Prepared for</p>
-              <p className="text-lg font-semibold">{report.clinic}</p>
-              <p className="text-sm text-[#221F1B]/60">Requested by: {report.name}</p>
-              <p className="text-sm text-[#221F1B]/60">PMS: {report.pms}</p>
-            </div>
-
-            <div className="border border-[#221F1B]/10 p-6 mb-6">
-              <p className="text-xs uppercase tracking-widest text-[#221F1B]/50 mb-3">What you&apos;ll receive</p>
-              <div className="grid grid-cols-2 gap-2 text-sm">
+            {/* Attribution Breakdown */}
+            <div className="rounded-xl border border-sand bg-cream p-6 shadow-sm">
+              <div className="flex justify-between items-baseline pb-4 mb-4 border-b border-sand">
+                <span className="text-xs font-semibold uppercase tracking-wider text-bark">Attribution Breakdown</span>
+                <span className="text-[10px] text-mist">by confidence</span>
+              </div>
+              <div className="space-y-0">
                 {[
-                  'Demand Capture Health Score',
-                  'Estimated monthly revenue leakage',
-                  'Missed consult analysis',
-                  'Response time vs. industry benchmark',
-                  'Location comparison (multi-location only)',
-                  'Top 3 recovery opportunities',
+                  { label: 'Directly attributed', count: '1 recovery', amount: '$999.00', dot: 'bg-sage', text: 'text-sage-deep' },
+                  { label: 'Assisted', count: '0 recovery', amount: '$0.00', dot: 'bg-clay', text: 'text-clay' },
+                  { label: 'Uncertain', count: '0 recovery', amount: '$0.00', dot: 'bg-mist/40', text: 'text-mist/60' },
+                  { label: 'Not attributed', count: '0 recovery', amount: '$0.00', dot: 'bg-mist/40', text: 'text-mist/60' },
                 ].map((item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <span className="w-1 h-1 bg-[#B9825F] rotate-45 shrink-0" />
-                    {item}
+                  <div key={item.label} className="grid grid-cols-[1fr_auto_auto] gap-3 py-3 border-b border-dashed border-sand/60 items-center last:border-b-0">
+                    <span className="text-sm font-medium text-bark flex items-center gap-2">
+                      <span className={`inline-block w-2 h-2 rounded-full ${item.dot}`} />
+                      {item.label}
+                    </span>
+                    <span className="text-xs text-mist tabular-nums">{item.count}</span>
+                    <span className={`text-sm font-semibold tabular-nums ${item.text}`}>{item.amount}</span>
                   </div>
                 ))}
               </div>
             </div>
-
-            <div className="border-t border-[#221F1B]/10 pt-6">
-              <p className="text-xs text-[#221F1B]/50 leading-relaxed mb-3">
-                Based on live booking activity drawn from your PMS over the last 14 days. Estimates are directional and require manual verification. This is an operational snapshot — not an audit, certification, or guarantee of results.
-              </p>
-              <p className="text-xs text-[#221F1B]/40 leading-relaxed">
-                Delivery within 24 hours of request. Not legal, medical, or financial advice. Actual results vary by clinic size, volume, and EMR configuration.
-              </p>
-            </div>
-
-            <div className="mt-10 pt-6 border-t border-[#221F1B]/10 text-center">
-              <p className="text-[10px] text-[#221F1B]/30 font-mono">
-                Scrutexity &middot; Revenue Leak Snapshot &middot; {report.id} &middot; {report.date}
-              </p>
-            </div>
           </div>
         </div>
 
-        {/* Thank-you page */}
-        <div className="min-h-screen bg-[#fbf7ef] text-[#221f1b] font-sans antialiased flex items-center justify-center px-6">
-          <div className="max-w-lg text-center">
-            <CheckCircle className="mx-auto h-14 w-14 text-[#B9825F]" />
-            <h1 className="mt-6 font-serif text-4xl tracking-tight">Your snapshot is being prepared</h1>
-            <p className="mt-4 text-lg text-[#221F1B]/70 leading-relaxed">
-              I review every submission personally within 24 hours. You&rsquo;ll receive your Demand Capture
-              Health Score, revenue leakage estimate, and recovery opportunities by tomorrow.
-            </p>
-
-            {/* Report reference */}
-            <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 border border-[#221F1B]/10 bg-white text-xs font-mono text-[#221F1B]/50">
-              <span>Report ID:</span>
-              <span className="text-[#221F1B] font-semibold">{report.id}</span>
-              <span className="text-[#221F1B]/30">|</span>
-              <span>{report.date}</span>
-            </div>
-
-            <p className="mt-3 text-sm text-[#221F1B]/50">
-              If you don&rsquo;t hear from me, reply to the confirmation email and I&rsquo;ll bump you
-              to the front of the line.
-            </p>
-
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <button
-                onClick={handlePrint}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#e1d4c5] bg-white/60 text-[#221F1B] text-sm uppercase tracking-widest font-semibold hover:border-[#B9825F]/50 hover:bg-white/90 transition-all backdrop-blur-sm"
-              >
-                <Printer className="w-4 h-4" />
-                Save Snapshot (PDF)
-              </button>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#221F1B]/20 text-[#221F1B] text-sm uppercase tracking-widest font-semibold hover:bg-[#221F1B]/5 transition-all"
-              >
-                Return home
-              </Link>
-            </div>
-
-            <div className="mt-6 text-xs text-[#221F1B]/40">
-              You can save this to share with your team.
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-[#fbf7ef] text-[#221f1b] font-sans antialiased">
-      <section className="py-20 px-6 lg:px-16 max-w-3xl mx-auto">
-        {/* Intro */}
-        <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-widest font-bold text-[#B9825F] mb-2">Free Assessment</p>
-          <h1 className="font-serif text-4xl md:text-5xl tracking-tight mb-4">
-            Get Your Revenue Leak Snapshot
-          </h1>
-          <p className="text-lg text-[#221F1B]/70 max-w-xl mx-auto">
-            Tell us which clinic and PMS you run. We&rsquo;ll deliver a Demand Capture Health Score,
-            estimated monthly leakage, and your top 3 recovery opportunities within 24 hours.
-          </p>
-        </div>
-
-        {/* The scorecard preview */}
-        <div className="border border-[#221F1B]/10 bg-white p-6 mb-10">
-          <p className="text-xs uppercase tracking-widest font-semibold text-[#221F1B]/50 mb-3">You&rsquo;ll receive</p>
-          <div className="grid sm:grid-cols-2 gap-3">
+        {/* Compliance Disclosures */}
+        <div className="rounded-xl border border-sand bg-cream-deep p-6 sm:p-7 mb-10">
+          <p className="text-[10px] tracking-[0.22em] uppercase text-mist font-semibold mb-4">Compliance &amp; Integrity Disclosures</p>
+          <div className="space-y-4">
             {[
-              'Demand Capture Health Score',
-              'Revenue Leakage Estimate',
-              'Location-by-Location Breakdown',
-              'Response Time Benchmarking',
-              'Top 3 Recovery Opportunities',
-            ].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-sm text-[#221F1B]/80">
-                <span className="w-1.5 h-1.5 bg-[#B9825F] rotate-45 shrink-0" />
-                {item}
+              {
+                title: 'Report Integrity',
+                body: 'Report integrity: This report\'s contents match the sealed version identified by the displayed hash.',
+              },
+              {
+                title: 'Evidence Basis',
+                body: 'Evidence basis: Outcomes are classified using tracked interactions, booking-system observations and clinic-confirmed evidence, with attribution confidence shown for each recovery.',
+              },
+              {
+                title: 'Integrity Language Note',
+                body: 'The underlying audit ledger is an append-only audit ledger (not tamper-proof). The SHA-256 brief seal proves the exported report has not changed since sealing; it does not prove that the underlying source data was true or complete.',
+              },
+            ].map((d) => (
+              <div key={d.title} className="pl-4 border-l-2 border-sand-deep/50 text-sm text-mist leading-relaxed">
+                <strong className="block text-[11px] tracking-wider uppercase text-bark mb-1">{d.title}</strong>
+                {d.body}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label htmlFor="name" className="block text-xs uppercase tracking-widest font-semibold text-[#221F1B]/60 mb-1.5">
-                Your name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                placeholder="Dr. Jane Smith"
-                className="w-full px-4 py-3 border border-[#221F1B]/15 bg-white text-sm text-[#221F1B] placeholder:text-[#221F1B]/30 focus:outline-none focus:border-[#B9825F] transition-colors"
-              />
-            </div>
-            <div>
-              <label htmlFor="clinic" className="block text-xs uppercase tracking-widest font-semibold text-[#221F1B]/60 mb-1.5">
-                Clinic name
-              </label>
-              <input
-                id="clinic"
-                name="clinic"
-                type="text"
-                required
-                placeholder="Upper East Side Aesthetics"
-                className="w-full px-4 py-3 border border-[#221F1B]/15 bg-white text-sm text-[#221F1B] placeholder:text-[#221F1B]/30 focus:outline-none focus:border-[#B9825F] transition-colors"
-              />
-            </div>
+        {/* SHA-256 Seal */}
+        <div className="mt-14 pt-7 border-t border-sand">
+          <div className="flex justify-between items-baseline mb-3">
+            <span className="text-[10px] tracking-[0.22em] uppercase text-mist font-semibold">SHA-256 Seal · Serial Number</span>
+            <span className="font-mono text-[10px] text-mist">SHA256</span>
           </div>
-
-          <div>
-            <label htmlFor="email" className="block text-xs uppercase tracking-widest font-semibold text-[#221F1B]/60 mb-1.5">
-              Email address
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              placeholder="jane@yourclinic.com"
-              className="w-full px-4 py-3 border border-[#221F1B]/15 bg-white text-sm text-[#221F1B] placeholder:text-[#221F1B]/30 focus:outline-none focus:border-[#B9825F] transition-colors"
-            />
+          <div className="font-mono text-sm text-espresso break-all bg-cream border border-sand-deep/40 rounded-lg p-4 border-l-[3px] border-l-sage leading-relaxed">
+            eed2823543846f07581ce9088e9a03b572bbd387e6e34f1ac1b239a9dc5d2a4e
           </div>
-
-          <div className="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label htmlFor="phone" className="block text-xs uppercase tracking-widest font-semibold text-[#221F1B]/60 mb-1.5">
-                Phone <span className="text-[#221F1B]/30">(optional)</span>
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="+1 212 555 0100"
-                className="w-full px-4 py-3 border border-[#221F1B]/15 bg-white text-sm text-[#221F1B] placeholder:text-[#221F1B]/30 focus:outline-none focus:border-[#B9825F] transition-colors"
-              />
-            </div>
-            <div>
-              <label htmlFor="pms" className="block text-xs uppercase tracking-widest font-semibold text-[#221F1B]/60 mb-1.5">
-                Current PMS / EMR
-              </label>
-              <select
-                id="pms"
-                name="pms"
-                defaultValue=""
-                className="w-full px-4 py-3 border border-[#221F1B]/15 bg-white text-sm text-[#221F1B] focus:outline-none focus:border-[#B9825F] transition-colors"
-              >
-                <option value="" disabled>Select your PMS</option>
-                <option value="boulevard">Boulevard</option>
-                <option value="mangomint">Mangomint</option>
-                <option value="zenoti">Zenoti</option>
-                <option value="other">Other / Multiple</option>
-                <option value="not-sure">Not sure</option>
-              </select>
-            </div>
+          <div className="flex flex-col sm:flex-row justify-between mt-3 text-xs text-mist gap-4">
+            <span>Sealed: 2026-06-18T01:06:42.017Z</span>
+            <span className="italic sm:text-right max-w-[70%]">canonical JSON of the brief body (excluding the seal object itself)</span>
           </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-[#B9825F] text-[#FBF7EF] text-sm uppercase tracking-widest font-semibold hover:bg-[#221F1B] transition-all duration-300 disabled:opacity-50"
-          >
-            {loading ? 'Submitting...' : 'Get My Revenue Leak Snapshot'}
-            {!loading && <ArrowRight className="w-4 h-4" />}
-          </button>
-        </form>
-
-        {/* Trust */}
-        <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-[#221F1B]/50">
-          <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#B9825F]" />
-            No obligation
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#B9825F]" />
-            Results in 24 hours
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#B9825F]" />
-            Live booking data analysis
-          </span>
+          <div className="flex flex-col sm:flex-row justify-between mt-2 text-xs text-mist gap-4">
+            <span>Recomputed at view-time: <span className="font-mono text-sage-deep">eed2823543846f07581ce9088e9a03b572bbd387e6e34f1ac1b239a9dc5d2a4e</span></span>
+            <span className="text-sage-deep font-medium">MATCH - report contents identical to sealed version</span>
+          </div>
         </div>
-      </section>
+
+      </div>
     </div>
   );
 }

@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useSpring, useTransform, useInView } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import {
   Shield, Lock, Unlock, Calendar, Check, ArrowRight,
   X, Phone, MessageSquare, FileText, BarChart4,
 } from 'lucide-react';
 import Link from 'next/link';
+import { BentoCard as MoseyBentoCard, BentoGrid as MoseyBentoGrid, cinematicEase } from './MotionKit';
 
 /* ==========================================================================
    0. REDUCED-MOTION GUARD & SHARED CONSTANTS
@@ -120,7 +121,7 @@ const timelineSteps: TimelineStep[] = [
   { day: 'Day 1', title: 'Baseline Demand Audit', desc: 'We run a quiet, historical scan mapping your last 30 days of unworked forms, missed calls, and after-hours delays. You see exactly where pipeline leaked before changing anything.', badge: 'Read-only access', icon: <BarChart4 size={15} /> },
   { day: 'Days 2–4', title: 'Seamless Integration', desc: 'BAA is executed. We establish a secure, read-only bridge to your Boulevard calendar and message endpoints. No migration, no hardware to install, and zero staff training required.', badge: 'Zero workflow disruption', icon: <Shield size={15} /> },
   { day: 'Days 5–10', title: 'Trailing Capture', desc: 'The recovery engine monitors incoming gaps in real-time. Missed inquiries are re-engaged in your clinic\'s precise voice within minutes, booking deposits directly into your system.', badge: 'Live recovery logs', icon: <Phone size={15} /> },
-  { day: 'Day 14', title: 'Day-14 Owner Brief', desc: 'We present a comprehensive, audited log of every recovery, conversation transcript, and deposit status. You verify the results against your bank statements before making any decision.', badge: 'Full data sovereignty', icon: <Check size={15} /> },
+  { day: 'Day 14', title: 'Day-14 Owner Brief', desc: 'We present a comprehensive log of every recovery, conversation transcript, and deposit status. You verify the results against your booking and payment records before making any decision.', badge: 'Exportable activity record', icon: <Check size={15} /> },
 ];
 
 export function ScrollLinkedTimeline() {
@@ -128,10 +129,8 @@ export function ScrollLinkedTimeline() {
   const reducedMotion = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start center', 'end center'] });
-  const scaleY = useSpring(scrollYProgress, { stiffness: 50, damping: 20, restDelta: 0.0008 });
-
   return (
-    <section ref={containerRef} className="relative py-28 bg-[#fbf7ef] overflow-hidden border-b border-[#e1d4c5]/60">
+    <section ref={containerRef} className="relative py-28 bg-cream overflow-hidden border-b border-sand-deep/60">
       {/* Soft sage column glow */}
       <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] -translate-x-1/2 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(127,143,120,0.14),transparent_75%)]" />
@@ -139,9 +138,9 @@ export function ScrollLinkedTimeline() {
 
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-24">
-          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#9b6a51] mb-4">Operational Timeline</p>
-          <h2 className="font-display text-4xl text-charcoal leading-tight sm:text-5xl md:text-[3.25rem]">The 14-Day Performance Sprint</h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#6b6259] max-w-xl mx-auto">
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-clay-deep mb-4">Operational Timeline</p>
+          <h2 className="font-display text-4xl text-espresso leading-tight sm:text-5xl md:text-[3.25rem]">The 14-Day Performance Sprint</h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-mist max-w-xl mx-auto">
             A structured, risk-free window designed to demonstrate recovery value with zero upfront commitment.
           </p>
         </div>
@@ -151,7 +150,7 @@ export function ScrollLinkedTimeline() {
           <div className="absolute left-6 md:left-1/2 top-6 bottom-6 w-[2px] bg-[#efe6d7] -translate-x-1/2 rounded-full" />
           {/* Sage progress line — silkier spring draw */}
           <motion.div
-            style={{ scaleY: reducedMotion ? 1 : scaleY, originY: 0 }}
+            style={{ scaleY: reducedMotion ? 1 : scrollYProgress, originY: 0 }}
             className="absolute left-6 md:left-1/2 top-6 bottom-6 w-[2px] bg-[#7f8f78] -translate-x-1/2 rounded-full shadow-[0_0_12px_rgba(127,143,120,0.25)]"
           />
 
@@ -175,10 +174,10 @@ function TimelineCard({ step, index }: { step: TimelineStep; index: number }) {
   return (
     <div ref={ref} className="relative flex flex-col md:flex-row items-start md:items-center">
       {/* Dot on central line */}
-      <div className="absolute left-6 md:left-1/2 top-6 md:top-1/2 w-5 h-5 rounded-full border-2 border-[#efe6d7] bg-[#fbf7ef] -translate-x-1/2 -translate-y-1/2 z-10 transition-colors duration-700 flex items-center justify-center">
+      <div className="absolute left-6 md:left-1/2 top-6 md:top-1/2 w-5 h-5 rounded-full border-2 border-[#efe6d7] bg-cream -translate-x-1/2 -translate-y-1/2 z-10 transition-colors duration-700 flex items-center justify-center">
         <motion.div
           animate={{ scale: isInView ? 1 : 0.35, backgroundColor: isInView ? '#7f8f78' : '#e1d4c5' }}
-          transition={{ type: 'spring', stiffness: 120, damping: 16, mass: 0.8 }}
+          transition={{ duration: 0.55, ease: cinematicEase }}
           className="w-2 h-2 rounded-full"
         />
       </div>
@@ -187,8 +186,8 @@ function TimelineCard({ step, index }: { step: TimelineStep; index: number }) {
       <div className={`w-full pl-16 md:pl-0 md:w-1/2 ${isEven ? 'md:pr-16 md:text-right' : 'md:pl-16 md:ml-auto'}`}>
         <motion.div
           animate={reducedMotion ? { opacity: 1 } : { scale: isInView ? 1.01 : 0.97, opacity: isInView ? 1.0 : 0.42, y: isInView ? 0 : 18 }}
-          transition={{ type: 'spring', stiffness: 70, damping: 22, mass: 0.9 }}
-          className="bg-[#fffaf2] border border-[#e1d4c5] p-8 rounded-2xl
+          transition={{ duration: 0.75, ease: cinematicEase }}
+          className="bg-cream border border-sand-deep p-8 rounded-2xl
                      shadow-[0_4px_30px_rgba(85,62,41,0.02)]
                      hover:shadow-[0_16px_48px_rgba(85,62,41,0.07)]
                      hover:border-[#7f8f78]/20
@@ -209,12 +208,12 @@ function TimelineCard({ step, index }: { step: TimelineStep; index: number }) {
             </motion.span>
           </div>
 
-          <h3 className="font-display text-[1.65rem] text-charcoal mb-3 leading-snug">{step.title}</h3>
-          <p className="text-sm leading-relaxed text-[#6b6259]">{step.desc}</p>
+          <h3 className="font-display text-[1.65rem] text-espresso mb-3 leading-snug">{step.title}</h3>
+          <p className="text-sm leading-relaxed text-mist">{step.desc}</p>
 
           {step.badge && (
             <div className={`mt-4 ${isEven ? 'md:text-right' : ''}`}>
-              <span className="inline-block rounded-full bg-[#f3eadf]/70 border border-[#e1d4c5]/50 px-3 py-1 text-[9px] font-semibold text-[#7a7066] uppercase tracking-wider">
+              <span className="inline-block rounded-full bg-[#f3eadf]/70 border border-sand-deep/50 px-3 py-1 text-[9px] font-semibold text-[#7a7066] uppercase tracking-wider">
                 {step.badge}
               </span>
             </div>
@@ -269,47 +268,44 @@ export function InteractiveSampleLedger() {
   };
 
   return (
-    <section ref={containerRef} className="py-28 bg-[#fffaf2] border-b border-[#e1d4c5]/60 relative z-10">
+    <section ref={containerRef} className="py-28 bg-cream border-b border-sand-deep/60 relative z-10">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-20">
-          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-terracotta mb-4">Audit Transparency</p>
-          <h2 className="font-display text-4xl text-charcoal leading-tight sm:text-5xl md:text-[3.25rem]">Surfaced Ledger Interface</h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#6b6259] max-w-xl mx-auto">
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-clay mb-4">Audit Transparency</p>
+          <h2 className="font-display text-4xl text-espresso leading-tight sm:text-5xl md:text-[3.25rem]">Surfaced Ledger Interface</h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-mist max-w-xl mx-auto">
             How every re-engaged booking is compiled into a single, clean ledger verifying exact source, response time, and deposit captured.
           </p>
-          <p className="mt-4 inline-block font-mono text-[9px] uppercase tracking-wider text-[#9a8775] bg-[#f3eadf]/60 border border-[#e1d4c5]/50 px-4 py-1.5 rounded-full">
+          <p className="mt-4 inline-block font-mono text-[9px] uppercase tracking-wider text-[#9a8775] bg-[#f3eadf]/60 border border-sand-deep/50 px-4 py-1.5 rounded-full">
             Illustrative — format sample, not a client result.
           </p>
         </div>
 
         {/* 4-Up Stat Bento */}
-        <div className="grid gap-5 md:grid-cols-4 mb-14">
+        <MoseyBentoGrid className="mb-14 gap-5 md:grid-cols-2 lg:grid-cols-4">
           {[
             { label: 'Reengaged Value', val: 28400, prefix: '$', note: 'Estimated 14-day recovered pipeline', delay: 0.05 },
             { label: 'Leads Reactivated', val: 19, extra: '/ 47 leaks', note: '40.4% recovery rate', delay: 0.12, ring: 40.4 },
             { label: 'Median Delay', val: 42, suffix: 's', note: 'Reduced from 6.2d baseline', delay: 0.19 },
             { label: 'EMR Integration', note: 'Verified', delay: 0.26, verified: true },
           ].map((s, i) => (
-            <motion.div
+            <MoseyBentoCard
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: s.delay, ease: luxuryEase }}
-              className="rounded-2xl border border-[#e1d4c5] bg-white/70 p-6 shadow-sm hover:shadow-md hover:border-[#7f8f78]/15 transition-all duration-300 flex flex-col justify-between"
+              className="flex flex-col justify-between border-sand-deep bg-white/70 p-6 shadow-sm hover:border-clay/35"
             >
               <div>
                 <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#9a8775] mb-4">{s.label}</p>
                 {s.verified ? (
                   <div className="flex items-center gap-2 mb-2 text-[#7f8f78]">
                     <Check size={18} className="stroke-[3]" />
-                    <span className="font-display text-2xl text-[#221f1b] font-semibold leading-none">Verified</span>
+                    <span className="font-display text-2xl text-pine font-semibold leading-none">Verified</span>
                   </div>
                 ) : s.ring ? (
                   <div className="flex justify-between items-start">
                     <div>
                       <div className="flex items-baseline gap-1 mb-2">
-                        <motion.span whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }} className="font-display text-[2.75rem] text-[#221f1b] leading-none inline-block origin-left cursor-default">
+                        <motion.span whileHover={reducedMotion ? undefined : { scale: 1.03 }} transition={{ duration: 0.4, ease: cinematicEase }} className="font-display text-[2.75rem] text-pine leading-none inline-block origin-left cursor-default">
                           <Counter value={s.val!} />
                         </motion.span>
                         <span className="text-xs text-[#9a8775] ml-1">{s.extra}</span>
@@ -319,21 +315,21 @@ export function InteractiveSampleLedger() {
                   </div>
                 ) : (
                   <div className="flex items-baseline gap-1 mb-2">
-                    <motion.span whileHover={{ scale: 1.03 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }} className="font-display text-[2.75rem] text-[#221f1b] leading-none inline-block origin-left cursor-default">
+                    <motion.span whileHover={reducedMotion ? undefined : { scale: 1.03 }} transition={{ duration: 0.4, ease: cinematicEase }} className={`font-display text-[2.75rem] leading-none inline-block origin-left cursor-default ${s.prefix === '$' ? 'text-pine' : 'text-espresso'}`}>
                       <Counter value={s.val!} prefix={s.prefix} suffix={s.suffix} />
                     </motion.span>
                   </div>
                 )}
-                <p className="text-xs text-[#6b6259]">{s.note}</p>
+                <p className="text-xs text-mist">{s.note}</p>
               </div>
               {s.verified && (
-                <Link href="/verify" className="text-[10px] font-semibold text-terracotta hover:underline inline-flex items-center gap-1 uppercase tracking-wider font-mono mt-2">
+                <Link href="/verify" className="text-[10px] font-semibold text-clay hover:underline inline-flex items-center gap-1 uppercase tracking-wider font-mono mt-2">
                   Live Verification ↗
                 </Link>
               )}
-            </motion.div>
+            </MoseyBentoCard>
           ))}
-        </div>
+        </MoseyBentoGrid>
         <p className="-mt-10 mb-14 text-center font-mono text-[8.5px] uppercase tracking-wider text-[#b3a28e]">
           Illustrative — format sample, not a client result.
         </p>
@@ -341,11 +337,11 @@ export function InteractiveSampleLedger() {
         {/* Two-Column Board */}
         <div className="grid gap-8 lg:grid-cols-10 items-stretch">
           {/* ── LEFT: Ledger Table ── */}
-          <div className="lg:col-span-6 rounded-3xl border border-[#e1d4c5] bg-white shadow-[0_20px_50px_rgba(85,62,41,0.03)] overflow-hidden flex flex-col">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e1d4c5] bg-white/40 px-6 py-5">
+          <div className="lg:col-span-6 rounded-3xl border border-sand-deep bg-white shadow-[0_20px_50px_rgba(85,62,41,0.03)] overflow-hidden flex flex-col">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-sand-deep bg-white/40 px-6 py-5">
               <div>
                 <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-[#9a8775]">Active Pipeline · Illustrative</p>
-                <h3 className="mt-1 text-sm font-semibold text-charcoal">Demo Diagnostic Record (SCX-0900)</h3>
+                <h3 className="mt-1 text-sm font-semibold text-espresso">Demo Diagnostic Record (SCX-0900)</h3>
               </div>
               <div className="font-mono text-[9px] text-right text-[#7f8f78] font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#7f8f78] animate-pulse" /> BAA Active
@@ -353,9 +349,9 @@ export function InteractiveSampleLedger() {
             </div>
 
             <div className="overflow-x-auto flex-1">
-              <table className="w-full min-w-[550px] font-mono text-[11px] text-[#5f574f]">
+              <table className="w-full min-w-[550px] font-mono text-[11px] text-mist">
                 <thead>
-                  <tr className="border-b border-[#e1d4c5]/70 bg-[#fffaf2]/50 text-[#9a8775]">
+                  <tr className="border-b border-sand-deep/70 bg-cream/50 text-[#9a8775]">
                     <th className="py-3 px-6 text-left font-semibold uppercase tracking-wider w-[80px]">Event ID</th>
                     <th className="py-3 px-3 text-left font-semibold uppercase tracking-wider w-[70px]">When</th>
                     <th className="py-3 px-3 text-left font-semibold uppercase tracking-wider">Source</th>
@@ -375,7 +371,7 @@ export function InteractiveSampleLedger() {
                         variants={rowVariants}
                         onMouseEnter={() => setActiveRowId(row.id)}
                         className={`relative transition-all duration-300 cursor-pointer group ${
-                          isActive ? 'bg-[#7f8f78]/6 scale-[1.005]' : 'hover:bg-[#fbf7ef]/50'
+                          isActive ? 'bg-[#7f8f78]/6 scale-[1.005]' : 'hover:bg-cream/50'
                         }`}
                       >
                         {/* Sage left-border accent on active row */}
@@ -386,13 +382,13 @@ export function InteractiveSampleLedger() {
                             className="h-full w-full bg-[#7f8f78]/40 rounded-r-full origin-top"
                           />
                         </td>
-                        <td className="py-4 px-6 font-semibold text-charcoal">{row.id}</td>
+                        <td className="py-4 px-6 font-semibold text-espresso">{row.id}</td>
                         <td className="py-4 px-3 text-[#9a8775]">{row.time}</td>
                         <td className="py-4 px-3">
                           <span className="flex items-center gap-1.5">
-                            {row.icon === 'phone' && <Phone size={10} className="text-[#b9825f]" />}
-                            {row.icon === 'form' && <FileText size={10} className="text-[#b9825f]" />}
-                            {row.icon === 'chat' && <MessageSquare size={10} className="text-[#b9825f]" />}
+                            {row.icon === 'phone' && <Phone size={10} className="text-clay" />}
+                            {row.icon === 'form' && <FileText size={10} className="text-clay" />}
+                            {row.icon === 'chat' && <MessageSquare size={10} className="text-clay" />}
                             {row.src}
                           </span>
                         </td>
@@ -409,9 +405,9 @@ export function InteractiveSampleLedger() {
               </table>
             </div>
 
-            <div className="border-t border-[#e1d4c5] bg-[#fffaf2]/30 px-6 py-4 flex flex-wrap justify-between items-center gap-3">
+            <div className="border-t border-sand-deep bg-cream/30 px-6 py-4 flex flex-wrap justify-between items-center gap-3">
               <span className="text-[10px] text-[#9a8775] leading-relaxed">*Hover over rows to inspect active SMS transcripts.</span>
-              <Link href="/terms-of-pilot" className="text-[10px] font-semibold text-terracotta hover:underline flex items-center gap-1">
+              <Link href="/terms-of-pilot" className="text-[10px] font-semibold text-clay hover:underline flex items-center gap-1">
                 Verify compliance rules <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
@@ -422,16 +418,16 @@ export function InteractiveSampleLedger() {
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.35, ease: luxuryEase }}
-            className="lg:col-span-4 flex flex-col justify-between rounded-3xl border border-[#e1d4c5] bg-[#fffaf2] p-5 shadow-[0_20px_50px_rgba(85,62,41,0.03)] relative overflow-hidden select-none"
+            className="lg:col-span-4 flex flex-col justify-between rounded-3xl border border-sand-deep bg-cream p-5 shadow-[0_20px_50px_rgba(85,62,41,0.03)] relative overflow-hidden select-none"
           >
             {/* Deeper sage radial aura */}
             <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_50%_0%,rgba(127,143,120,0.08),transparent_60%),radial-gradient(ellipse_at_80%_100%,rgba(185,130,95,0.03),transparent_50%)] pointer-events-none" />
 
             <div className="relative flex-1 flex flex-col">
-              <div className="border-b border-[#e1d4c5] pb-3 mb-5 flex items-center gap-2">
+              <div className="border-b border-sand-deep pb-3 mb-5 flex items-center gap-2">
                 <div className="h-7 w-7 rounded-full bg-[#7f8f78]/10 text-[#7f8f78] flex items-center justify-center"><Shield size={12} /></div>
                 <div>
-                  <h4 className="text-xs font-semibold text-[#221f1b]">Transcript Inspector</h4>
+                  <h4 className="text-xs font-semibold text-espresso">Transcript Inspector</h4>
                   <p className="text-[9px] font-mono text-[#9a8775]">Record ID: {activeRow.id}</p>
                 </div>
                 <span className="ml-auto inline-block h-1.5 w-1.5 rounded-full bg-[#7f8f78] animate-pulse" />
@@ -444,13 +440,13 @@ export function InteractiveSampleLedger() {
                     initial={{ opacity: 0, scale: 0.97, y: 6 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.97, y: -6 }}
-                    transition={{ type: 'spring', stiffness: 160, damping: 22, mass: 0.7 }}
+                    transition={{ duration: 0.45, ease: cinematicEase }}
                     className="space-y-4"
                   >
                     {/* System Message */}
                     <div className="flex flex-col items-start max-w-[88%]">
                       <span className="text-[9px] font-mono text-[#9a8775] mb-1">Scrutexity Layer</span>
-                      <div className="rounded-2xl rounded-tl-sm bg-[#eef3ea] border border-[#7f8f78]/15 px-4 py-3 text-xs text-[#221f1b] leading-relaxed shadow-sm">
+                      <div className="rounded-2xl rounded-tl-sm bg-[#eef3ea] border border-[#7f8f78]/15 px-4 py-3 text-xs text-espresso leading-relaxed shadow-sm">
                         {activeRow.transcript.system}
                       </div>
                     </div>
@@ -458,7 +454,7 @@ export function InteractiveSampleLedger() {
                     {activeRow.transcript.patient && (
                       <div className="flex flex-col items-end max-w-[88%] ml-auto">
                         <span className="text-[9px] font-mono text-[#9a8775] mb-1">Patient Reply</span>
-                        <div className="rounded-2xl rounded-tr-sm bg-white border border-[#e1d4c5] px-4 py-3 text-xs text-[#221f1b] leading-relaxed shadow-sm italic">
+                        <div className="rounded-2xl rounded-tr-sm bg-white border border-sand-deep px-4 py-3 text-xs text-espresso leading-relaxed shadow-sm italic">
                           &ldquo;{activeRow.transcript.patient}&rdquo;
                         </div>
                       </div>
@@ -475,8 +471,8 @@ export function InteractiveSampleLedger() {
               </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-[#e1d4c5] text-[10px] text-center text-[#9a8775]">
-              Every row has a cryptographic audit trail linked directly to Boulevard deposit receipts.
+            <div className="mt-4 pt-4 border-t border-sand-deep text-[10px] text-center text-[#9a8775]">
+              Every row has a verifiable audit trail linked directly to Boulevard deposit receipts.
             </div>
           </motion.div>
         </div>
@@ -486,7 +482,7 @@ export function InteractiveSampleLedger() {
 }
 
 /* ==========================================================================
-   5. FLOATING "SEE LIVE LEDGER FORMAT" MODAL (refined springs)
+   5. FLOATING "SEE LIVE LEDGER FORMAT" MODAL
    ========================================================================== */
 
 export function SampleBriefFloatingModal() {
@@ -495,8 +491,7 @@ export function SampleBriefFloatingModal() {
 
   return (
     <>
-      {/* Floating Pill — breathing sage shadow lives on the wrapper so the button
-          keeps its own spring for hover/tap (one transition per element). */}
+      {/* Floating Pill — breathing sage shadow lives on the wrapper. */}
       <motion.div
         className="fixed bottom-6 right-6 z-40 rounded-full"
         animate={reducedMotion ? {} : { boxShadow: [
@@ -510,8 +505,8 @@ export function SampleBriefFloatingModal() {
           onClick={() => setIsOpen(true)}
           whileHover={reducedMotion ? {} : { scale: 1.02, y: -2 }}
           whileTap={reducedMotion ? {} : { scale: 0.98 }}
-          transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-          className="rounded-full bg-white/85 border border-[#7f8f78]/25 text-charcoal
+          transition={{ duration: 0.4, ease: cinematicEase }}
+          className="rounded-full bg-white/85 border border-[#7f8f78]/25 text-espresso
                      px-5 py-3 shadow-[0_14px_40px_rgba(127,143,120,0.10),0_2px_8px_rgba(85,62,41,0.04)]
                      hover:border-[#7f8f78]/50
                      backdrop-blur-xl flex items-center gap-2.5 font-sans text-[11px]
@@ -533,7 +528,7 @@ export function SampleBriefFloatingModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#fbf7ef]/50 backdrop-blur-xl"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cream/50 backdrop-blur-xl"
           >
             <div className="absolute inset-0 cursor-default" onClick={() => setIsOpen(false)} />
 
@@ -541,26 +536,26 @@ export function SampleBriefFloatingModal() {
               initial={reducedMotion ? { opacity: 0 } : { scale: 0.93, y: 28, opacity: 0 }}
               animate={reducedMotion ? { opacity: 1 } : { scale: 1, y: 0, opacity: 1 }}
               exit={reducedMotion ? { opacity: 0 } : { scale: 0.93, y: 28, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 130, damping: 22, mass: 0.9 }}
-              className="relative w-full max-w-2xl bg-[#fffaf2]/95 border border-[#e1d4c5]
+              transition={{ duration: 0.6, ease: cinematicEase }}
+              className="relative w-full max-w-2xl bg-cream/95 border border-sand-deep
                          rounded-[1.75rem] shadow-[0_40px_100px_rgba(85,62,41,0.14)]
                          overflow-hidden z-10 backdrop-blur-3xl"
             >
-              <button onClick={() => setIsOpen(false)} className="absolute right-6 top-6 h-9 w-9 rounded-full bg-[#fbf7ef] border border-[#e1d4c5]/60 text-[#7a7066] hover:text-charcoal flex items-center justify-center transition-colors z-20">
+              <button onClick={() => setIsOpen(false)} className="absolute right-6 top-6 h-9 w-9 rounded-full bg-cream border border-sand-deep/60 text-[#7a7066] hover:text-espresso flex items-center justify-center transition-colors z-20">
                 <X className="h-4 w-4" />
               </button>
 
               <div className="p-8 md:p-10">
                 <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[#9a8775] mb-2 block">Scrutexity · Ledger Structure</span>
-                <h3 className="font-display text-3xl text-charcoal mb-4">Day-14 Owner Brief Mockup</h3>
-                <p className="text-sm leading-relaxed text-[#6b6259] mb-7 max-w-lg">
+                <h3 className="font-display text-3xl text-espresso mb-4">Day-14 Owner Brief Mockup</h3>
+                <p className="text-sm leading-relaxed text-mist mb-7 max-w-lg">
                   Below is a representation of the diagnostic dashboard delivered to practice directors at the end of the 14-day performance pilot.
                 </p>
 
                 {/* Dashboard mockup */}
-                <div className="bg-[#fbf7ef]/70 border border-[#e1d4c5] rounded-2xl p-6 mb-8 font-mono text-[10.5px] space-y-5 shadow-inner relative overflow-hidden">
+                <div className="bg-cream/70 border border-sand-deep rounded-2xl p-6 mb-8 font-mono text-[10.5px] space-y-5 shadow-inner relative overflow-hidden">
                   <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_50%_0%,rgba(127,143,120,0.04),transparent_55%)] pointer-events-none" />
-                  <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-4 border-b border-[#e1d4c5]/60 pb-5">
+                  <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-4 border-b border-sand-deep/60 pb-5">
                     {[
                       { label: 'Audited Inquiries', val: 112 },
                       { label: 'Surfaced Leaks', val: 47, terracotta: true },
@@ -569,7 +564,7 @@ export function SampleBriefFloatingModal() {
                     ].map((m, i) => (
                       <div key={i}>
                         <p className="text-[#9a8775] uppercase tracking-wide text-[9px]">{m.label}</p>
-                        <p className={`text-lg font-bold mt-1 ${m.sage ? 'text-[#7f8f78]' : m.terracotta ? 'text-terracotta' : 'text-charcoal'}`}>
+                        <p className={`text-lg font-bold mt-1 ${m.sage ? 'text-[#7f8f78]' : m.terracotta ? 'text-clay' : 'text-espresso'}`}>
                           {m.staticVal || <Counter value={m.val!} duration={m.val! > 50 ? 1.2 : 0.8} />}
                         </p>
                       </div>
@@ -577,8 +572,8 @@ export function SampleBriefFloatingModal() {
                   </div>
                   <div className="relative space-y-2.5">
                     <p className="text-[9px] font-bold uppercase tracking-widest text-[#9a8775]">Latest Verified Recovery</p>
-                    <div className="bg-white/60 border border-[#e1d4c5]/50 rounded-lg p-3.5 text-[11px] leading-relaxed text-charcoal/80">
-                      <p className="text-[9px] text-[#9b6a51] font-semibold mb-1">Morpheus8 inquiry re-engagement transcript (illustrative):</p>
+                    <div className="bg-white/60 border border-sand-deep/50 rounded-lg p-3.5 text-[11px] leading-relaxed text-espresso/80">
+                      <p className="text-[9px] text-clay-deep font-semibold mb-1">Morpheus8 inquiry re-engagement transcript (illustrative):</p>
                       <p className="italic">&ldquo;Hi Sarah — an opening came up this Thursday at 2 PM for your Morpheus8 consult. Would you like us to hold it for you? Reply STOP to opt out.&rdquo;</p>
                       <p className="mt-2 text-[9px] text-[#7f8f78] font-bold uppercase tracking-wider">✓ Deposit Verified: $650 · Boulevard Booking ID: #BVD-0891</p>
                     </div>
@@ -587,10 +582,10 @@ export function SampleBriefFloatingModal() {
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Link href="/pilot" onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center rounded-full bg-terracotta text-white px-7 py-3.5 text-xs font-semibold tracking-wider uppercase hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
-                    Start your 14-day pilot
+                  <Link href="/pilot" onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center rounded-full bg-clay text-white px-7 py-3.5 text-xs font-semibold tracking-wider uppercase hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
+                    Get Your Free Audit
                   </Link>
-                  <button onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center rounded-full border border-[#e1d4c5] px-7 py-3.5 text-xs font-semibold tracking-wider uppercase text-[#6b6259] hover:bg-[#fbf7ef] hover:text-charcoal transition-all">
+                  <button onClick={() => setIsOpen(false)} className="inline-flex items-center justify-center rounded-full border border-sand-deep px-7 py-3.5 text-xs font-semibold tracking-wider uppercase text-mist hover:bg-cream hover:text-espresso transition-all">
                     Dismiss preview
                   </button>
                 </div>
@@ -616,18 +611,18 @@ export function SecurityPostureBento() {
   const cards: SecurityCardProps[] = [
     { title: 'BAA Pre-Execution', desc: 'A Business Associate Agreement (BAA) is legally executed prior to any technical connection. Patient data is covered under strict HIPAA compliance boundaries from minute zero.', badge: 'HIPAA Compliant', icon: 'shield' },
     { title: 'Deterministic PHI Stripping', desc: 'All incoming communication undergoes localized PHI scrubbing. Personal identifiers, names, and contact credentials are automatically redacted before routing to any compute endpoint.', badge: 'Privacy Airlock', icon: 'lock' },
-    { title: 'Sovereign Kill Switch', desc: 'Since the integration relies on a read-only API key generated directly inside your Boulevard dashboard, you retain absolute authority. You can sever the access token instantly at any time.', badge: 'Instant Disconnect', icon: 'revocation' },
+    { title: 'Instant Disconnect', desc: 'The integration uses a read-only API key generated inside your Boulevard dashboard. You can revoke the access token there at any time.', badge: 'Access stays in your control', icon: 'revocation' },
   ];
 
   return (
-    <section className="py-28 bg-[#fbf7ef] border-b border-[#e1d4c5]/60 relative overflow-hidden">
+    <section className="py-28 bg-cream border-b border-sand-deep/60 relative overflow-hidden">
       {/* Soft persistent sage ambience behind the panel grid */}
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(ellipse_at_50%_100%,rgba(127,143,120,0.06),transparent_70%)] pointer-events-none" />
       <div className="max-w-6xl mx-auto px-6 relative">
         <div className="text-center mb-20">
-          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-terracotta mb-4">Technical Safeguards</p>
-          <h2 className="font-display text-4xl text-charcoal leading-tight sm:text-5xl md:text-[3.25rem]">Data Sovereignty &amp; Security</h2>
-          <p className="mt-5 text-[16px] leading-relaxed text-[#6b6259] max-w-xl mx-auto">
+          <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-clay mb-4">Technical Safeguards</p>
+          <h2 className="font-display text-4xl text-espresso leading-tight sm:text-5xl md:text-[3.25rem]">Data Access &amp; Security</h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-mist max-w-xl mx-auto">
             Three defensive layers constructed to enforce absolute confidentiality, BAA compliance, and structural control on top of your existing Boulevard workspace.
           </p>
         </div>
@@ -727,7 +722,7 @@ function BentoCard({ card }: { card: SecurityCardProps }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-full rounded-3xl border border-[#e1d4c5] bg-[#fffaf2] p-8 shadow-[0_4px_20px_rgba(85,62,41,0.02)] transition-all duration-500 ease-out flex flex-col justify-between overflow-hidden ${
+      className={`relative h-full rounded-3xl border border-sand-deep bg-cream p-8 shadow-[0_4px_20px_rgba(85,62,41,0.02)] transition-all duration-500 ease-out flex flex-col justify-between overflow-hidden ${
         isHovered ? 'shadow-[0_20px_52px_rgba(127,143,120,0.13)] border-[#7f8f78]/30' : ''
       }`}
     >
@@ -742,23 +737,23 @@ function BentoCard({ card }: { card: SecurityCardProps }) {
         {/* Icon + badge */}
         <div className="flex items-center justify-between mb-8">
           <div className={`flex h-12 w-12 items-center justify-center rounded-xl border transition-all duration-500 ${
-            isHovered ? 'bg-[#7f8f78]/10 border-[#7f8f78]/35 text-[#7f8f78]' : 'bg-[#f3eadf] border-[#e1d4c5] text-terracotta'
+            isHovered ? 'bg-[#7f8f78]/10 border-[#7f8f78]/35 text-[#7f8f78]' : 'bg-[#f3eadf] border-sand-deep text-clay'
           }`}>
             {card.icon === 'shield' && <ShieldIconLoop isHovered={isHovered} />}
             {card.icon === 'lock' && <LockIconLoop isHovered={isHovered} />}
             {card.icon === 'revocation' && <RevocationIconLoop isHovered={isHovered} />}
           </div>
-          <span className="rounded-full border border-[#e1d4c5] bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-[#7a7066]">{card.badge}</span>
+          <span className="rounded-full border border-sand-deep bg-white px-3 py-1 text-[9px] font-bold uppercase tracking-wider text-[#7a7066]">{card.badge}</span>
         </div>
 
-        <h3 className="font-display text-2xl text-charcoal mb-4">{card.title}</h3>
+        <h3 className="font-display text-2xl text-espresso mb-4">{card.title}</h3>
 
         {/* Bulleted content */}
-        <div className="text-[13px] leading-relaxed text-[#6b6259] space-y-2">
+        <div className="text-[13px] leading-relaxed text-mist space-y-2">
           {card.icon === 'shield' && (
             <>
               <p>Our HIPAA protocol establishes strict accountability before we integrate:</p>
-              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-[#6b6259]/90">
+              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-mist/90">
                 <li>Full BAA executed prior to connection.</li>
                 <li>Data covered under HIPAA compliance boundaries.</li>
                 <li>Zero clinical routing or patient medical advice.</li>
@@ -768,7 +763,7 @@ function BentoCard({ card }: { card: SecurityCardProps }) {
           {card.icon === 'lock' && (
             <>
               <p>Your patient transcripts are kept private via automatic scrubbing:</p>
-              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-[#6b6259]/90">
+              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-mist/90">
                 <li>Names, D.O.B., and contact details redacted.</li>
                 <li>Clinical triggers route exceptions to staff.</li>
                 <li>Transcripts not stored on external AI models.</li>
@@ -777,8 +772,8 @@ function BentoCard({ card }: { card: SecurityCardProps }) {
           )}
           {card.icon === 'revocation' && (
             <>
-              <p>You maintain absolute data sovereignty with instant keys:</p>
-              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-[#6b6259]/90">
+              <p>You control the connection through your own access key:</p>
+              <ul className="list-disc list-inside space-y-1 pl-1 text-[12.5px] text-mist/90">
                 <li>Connected via a read-only API access token.</li>
                 <li>API can be revoked inside Boulevard in 1 click.</li>
                 <li>No cancellation calls or support tickets needed.</li>

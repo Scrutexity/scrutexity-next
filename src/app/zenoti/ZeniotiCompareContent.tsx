@@ -155,9 +155,9 @@ const PRODUCTS: Product[] = [
 ];
 
 function CellValue({ value }: { value: ComparisonValue }) {
-  if (value === true) return <Check className="h-4 w-4 text-[#7f8f78]" />;
-  if (value === false) return <X className="h-4 w-4 text-[#9e8e7e]/40" />;
-  return <span className="text-xs font-semibold text-[#221f1b]">{value}</span>;
+  if (value === true) return <Check className="h-4 w-4 text-sage" />;
+  if (value === false) return <X className="h-4 w-4 text-mist/40" />;
+  return <span className="text-xs font-semibold text-espresso">{value}</span>;
 }
 
 export default function ZeniotiCompareContent() {
@@ -169,20 +169,20 @@ export default function ZeniotiCompareContent() {
   });
 
   return (
-    <div className="min-h-screen bg-ivory text-[#221f1b] font-sans">
+    <div className="min-h-screen bg-cream text-espresso font-sans">
       {/* Hero */}
       <section className="relative overflow-hidden px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,#f7f2ea_0%,#efe6d7_35%,#e8dfcf_70%,#f5efe6_100%)]" />
         <div className="absolute inset-0 luxury-noise opacity-[0.06]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="section-kicker mb-4">Comparison</p>
-          <h1 className="font-display text-4xl leading-[1.05] tracking-[-0.02em] text-[#201d19] sm:text-5xl md:text-[3.8rem]">
+          <h1 className="font-display text-4xl leading-[1.05] tracking-[-0.02em] text-espresso sm:text-5xl md:text-[3.8rem]">
             Zenoti vs Scrutexity
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-[17px] leading-8 text-[#5f574f]">
+          <p className="mx-auto mt-5 max-w-xl text-[17px] leading-8 text-mist">
             Zenoti's AI follows up until booked. Scrutexity stops when it should—routes clinical questions to your NP, requires staff approval, and leaves you in control.
           </p>
-          <p className="mx-auto mt-4 text-xs text-[#9e8e7e] uppercase tracking-[0.1em]">
+          <p className="mx-auto mt-4 text-xs text-mist uppercase tracking-[0.1em]">
             Published {formattedDate}
           </p>
         </div>
@@ -194,29 +194,29 @@ export default function ZeniotiCompareContent() {
           <Reveal>
             <div className="grid md:grid-cols-2 gap-8">
               {/* Zenoti */}
-              <div className="rounded-[1.75rem] border border-[#e1d4c5] bg-[#fffaf2] p-8">
+              <div className="rounded-[1.75rem] border border-sand-deep bg-cream p-8">
                 <div className="flex items-start gap-3 mb-4">
-                  <Zap className="h-5 w-5 text-[#9e8e7e] flex-shrink-0 mt-0.5" />
+                  <Zap className="h-5 w-5 text-mist flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-display text-xl text-[#221f1b] mb-1">Zenoti AI</h3>
-                    <p className="text-xs text-[#9e8e7e]">Automation-first</p>
+                    <h3 className="font-display text-xl text-espresso mb-1">Zenoti AI</h3>
+                    <p className="text-xs text-mist">Automation-first</p>
                   </div>
                 </div>
-                <p className="text-sm text-[#6b6259] leading-6">
+                <p className="text-sm text-mist leading-6">
                   Zenoti AI responds autonomously. It attempts to answer patient questions directly, books appointments without staff review, and processes full conversation context through its AI model.
                 </p>
               </div>
 
               {/* Scrutexity */}
-              <div className="rounded-[1.75rem] border-2 border-terracotta/40 bg-[#fffaf2] p-8 shadow-[0_14px_40px_-14px_rgba(185,130,95,0.20)]">
+              <div className="rounded-[1.75rem] border-2 border-clay/40 bg-cream p-8 shadow-[0_14px_40px_-14px_rgba(185,130,95,0.20)]">
                 <div className="flex items-start gap-3 mb-4">
-                  <Lock className="h-5 w-5 text-terracotta flex-shrink-0 mt-0.5" />
+                  <Lock className="h-5 w-5 text-clay flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-display text-xl text-terracotta mb-1">Scrutexity</h3>
-                    <p className="text-xs text-[#9e8e7e]">Governance-first</p>
+                    <h3 className="font-display text-xl text-clay mb-1">Scrutexity</h3>
+                    <p className="text-xs text-mist">Governance-first</p>
                   </div>
                 </div>
-                <p className="text-sm text-[#6b6259] leading-6">
+                <p className="text-sm text-mist leading-6">
                   Scrutexity routes clinical questions to staff immediately. It books only after staff approval. PHI is stripped before processing. Your staff stays in the loop.
                 </p>
               </div>
@@ -227,22 +227,22 @@ export default function ZeniotiCompareContent() {
         {/* Detailed comparison table */}
         <div className="hidden lg:block mx-auto max-w-6xl overflow-x-auto mb-16">
           <Reveal>
-            <div className="rounded-[1.75rem] border border-[#e1d4c5] bg-[#fffaf2] overflow-hidden shadow-sm min-w-[900px]">
+            <div className="rounded-[1.75rem] border border-sand-deep bg-cream overflow-hidden shadow-sm min-w-[900px]">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-[#e1d4c5] bg-[#f3eadf]/60">
-                    <th className="p-5 text-xs font-semibold uppercase tracking-[0.15em] text-[#9b6a51] w-2/5">
+                  <tr className="border-b border-sand-deep bg-cream-deep/60">
+                    <th className="p-5 text-xs font-semibold uppercase tracking-[0.15em] text-clay-deep w-2/5">
                       Governance Question
                     </th>
                     {PRODUCTS.map((p) => (
                       <th
                         key={p.name}
                         className={`p-5 text-xs font-semibold uppercase tracking-[0.15em] ${
-                          p.highlight ? 'text-terracotta bg-[#fffaf2]' : 'text-[#6b6259]'
+                          p.highlight ? 'text-clay bg-cream' : 'text-mist'
                         }`}
                       >
                         <div>{p.name}</div>
-                        <div className="text-[10px] font-normal normal-case tracking-normal mt-0.5 text-[#9e8e7e]">
+                        <div className="text-[10px] font-normal normal-case tracking-normal mt-0.5 text-mist">
                           {p.architecture}
                         </div>
                       </th>
@@ -251,21 +251,21 @@ export default function ZeniotiCompareContent() {
                 </thead>
                 <tbody className="divide-y divide-[#e1d4c5]">
                   {COMPARISON_FEATURES.map((feature) => (
-                    <tr key={feature} className="hover:bg-[#f3eadf]/30 transition-colors">
-                      <td className="p-5 text-sm font-medium text-[#221f1b]">{feature}</td>
+                    <tr key={feature} className="hover:bg-cream-deep/30 transition-colors">
+                      <td className="p-5 text-sm font-medium text-espresso">{feature}</td>
                       {PRODUCTS.map((p) => {
                         const item = p.checks[feature];
                         const isHighlight = p.highlight;
                         return (
                           <td
                             key={`${p.name}-${feature}`}
-                            className={`p-5 ${isHighlight ? 'bg-[#fffaf2]' : ''}`}
+                            className={`p-5 ${isHighlight ? 'bg-cream' : ''}`}
                           >
                             <div className="flex items-start gap-2">
                               <div className="flex-shrink-0 mt-0.5">
                                 <CellValue value={item.value} />
                               </div>
-                              <span className={`text-[11px] leading-5 ${isHighlight ? 'text-[#6b6259]' : 'text-[#9e8e7e]'}`}>
+                              <span className={`text-[11px] leading-5 ${isHighlight ? 'text-mist' : 'text-mist'}`}>
                                 {item.note}
                               </span>
                             </div>
@@ -287,30 +287,30 @@ export default function ZeniotiCompareContent() {
               <div
                 className={`rounded-[1.75rem] border-2 p-6 ${
                   p.highlight
-                    ? 'border-terracotta/40 bg-[#fffaf2] shadow-[0_14px_40px_-14px_rgba(185,130,95,0.20)]'
-                    : 'border-[#e1d4c5] bg-[#fffaf2]'
+                    ? 'border-clay/40 bg-cream shadow-[0_14px_40px_-14px_rgba(185,130,95,0.20)]'
+                    : 'border-sand-deep bg-cream'
                 }`}
               >
                 <div className="mb-5">
                   <div className="flex items-center gap-2">
-                    <h3 className={`font-display text-xl ${p.highlight ? 'text-terracotta' : 'text-[#221f1b]'}`}>
+                    <h3 className={`font-display text-xl ${p.highlight ? 'text-clay' : 'text-espresso'}`}>
                       {p.name}
                     </h3>
                     {p.highlight && (
-                      <span className="rounded-full bg-terracotta/10 border border-terracotta/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-terracotta">
+                      <span className="rounded-full bg-clay/10 border border-clay/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-clay">
                         Governance-First
                       </span>
                     )}
                   </div>
-                  <p className="text-[12px] text-[#9e8e7e] mt-0.5">{p.architecture}</p>
+                  <p className="text-[12px] text-mist mt-0.5">{p.architecture}</p>
                 </div>
                 <ul className="space-y-3">
                   {Object.entries(p.checks).map(([feature, check]) => (
                     <li key={feature} className="flex items-start justify-between gap-3 text-sm">
-                      <span className="text-[#6b6259] font-medium">{feature}</span>
+                      <span className="text-mist font-medium">{feature}</span>
                       <div className="flex items-start gap-1.5 shrink-0">
                         <CellValue value={check.value} />
-                        <span className="text-[11px] text-[#9e8e7e] text-right leading-5 max-w-[120px]">
+                        <span className="text-[11px] text-mist text-right leading-5 max-w-[120px]">
                           {check.note}
                         </span>
                       </div>
@@ -325,17 +325,17 @@ export default function ZeniotiCompareContent() {
         {/* Key insight section */}
         <section className="mx-auto max-w-3xl mb-16">
           <Reveal>
-            <div className="rounded-[1.75rem] border-2 border-terracotta/20 bg-[#fffaf2] p-8 md:p-10">
+            <div className="rounded-[1.75rem] border-2 border-clay/20 bg-cream p-8 md:p-10">
               <div className="flex gap-4 mb-4">
-                <Shield className="h-5 w-5 text-terracotta flex-shrink-0 mt-1" />
+                <Shield className="h-5 w-5 text-clay flex-shrink-0 mt-1" />
                 <div>
-                  <h2 className="font-display text-2xl text-[#221f1b] mb-3">
+                  <h2 className="font-display text-2xl text-espresso mb-3">
                     The Governance Question
                   </h2>
-                  <p className="text-sm text-[#6b6259] leading-7 mb-4">
+                  <p className="text-sm text-mist leading-7 mb-4">
                     If a patient sends a DM at 11 PM asking about pain post-procedure, do you want an AI to respond? Or do you want that routed to your NP with a transcript, so your staff approves every response?
                   </p>
-                  <p className="text-sm text-[#6b6259] leading-7">
+                  <p className="text-sm text-mist leading-7">
                     Zenoti automates. Scrutexity governs. Both have trade-offs. The difference is who decides.
                   </p>
                 </div>
@@ -347,16 +347,16 @@ export default function ZeniotiCompareContent() {
         {/* Bottom CTA */}
         <section className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <div className="rounded-[1.75rem] border-2 border-terracotta/20 bg-[#fffaf2] p-8 md:p-10">
-              <h2 className="font-display text-2xl text-[#221f1b] mb-3">
+            <div className="rounded-[1.75rem] border-2 border-clay/20 bg-cream p-8 md:p-10">
+              <h2 className="font-display text-2xl text-espresso mb-3">
                 See governance in action.
               </h2>
-              <p className="text-[14px] text-[#6b6259] mb-6">
+              <p className="text-[14px] text-mist mb-6">
                 14-day pilot. $0 cost. Read-only Boulevard access. You control every decision.
               </p>
               <Link
                 href="/pilot"
-                className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(185,130,95,0.40)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a36b5d]"
+                className="inline-flex items-center gap-2 rounded-full bg-clay px-7 py-3.5 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(185,130,95,0.40)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-clay-deep"
               >
                 Request Free Audit <ArrowRight className="h-4 w-4" />
               </Link>

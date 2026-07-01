@@ -12,7 +12,7 @@ export default function PricingArchitecture() {
       id: '01',
       title: 'Consultation Recovery',
       price: '$1,200',
-      description: 'Our BAA-ready, HIPAA-conscious system re-engages patients who called or inquired but didn\'t book — within 12 hours, in your clinic\'s exact voice.',
+      description: 'Our BAA-supported, HIPAA-conscious workflow can re-engage patients who called or inquired but didn\'t book after appropriate authorization — in your clinic\'s approved voice.',
       features: ['Automated text rescue for missed calls', 'Clinical protocol guardrails', 'Real-time ledger syncing'],
       featured: true
     },
@@ -48,7 +48,7 @@ export default function PricingArchitecture() {
         <span className="text-[#6B8576] font-mono tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">
           INFRASTRUCTURE PRICING STRUCTURE
         </span>
-        <h2 className="text-4xl md:text-5xl font-display text-[#1A1A1A] mb-6">
+        <h2 className="text-4xl md:text-5xl font-display text-espresso mb-6">
           Clinical Revenue Modules
         </h2>
         <p className="text-lg text-[#6E6E6C] max-w-2xl mx-auto leading-relaxed">
@@ -65,7 +65,7 @@ export default function PricingArchitecture() {
               className={`group relative flex flex-col overflow-hidden rounded-3xl p-8 transition-all duration-300 border ${
                 mod.featured 
                   ? 'bg-[#6B8576] text-white border-[#6B8576] shadow-lg shadow-[#6B8576]/10' 
-                  : 'bg-[#F7F5F0] border-[#E5E3DF] text-[#1A1A1A] hover:bg-[#F0EEEA] hover:border-[#D0CECA]'
+                  : 'bg-[#F7F5F0] border-[#E5E3DF] text-espresso hover:bg-[#F0EEEA] hover:border-[#D0CECA]'
               }`}
             >
               {/* Outcome badge */}
@@ -91,7 +91,7 @@ export default function PricingArchitecture() {
               </span>
               
               <h3 className={`text-xl font-display font-bold mb-3 ${
-                mod.featured ? 'text-white' : 'text-[#1A1A1A]'
+                mod.featured ? 'text-white' : 'text-espresso'
               }`}>
                 {mod.title}
               </h3>
@@ -103,7 +103,7 @@ export default function PricingArchitecture() {
               </p>
  
               <div className="flex items-baseline gap-1 mb-8">
-                <span className={`text-3xl font-bold ${mod.featured ? 'text-white' : 'text-[#1A1A1A]'}`}>{mod.price}</span>
+                <span className={`text-3xl font-bold ${mod.featured ? 'text-white' : 'text-espresso'}`}>{mod.price}</span>
                 <span className={`text-xs ${mod.featured ? 'text-white/70' : 'text-gray-500'}`}>/mo</span>
               </div>
  
@@ -126,7 +126,7 @@ export default function PricingArchitecture() {
                     : 'bg-[#6B8576] text-white hover:bg-[#5A7365]'
                 }`}
               >
-                Claim 14-Day Pilot
+                Get Your Free Audit
               </Link>
             </div>
           );

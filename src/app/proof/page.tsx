@@ -1,90 +1,164 @@
-
-import GovButton from '@/components/GovButton';
 import Link from 'next/link';
-import { ShieldCheck, FileText, Lock } from 'lucide-react';
+import { ShieldCheck, FileText, Lock, LayoutGrid, Eye, Compass, BadgeCheck, FileSearch } from 'lucide-react';
 
 export const metadata = {
-  title: 'Proof | Scrutexity',
-  description: 'How Scrutexity documents missed-demand recovery during the 14-day pilot. Verified client references available under NDA.',
+  title: 'Scrutexity Proof Artifacts | Audits, Visibility Reports, Content Briefs, and Recovery Plans',
+  description: 'Scrutexity turns audits, content strategy, AI visibility reviews, reputation surfaces, and recovery workflows into visual reports your team can act on.',
 };
 
-// Illustrative sample of what a Day-14 owner brief contains.
-// NOTE: This is a labeled demonstration, not a client result. Replace this whole
-// block with a real, named, consented case study (video + redacted ledger) the
-// moment one pilot owner agrees to go on record. Until then: nothing is presented as a real outcome.
-const briefLineItems = [
-  { source: 'Missed call · injectables inquiry', status: 'Booked consult', note: 'Routed to staff-approved follow-up' },
-  { source: 'Abandoned booking form', status: 'Re-engaged', note: 'Deposit link sent, awaiting confirmation' },
-  { source: 'Instagram DM · Morpheus8', status: 'Clinical question', note: 'Escalated to licensed staff — no AI advice sent' },
+const artifactsList = [
+  {
+    name: '1. AuditGPT Plan',
+    desc: 'The diagnostic snapshot prioritizing your top claim risks, evidence gaps, and 30-day action steps.',
+    icon: FileSearch,
+  },
+  {
+    name: '2. Claim Record',
+    desc: 'Dated record of a single claim, showing what is stated, what support was visible, what is missing, and a safer copy alternative.',
+    icon: ShieldCheck,
+  },
+  {
+    name: '3. AI Visibility Snapshot',
+    desc: 'A check of how your entity appears across search engines, GBP, ChatGPT, Perplexity, and AI Overview surfaces.',
+    icon: Eye,
+  },
+  {
+    name: '4. Contento Brief',
+    desc: 'Structured instructions for copywriters, outlining approved claim bounds and safer framing guides.',
+    icon: FileText,
+  },
+  {
+    name: '5. Recovery Brief',
+    desc: 'The ledger of re-engaged bookings, missed inquiries, and staff-approved follow-ups.',
+    icon: LayoutGrid,
+  },
+  {
+    name: '6. Reputation Surface Map',
+    desc: 'A structural visual map of your directory listings, reviews, and client-facing responses.',
+    icon: Compass,
+  },
+  {
+    name: '7. Proof Page',
+    desc: 'Clean public-facing evidence pages displaying credentials, studies, and documented outcomes.',
+    icon: FileText,
+  },
+  {
+    name: '8. Badge / Review Page',
+    desc: 'Conservative "Reviewed by AuditGPT" badge pages detailing the audit date, claim categories checked, cleanup status, and next rescan.',
+    icon: BadgeCheck,
+  },
+  {
+    name: '9. Sealed Audit Trail',
+    desc: 'Monthly proof binder and tamper-evident chronology of claims, evidence, approvals, and remediation history.',
+    icon: Lock,
+  },
 ];
 
-export default function Proof() {
+const proofSequence = [
+  ['01', 'Claim Intelligence Report', 'A dated receipt and static reviewed-badge summary are available immediately after the $299 report.'],
+  ['02', 'Claim Cleanup Record', 'Priority claims are rewritten, evidence is linked, and the cleanup decisions are documented.'],
+  ['03', 'Claim Drift Monitoring', 'Monthly review keeps new copy, AI answer distortion, and badge status from drifting silently.'],
+  ['04', 'Proof Page', 'Only after cleanup do public proof pages show stronger evidence, remediated claims, and review history.'],
+] as const;
+
+export default function ProofPage() {
   return (
-    <div className="min-h-screen bg-ivory text-[#221f1b] font-sans selection:bg-terracotta/20">
-
-      <main className="mx-auto max-w-4xl px-6 pt-32 pb-24">
-        <p className="section-kicker text-center">Pilot artifacts</p>
-        <h1 className="mt-4 text-center font-display text-5xl tracking-tight text-[#221f1b] md:text-6xl">
-          Proof that reads like an owner brief, not an agency report.
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-[#6b6259]">
-          We don&rsquo;t publish hype. The buying signal is the artifact: what was surfaced,
-          how it was routed, and what you could verify yourself. Estimates require manual verification.
-        </p>
-
-        {/* Illustrative brief — clearly labeled */}
-        <div className="mt-14 overflow-hidden rounded-[1.75rem] border border-[#e1d4c5] bg-[#fffaf2] shadow-[0_24px_70px_rgba(85,62,41,0.10)]">
-          <div className="flex items-center justify-between border-b border-[#e1d4c5] bg-[#f3eadf] px-6 py-4">
-            <div className="flex items-center gap-3">
-              <FileText className="h-5 w-5 text-terracotta" />
-              <span className="font-display text-xl text-[#221f1b]">Sample Day-14 Owner Brief</span>
-            </div>
-            <span className="rounded-full border border-terracotta/30 bg-terracotta/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#9b6a51]">
-              Illustrative
-            </span>
-          </div>
-
-          <div className="divide-y divide-[#efe2d2]">
-            {briefLineItems.map((item) => (
-              <div key={item.source} className="flex flex-col gap-1 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="font-semibold text-[#221f1b]">{item.source}</p>
-                  <p className="text-sm text-[#7a7066]">{item.note}</p>
-                </div>
-                <span className="mt-1 shrink-0 rounded-full bg-[#eef3ea] px-3 py-1 text-xs font-semibold text-[#607461] sm:mt-0">
-                  {item.status}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <p className="border-t border-[#e1d4c5] bg-[#fbf7ef] px-6 py-4 text-xs leading-6 text-[#7a7066]">
-            Illustrative structure only — not a client outcome. Every line in a real brief is tied to source,
-            transcript, and booking status. Figures are estimates requiring manual verification.
+    <div className="min-h-screen bg-cream text-bark font-sans selection:bg-clay/20">
+      <main className="mx-auto max-w-5xl px-6 pt-32 pb-24">
+        
+        {/* Hero */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="font-mono text-xs uppercase tracking-widest text-sage-deep mb-3">System Outputs</p>
+          <h1 className="font-display text-5xl md:text-7xl text-espresso tracking-tight leading-tight">
+            Proof artifacts, <span className="italic text-sage-deep font-sans">not marketing theater.</span>
+          </h1>
+          <p className="mt-6 text-base md:text-lg text-mist leading-relaxed">
+            Scrutexity turns audits, receipts, reviewed badges, content strategy, AI visibility reviews, reputation surfaces, and recovery workflows into visual reports your team can act on.
           </p>
         </div>
 
-        {/* Verified references — the honest trust signal */}
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {[
-            { icon: ShieldCheck, t: 'BAA-ready', b: 'Business Associate terms handled before any patient-adjacent workflow goes live.' },
-            { icon: Lock, t: 'References under NDA', b: 'Active pilot clinics will speak with serious, qualified owners directly. Ask on your fit call.' },
-            { icon: FileText, t: 'You own the record', b: 'Transcripts, briefs, and routing rules stay yours — not locked in a retainer.' },
-          ].map((c) => (
-            <div key={c.t} className="rounded-2xl border border-[#e1d4c5] bg-[#fffaf2]/76 p-6">
-              <c.icon className="h-6 w-6 text-terracotta" />
-              <h3 className="mt-4 font-semibold text-[#221f1b]">{c.t}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#5f574f]">{c.b}</p>
-            </div>
-          ))}
+        {/* Proof Sequence */}
+        <div className="mt-12 mb-16 bg-bone border border-sand-deep/30 rounded-2xl p-6 md:p-8 shadow-xs">
+          <div className="max-w-2xl mb-7">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-sage-deep mb-3">Proof sequence</p>
+            <h2 className="font-display text-3xl text-espresso tracking-tight">Receipt first. Stronger proof after cleanup.</h2>
+            <p className="mt-3 text-sm text-mist leading-relaxed">
+              The entry tier does not pretend a claim is approved or compliant. It creates a dated review artifact your team can use on day one, then upgrades as remediation happens.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {proofSequence.map(([step, title, desc]) => (
+              <div key={step} className="border border-sand-deep/25 bg-cream/70 rounded-xl p-4">
+                <span className="font-mono text-[10px] text-sage-deep font-semibold">{step}</span>
+                <h3 className="mt-3 font-display text-lg text-espresso leading-tight">{title}</h3>
+                <p className="mt-2 text-xs text-mist leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#e1d4c5] bg-[#f3eadf] p-8 sm:flex-row">
-          <p className="text-base font-semibold text-[#221f1b]">Want a brief like this for your own practice?</p>
-          <GovButton href="/pilot" className="btn-md">
-            Start the 14-day pilot &rarr;
-          </GovButton>
+        {/* Artifact Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          {artifactsList.map((art) => {
+            const Icon = art.icon;
+            return (
+              <div key={art.name} className="p-6 bg-bone border border-sand-deep/30 rounded-2xl flex items-start gap-4">
+                <span className="p-2.5 bg-sage/10 text-sage-deep rounded-xl shrink-0">
+                  <Icon size={20} />
+                </span>
+                <div>
+                  <h3 className="font-display text-xl text-espresso font-semibold mb-2">{art.name}</h3>
+                  <p className="text-sm text-mist leading-relaxed">{art.desc}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {/* Proof Designer Section */}
+        <div className="mt-16 bg-cream-deep border border-sand-deep/45 rounded-3xl p-8 md:p-12 relative overflow-hidden" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+          <div className="max-w-2xl relative z-10">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-sage-deep block mb-3">Proof Designer Widget</span>
+            <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-tight leading-tight mb-4">
+              Proof Designer
+            </h2>
+            <p className="text-sm md:text-base text-mist leading-relaxed mb-6">
+              Proof Designer turns claims, visibility gaps, reputation signals, and recovery data into charts, risk maps, before/after cards, priority matrices, and client-ready briefs. It is not a website builder. It makes the truth visible.
+            </p>
+            <div className="flex flex-wrap gap-4 items-center">
+              <Link href="/claim-audit" className="px-6 py-3 bg-sage-deep hover:bg-espresso text-cream text-xs font-bold font-mono tracking-wider rounded-lg transition-colors">
+                Try Proof Designer via AuditGPT
+              </Link>
+              <Link href="/proof/sealed-audit-trail" className="px-6 py-3 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso text-xs font-bold font-mono tracking-wider rounded-lg transition-colors">
+                View Sealed Audit Trail
+              </Link>
+              <span className="text-xs font-mono text-mist">Available in all Full &amp; Agency audit plans.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Final CTA */}
+        <div className="mt-16 text-center border-t border-sand-deep/15 pt-16">
+          <h2 className="font-display text-3xl text-espresso mb-4">Start with the audit. Make your claims verifiable.</h2>
+          <p className="text-sm text-mist max-w-lg mx-auto mb-8">
+            Run AuditGPT to diagnose your unsupported claims, AI visibility gaps, and demand leakage.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 items-center">
+            <Link href="/claim-audit" className="px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream text-xs font-bold font-mono tracking-widest uppercase rounded-xl transition-colors shadow-xs">
+              Run AuditGPT
+            </Link>
+            <Link href="/sample-report" className="px-6 py-3.5 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso text-xs font-bold font-mono tracking-widest uppercase rounded-xl transition-colors shadow-xs">
+              View Sample Report
+            </Link>
+          </div>
+        </div>
+
+        {/* Footer Disclaimer/Alignment */}
+        <div className="mt-16 pt-8 border-t border-sand-deep/20 flex flex-wrap justify-between items-center gap-4 text-xs font-mono text-mist">
+          <span className="flex items-center gap-1.5"><Lock size={12} /> BAA on request · SHA-256 seals available</span>
+          <span>No autonomous clinical advice. Verification is structural only.</span>
+        </div>
+
       </main>
     </div>
   );

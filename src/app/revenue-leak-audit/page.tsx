@@ -1,30 +1,43 @@
 import Link from 'next/link';
-import RevenueBridge from '@/components/RevenueBridge';
+import ScrollReveal from '@/components/ui-custom/reveal';
 
 export const metadata = {
   title: 'Revenue Leak Audit | Scrutexity',
-  description: 'Estimate your missed-demand opportunity range — directional, requires verification. 14-day pilot, $0 if missed-demand recovery isn\'t demonstrated.',
+  description: '14-day pilot, $0 if recovery isn\'t demonstrated. Scrutexity works alongside Boulevard and Mangomint to recover missed bookings.',
 };
 
 export default function RevenueLeakAuditPage() {
   return (
-    <div className="min-h-screen bg-ivory text-[#221f1b] font-sans">
-      <main className="px-5 pb-24 pt-12 sm:px-8">
-        <div className="mx-auto max-w-6xl flex flex-col items-center gap-10">
-          <RevenueBridge />
-
-          <div className="w-full max-w-2xl rounded-[1.75rem] border border-[#e1d4c5] bg-[#fffaf2] p-8 text-center shadow-[0_8px_32px_rgba(85,62,41,0.07)]">
-            <h3 className="font-display text-2xl text-[#221f1b] mb-3">See if your clinic qualifies</h3>
-            <p className="text-[#6b6259] mb-7 text-sm leading-7">
-              Our 14-day pilot activation seals these leaks. $0 if missed-demand recovery isn&rsquo;t demonstrated.
+    <div className="min-h-screen bg-cream text-espresso font-sans">
+      <main className="px-5 pb-24 pt-20 sm:px-8 lg:pt-28">
+        <div className="mx-auto max-w-3xl text-center">
+          <ScrollReveal className="w-full">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-mist">Opportunity Review</p>
+            <h1 className="mt-4 font-display text-4xl leading-tight text-espresso sm:text-5xl">
+              Find, recover, and verify missed bookings.
+            </h1>
+            <p className="mt-5 text-base leading-7 text-mist max-w-xl mx-auto">
+              Scrutexity works alongside Boulevard and Mangomint to find unworked inquiries, re-engage eligible leads, and confirm deposits and bookings. No migration.
             </p>
-            <Link
-              href="/pilot"
-              className="govbtn inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold transition duration-300"
-            >
-              Start the 14-day pilot
-            </Link>
-          </div>
+          </ScrollReveal>
+
+          <ScrollReveal className="mt-10">
+            <div className="rounded-2xl border border-sand bg-cream p-8 shadow-[0_8px_32px_rgba(61,43,31,0.07)]">
+              <h3 className="font-display text-2xl text-espresso mb-3">Start with a read-only audit</h3>
+              <p className="text-mist mb-7 text-sm leading-7">
+                We review your last 30 days of missed calls, unanswered inquiries, and incomplete follow-ups. You&rsquo;ll receive a private recovery report within 24 hours.
+              </p>
+              <Link
+                href="/pilot"
+                className="inline-flex items-center gap-2 rounded-full bg-sage-deep px-8 py-4 text-base font-semibold text-cream transition-all duration-300 hover:bg-[#4A6347] hover:shadow-[0_8px_30px_-8px_rgba(94,122,90,0.4)]"
+              >
+                Find My Missed Bookings
+              </Link>
+              <p className="mt-4 text-xs text-mist">
+                Read-only audit first. Recovery requires separately authorized, minimum-necessary write permissions.
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </main>
     </div>

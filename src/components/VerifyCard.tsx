@@ -61,32 +61,32 @@ export function VerifyCard() {
   }, [state]);
 
   return (
-    <div className="mx-auto mt-11 max-w-[560px] overflow-hidden rounded-3xl border border-[rgba(34,31,27,0.1)] bg-porcelain p-10 text-center shadow-card">
-      <span className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(34,31,27,0.1)] bg-ivory px-3.5 py-2.5 font-mono text-[0.8rem] text-charcoal/70">
-        <span className={state.kind === 'green' ? 'text-verified' : 'text-charcoal/40'}>●</span>
+    <div className="mx-auto mt-11 max-w-[560px] overflow-hidden rounded-3xl border border-[rgba(34,31,27,0.1)] bg-warm-card p-10 text-center shadow-card">
+      <span className="inline-flex items-center gap-2 rounded-[10px] border border-[rgba(34,31,27,0.1)] bg-cream px-3.5 py-2.5 font-mono text-[0.8rem] text-espresso/70">
+        <span className={state.kind === 'green' ? 'text-verified' : 'text-espresso/40'}>●</span>
         scrutexity.com{ENDPOINT}
       </span>
 
       <div className="mt-6 flex min-h-[68px] items-center justify-center">
         {state.kind === 'loading' && (
-          <span className="font-mono text-[0.9rem] text-charcoal/60">checking records…</span>
+          <span className="font-mono text-[0.9rem] text-espresso/60">checking records…</span>
         )}
         {state.kind === 'green' && (
           <div className="motion-fade-in inline-flex items-center gap-3">
             <span className="grid h-[34px] w-[34px] place-items-center rounded-full bg-verified/15 text-base text-verified">✓</span>
             <span className="font-serif text-2xl font-semibold text-verified">GREEN</span>
-            <span className="font-mono text-lg text-charcoal tabular-nums">· {display.toLocaleString()} records</span>
+            <span className="font-mono text-lg text-espresso tabular-nums">· {display.toLocaleString()} records</span>
           </div>
         )}
         {state.kind === 'fallback' && (
-          <span className="font-mono text-[0.86rem] leading-relaxed text-charcoal/70">
-            Verification endpoint active. Visit <a href="/verify" className="text-terracotta underline underline-offset-2">/verify</a> for live status.
+          <span className="font-mono text-[0.86rem] leading-relaxed text-espresso/70">
+            Verification endpoint active. Visit <a href="/verify" className="text-clay underline underline-offset-2">/verify</a> for live status.
           </span>
         )}
       </div>
 
       {state.kind === 'green' && (
-        <div className="motion-fade-in font-mono text-[0.74rem] text-charcoal/60">
+        <div className="motion-fade-in font-mono text-[0.74rem] text-espresso/60">
           {state.hash ? `latest record ${state.hash.slice(0, 10)}…  ·  ` : ''}last checked {state.checkedAt}
         </div>
       )}
@@ -94,12 +94,12 @@ export function VerifyCard() {
       <button
         ref={btn}
         onClick={load}
-        className="govbtn mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-semibold transition duration-300"
+        className="clay-cta px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2 transition-all mt-7 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-semibold transition duration-300"
       >
         Run verification →
       </button>
 
-      <p className="mt-5 text-[0.74rem] text-charcoal/60">
+      <p className="mt-5 text-[0.74rem] text-espresso/60">
         Operational verification only. Not legal or medical advice.
       </p>
     </div>

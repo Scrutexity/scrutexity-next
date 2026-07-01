@@ -1,5 +1,4 @@
 
-import GovButton from '@/components/GovButton';
 import Link from 'next/link';
 
 export const metadata = {
@@ -9,25 +8,25 @@ export const metadata = {
 
 export default function MedspaRevenueBenchmarks() {
   return (
-    <main className="min-h-screen bg-ivory text-[#221f1b] font-sans selection:bg-terracotta/20 flex flex-col">
+    <main className="min-h-screen bg-cream text-espresso font-sans selection:bg-clay/20 flex flex-col">
 
       <div className="pt-32 pb-24 px-6 flex-1">
         <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-3xl border border-charcoal/10 shadow-xl">
           
           <header className="mb-16">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-charcoal font-display mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-espresso font-display mb-6 tracking-tight">
               Medspa Revenue Benchmarks & Consultation Recovery (2026)
             </h1>
-            <p className="text-xl text-charcoal/70 leading-relaxed font-medium">
+            <p className="text-xl text-espresso/70 leading-relaxed font-medium">
               An analysis of patient drop-off rates, conversion friction, and high-ticket consultation leakage in premium medical aesthetics clinics.
             </p>
           </header>
 
-          <article className="prose prose-lg max-w-none font-sans text-[#5f574f] prose-headings:font-display prose-headings:font-bold prose-headings:text-[#221f1b] prose-p:leading-relaxed prose-li:leading-relaxed prose-strong:text-[#221f1b]">
+          <article className="prose prose-lg max-w-none font-sans text-mist prose-headings:font-display prose-headings:font-bold prose-headings:text-espresso prose-p:leading-relaxed prose-li:leading-relaxed prose-strong:text-espresso">
             
             <h2>The New Conversion Reality</h2>
             <p>
-              By 2026, the medical aesthetics industry has seen a massive shift in patient acquisition channels. High-net-worth patients are increasingly turning to generative AI assistants (such as ChatGPT, Perplexity, and Google's AI Overviews) rather than traditional search engines to find premium providers for Morpheus8, Emsculpt NEO, and advanced injectables.
+              By 2026, the medical aesthetics industry has seen a massive shift in inquiry discovery and booking channels. High-net-worth patients are increasingly turning to generative AI assistants (such as ChatGPT, Perplexity, and Google's AI Overviews) rather than traditional search engines to find premium providers for Morpheus8, Emsculpt NEO, and advanced injectables.
             </p>
             <p>
               However, driving top-of-funnel traffic is no longer the primary constraint for $2M+ ARR clinics. The critical vulnerability is <strong>consultation leakage</strong>—the structural failure to capture and convert high-intent patient inquiries due to operational friction.
@@ -52,9 +51,9 @@ export default function MedspaRevenueBenchmarks() {
               For a clinic generating 2,000 monthly site visitors at a 2% booking rate and a $1,500 average ticket, a mere 1% drop in conversion due to friction represents <strong>over $30,000 in monthly leaked revenue</strong>.
             </p>
 
-            <h2>Solving the Leakage: Autonomous Recovery Infrastructure</h2>
+            <h2>Following Up on Missed Demand</h2>
             <p>
-              Modern clinics are shifting from traditional marketing agencies to sovereign, clinic-owned revenue infrastructure. By deploying an Consultation Recovery, clinics can autonomously intercept abandoned forms and missed calls, neutralizing the 5-minute response time decay.
+              Clinics can reduce this leakage by connecting missed calls and abandoned forms to a staff-approved follow-up workflow. Fast acknowledgment, consistent follow-up, and a record of each outcome make the process easier to manage and verify.
             </p>
             
             <h3>Core Engineering Principles for Recovery:</h3>
@@ -64,12 +63,12 @@ export default function MedspaRevenueBenchmarks() {
               <li><strong>Semantic AI Indexing:</strong> The clinic's domain must inject localized <code>MedicalBusiness</code> and <code>MedicalProcedure</code> JSON-LD schemas to ensure primary citation in Perplexity and ChatGPT.</li>
             </ol>
 
-            <div className="rounded-2xl border border-[#e1d4c5] bg-[#fffaf2] p-8 mt-12 not-prose">
-              <h3 className="text-2xl font-display font-bold text-charcoal mb-4">Run a Live Revenue Leak Audit</h3>
-              <p className="text-charcoal/70 mb-8">
+            <div className="rounded-2xl border border-sand-deep bg-cream p-8 mt-12 not-prose">
+              <h3 className="text-2xl font-display font-bold text-espresso mb-4">Run a Live Revenue Leak Audit</h3>
+              <p className="text-espresso/70 mb-8">
                 Calculate exactly how much MRR is slipping through your unhandled friction points using your clinic's current traffic and conversion baselines.
               </p>
-              <GovButton label="Launch Recovery Calculator" href="/revenue-leak-audit" className="btn-lg" />
+              <a href="/revenue-leak-audit" className="clay-cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">Launch Recovery Calculator</a>
             </div>
 
           </article>

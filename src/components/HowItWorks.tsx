@@ -12,7 +12,7 @@ export default function HowItWorks() {
         <span className="text-[#6B8576] font-mono tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">
           THE SYSTEM FLOW
         </span>
-        <h2 className="text-4xl md:text-5xl font-display text-[#1A1A1A] tracking-tight leading-tight">
+        <h2 className="text-4xl md:text-5xl font-display text-espresso tracking-tight leading-tight">
           From diagnosis to revenue recovery in 14 days.
         </h2>
       </div>
@@ -21,7 +21,7 @@ export default function HowItWorks() {
       <div className="relative mb-24">
         {/* Animated connector line */}
         <div className="hidden md:block absolute top-[36px] left-[16%] right-[16%] h-px z-0">
-          <div className="w-full h-px bg-black/[0.05]" />
+          <div className="w-full h-px bg-creamlack/[0.05]" />
           <motion.div
             className="absolute inset-0 h-px bg-gradient-to-r from-transparent via-[#6B8576] to-transparent"
             animate={{ x: ['-100%', '100%'] }}
@@ -190,7 +190,7 @@ export default function HowItWorks() {
           <span className="text-gray-500 font-mono tracking-wider text-[10px] uppercase block mb-1">
             TECHNICAL TOPOLOGY
           </span>
-          <h3 className="font-display text-2xl text-[#1A1A1A]">
+          <h3 className="font-display text-2xl text-espresso">
             Interception at the Edge
           </h3>
         </div>

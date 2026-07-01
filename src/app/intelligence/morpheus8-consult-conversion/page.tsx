@@ -17,7 +17,7 @@ export default function Morpheus8Conversion() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal flex flex-col">
+    <div className="min-h-screen bg-cream text-espresso flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -25,9 +25,9 @@ export default function Morpheus8Conversion() {
 
       <main className="pt-40 pb-24 px-6 max-w-4xl mx-auto font-sans flex-1">
         <span className="section-kicker mb-4 block">Conversion</span>
-        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-[#221f1b] mb-8 leading-tight tracking-tight">Morpheus8 Consult Conversion Benchmarks</h1>
+        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-espresso mb-8 leading-tight tracking-tight">Morpheus8 Consult Conversion Benchmarks</h1>
 
-        <article className="prose prose-lg max-w-none font-sans text-[#5f574f] leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-[#221f1b] prose-strong:text-[#221f1b]">
+        <article className="prose prose-lg max-w-none font-sans text-mist leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-espresso prose-strong:text-espresso">
           <p className="text-xl leading-relaxed mb-8 font-medium">
             Morpheus8 is one of the highest-revenue-generating procedures in modern medical aesthetics, frequently commanding $3,000 to $4,500 for a package of three treatments. However, the conversion rate from initial inquiry to paid booking is notoriously volatile.
           </p>

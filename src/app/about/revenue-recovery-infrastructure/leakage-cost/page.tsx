@@ -37,7 +37,10 @@ export default function LeakageCost() {
             </p>
           </div>
 
-          <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Example: A 5-Location Group</h2>
+          <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Illustrative Example: A 5-Location Group</h2>
+          <p className="text-base text-text-muted leading-relaxed mb-6 italic">
+            The figures below are illustrative and require verification against your own data. They are a worked example of the methodology — not a claim about any specific practice. Actual numbers vary widely.
+          </p>
           <ul className="space-y-6 mb-8 text-lg text-text-muted">
             <li>
               <strong>Monthly inquiries per location:</strong> 300
@@ -57,16 +60,16 @@ export default function LeakageCost() {
           </ul>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6 font-semibold">
-            Leakage = 1,500 × 0.35 × $500 × 0.6 = $157,500/month
+            Illustrative leakage = 1,500 × 0.35 × $500 × 0.6 ≈ $157,500/month
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            This group is losing approximately $1.9M annually to response latency and channel fragmentation alone. This is not speculative. This is the mathematical consequence of unanswered inquiries.
+            In this illustrative scenario, the modeled leakage works out to roughly $1.9M per year. These numbers are an estimate of opportunity and require manual verification against your own inquiry and booking data before they mean anything for your practice.
           </p>
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">The Recovery Window</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            Not all missed demand is recoverable indefinitely. A patient who inquires about Botox and is contacted 4 hours later has a 70% re-engagement probability. Contacted 48 hours later, that probability drops to 30%. Contacted 7+ days later, it approaches zero.
+            Not all missed demand is recoverable indefinitely. As a general pattern, a patient contacted within a few hours of inquiring tends to re-engage at a meaningfully higher rate than one contacted days later, and the likelihood of recovery declines the longer the inquiry sits unanswered.
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">
@@ -75,7 +78,7 @@ export default function LeakageCost() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Operational Implication</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            Reducing response latency from 8+ hours to &lt;2 hours can recover 40–60% of the portfolio leakage. For the 5-location example above, that is $63K–$94K monthly in incremental revenue—with no new patient acquisition, no marketing spend, no operational staff additions.
+            Reducing response latency surfaces more of the leakage as recoverable opportunity. In the illustrative example above, a faster response could surface a portion of that modeled leakage each month — an estimate that requires verification, and that comes without new patient acquisition or marketing spend. Scrutexity charges $0 if missed-demand recovery isn&rsquo;t demonstrated.
           </p>
         </section>
       </div>

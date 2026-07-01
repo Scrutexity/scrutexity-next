@@ -6,10 +6,10 @@ export const COPY = {
     h1: "Recover $25K–$50K in lost revenue every month",
     sub: "Permanent revenue infrastructure for premium NYC medspas. 14-day pilot — visible results or you pay $0.",
     trustGates: [
-      { label: "FULLY COMPLIANT", desc: "Insured liability indemnification", icon: <Lock size={18} className="text-terracotta" /> },
-      { label: "PRIVACY FIRST", desc: "Impenetrable patient data protection", icon: <Shield size={18} className="text-terracotta" /> },
-      { label: "EXCEPTIONAL CARE", desc: "Validated by premier aesthetic boards", icon: <Activity size={18} className="text-terracotta" /> },
-      { label: "SEAMLESS INTEGRATION", desc: "Zero-friction operational flow", icon: <CheckCircle size={18} className="text-terracotta" /> }
+      { label: "FULLY COMPLIANT", desc: "Insured liability indemnification", icon: <Lock size={18} className="text-clay" /> },
+      { label: "PRIVACY FIRST", desc: "Impenetrable patient data protection", icon: <Shield size={18} className="text-clay" /> },
+      { label: "EXCEPTIONAL CARE", desc: "Validated by premier aesthetic boards", icon: <Activity size={18} className="text-clay" /> },
+      { label: "SEAMLESS INTEGRATION", desc: "Zero-friction operational flow", icon: <CheckCircle size={18} className="text-clay" /> }
     ]
   },
   problem: {
@@ -35,8 +35,8 @@ export const COPY = {
     quote: "The infrastructure paid for itself on day three. We had no idea how many $2,500 consultations were slipping through."
   },
   founder: {
-    name: "Nicholas",
-    title: "LEAD ARCHITECT — NEW YORK CITY",
-    quote: "We don't build websites. We build the operational revenue infrastructure that premium aesthetics clinics use to permanently solve their pipeline leakage. Our systems are engineered for absolute compliance, discretion, and measurable recovery."
+    name: "Nick Altstein",
+    title: "FOUNDER & SYSTEMS ARCHITECT",
+    quote: "Every missed call or unanswered 11 PM message is revenue you already paid for. I built Scrutexity to catch those leaks without disrupting your clinic. The system is entirely rules-based — it never improvises medical advice and immediately hands off clinical questions to your licensed staff. We strip all patient identifiers at the ingress layer, figure out what the lead wants, and book the deposit through a read-only connection to your calendar. No guesswork, just a verifiable ledger of recovered appointments."
   }
 };

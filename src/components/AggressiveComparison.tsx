@@ -33,35 +33,35 @@ export default function AggressiveComparison() {
     <section id="compare" className="bg-[#f4ecdf] py-24 px-5 sm:px-8">
       <div className="mx-auto max-w-[1160px]">
         <Reveal className="max-w-[50ch] mb-12">
-          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-terracotta">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-clay">
             The real choice on the table
           </span>
-          <h2 className="mt-3 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-charcoal sm:text-[2.8rem]">
+          <h2 className="mt-3 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-espresso sm:text-[2.8rem]">
             Compare us to what you actually have.
           </h2>
-          <p className="mt-4 text-[1.08rem] text-[#6b6259]">
+          <p className="mt-4 text-[1.08rem] text-mist">
             Not some hypothetical platform. Your CRM. Your agency. The status quo.
           </p>
         </Reveal>
 
         <Reveal>
-          <div className="overflow-x-auto rounded-[20px] border border-[#e1d4c5] shadow-[0_1px_2px_rgba(44,36,24,.04),0_14px_36px_-16px_rgba(44,36,24,.12)]">
-            <table className="w-full min-w-[560px] border-collapse bg-[#fffaf2]">
+          <div className="overflow-x-auto rounded-[20px] border border-sand-deep shadow-[0_1px_2px_rgba(44,36,24,.04),0_14px_36px_-16px_rgba(44,36,24,.12)]">
+            <table className="w-full min-w-[560px] border-collapse bg-cream">
               <thead>
-                <tr className="border-b border-[#e1d4c5]">
-                  <th className="px-6 py-5 text-left text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6259]" />
+                <tr className="border-b border-sand-deep">
+                  <th className="px-6 py-5 text-left text-xs font-semibold uppercase tracking-[0.14em] text-mist" />
                   {cols.map((col) => (
                     <th
                       key={col.key}
                       className={`px-6 py-5 text-center text-sm font-semibold ${
                         col.highlight
-                          ? 'bg-white text-[#221f1b] border-x border-[#e1d4c5]'
+                          ? 'bg-white text-espresso border-x border-sand-deep'
                           : 'text-[#786e63]'
                       }`}
                     >
                       {col.highlight ? (
                         <span className="inline-flex items-center gap-1.5">
-                          <span className="h-2 w-2 rounded-full bg-terracotta" />
+                          <span className="h-2 w-2 rounded-full bg-clay" />
                           {col.label}
                         </span>
                       ) : col.label}
@@ -73,7 +73,7 @@ export default function AggressiveComparison() {
                 {rows.map((row, i) => (
                   <tr
                     key={row.label}
-                    className={`border-b border-[#e1d4c5] last:border-0 ${i % 2 === 1 ? 'bg-[#faf6ef]' : ''}`}
+                    className={`border-b border-sand-deep last:border-0 ${i % 2 === 1 ? 'bg-[#faf6ef]' : ''}`}
                   >
                     <td className="px-6 py-4 text-sm font-medium text-[#3d3731]">{row.label}</td>
                     <Cell ok={row.scrutexity} highlight />

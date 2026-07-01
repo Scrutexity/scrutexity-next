@@ -33,16 +33,16 @@ const PremiumSlider = ({ label, value, min, max, step = 1, formatValue, onChange
   return (
     <div className="mb-8 group">
       <div className="flex justify-between items-end mb-3">
-        <label className="text-xs uppercase tracking-widest font-bold text-[#221F1B]/70">
+        <label className="text-xs uppercase tracking-widest font-bold text-espresso/70">
           {label}
         </label>
-        <span className="font-mono text-sm text-[#B9825F] font-semibold">
+        <span className="font-mono text-sm text-clay font-semibold">
           {formatValue ? formatValue(value) : value.toLocaleString()}
         </span>
       </div>
-      <div className="relative h-1.5 bg-[#221F1B]/10 rounded-full">
+      <div className="relative h-1.5 bg-espresso/10 rounded-full">
         <motion.div 
-          className="absolute top-0 left-0 h-full bg-[#B9825F] rounded-full"
+          className="absolute top-0 left-0 h-full bg-clay rounded-full"
           style={{ width: `${percentage}%` }}
           layout
         />
@@ -57,7 +57,7 @@ const PremiumSlider = ({ label, value, min, max, step = 1, formatValue, onChange
           aria-label={label}
         />
         <motion.div 
-          className="absolute top-1/2 -mt-2.5 w-5 h-5 bg-[#FBF7EF] border-2 border-[#B9825F] rounded-full pointer-events-none shadow-sm transition-transform group-hover:scale-110"
+          className="absolute top-1/2 -mt-2.5 w-5 h-5 bg-cream border-2 border-clay rounded-full pointer-events-none shadow-sm transition-transform group-hover:scale-110"
           style={{ left: `calc(${percentage}% - 10px)` }}
           layout
         />
@@ -80,7 +80,7 @@ export default function ScrutexityROICalculator() {
   const newAnnualLeakage = annualLeakage - annualRecovery;
 
   return (
-    <div className="min-h-screen bg-[#FBF7EF] text-[#221F1B] selection:bg-[#B9825F] selection:text-white py-24 px-6 lg:px-16 flex items-center justify-center font-sans">
+    <div className="min-h-screen bg-cream text-espresso selection:bg-clay selection:text-white py-24 px-6 lg:px-16 flex items-center justify-center font-sans">
       <motion.div 
         initial={{ opacity: 0, y: 20, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -88,22 +88,22 @@ export default function ScrutexityROICalculator() {
         className="w-full max-w-6xl"
       >
         <div className="mb-16 text-center max-w-3xl mx-auto">
-          <p className="text-xs uppercase tracking-widest font-bold text-[#B9825F] mb-3">
+          <p className="text-xs uppercase tracking-widest font-bold text-clay mb-3">
             Financial Impact Simulator
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight leading-tight mb-6">
             Quantify your portfolio's structural leakage.
           </h1>
-          <p className="text-[#221F1B]/70 leading-relaxed text-lg font-light">
+          <p className="text-espresso/70 leading-relaxed text-lg font-light">
             Fragmented systems obscure missed consultations and routing delays. Adjust the parameters below to visualize the illustrative operational recovery potential of unified governance.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           
-          <div className="lg:col-span-5 bg-white/40 border border-[#221F1B]/10 p-8 shadow-sm">
-            <h2 className="text-xl font-serif mb-8 flex items-center gap-2 border-b border-[#221F1B]/10 pb-4">
-              <TrendingUp className="w-5 h-5 text-[#B9825F]" />
+          <div className="lg:col-span-5 bg-white/40 border border-espresso/10 p-8 shadow-sm">
+            <h2 className="text-xl font-serif mb-8 flex items-center gap-2 border-b border-espresso/10 pb-4">
+              <TrendingUp className="w-5 h-5 text-clay" />
               Portfolio Metrics
             </h2>
 
@@ -134,9 +134,9 @@ export default function ScrutexityROICalculator() {
           <div className="lg:col-span-7 flex flex-col justify-between space-y-8">
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-[#221F1B] text-[#FBF7EF] p-8 relative overflow-hidden">
-                <p className="text-xs uppercase tracking-widest text-[#FBF7EF]/50 mb-2 font-semibold">Current Annual Leakage</p>
-                <div className="text-4xl md:text-5xl font-serif text-[#FBF7EF]">
+              <div className="bg-espresso text-cream p-8 relative overflow-hidden">
+                <p className="text-xs uppercase tracking-widest text-cream/50 mb-2 font-semibold">Current Annual Leakage</p>
+                <div className="text-4xl md:text-5xl font-serif text-cream">
                   <AnimatedNumber value={annualLeakage} prefix="$" />
                 </div>
                 <div className="absolute -right-4 -bottom-4 opacity-5">
@@ -144,53 +144,53 @@ export default function ScrutexityROICalculator() {
                 </div>
               </div>
               
-              <div className="border border-[#B9825F] bg-[#B9825F]/5 p-8 relative">
-                <div className="absolute top-0 right-0 bg-[#B9825F] text-[#FBF7EF] text-[10px] uppercase tracking-widest px-2 py-1 font-bold">
+              <div className="border border-clay bg-clay/5 p-8 relative">
+                <div className="absolute top-0 right-0 bg-clay text-cream text-[10px] uppercase tracking-widest px-2 py-1 font-bold">
                   Illustrative Recovery
                 </div>
-                <p className="text-xs uppercase tracking-widest text-[#221F1B]/60 mb-2 font-semibold">Potential Annual Recovery</p>
-                <div className="text-4xl md:text-5xl font-serif text-[#B9825F]">
+                <p className="text-xs uppercase tracking-widest text-espresso/60 mb-2 font-semibold">Potential Annual Recovery</p>
+                <div className="text-4xl md:text-5xl font-serif text-clay">
                   <AnimatedNumber value={annualRecovery} prefix="$" />
                 </div>
               </div>
             </div>
 
-            <div className="p-8 border border-[#221F1B]/10 bg-white/40">
+            <div className="p-8 border border-espresso/10 bg-white/40">
               <div className="flex justify-between items-end mb-4">
                 <h3 className="font-serif text-xl">Leakage Recovery Distribution</h3>
-                <span className="text-xs font-mono text-[#221F1B]/50">Based on 30% Efficiency Gain</span>
+                <span className="text-xs font-mono text-espresso/50">Based on 30% Efficiency Gain</span>
               </div>
               
-              <div className="w-full h-8 flex rounded-sm overflow-hidden bg-[#221F1B]/5 mb-6 relative">
+              <div className="w-full h-8 flex rounded-sm overflow-hidden bg-espresso/5 mb-6 relative">
                 <motion.div 
-                  className="h-full bg-[#B9825F] flex items-center px-3"
+                  className="h-full bg-clay flex items-center px-3"
                   initial={{ width: '0%' }}
                   animate={{ width: `${(annualRecovery / annualLeakage) * 100}%` }}
                   transition={{ type: "spring", stiffness: 50, damping: 15 }}
                 >
-                  <span className="text-[10px] font-mono text-[#FBF7EF] font-bold">RECOVERED</span>
+                  <span className="text-[10px] font-mono text-cream font-bold">RECOVERED</span>
                 </motion.div>
                 <motion.div 
-                  className="h-full bg-[#221F1B]/80 flex items-center px-3"
+                  className="h-full bg-espresso/80 flex items-center px-3"
                   initial={{ width: '100%' }}
                   animate={{ width: `${(newAnnualLeakage / annualLeakage) * 100}%` }}
                   transition={{ type: "spring", stiffness: 50, damping: 15 }}
                 >
-                  <span className="text-[10px] font-mono text-[#FBF7EF]/50 font-bold hidden sm:inline">REMAINING BASELINE</span>
+                  <span className="text-[10px] font-mono text-cream/50 font-bold hidden sm:inline">REMAINING BASELINE</span>
                 </motion.div>
               </div>
 
-              <p className="text-[#221F1B]/80 text-sm leading-relaxed">
+              <p className="text-espresso/80 text-sm leading-relaxed">
                 For a <strong>{locations}-location</strong> MSO processing {locations * inquiries} monthly inquiries, recovering just a fraction of operational leakage could add <strong><AnimatedNumber value={annualRecovery} prefix="$" /></strong> annually to your bottom line, directly improving enterprise valuation multiples.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <a href="/pilot" className="w-full sm:w-auto group px-8 py-4 bg-[#B9825F] text-[#FBF7EF] text-sm uppercase tracking-widest font-semibold flex items-center justify-center gap-3 hover:bg-[#221F1B] transition-all duration-300">
-                Request a portfolio audit
+              <a href="/pilot" className="w-full sm:w-auto group px-8 py-4 bg-clay text-cream text-sm uppercase tracking-widest font-semibold flex items-center justify-center gap-3 hover:bg-espresso transition-all duration-300">
+                Get Your Free Audit
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <a href="/for-pe" className="w-full sm:w-auto px-8 py-4 border border-[#221F1B]/20 text-[#221F1B] text-sm uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:border-[#221F1B] bg-transparent transition-all">
+              <a href="/for-pe" className="w-full sm:w-auto px-8 py-4 border border-espresso/20 text-espresso text-sm uppercase tracking-widest font-semibold flex items-center justify-center gap-2 hover:border-espresso bg-transparent transition-all">
                 <Download className="w-4 h-4" />
                 Download diligence packet
               </a>

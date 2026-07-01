@@ -101,7 +101,7 @@ export default function VsZenoti() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">The Bottom Line</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            Zenoti operators are missing 10–25% of patient demand to processing delays and channel fragmentation. Scrutexity recovers that demand without replacing Zenoti or disrupting your existing workflows. You keep your system of record. You add a system of optimization on top.
+            Many Zenoti operators miss a portion of patient demand to processing delays and channel fragmentation. Scrutexity is designed to surface and help recover that missed demand without replacing Zenoti or disrupting your existing workflows — the recoverable amount is an estimate that requires verification, and the pilot is $0 if missed-demand recovery isn&rsquo;t demonstrated. You keep your platform of record; you add a layer of optimization on top.
           </p>
         </section>
       </div>

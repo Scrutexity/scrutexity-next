@@ -92,31 +92,31 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
         <Reveal>
           <p className="section-kicker">Ad spend vs. what you're keeping</p>
-          <h2 className="mt-4 font-display text-4xl leading-tight text-[#221f1b] md:text-6xl">
+          <h2 className="mt-4 font-display text-4xl leading-tight text-espresso md:text-6xl">
             You&apos;re spending money on ads. Here&apos;s how much you&apos;re actually keeping.
           </h2>
-          <p className="mt-5 text-lg leading-8 text-[#6b6259]">
+          <p className="mt-5 text-lg leading-8 text-mist">
             Conservative model — only a portion of unconverted demand is treated as recoverable, and clinical routing stays under your team&apos;s control.
           </p>
-          <div className="mt-8 rounded-2xl border border-[#e1d4c5] bg-white/52 p-5 text-sm leading-7 text-[#5f574f]">
+          <div className="mt-8 rounded-2xl border border-sand-deep bg-white/52 p-5 text-sm leading-7 text-mist">
             <strong className="text-[#2a2621]">Methodology:</strong> compares current booking conversion against a 5.8% internal modeling target (not an audited benchmark — verify against your own system data), then discounts recoverable value to account for fit, staff capacity, and treatment readiness.
           </div>
         </Reveal>
         <Reveal>
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl bg-[#fbf7ef] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#9b6a51]">
+            <div className="rounded-2xl bg-cream p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay-deep">
                 Estimated missed-demand opportunity
               </p>
-              <p className="mt-4 font-display text-5xl text-[#221f1b]">
+              <p className="mt-4 font-display text-5xl text-espresso">
                 <AnimatedCurrency value={monthlyLeak} />
               </p>
             </div>
             <div className="rounded-2xl border border-[#b9825f]/25 bg-[#f3eadf] p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#9b6a51]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay-deep">
                 Conservative pilot target
               </p>
-              <p className="mt-4 font-display text-5xl text-[#b9825f]">
+              <p className="mt-4 font-display text-5xl text-clay">
                 <AnimatedCurrency value={pilotTarget} />
               </p>
             </div>
@@ -163,7 +163,7 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
           <div className="mt-6">
             <button
               onClick={() => setShowPreview(!showPreview)}
-              className="flex w-full items-center justify-between rounded-xl border border-[#e1d4c5] bg-[#fbf7ef] px-5 py-3 text-sm font-medium text-[#5f574f] transition hover:bg-[#f3eadf]"
+              className="flex w-full items-center justify-between rounded-xl border border-sand-deep bg-cream px-5 py-3 text-sm font-medium text-mist transition hover:bg-[#f3eadf]"
             >
               <span>{showPreview ? 'Hide' : 'See what surfaced demand looks like'}</span>
               <svg
@@ -174,11 +174,11 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
               </svg>
             </button>
             {showPreview && (
-              <div className="mt-3 divide-y divide-[#efe2d2] rounded-xl border border-[#e1d4c5] bg-[#fffaf2] overflow-hidden">
+              <div className="mt-3 divide-y divide-[#efe2d2] rounded-xl border border-sand-deep bg-cream overflow-hidden">
                 {sampleLeads.map((item) => (
                   <div key={item.source} className="flex items-center justify-between px-5 py-3">
                     <div>
-                      <p className="text-sm font-medium text-[#221f1b]">{item.source}</p>
+                      <p className="text-sm font-medium text-espresso">{item.source}</p>
                       <p className="text-xs text-[#7a7066]">Surfaced value: {item.value}</p>
                     </div>
                     <span className="rounded-full bg-[#eef3ea] px-3 py-1 text-xs font-semibold text-[#607461]">
@@ -186,7 +186,7 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
                     </span>
                   </div>
                 ))}
-                <p className="bg-[#fbf7ef] px-5 py-3 text-[11px] leading-5 text-[#7a7066]">
+                <p className="bg-cream px-5 py-3 text-[11px] leading-5 text-[#7a7066]">
                   Modeled on early feedback — not live customer results. Your real surfaced demand will reflect your clinic&apos;s specific patterns.
                 </p>
               </div>
@@ -194,20 +194,20 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
           </div>
 
           {/* Email — optional */}
-          <div className="mt-6 rounded-[1.5rem] border border-[#e1d4c5] bg-[#fffaf2]/80 p-6 backdrop-blur-xl">
+          <div className="mt-6 rounded-[1.5rem] border border-sand-deep bg-cream/80 p-6 backdrop-blur-xl">
             {status === 'success' ? (
               <div className="text-center py-4">
-                <p className="text-lg text-[#221f1b] font-medium mb-4">On its way. Want it walked through?</p>
+                <p className="text-lg text-espresso font-medium mb-4">On its way. Want it walked through?</p>
                 <button
                   onClick={onBookCall}
-                  className="govbtn inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition"
+                  className="clay-cta px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2 transition-all inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition"
                 >
-                  Start my 14-day pilot →
+                  Get Your Free Audit →
                 </button>
               </div>
             ) : (
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9b6a51] mb-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-clay-deep mb-3">
                   Want this estimate in your inbox?
                 </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row sm:items-end">
@@ -222,7 +222,7 @@ export function LeadCalculator({ onBookCall }: { onBookCall: () => void }) {
                   <button
                     type="submit"
                     disabled={status === 'loading' || !email}
-                    className="govbtn inline-flex h-[48px] items-center justify-center rounded-full px-6 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="clay-cta px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2 transition-all inline-flex h-[48px] items-center justify-center rounded-full px-6 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === 'loading' ? 'Sending...' : 'Email the report →'}
                   </button>

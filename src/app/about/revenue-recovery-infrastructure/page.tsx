@@ -61,7 +61,7 @@ export default function RevenueRecoveryInfrastructure() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Why This Works at Scale</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            A single location might recover $5K–$12K per month from missed-demand re-engagement. A 10-location operator implementing revenue recovery infrastructure systematically can recover $50K–$120K monthly—without hiring additional staff, without patient acquisition costs, and without disrupting existing operations.
+            The opportunity compounds across locations: what one location surfaces in recovered demand, a multi-location operator surfaces many times over — without hiring additional staff, without patient acquisition costs, and without disrupting existing operations. Any specific figure is an estimate that requires verification against your own data, and Scrutexity charges $0 if missed-demand recovery isn&rsquo;t demonstrated.
           </p>
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Zero-Downtime Implementation</h2>

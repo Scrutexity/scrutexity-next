@@ -14,7 +14,7 @@ const FeaturesGrid = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-terracotta/5 via-transparent to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-8 relative z-10">
         <div className="mb-20 text-center">
-          <span className="text-terracotta font-sans tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">Recovery Systems</span>
+          <span className="text-clay font-sans tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">Recovery Systems</span>
           <h2 className="text-4xl md:text-6xl font-display font-extrabold text-white">Revenue Infrastructure</h2>
         </div>
         
@@ -22,7 +22,7 @@ const FeaturesGrid = () => {
           {COPY.modules.map((module) => (
             <motion.div 
               key={module.number} 
-              className="port-card glass-panel p-10 cursor-crosshair relative overflow-hidden bg-ivory/80 hover:bg-charcoal/[0.05] transition-colors border border-charcoal/10"
+              className="port-card glass-panel p-10 cursor-crosshair relative overflow-hidden bg-cream/80 hover:bg-charcoal/[0.05] transition-colors border border-charcoal/10"
               whileHover={{ scale: 1.02 }}
               onMouseEnter={() => {
                 setActiveModule(module.number)
@@ -40,7 +40,7 @@ const FeaturesGrid = () => {
               <div className="flex flex-col h-full justify-between">
                 <div>
                   <div className="mb-6 pb-6 border-b border-charcoal/10">
-                    <span className="text-terracotta font-sans text-xs tracking-widest font-bold uppercase block mb-2">The Leak</span>
+                    <span className="text-clay font-sans text-xs tracking-widest font-bold uppercase block mb-2">The Leak</span>
                     <h4 className="text-xl font-bold font-display text-white mb-2">{module.problem}</h4>
                     <p className="text-white/60 font-sans text-sm leading-relaxed italic">"{module.outcome}"</p>
                   </div>

@@ -78,7 +78,7 @@ export default function ClinicalDemandGovernance() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Why This Matters at Scale</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            A single-location practice might lose 2–3 patient inquiries per week to delays or missed channels. A 20-location MSO operating Boulevard or Zenoti across all properties might leak 400–600 inquiries per month—because the front desk can only answer one phone at a time, and web forms get buried in email.
+            A single-location practice can lose a few patient inquiries each week to delays or missed channels. Across a multi-location MSO operating Boulevard or Zenoti, that compounds into a meaningful monthly volume—because the front desk can only answer one phone at a time, and web forms get buried in email. The exact count is something to measure per practice, not assume.
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">

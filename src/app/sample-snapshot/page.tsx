@@ -30,7 +30,7 @@ const opportunities = [
 
 export default function SampleSnapshotPage() {
   return (
-    <div className="min-h-screen bg-[#FBF7EF] text-[#221F1B] font-sans antialiased">
+    <div className="min-h-screen bg-cream text-[#221F1B] font-sans antialiased">
       <main className="max-w-4xl mx-auto px-6 py-16">
         {/* Header */}
         <div className="text-center mb-12">
@@ -110,7 +110,7 @@ export default function SampleSnapshotPage() {
                   <span className="font-mono text-[10px] tracking-widest text-[#221F1B]/50">{step.label}</span>
                   <span className="font-mono text-sm font-bold text-[#221F1B]">{step.count}</span>
                 </div>
-                <div className="h-2.5 w-full bg-[#FBF7EF] border border-[#221F1B]/5">
+                <div className="h-2.5 w-full bg-cream border border-[#221F1B]/5">
                   <div className="h-full bg-[#221F1B]" style={{ width: `${step.pct}%` }} />
                 </div>
               </div>
@@ -131,7 +131,7 @@ export default function SampleSnapshotPage() {
               </div>
             </div>
           </div>
-          <div className="border-t border-[#221F1B]/10 px-8 py-3 bg-[#FBF7EF]/50">
+          <div className="border-t border-[#221F1B]/10 px-8 py-3 bg-cream/50">
             <p className="font-mono text-[10px] text-[#221F1B]/40 tracking-wider uppercase">
               Your report will reflect actual pipeline data from your PMS.
             </p>

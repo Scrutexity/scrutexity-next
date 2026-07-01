@@ -55,7 +55,7 @@ export default function PatientLeakageAudit() {
 
           <h2 className="text-3xl font-display font-semibold mb-6 text-charcoal mt-12">Multi-Location Scale</h2>
           <p className="text-lg text-text-muted leading-relaxed mb-6">
-            At portfolio scale (10+ locations), the compounding effect becomes severe. If each location loses 15–25 inquiries per week to latency or channel fragmentation, a 20-location operator is losing 300–500 monthly inquiries—approximately $18K–$30K in lost revenue per month, assuming average service value of $400–$600.
+            At portfolio scale (10+ locations), the compounding effect grows. If each location loses even a handful of inquiries per week to latency or channel fragmentation, a multi-location operator can be leaking a meaningful volume of monthly inquiries. Translating that into a revenue figure is an estimate that requires verification against each location&rsquo;s own inquiry volume and average service value — it should not be assumed.
           </p>
 
           <p className="text-lg text-text-muted leading-relaxed mb-6">

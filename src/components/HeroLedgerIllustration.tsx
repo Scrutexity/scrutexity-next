@@ -32,11 +32,11 @@ export default function HeroLedgerIllustration() {
     <div ref={containerRef} className="w-full max-w-4xl mx-auto">
       <motion.div
         style={reducedMotion ? undefined : { y: parallaxY }}
-        className="relative rounded-3xl border border-[#e1d4c5] bg-[#fffaf2]/60 p-5 md:p-7 shadow-[0_20px_50px_rgba(85,62,41,0.04)] backdrop-blur-md overflow-hidden">
+        className="relative rounded-3xl border border-sand-deep bg-cream/60 p-5 md:p-7 shadow-[0_20px_50px_rgba(85,62,41,0.04)] backdrop-blur-md overflow-hidden">
         {/* ── Layered ambient auras ── */}
         <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_at_50%_30%,rgba(127,143,120,0.07),transparent_55%),radial-gradient(ellipse_at_18%_68%,rgba(185,130,95,0.05),transparent_45%),radial-gradient(ellipse_at_80%_40%,rgba(232,223,207,0.25),transparent_50%)] pointer-events-none" />
 
-        <div className="relative aspect-[800/320] w-full overflow-hidden rounded-2xl border border-[#e1d4c5]/55 bg-white shadow-inner">
+        <div className="relative aspect-[800/320] w-full overflow-hidden rounded-2xl border border-sand-deep/55 bg-white shadow-inner">
           {/* Dot-grid background */}
           <div
             className="absolute inset-0 opacity-[0.55]"
@@ -127,16 +127,16 @@ export default function HeroLedgerIllustration() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: item.delay, ease: luxuryEase }}
                   whileHover={{ scale: 1.02 }}
-                  className="flex items-center gap-2.5 rounded-xl border border-[#e1d4c5] bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default"
+                  className="flex items-center gap-2.5 rounded-xl border border-sand-deep bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#b9825f]/8 text-[#b9825f]">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#b9825f]/8 text-clay">
                     {item.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-mono text-[8px] font-semibold text-[#b9825f] uppercase tracking-wider">
+                    <p className="font-mono text-[8px] font-semibold text-clay uppercase tracking-wider">
                       {item.label}
                     </p>
-                    <p className="text-[11px] font-semibold text-[#221f1b] truncate">
+                    <p className="text-[11px] font-semibold text-espresso truncate">
                       {item.inquiry}
                     </p>
                   </div>
@@ -152,7 +152,7 @@ export default function HeroLedgerIllustration() {
                 transition={{ duration: 0.6, delay: 0.3, ease: luxuryEase }}
                 whileHover={{ scale: 1.03 }}
                 className="flex flex-col items-center justify-center w-[180px] rounded-2xl
-                           border-2 border-[#7f8f78] bg-[#fffaf2] p-4
+                           border-2 border-[#7f8f78] bg-cream p-4
                            shadow-[0_8px_32px_rgba(127,143,120,0.14),inset_0_1px_0_rgba(255,255,255,0.8)]
                            cursor-default transition-shadow duration-700
                            hover:shadow-[0_14px_40px_rgba(127,143,120,0.20),inset_0_1px_0_rgba(255,255,255,0.8)]"
@@ -166,7 +166,7 @@ export default function HeroLedgerIllustration() {
                 >
                   <Shield size={18} />
                 </motion.div>
-                <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-[#221f1b]">
+                <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-espresso">
                   Scrutexity Layer
                 </h4>
                 <p className="text-[9px] font-mono text-[#7f8f78] mt-1 uppercase font-semibold">
@@ -195,7 +195,7 @@ export default function HeroLedgerIllustration() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.42, ease: luxuryEase }}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-2.5 rounded-xl border border-[#e1d4c5] bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default relative overflow-hidden"
+                className="flex items-center gap-2.5 rounded-xl border border-sand-deep bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_100%_50%,rgba(127,143,120,0.10),transparent_65%)]" />
                 <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-[#7f8f78]/10 text-[#7f8f78]">
@@ -205,7 +205,7 @@ export default function HeroLedgerIllustration() {
                   <p className="font-mono text-[8px] font-semibold text-[#7f8f78] uppercase tracking-wider">
                     Boulevard EMR
                   </p>
-                  <p className="text-[11px] font-semibold text-[#221f1b] flex items-center gap-1">
+                  <p className="text-[11px] font-semibold text-espresso flex items-center gap-1">
                     Booked
                     <motion.span
                       animate={
@@ -227,7 +227,7 @@ export default function HeroLedgerIllustration() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.58, ease: luxuryEase }}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-2.5 rounded-xl border border-[#e1d4c5] bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default relative overflow-hidden"
+                className="flex items-center gap-2.5 rounded-xl border border-sand-deep bg-white/90 p-2.5 shadow-[0_2px_8px_rgba(85,62,41,0.02)] cursor-default relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_100%_50%,rgba(127,143,120,0.10),transparent_65%)]" />
                 <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-[#7f8f78]/10 text-[#7f8f78]">
@@ -237,7 +237,7 @@ export default function HeroLedgerIllustration() {
                   <p className="font-mono text-[8px] font-semibold text-[#7f8f78] uppercase tracking-wider">
                     Audit Ledger
                   </p>
-                  <p className="text-[11px] font-semibold text-[#221f1b] flex items-center gap-1">
+                  <p className="text-[11px] font-semibold text-espresso flex items-center gap-1">
                     Deposit Paid
                     <motion.span
                       animate={

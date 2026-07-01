@@ -130,11 +130,11 @@ export default function TwinDemo() {
         <span className="text-[#6B8576] font-mono tracking-[0.2em] text-xs font-semibold uppercase mb-4 block">
           CLINICAL CONVERSATION ARCHITECTURE
         </span>
-        <h2 className="text-4xl md:text-5xl font-display text-[#1A1A1A] mb-6">
+        <h2 className="text-4xl md:text-5xl font-display text-espresso mb-6">
           See Clinical Routing in Real-Time
         </h2>
         <p className="text-[#6E6E6C] text-lg max-w-2xl mx-auto leading-relaxed">
-          System recovers missed consultations. Clinical questions are hard-routed instantly to licensed practitioners. No false medical claims. Underpinned by BAA-ready infrastructure supporting HIPAA-conscious administrative workflows.
+          System supports missed-consultation recovery. Clinical questions are hard-routed instantly to licensed practitioners. No false medical claims. Built to support BAA-covered, HIPAA-conscious administrative workflows.
         </p>
       </div>
 
@@ -201,7 +201,7 @@ export default function TwinDemo() {
                     <div 
                       className={`p-4 rounded-2xl text-xs leading-relaxed ${
                         msg.sender === 'lead' 
-                          ? 'bg-[#E9E9EB] text-[#1A1A1A] rounded-tl-sm'
+                          ? 'bg-[#E9E9EB] text-espresso rounded-tl-sm'
                           : 'bg-[#007AFF] text-white rounded-tr-sm shadow-sm'
                       }`}
                     >
@@ -313,7 +313,7 @@ export default function TwinDemo() {
                       className="bg-white border border-[#6B8576]/30 rounded-2xl p-4 shadow-md font-mono text-[10px] text-gray-700 space-y-1 relative"
                     >
                       <div className="absolute top-2.5 right-2.5 w-1.5 h-1.5 rounded-full bg-[#6B8576] animate-ping" />
-                      <div className="font-bold text-xs uppercase tracking-wider mb-2 text-[#1A1A1A]">MEDICAL_QUESTION detected</div>
+                      <div className="font-bold text-xs uppercase tracking-wider mb-2 text-espresso">MEDICAL_QUESTION detected</div>
                       <div>Trigger: contraindication keyword (safety/hyperpigmentation)</div>
                       <div>PHI Status: <span className="bg-[#6B8576]/10 px-1.5 py-0.5 rounded text-[#6B8576] font-bold">REDACTED</span> via Presidio</div>
                       <div className="text-gray-500 mt-1">Routed → Dr. Martinez · 0.3s execution latency</div>

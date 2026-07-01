@@ -129,7 +129,7 @@ export default function InfrastructureBriefPage() {
             href="/pilot"
             className="inline-flex items-center gap-2 bg-[#FDF8F0] text-[#0a0a0a] font-semibold text-[13.5px] px-7 py-3 rounded-full shadow-[0_4px_14px_rgba(253,248,240,0.15)] transition duration-200 hover:scale-[0.98] hover:bg-[#EAE3D5]"
           >
-            Initialize 24-Hour Audit →
+            Get Your Free Audit →
           </Link>
         </footer>
 

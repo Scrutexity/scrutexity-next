@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
 
       if (process.env.RESEND_API_KEY) {
         await resend.emails.send({
-          from: 'Scrutexity <founder@scrutexity.com>',
-          to: 'founder@scrutexity.com',
+          from: 'Scrutexity <nick@scrutexity.com>',
+          to: 'nick@scrutexity.com',
           subject: `[Pilot] New API Key Connected`,
           text: `A new pilot clinic just completed Phase 2 and connected their API Key.
           

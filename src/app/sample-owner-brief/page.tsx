@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function SampleOwnerBriefPage() {
   return (
-    <div className="min-h-screen bg-[#fbf7ef] text-[#221f1b] font-sans">
+    <div className="min-h-screen bg-cream text-espresso font-sans">
       <main className="px-5 pb-24 pt-6 sm:px-8">
         <SampleOwnerBriefWidget />
       </main>

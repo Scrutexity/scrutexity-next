@@ -17,21 +17,21 @@ export default function FtcPixelCompliance() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal flex flex-col">
+    <div className="min-h-screen bg-cream text-espresso flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       <main className="pt-40 pb-24 px-6 max-w-4xl mx-auto font-sans flex-1">
-        <div className="rounded-2xl border border-[#e8d5a0] bg-[#fef9ec] p-6 mb-12 text-sm text-[#5f574f] shadow-sm">
+        <div className="rounded-2xl border border-[#e8d5a0] bg-[#fef9ec] p-6 mb-12 text-sm text-mist shadow-sm">
           <strong className="text-[#7a5c1e]">Legal Disclaimer:</strong> This guide is for educational and informational purposes only and does not constitute formal legal advice. Consulting this resource does not establish an attorney-client relationship.
         </div>
 
         <span className="section-kicker mb-4 block">Compliance</span>
-        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-[#221f1b] mb-8 leading-tight tracking-tight">The 2026 FTC Guide to Meta Pixel HIPAA Violations in Aesthetics</h1>
+        <h1 className="font-display text-4xl md:text-6xl font-extrabold text-espresso mb-8 leading-tight tracking-tight">The 2026 FTC Guide to Meta Pixel HIPAA Violations in Aesthetics</h1>
 
-        <article className="prose prose-lg max-w-none font-sans text-[#5f574f] leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-[#221f1b] prose-strong:text-[#221f1b]">
+        <article className="prose prose-lg max-w-none font-sans text-mist leading-relaxed prose-headings:font-display prose-headings:font-bold prose-headings:text-espresso prose-strong:text-espresso">
           <p className="text-xl leading-relaxed mb-8 font-medium">
             The regulatory landscape for medical marketing has fundamentally shifted. Following aggressive enforcement actions by the Department of Health and Human Services (HHS) and the Federal Trade Commission (FTC), the use of unconfigured third-party tracking pixels (such as the Meta Pixel, Google Analytics, or TikTok Pixel) on patient-facing medical websites constitutes a direct violation of HIPAA if Personal Health Information (PHI) is transmitted.
           </p>

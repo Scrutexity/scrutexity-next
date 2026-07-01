@@ -20,39 +20,39 @@ const qs = [
 
 export function ObjectionHandler() {
   return (
-    <section className="bg-ivory py-28">
+    <section className="bg-cream py-28">
       <div className="mx-auto max-w-[1160px] px-7">
         <Reveal className="max-w-[50ch]">
-          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-terracotta">
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-clay">
             The objection we get most
           </span>
-          <h2 className="mt-3 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-charcoal sm:text-[2.6rem]">
+          <h2 className="mt-3 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.02em] text-espresso sm:text-[2.6rem]">
             &ldquo;But my software already has an AI receptionist.&rdquo;
           </h2>
         </Reveal>
         <Reveal>
-          <div className="mt-11 rounded-[24px] border border-[#e1d4c5] bg-[#fffaf2] px-11 py-12 shadow-[0_1px_2px_rgba(44,36,24,.04),0_14px_36px_-16px_rgba(44,36,24,.16)]">
-            <div className="font-display text-[1.7rem] font-medium leading-tight text-charcoal">
+          <div className="mt-11 rounded-[24px] border border-sand-deep bg-cream px-11 py-12 shadow-[0_1px_2px_rgba(44,36,24,.04),0_14px_36px_-16px_rgba(44,36,24,.16)]">
+            <div className="font-display text-[1.7rem] font-medium leading-tight text-espresso">
               Good. Turn it on.
             </div>
-            <p className="mt-4 max-w-[62ch] text-[1.08rem] text-[#6b6259]">
+            <p className="mt-4 max-w-[62ch] text-[1.08rem] text-mist">
               Then ask the three questions their salesperson is hoping you won&apos;t. If the answers make you
               comfortable, you don&apos;t need us.{' '}
-              <b className="text-charcoal">They rarely do.</b>
+              <b className="text-espresso">They rarely do.</b>
             </p>
             <div className="mt-7 grid gap-4.5">
               {qs.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-5 rounded-2xl border-l-[3px] border-terracotta bg-[#fbf7ef] px-6 py-5"
+                  className="flex items-start gap-5 rounded-2xl border-l-[3px] border-clay bg-cream px-6 py-5"
                 >
-                  <span className="flex-none font-display text-2xl text-terracotta">
+                  <span className="flex-none font-display text-2xl text-clay">
                     {i + 1}
                   </span>
                   <div className="text-base">
-                    <b className="font-semibold text-charcoal">{item.q}</b>
+                    <b className="font-semibold text-espresso">{item.q}</b>
                     <br />
-                    <span className="text-[#6b6259]">{item.a}</span>
+                    <span className="text-mist">{item.a}</span>
                   </div>
                 </div>
               ))}
@@ -76,11 +76,10 @@ export function Manifesto() {
           Why we exist
         </span>
         <h2 className="mt-3 max-w-[22ch] font-display text-[1.9rem] font-medium leading-[1.12] text-white sm:text-[2.7rem]">
-          We built the opposite of an agency — and the opposite of a platform that holds your practice hostage.
+          We built the recovery layer your existing booking system leaves open.
         </h2>
         <p className="mt-6 max-w-[60ch] text-[1.12rem] leading-relaxed text-[#D9CBB8]">
-          Agencies rent you traffic. Platforms rent you a robot, then lock the door behind your data. We do neither.
-          We install the recovery layer, prove it on a ledger{' '}
+          Your team keeps Boulevard or Mangomint. We add the missed-demand recovery layer, prove it on a ledger{' '}
           <b className="font-semibold text-white">you can audit in 60 seconds</b>,
           and hand you the keys.{' '}
           <b className="font-semibold text-white">Own it. Cancel anytime and keep everything.</b> We

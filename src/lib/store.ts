@@ -9,6 +9,10 @@ interface AppState {
   setCalculatorIntensity: (val: number) => void
   isMaxIntensity: boolean
   setMaxIntensity: (val: boolean) => void
+  blockNumber: number
+  setBlockNumber: (val: number) => void
+  timeLeft: number
+  setTimeLeft: (val: number) => void
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -19,5 +23,9 @@ export const useStore = create<AppState>((set) => ({
   calculatorIntensity: 0,
   setCalculatorIntensity: (val) => set({ calculatorIntensity: val }),
   isMaxIntensity: false,
-  setMaxIntensity: (val) => set({ isMaxIntensity: val })
+  setMaxIntensity: (val) => set({ isMaxIntensity: val }),
+  blockNumber: 89427,
+  setBlockNumber: (val) => set({ blockNumber: val }),
+  timeLeft: 60,
+  setTimeLeft: (val) => set({ timeLeft: val }),
 }))

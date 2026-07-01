@@ -40,18 +40,18 @@ We'll be in touch if we have questions. No sales call — the data speaks for it
 Best,
 Nick
 Founder, Scrutexity
-founder@scrutexity.com`;
+nick@scrutexity.com`;
 
       await resend.emails.send({
-        from: 'Nick <founder@scrutexity.com>',
+        from: 'Nick <nick@scrutexity.com>',
         to: email,
         subject: 'Your missed-demand estimate',
         text: emailText,
       });
 
       await resend.emails.send({
-        from: 'Scrutexity <founder@scrutexity.com>',
-        to: 'founder@scrutexity.com',
+        from: 'Scrutexity <nick@scrutexity.com>',
+        to: 'nick@scrutexity.com',
         subject: `New calculator lead: ${email}`,
         text: `New calculator lead: ${email}, estimated monthly: $${monthlyLeak.toLocaleString()}`,
       });

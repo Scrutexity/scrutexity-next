@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Compliance() {
   return (
-    <div className="min-h-screen bg-ivory text-[#221f1b] font-sans selection:bg-terracotta/20">
+    <div className="min-h-screen bg-cream text-espresso font-sans selection:bg-clay/20">
 
 
       <section className="relative overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:pb-20 lg:pt-32">
@@ -17,10 +17,10 @@ export default function Compliance() {
         <div className="absolute inset-0 luxury-noise opacity-[0.06]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="section-kicker mb-4">Trust &amp; Compliance</p>
-          <h1 className="font-display text-4xl leading-tight tracking-[-0.02em] text-[#201d19] sm:text-5xl md:text-6xl">
+          <h1 className="font-display text-4xl leading-tight tracking-[-0.02em] text-espresso sm:text-5xl md:text-6xl">
             Compliance Architecture
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-[#5f574f]">
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-mist">
             Absolute clarity on performance targets, HIPAA-conscious engineering, and data ownership.
           </p>
         </div>
@@ -30,23 +30,23 @@ export default function Compliance() {
         <div className="mx-auto max-w-3xl space-y-6">
 
           <div className="luxury-panel p-8 sm:p-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1 h-full bg-terracotta rounded-l-[1.75rem]" />
+            <div className="absolute top-0 left-0 w-1 h-full bg-clay rounded-l-[1.75rem]" />
             <div className="flex items-center gap-3 mb-5">
-              <CheckCircle className="h-5 w-5 text-terracotta flex-shrink-0" />
-              <h2 className="font-display text-2xl text-[#221f1b]">Pilot Fee Waiver Disclosure</h2>
+              <CheckCircle className="h-5 w-5 text-clay flex-shrink-0" />
+              <h2 className="font-display text-2xl text-espresso">Pilot Fee Waiver Disclosure</h2>
             </div>
-            <p className="text-[#5f574f] mb-5 font-semibold text-sm">
+            <p className="text-mist mb-5 font-semibold text-sm">
               Our 14-day pilot is $0 if missed-demand recovery isn&rsquo;t demonstrated. Here is exactly what that means:
             </p>
-            <div className="rounded-2xl border border-[#e1d4c5] bg-[#f7f2ea] p-6 text-sm leading-relaxed space-y-3 text-[#5f574f]">
-              <p><strong className="text-[#221f1b]">Missed-demand recovery results vary</strong> based on existing inquiry volume, baseline response practices, and the specific module configuration deployed. Estimates are directional and require manual verification.</p>
+            <div className="rounded-2xl border border-sand-deep bg-[#f7f2ea] p-6 text-sm leading-relaxed space-y-3 text-mist">
+              <p><strong className="text-espresso">Missed-demand recovery results vary</strong> based on existing inquiry volume, baseline response practices, and the specific module configuration deployed. Estimates are directional and require manual verification.</p>
               <div className="flex items-start gap-3">
                 <span className="text-sage-accent mt-0.5 font-bold flex-shrink-0">✓</span>
-                <p><strong className="text-[#221f1b]">Pilot recovery thresholds — a minimum number of verified re-engaged bookings — are defined and agreed upon in writing</strong> during the initial onboarding sequence, prior to any technical activation. Thresholds are never expressed as procedure value or clinical revenue.</p>
+                <p><strong className="text-espresso">Pilot recovery thresholds — a minimum number of verified re-engaged bookings — are defined and agreed upon in writing</strong> during the initial onboarding sequence, prior to any technical activation. Thresholds are never expressed as procedure value or clinical revenue.</p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-sage-accent mt-0.5 font-bold flex-shrink-0">✓</span>
-                <p>If the active infrastructure does not reach the mutually agreed-upon recovery threshold within the assessment window, <strong className="text-[#221f1b]">no pilot fees apply</strong> and the infrastructure is cleanly rolled back at no cost to the clinic.</p>
+                <p>If the active infrastructure does not reach the mutually agreed-upon recovery threshold within the assessment window, <strong className="text-espresso">no pilot fees apply</strong> and the infrastructure is cleanly rolled back at no cost to the clinic.</p>
               </div>
             </div>
           </div>
@@ -54,9 +54,9 @@ export default function Compliance() {
           <div className="luxury-panel p-8 sm:p-10">
             <div className="flex items-center gap-3 mb-5">
               <Shield className="h-5 w-5 text-sage-accent flex-shrink-0" />
-              <h2 className="font-display text-2xl text-[#221f1b]">HIPAA-Conscious Data Handling</h2>
+              <h2 className="font-display text-2xl text-espresso">HIPAA-Conscious Data Handling</h2>
             </div>
-            <p className="text-sm leading-7 text-[#5f574f] mb-6">
+            <p className="text-sm leading-7 text-mist mb-6">
               Scrutexity builds systems engineered to support the strict regulatory environments of premier aesthetic clinics.
             </p>
             <ul className="space-y-5 text-sm">
@@ -75,8 +75,8 @@ export default function Compliance() {
                 <li key={item.num} className="flex items-start gap-4">
                   <span className="text-xs font-bold text-sage-accent mt-0.5 flex-shrink-0">{item.num}</span>
                   <div>
-                    <strong className="text-[#221f1b]">{item.title}</strong>
-                    <p className="text-[#6b6259] mt-1">{item.body}</p>
+                    <strong className="text-espresso">{item.title}</strong>
+                    <p className="text-mist mt-1">{item.body}</p>
                   </div>
                 </li>
               ))}
@@ -85,13 +85,13 @@ export default function Compliance() {
 
           <div className="luxury-panel p-8 sm:p-10">
             <div className="flex items-center gap-3 mb-5">
-              <Lock className="h-5 w-5 text-[#6b6259] flex-shrink-0" />
-              <h2 className="font-display text-2xl text-[#221f1b]">Marketing Privacy &amp; Compliance</h2>
+              <Lock className="h-5 w-5 text-mist flex-shrink-0" />
+              <h2 className="font-display text-2xl text-espresso">Marketing Privacy &amp; Compliance</h2>
             </div>
-            <p className="text-sm leading-7 text-[#5f574f] mb-4">
+            <p className="text-sm leading-7 text-mist mb-4">
               Our infrastructure is built to protect your clinic from the growing liability of unauthorized third-party tracking.
             </p>
-            <div className="space-y-4 text-sm leading-7 text-[#6b6259]">
+            <div className="space-y-4 text-sm leading-7 text-mist">
               <p>
                 Standard agency practices often inject unmanaged Meta and Google tracking pixels directly onto patient-facing pages. This creates severe regulatory exposure under recent FTC and OCR guidelines regarding the unauthorized disclosure of health-seeking behavior.
               </p>
@@ -102,10 +102,7 @@ export default function Compliance() {
           </div>
 
           <div className="text-center pt-4">
-            <Link
-              href="/intelligence/ftc-pixel-compliance"
-              className="inline-flex items-center gap-2 rounded-full border border-[#d8c4ad] px-7 py-3.5 text-sm font-semibold text-[#5f574f] transition hover:bg-[#f3eadf]"
-            >
+            <Link href="/intelligence/ftc-pixel-compliance" className="btn-ghost btn-md">
               Read the FTC Pixel Compliance Guide
             </Link>
           </div>

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Geist } from "next/font/google";
+import { Instrument_Serif, Geist, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
-import SmoothScroll from "../components/SmoothScroll";
-import CursorTrail from "../components/CursorTrail";
-import Nav from "@/components/Nav";
-import FooterAndProof from "@/components/FooterAndProof";
+import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
+import SiteNav from "@/components/sections/site-nav";
+import Footer from "@/components/sections/footer";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -20,35 +19,34 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
 });
 
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
+
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | Find the consults your clinic is already losing",
-  description: "We surface the missed calls, abandoned forms, and stalled DMs your front desk never caught — and turn them into booked, deposit-paid appointments. Works on Boulevard, Mangomint, and Zenoti. Proven in 14 days. Keep the ledger even if you walk.",
+  title: "Scrutexity | The Claim Intelligence Platform",
+  description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
+  alternates: { canonical: "/" },
+  verification: {
+    google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | Find the consults your clinic is already losing",
-    description: "We surface the missed calls, abandoned forms, and stalled DMs your front desk never caught — and turn them into booked, deposit-paid appointments. Works on Boulevard, Mangomint, and Zenoti. Proven in 14 days.",
+    title: "Scrutexity | The Claim Intelligence Platform",
+    description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
     url: siteUrl,
     siteName: "Scrutexity",
-    images: [
-      {
-        url: "/logo-icon.png",
-        width: 320,
-        height: 365,
-        alt: "Scrutexity",
-      },
-    ],
+    images: [{ url: "/logo-icon.png", width: 320, height: 365, alt: "Scrutexity" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | Find the consults your clinic is already losing",
-    description: "We surface the missed calls, abandoned forms, and stalled DMs your front desk never caught — and turn them into booked, deposit-paid appointments. Works on Boulevard, Mangomint, and Zenoti.",
+    title: "Scrutexity | The Claim Intelligence Platform",
+    description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
     images: ["/logo-icon.png"],
   },
 };
@@ -59,103 +57,83 @@ const jsonLdData = {
     {
       "@type": "SoftwareApplication",
       "@id": "https://scrutexity.com/#application",
-      "name": "Scrutexity",
-      "url": "https://scrutexity.com",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Enterprise-grade Clinical Demand Governance and Revenue Recovery platform for medical aesthetics and medspas, leveraging zero-downtime parallel data integrations with Boulevard, Zenoti, Mindbody, and Vagaro.",
-      "applicationSubCategory": "AI Visibility Scanner & Revenue Infrastructure",
-      "audience": {
-        "@type": "Audience",
-        "audienceType": "Medical directors, clinic operators, medspa founders, PE-backed aesthetics groups"
-      },
-      "featureList": [
-        "Read-only cross-platform demand normalization (Boulevard, Mangomint, Zenoti, Mindbody, Vagaro)",
-        "Clinical Demand Governance with licensed staff exception routing",
-        "Revenue Recovery Infrastructure and missed-demand detection",
-        "Zero-downtime parallel PMS telemetry pipelines",
-        "Tamper-evident record for M&A diligence",
-        "Portfolio-level operational benchmarking",
-        "HIPAA-aligned Business Associate Agreement workflows"
+      name: "Scrutexity",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: "Claim intelligence platform for reviewing public marketing claims, evidence gaps, AI answer surfaces, and agent transcript risks before they become buyer, regulator, or brand-trust problems.",
+      applicationSubCategory: "Claim Intelligence, AI Answer Reality, and Agent Guardrail Audits",
+      audience: { "@type": "Audience", audienceType: "Marketing teams, agency operators, medical and wellness businesses, local-service founders, and compliance-adjacent teams" },
+      featureList: [
+        "Public-facing claim extraction and review",
+        "Evidence-gap mapping for unsupported or overstated claims",
+        "AI Answer Reality receipts across answer engines",
+        "Agent transcript and guardrail audit workflows",
+        "SHA-256 sealed review records",
+        "Proof-backed rewrite and remediation plans",
+        "BAA available on request for eligible healthcare-adjacent reviews"
       ],
-      "offers": {
-        "@type": "AggregateOffer",
-        "priceCurrency": "USD",
-        "offerCount": 3
-      },
-      "provider": {
-        "@id": "https://scrutexity.com/#organization"
-      },
-      "knowsAbout": [
-        "Clinical Demand Governance",
-        "Medical Aesthetics Revenue Recovery",
-        "Practice Management System Integration",
-        "PMS Telemetry Architecture",
-        "B2B SaaS for Healthcare Operations",
-        "Zero-Downtime Data Integration"
+      offers: { "@type": "AggregateOffer", priceCurrency: "USD", offerCount: 3 },
+      provider: { "@id": "https://scrutexity.com/#organization" },
+      knowsAbout: [
+        "Claim Intelligence",
+        "Advertising Claim Substantiation",
+        "AI Answer Visibility",
+        "Agent Guardrail Audits",
+        "Marketing Compliance Workflows",
+        "Proof-Backed Content"
       ],
-      "softwareRequirements": "Web browser; integrates with Boulevard, Zenoti, Mindbody, Vagaro, Mangomint"
+      softwareRequirements: "Web browser"
     },
     {
       "@type": "Organization",
       "@id": "https://scrutexity.com/#organization",
-      "name": "Scrutexity",
-      "url": "https://scrutexity.com",
-      "logo": "https://scrutexity.com/scrutexity-logo-web.png",
-      "description": "Clinical infrastructure platform for medical aesthetics.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "New York",
-        "addressRegion": "NY",
-        "addressCountry": "US"
-      },
-      "knowsAbout": [
-        "Clinical Demand Governance",
-        "Medical Aesthetics Revenue Recovery",
-        "Practice Management System Integration",
-        "PMS Telemetry & Integration Architecture",
-        "B2B SaaS Telemetry Pipeline"
+      name: "Scrutexity",
+      url: "https://scrutexity.com",
+      logo: "https://scrutexity.com/logo-icon.png",
+      description: "Claim intelligence company behind AuditGPT and Contento.",
+      address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
+      knowsAbout: [
+        "Claim Intelligence",
+        "Advertising Claim Substantiation",
+        "AI Answer Reality",
+        "Agent Guardrail Audits",
+        "Proof-Backed Content"
       ]
     },
     {
       "@type": "WebPage",
       "@id": "https://scrutexity.com/#webpage",
-      "url": "https://scrutexity.com",
-      "name": "Scrutexity | Clinical Demand Governance & Revenue Recovery Infrastructure",
-      "isPartOf": { "@id": "https://scrutexity.com/#website" },
-      "about": { "@id": "https://scrutexity.com/#application" },
-      "description": "Deploy parallel, read-only revenue infrastructure to capture missed patient demand and optimize medspa operational visibility without disrupting existing workflows."
+      url: "https://scrutexity.com",
+      name: "Scrutexity | The Claim Intelligence Platform",
+      isPartOf: { "@id": "https://scrutexity.com/#website" },
+      about: { "@id": "https://scrutexity.com/#application" },
+      description: "Scrutexity runs claim audits, AI answer reality reviews, and proof-backed remediation workflows for businesses where public claims need evidence."
     }
   ]
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
       </head>
-      <body className={`${instrumentSerif.variable} ${geistSans.variable} font-sans tracking-tight bg-[#fbf7ef] text-[#221f1b] antialiased overflow-x-hidden selection:bg-[#6B8576]/20 selection:text-[#221f1b]`}>
-
-        <SmoothScroll>
-          <Nav />
-          <main className="pt-[68px]">{children}</main>
-          <FooterAndProof />
-        </SmoothScroll>
+      <body
+        className={`${instrumentSerif.variable} ${geistSans.variable} ${jetBrainsMono.variable} font-sans tracking-tight bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
+      >
+        <SmoothScrollProvider>
+          <SiteNav />
+          <main className="pt-nav-offset">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScrollProvider>
         <Analytics />
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        <GoogleAnalytics gaId="G-XGF7WH36MG" />
       </body>
     </html>
   );
 }
-
