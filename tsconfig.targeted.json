@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [],
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": [
+    "src/components/scrutexity/hero-recovery.tsx",
+    "src/components/three/hero-ledger-3d.tsx",
+    "src/components/scrutexity/roi-calculator.tsx"
+  ]
+}

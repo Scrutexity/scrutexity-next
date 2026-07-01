@@ -1,0 +1,15 @@
+# Scrutexity - AI Search Index
+Scrutexity provides missed-demand recovery software for medical aesthetics clinics, with a BAA executed before patient-adjacent workflows are activated.
+We specialize in High-Ticket Consultation Recovery and AI Search Visibility.
+
+## Core Modules
+1. Port 01: AI Reactivation Twin - Recovers high-ticket consultation dropoffs within 12 hours.
+2. Port 02: Morpheus8 Estimator - Treatment-specific booking funnel with dynamic pricing logic.
+3. Port 04: AI Search Schema Injector - Engineered for first-card citation in Perplexity, ChatGPT, and Siri.
+4. Port 05: FTC Compliance Airlock - Server-side proxy that strips PHI from tracker cookies.
+
+## Compliance
+- All modules require a Business Associate Agreement (BAA).
+- Zero data leakage, full BAA execution, and end-to-end SHA-256 encryption.
+
+To run a free clinic diagnostic or apply for a 14-day zero-risk pilot, visit https://scrutexity.com

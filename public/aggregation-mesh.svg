@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <pattern id="blueprint" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#E8E4DB" stroke-width="0.5" stroke-opacity="0.8"/>
+      <path d="M 40 0 L 40 80 M 0 40 L 80 40" fill="none" stroke="#F4F1EA" stroke-width="1" stroke-opacity="0.5"/>
+    </pattern>
+    <pattern id="emerald-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="3.5" fill="#065F46" />
+      <circle cx="16" cy="16" r="1.5" fill="#2C8C66" opacity="0.4" />
+    </pattern>
+    <linearGradient id="fade-down" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#221F1B" stop-opacity="0.8"/>
+      <stop offset="80%" stop-color="#221F1B" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#221F1B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fade-down-green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#065F46" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#065F46" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="#FBF7EF" />
+  <rect width="1200" height="800" fill="url(#blueprint)" />
+
+  <!-- Chaotic charcoal dots (fragmented intent) -->
+  <g id="chaotic-signals" fill="#221F1B">
+    <g opacity="0.8">
+      <circle cx="200" cy="80" r="1.5"/><circle cx="215" cy="95" r="2"/><circle cx="180" cy="110" r="1"/>
+      <circle cx="240" cy="60" r="2.5"/><circle cx="195" cy="130" r="1.5"/><circle cx="220" cy="140" r="1"/>
+      <circle cx="250" cy="100" r="2"/><circle cx="185" cy="55" r="1"/><circle cx="170" cy="90" r="1.5"/>
+      <circle cx="230" cy="120" r="2.5"/><circle cx="205" cy="70" r="1"/><circle cx="190" cy="150" r="1.5"/>
+      <circle cx="160" cy="170" r="1"/><circle cx="210" cy="160" r="2"/><circle cx="240" cy="180" r="1.5"/>
+    </g>
+    <g opacity="0.9">
+      <circle cx="550" cy="40" r="2"/><circle cx="570" cy="60" r="1.5"/><circle cx="530" cy="80" r="2.5"/>
+      <circle cx="600" cy="30" r="1.5"/><circle cx="580" cy="90" r="2"/><circle cx="610" cy="110" r="1"/>
+      <circle cx="560" cy="130" r="1.5"/><circle cx="590" cy="150" r="2.5"/><circle cx="520" cy="100" r="1"/>
+      <circle cx="640" cy="50" r="1.5"/><circle cx="620" cy="180" r="2"/><circle cx="550" cy="170" r="1"/>
+      <circle cx="570" cy="200" r="2.5"/><circle cx="600" cy="220" r="1.5"/><circle cx="535" cy="190" r="1"/>
+    </g>
+    <g opacity="0.85">
+      <circle cx="900" cy="70" r="2.5"/><circle cx="920" cy="95" r="1.5"/><circle cx="880" cy="120" r="2"/>
+      <circle cx="950" cy="50" r="1"/><circle cx="930" cy="140" r="2.5"/><circle cx="970" cy="80" r="1.5"/>
+      <circle cx="910" cy="160" r="1"/><circle cx="890" cy="180" r="2"/><circle cx="940" cy="200" r="1.5"/>
+      <circle cx="1000" cy="60" r="2"/><circle cx="980" cy="110" r="1"/><circle cx="1050" cy="90" r="2.5"/>
+    </g>
+    <g opacity="0.6">
+      <circle cx="100" cy="50" r="1.5"/><circle cx="300" cy="30" r="1"/><circle cx="450" cy="180" r="2"/>
+      <circle cx="700" cy="70" r="1.5"/><circle cx="800" cy="40" r="2.5"/><circle cx="1100" cy="150" r="1"/>
+      <circle cx="400" cy="220" r="1.5"/><circle cx="680" cy="250" r="2"/><circle cx="750" cy="160" r="1"/>
+      <circle cx="150" cy="240" r="2"/><circle cx="350" cy="280" r="1.5"/><circle cx="500" cy="200" r="1"/>
+      <circle cx="820" cy="280" r="2.5"/><circle cx="1020" cy="220" r="1.5"/><circle cx="1150" cy="250" r="2"/>
+      <circle cx="250" cy="320" r="1"/><circle cx="650" cy="310" r="1.5"/><circle cx="850" cy="340" r="2"/>
+      <circle cx="1080" cy="300" r="1"/><circle cx="1130" cy="330" r="1.5"/>
+    </g>
+    <g fill="none" stroke="#221F1B" stroke-width="1" opacity="0.4">
+      <path d="M 180,110 Q 190,250 200,400" stroke-dasharray="3,3"/>
+      <path d="M 570,90 Q 580,230 580,410" stroke-dasharray="2,4"/>
+      <path d="M 920,140 Q 910,280 900,420" stroke-dasharray="4,2"/>
+      <path d="M 400,220 Q 410,310 420,400" stroke-dasharray="1,5"/>
+      <path d="M 750,160 Q 740,280 730,390" stroke-dasharray="3,3"/>
+    </g>
+  </g>
+
+  <!-- Terracotta honeycomb mesh (Governed Aggregation Layer) -->
+  <g id="aggregation-mesh">
+    <g fill="none" stroke="#B9825F" stroke-width="1.5" opacity="0.5">
+      <polygon points="150,380 190,357 230,380 230,420 190,443 150,420" />
+      <polygon points="230,380 270,357 310,380 310,420 270,443 230,420" />
+      <polygon points="310,380 350,357 390,380 390,420 350,443 310,420" />
+      <polygon points="390,380 430,357 470,380 470,420 430,443 390,420" />
+      <polygon points="470,380 510,357 550,380 550,420 510,443 470,420" />
+      <polygon points="550,380 590,357 630,380 630,420 590,443 550,420" />
+      <polygon points="630,380 670,357 710,380 710,420 670,443 630,420" />
+      <polygon points="710,380 750,357 790,380 790,420 750,443 710,420" />
+      <polygon points="790,380 830,357 870,380 870,420 830,443 790,420" />
+      <polygon points="870,380 910,357 950,380 950,420 910,443 870,420" />
+      <polygon points="950,380 990,357 1030,380 1030,420 990,443 950,420" />
+      <polygon points="1030,380 1070,357 1110,380 1110,420 1070,443 1030,420" />
+      <polygon points="190,420 230,397 270,420 270,460 230,483 190,460" />
+      <polygon points="270,420 310,397 350,420 350,460 310,483 270,460" />
+      <polygon points="350,420 390,397 430,420 430,460 390,483 350,460" />
+      <polygon points="430,420 470,397 510,420 510,460 470,483 430,460" />
+      <polygon points="510,420 550,397 590,420 590,460 550,483 510,460" />
+      <polygon points="590,420 630,397 670,420 670,460 630,483 590,460" />
+      <polygon points="670,420 710,397 750,420 750,460 710,483 670,460" />
+      <polygon points="750,420 790,397 830,420 830,460 790,483 750,460" />
+      <polygon points="830,420 870,397 910,420 910,460 870,483 830,460" />
+      <polygon points="910,420 950,397 990,420 990,460 950,483 910,460" />
+      <polygon points="990,420 1030,397 1070,420 1070,460 1030,483 990,460" />
+      <polygon points="150,460 190,437 230,460 230,500 190,523 150,500" />
+      <polygon points="230,460 270,437 310,460 310,500 270,523 230,500" />
+      <polygon points="310,460 350,437 390,460 390,500 350,523 310,500" />
+      <polygon points="390,460 430,437 470,460 470,500 430,523 390,500" />
+      <polygon points="470,460 510,437 550,460 550,500 510,523 470,500" />
+      <polygon points="550,460 590,437 630,460 630,500 590,523 550,500" />
+      <polygon points="630,460 670,437 710,460 710,500 670,523 630,500" />
+      <polygon points="710,460 750,437 790,460 790,500 750,523 710,460" />
+      <polygon points="790,460 830,437 870,460 870,500 830,523 790,460" />
+      <polygon points="870,460 910,437 950,460 950,500 910,523 870,460" />
+      <polygon points="950,460 990,437 1030,460 1030,500 990,523 950,460" />
+      <polygon points="1030,460 1070,437 1110,460 1110,500 1070,523 1030,460" />
+    </g>
+    <g fill="#B9825F" opacity="0.7">
+      <circle cx="150" cy="380" r="2"/><circle cx="190" cy="357" r="2"/><circle cx="230" cy="380" r="2"/>
+      <circle cx="230" cy="420" r="2"/><circle cx="270" cy="357" r="2"/><circle cx="310" cy="380" r="2"/>
+      <circle cx="350" cy="357" r="2"/><circle cx="390" cy="380" r="2"/><circle cx="430" cy="357" r="2"/>
+      <circle cx="470" cy="380" r="2"/><circle cx="510" cy="357" r="2"/><circle cx="550" cy="380" r="2"/>
+      <circle cx="590" cy="357" r="2"/><circle cx="630" cy="380" r="2"/><circle cx="670" cy="357" r="2"/>
+      <circle cx="710" cy="380" r="2"/><circle cx="750" cy="357" r="2"/><circle cx="790" cy="380" r="2"/>
+      <circle cx="830" cy="357" r="2"/><circle cx="870" cy="380" r="2"/><circle cx="910" cy="357" r="2"/>
+      <circle cx="950" cy="380" r="2"/><circle cx="990" cy="357" r="2"/><circle cx="1030" cy="380" r="2"/>
+      <circle cx="1070" cy="357" r="2"/><circle cx="1110" cy="380" r="2"/>
+      <circle cx="190" cy="420" r="2"/><circle cx="230" cy="397" r="2"/><circle cx="270" cy="420" r="2"/>
+      <circle cx="310" cy="397" r="2"/><circle cx="350" cy="420" r="2"/><circle cx="390" cy="397" r="2"/>
+      <circle cx="430" cy="420" r="2"/><circle cx="470" cy="397" r="2"/><circle cx="510" cy="420" r="2"/>
+      <circle cx="550" cy="397" r="2"/><circle cx="590" cy="420" r="2"/><circle cx="630" cy="397" r="2"/>
+      <circle cx="670" cy="420" r="2"/><circle cx="710" cy="397" r="2"/><circle cx="750" cy="420" r="2"/>
+      <circle cx="790" cy="397" r="2"/><circle cx="830" cy="420" r="2"/><circle cx="870" cy="397" r="2"/>
+      <circle cx="910" cy="420" r="2"/><circle cx="950" cy="397" r="2"/><circle cx="990" cy="420" r="2"/>
+      <circle cx="1030" cy="397" r="2"/><circle cx="1070" cy="420" r="2"/>
+      <circle cx="150" cy="460" r="2"/><circle cx="190" cy="437" r="2"/><circle cx="230" cy="460" r="2"/>
+      <circle cx="270" cy="437" r="2"/><circle cx="310" cy="460" r="2"/><circle cx="350" cy="437" r="2"/>
+      <circle cx="390" cy="460" r="2"/><circle cx="430" cy="437" r="2"/><circle cx="470" cy="460" r="2"/>
+      <circle cx="510" cy="437" r="2"/><circle cx="550" cy="460" r="2"/><circle cx="590" cy="437" r="2"/>
+      <circle cx="630" cy="460" r="2"/><circle cx="670" cy="437" r="2"/><circle cx="710" cy="460" r="2"/>
+      <circle cx="750" cy="437" r="2"/><circle cx="790" cy="460" r="2"/><circle cx="830" cy="437" r="2"/>
+      <circle cx="870" cy="460" r="2"/><circle cx="910" cy="437" r="2"/><circle cx="950" cy="460" r="2"/>
+      <circle cx="990" cy="437" r="2"/><circle cx="1030" cy="460" r="2"/><circle cx="1070" cy="437" r="2"/>
+      <circle cx="1110" cy="460" r="2"/>
+    </g>
+  </g>
+
+  <!-- Captured vs dropped signal traces -->
+  <g id="data-physics">
+    <g>
+      <circle cx="230" cy="380" r="3" fill="#221F1B" />
+      <line x1="230" y1="380" x2="230" y2="512" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="230" cy="512" r="3.5" fill="#065F46" />
+      <circle cx="350" cy="420" r="3" fill="#221F1B" />
+      <line x1="350" y1="420" x2="350" y2="544" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="350" cy="544" r="3.5" fill="#065F46" />
+      <circle cx="470" cy="380" r="3" fill="#221F1B" />
+      <path d="M 470,380 Q 490,450 480,512" fill="none" stroke="#065F46" stroke-width="1.5" stroke-dasharray="3,3" />
+      <circle cx="480" cy="512" r="3.5" fill="#065F46" />
+      <circle cx="630" cy="380" r="3" fill="#221F1B" />
+      <line x1="630" y1="380" x2="630" y2="544" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="630" cy="544" r="3.5" fill="#065F46" />
+      <circle cx="750" cy="420" r="3" fill="#221F1B" />
+      <line x1="750" y1="420" x2="750" y2="576" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="750" cy="576" r="3.5" fill="#065F46" />
+      <circle cx="870" cy="460" r="3" fill="#221F1B" />
+      <line x1="870" y1="460" x2="870" y2="608" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="870" cy="608" r="3.5" fill="#065F46" />
+      <circle cx="1030" cy="380" r="3" fill="#221F1B" />
+      <line x1="1030" y1="380" x2="1030" y2="544" stroke="#065F46" stroke-width="1.5" stroke-dasharray="2,2" />
+      <circle cx="1030" cy="544" r="3.5" fill="#065F46" />
+    </g>
+    <g>
+      <circle cx="310" cy="420" r="3" fill="#221F1B" />
+      <line x1="310" y1="420" x2="310" y2="480" stroke="#B9825F" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6" />
+      <line x1="310" y1="480" x2="310" y2="550" stroke="#B9825F" stroke-width="1" stroke-dasharray="1,4" opacity="0.2" />
+      <circle cx="550" cy="420" r="3" fill="#221F1B" />
+      <path d="M 550,420 Q 520,470 480,520" fill="none" stroke="#B9825F" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.5" />
+      <path d="M 480,520 Q 460,550 440,580" fill="none" stroke="#B9825F" stroke-width="1" stroke-dasharray="2,6" opacity="0.2" />
+      <circle cx="710" cy="380" r="3" fill="#221F1B" />
+      <path d="M 710,380 Q 750,430 780,480" fill="none" stroke="#B9825F" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.5" />
+      <path d="M 780,480 Q 800,520 810,560" fill="none" stroke="#B9825F" stroke-width="1" stroke-dasharray="2,6" opacity="0.2" />
+      <circle cx="910" cy="420" r="3" fill="#221F1B" />
+      <g fill="#B9825F" opacity="0.4">
+        <circle cx="900" cy="460" r="1.5" /><circle cx="920" cy="470" r="1" /><circle cx="890" cy="490" r="2" />
+        <circle cx="915" cy="510" r="1" /><circle cx="905" cy="530" r="1.5" /><circle cx="925" cy="550" r="1" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Emerald grid (structured data output) -->
+  <g id="emerald-grid">
+    <rect x="100" y="500" width="1000" height="200" fill="url(#emerald-grid)" />
+    <g stroke="#065F46" stroke-width="0.5" opacity="0.15">
+      <line x1="100" y1="500" x2="1100" y2="500" />
+      <line x1="100" y1="532" x2="1100" y2="532" />
+      <line x1="100" y1="564" x2="1100" y2="564" />
+      <line x1="100" y1="596" x2="1100" y2="596" />
+      <line x1="100" y1="628" x2="1100" y2="628" />
+      <line x1="100" y1="660" x2="1100" y2="660" />
+      <line x1="100" y1="692" x2="1100" y2="692" />
+      <line x1="100" y1="700" x2="1100" y2="700" />
+    </g>
+  </g>
+
+  <!-- Framework aesthetic crosshairs -->
+  <g id="framework-touchpoints" stroke="#D1CCC2" stroke-width="1" opacity="0.4">
+    <line x1="100" y1="400" x2="1100" y2="400" stroke-dasharray="10, 20" />
+    <line x1="600" y1="50" x2="600" y2="750" stroke-dasharray="10, 20" />
+    <path d="M 50,50 L 50,100 M 50,50 L 100,50" />
+    <path d="M 1150,50 L 1150,100 M 1150,50 L 1100,50" />
+    <path d="M 50,750 L 50,700 M 50,750 L 100,750" />
+    <path d="M 1150,750 L 1150,700 M 1150,750 L 1100,750" />
+  </g>
+</svg>

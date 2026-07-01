@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample AI Visibility Receipt — Scrutexity</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
+:root{--bg:#0a0a0c;--surface:#111115;--text-primary:#f0ede8;--text-secondary:#8a8790;--accent:#c8b89a;--weak:#d08a6a;--mid:#c8b89a;--strong:#8ac89a;--line:rgba(200,184,154,.18);}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text-primary);font-family:'DM Serif Display',serif;font-size:16px;padding:40px 24px;}
+.wrapper{max-width:720px;margin:0 auto;}
+.sample-banner{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:32px;text-align:center;}
+h1{font-size:32px;margin-bottom:10px;}
+.subtitle{color:var(--text-secondary);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;}
+.meta-row{color:var(--text-secondary);font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;margin-bottom:40px;}
+.metric-pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:16px;}
+.metric{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px 16px;}
+.metric-value{font-size:48px;color:var(--accent);margin-bottom:4px;line-height:1;}
+.metric-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);}
+.metric-band{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-top:8px;}
+.spectrum{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--weak),var(--mid),var(--strong));position:relative;margin:0 0 40px;opacity:.5;}
+.spectrum .pin{position:absolute;top:-5px;width:2px;height:16px;background:var(--text-primary);}
+.gap{background:rgba(200,184,154,.06);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:4px;padding:22px;margin-bottom:24px;}
+.gap h2{font-size:13px;margin-bottom:12px;color:var(--accent);font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;}
+.gap p{font-size:15px;line-height:1.7;color:var(--text-secondary);}
+.gap p+p{margin-top:10px;}
+table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px;}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);color:var(--text-secondary);}
+th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);}
+td:first-child{color:var(--text-primary);}
+.score-direct{color:var(--strong);} .score-absent{color:var(--weak);}
+.footer{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-secondary);text-align:center;margin-top:40px;line-height:1.8;border-top:1px solid var(--line);padding-top:24px;}
+.disclaimer{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-secondary);line-height:1.7;margin-top:24px;opacity:.8;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="sample-banner">Illustrative sample · not a real clinic · shows the format a clinic receives</div>
+
+  <h1>Aster &amp; Oak Aesthetics</h1>
+  <div class="subtitle">AI Visibility Receipt — Sample Output</div>
+  <div class="meta-row">
+    Receipt ID&nbsp;&nbsp;SCRX-SAMPLE-0001 &nbsp;·&nbsp; Geography&nbsp;&nbsp;NYC (composite) &nbsp;·&nbsp; Treatments&nbsp;&nbsp;Botox · Morpheus8 · Lip Filler<br>
+    Prompts tested&nbsp;&nbsp;12 across ChatGPT · Perplexity · Gemini · Google AI Overviews
+  </div>
+
+  <div class="metric-pair">
+    <div class="metric">
+      <div class="metric-value">17%</div>
+      <div class="metric-label">Search Visibility</div>
+      <div class="metric-band" style="color:var(--weak)">Weak</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">33%</div>
+      <div class="metric-label">No-Retrieval Authority</div>
+      <div class="metric-band" style="color:var(--mid)">Vague Recognition</div>
+    </div>
+  </div>
+  <div class="spectrum"><span class="pin" style="left:17%"></span></div>
+
+  <div class="gap">
+    <h2>Primary Visibility Gap</h2>
+    <p>Aster &amp; Oak surfaced directly in <strong>2 of 12</strong> treatment-level prompts. For the remaining 10 — including "best Morpheus8 NYC" and "lip filler near me" — AI assistants named nearby practices instead, or returned no clinic at all.</p>
+    <p>This is a <strong>visibility gap, not an authority problem</strong>: the practice is established, but its treatment pages lack the structured signals AI systems read when deciding which clinic to cite.</p>
+  </div>
+
+  <div class="gap">
+    <h2>Per-Prompt Result (excerpt)</h2>
+    <table>
+      <tr><th>Prompt tested</th><th>Result</th></tr>
+      <tr><td>"best Botox NYC"</td><td class="score-direct">Referenced</td></tr>
+      <tr><td>"Morpheus8 near me"</td><td class="score-absent">Absent</td></tr>
+      <tr><td>"top lip filler Manhattan"</td><td class="score-absent">Absent</td></tr>
+      <tr><td>"med spa with board-certified injectors"</td><td class="score-direct">Direct</td></tr>
+    </table>
+  </div>
+
+  <div class="gap">
+    <h2>First Fix We'd Prioritize (48 hours)</h2>
+    <p>Add LocalBusiness + MedicalBusiness JSON-LD schema to the homepage and each treatment page (name, address, geo, hours, treatment list), and build a dedicated, prompt-matched Morpheus8 page with FAQ schema. These are the signals that move a clinic from "Absent" to "Referenced" on treatment-level prompts.</p>
+  </div>
+
+  <div class="disclaimer">
+    Sample output for demonstration. "Aster &amp; Oak Aesthetics" is a fictional clinic; figures are illustrative.
+    Scrutexity reports AI-search visibility as a fixable gap, not a finding of fault. Based on sampled prompt testing.
+    Not medical, legal, or regulatory advice. No ranking, revenue, or booking outcome is guaranteed.
+  </div>
+
+  <div class="footer">
+    Scrutexity — AI Demand Governance for premium clinics<br>
+    Real receipts are generated per clinic from live prompt testing.
+  </div>
+
+</div>
+</body>
+</html>
