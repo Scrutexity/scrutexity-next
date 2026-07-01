@@ -1,0 +1,26 @@
+.next
+.next/**
+node_modules
+node_modules/**
+.git
+.git/**
+.claude
+.claude/**
+trace
+trace/**
+verification
+verification/**
+src/assets
+src/assets/**
+**/* [0-9].ts
+**/* [0-9].tsx
+**/* [0-9].js
+public/*.html
+public/llms.txt
+public/.htaccess
+*.tsbuildinfo
+telemetry.db
+homepage-copy-check.png
+receipt-*.png
+test-*.js
+dump.js
