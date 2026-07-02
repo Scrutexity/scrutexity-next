@@ -550,7 +550,11 @@ export default function UmbrellaHomepage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {ENFORCEMENT_TRACKER.filter((e) => e.sourceUrl !== 'TODO_SOURCE').map((e) => (
+                    {[...ENFORCEMENT_TRACKER]
+                      .filter((e) => e.sourceUrl !== 'TODO_SOURCE')
+                      .sort((a, b) => b.date.localeCompare(a.date))
+                      .slice(0, 6)
+                      .map((e) => (
                       <tr key={e.company} className="border-b border-sand-deep/15 align-top">
                         <td className="py-3 px-4 font-semibold text-espresso">{e.company}</td>
                         <td className="py-3 px-4 text-mist whitespace-nowrap">{e.date}</td>
