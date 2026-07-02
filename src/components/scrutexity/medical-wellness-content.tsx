@@ -44,14 +44,6 @@ const segments = [
   },
 ];
 
-const proofPoints = [
-  'Read-only — your booking system stays untouched',
-  'Built to support a BAA before any patient-adjacent connection',
-  'Staff-approved follow-up — no autonomous clinical decisions',
-  'Tamper-evident SHA-256 ledger',
-  'Owner brief and audit trail you keep regardless',
-];
-
 const auditIncludes = [
   'Missed-inquiry review across calls, forms, and DMs',
   'Follow-up gap map by hour, channel, and provider',
@@ -82,7 +74,7 @@ export default function MedicalWellnessContent() {
     },
     {
       q: "How does Scrutexity help urgent care clinics?",
-      a: "We capture urgent patient intent and keep service messaging accurate, answer-ready, and review-compliant."
+      a: "We capture urgent patient intent and keep service messaging accurate, answer-ready, and review-ready."
     },
     {
       q: "How does Scrutexity help veterinary practices?",
@@ -182,7 +174,7 @@ export default function MedicalWellnessContent() {
               className="text-[11px] uppercase tracking-[0.14em] text-mist/70 leading-[1.6] mb-3"
               style={{ fontFamily: MONO_STACK }}
             >
-              BAA ON REQUEST · READ-ONLY FIRST · STAFF-APPROVED · SHA-256 SEALS AVAILABLE · NO AUTONOMOUS CLINICAL DECISIONS
+              READ-ONLY FIRST · STAFF-APPROVED · CLAIMS-FIRST GOVERNANCE · NO AUTONOMOUS CLINICAL DECISIONS
             </p>
             <p className="text-xs text-mist/80 leading-relaxed font-sans">
               Scrutexity Medical &amp; Wellness is designed as an implementation model for reviewing public claims, improving AI visibility, and activating approved follow-up workflows. Any PMS access, PHI handling, BAA, or ledger-based logging depends on the client scope, vendor permissions, and executed agreements. No clinical, legal, or compliance certification is provided.
@@ -331,14 +323,14 @@ export default function MedicalWellnessContent() {
               <div className="max-w-xl">
                 <h3 className="font-display text-3xl md:text-4xl text-ink tracking-[-0.02em] leading-[1.05]">
                   Claim Intelligence Report.{' '}
-                  <span className="italic text-sage-deep">Delivered in 24-48 hours.</span>
+                  <span className="italic text-sage-deep">Delivered in 72 hours.</span>
                 </h3>
                 <p className="mt-4 text-base text-mist leading-[1.6]">
                   Read-only review of your public claim surface. Includes a claim-risk review, drop-in safer rewrites, and a prioritized recovery plan you can hand to your team.
                 </p>
               </div>
               <div className="md:text-right shrink-0">
-                <div className="font-display text-5xl text-ink tabular-nums leading-none">$299</div>
+                <div className="font-display text-5xl text-ink tabular-nums leading-none">$497</div>
                 <div className="text-xs text-mist mt-1" style={{ fontFamily: MONO_STACK }}>
                   one-time · per location
                 </div>

@@ -30,10 +30,8 @@ const linkColumns: { title: string; links: FooterLink[] }[] = [
     title: 'Services',
     links: [
       { label: 'AuditGPT',           href: '/auditgpt' },
-      { label: 'Contento',           href: '/contento', note: 'governed content' },
-      { label: 'AI Visibility',      href: '/ai-visibility' },
-      { label: 'Recovery Archive',   href: '/recovery', note: 'strategic inventory' },
-      { label: 'Medical & Wellness', href: '/medical-wellness' },
+      { label: 'Enforcement Tracker', href: '/tracker' },
+      { label: 'Pricing',            href: '/pricing' },
     ],
   },
   {
@@ -56,7 +54,7 @@ const linkColumns: { title: string; links: FooterLink[] }[] = [
 ];
 
 const FOOTER_DISCLAIMER =
-  'Scrutexity identifies claim-support, content-risk, visibility, reputation, and follow-up patterns. It does not provide legal, clinical, regulatory, or medical advice.';
+  'Scrutexity compares public marketing language against enforcement patterns and AI-generated claim distortions. It does not provide legal, clinical, regulatory, or medical advice.';
 
 export default function Footer() {
   const [legalOpen, setLegalOpen] = useState(false);
@@ -86,7 +84,7 @@ export default function Footer() {
                 Claim discipline
               </span>
               <span className="sage-pill border-cream/15 text-[10px] text-cream/70">
-                BAA on request
+                Claims-first governance
               </span>
             </div>
           </div>

@@ -97,7 +97,7 @@ export default function DSCSACompliancePage() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Link href="https://auditgpt.ai/snapshot?source=dscsa-hero" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-              Run a Supply Chain Claim Audit — $299
+              Run a Supply Chain Claim Audit — $497
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="/contact?intent=dscsa-brief" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
@@ -327,9 +327,9 @@ export default function DSCSACompliancePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: 'Claim Intelligence Report', price: '$299', cadence: 'one-time', desc: 'Full extraction of every injectable sourcing claim on your site, mapped to the documentation standard it implies. Includes AI answer reality check.', cta: 'Order Report', href: 'https://auditgpt.ai/snapshot?source=dscsa&intent=paid', highlight: false },
+              { name: 'Claim Intelligence Report', price: '$497', cadence: 'one-time', desc: 'Full extraction of every injectable sourcing claim on your site, mapped to the documentation standard it implies. Includes AI answer reality check.', cta: 'Order Report', href: 'https://auditgpt.ai/snapshot?source=dscsa&intent=paid', highlight: false },
               { name: 'DSCSA Cleanup Record', price: '$1,997', cadence: 'one-time', desc: 'Complete website overhaul: safer supply chain claims, FDA status corrections, DSCSA-aligned language. Clean AuditGPT Claim Cleanup Record PDF.', cta: 'Book Cleanup Record', href: '/contact?intent=claim-cleanup-record&source=dscsa', highlight: true },
-              { name: 'Claim Drift Monitoring', price: '$299', cadence: '/month', desc: 'Continuous monitoring of your injectable and supply chain claims. Alerted when new pages or blog posts introduce DSCSA-adjacent risk language.', cta: 'Start Monitoring', href: 'https://auditgpt.ai/pricing', highlight: false },
+              { name: 'Guardian Monitoring', price: 'from $1,497', cadence: '/month', desc: 'Continuous monitoring of your injectable and supply chain claims. Alerted when new pages or blog posts introduce DSCSA-adjacent risk language.', cta: 'Start Monitoring', href: 'https://auditgpt.ai/pricing', highlight: false },
             ].map((tier, i) => (
               <motion.div
                 key={i}
@@ -378,11 +378,11 @@ export default function DSCSACompliancePage() {
               <span className="italic text-sage-deep">Know what your website promises before the FDA asks for proof.</span>
             </h2>
             <p className="text-base text-mist max-w-xl mx-auto mb-8 leading-relaxed">
-              The $299 Claim Intelligence Report extracts every supply chain claim from your site and maps it against the documentation it implies. No legal advice. No compliance certification. Just a structured record of what your website says vs. what your records must prove.
+              The $497 Claim Exposure Audit extracts every supply chain claim from your site and maps it against the documentation it implies. No legal advice. No compliance certification. Just a structured record of what your website says vs. what your records must prove.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="https://auditgpt.ai/snapshot?source=dscsa-cta" className="px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-                Run a Supply Chain Claim Audit — $299
+                Run a Supply Chain Claim Audit — $497
                 <ArrowRight size={16} />
               </Link>
               <Link href="/contact?intent=dscsa" className="px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">

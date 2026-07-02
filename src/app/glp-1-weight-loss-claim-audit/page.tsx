@@ -44,10 +44,10 @@ const OFFER_STEPS = [
   {
     step: 2,
     name: 'GLP-1 Claim Intelligence Report',
-    price: '$299',
+    price: '$497',
     highlight: null,
     detail: 'Full claim inventory of your weight loss pages. Every flagged claim gets a risk label, evidence map, safer rewrite, and proof requirement. AI Answer Reality Receipt included.',
-    cta: 'Get the $299 Report',
+    cta: 'Get the $497 Audit',
     href: 'https://auditgpt.ai/snapshot?source=glp1-landing&intent=paid',
   },
   {
@@ -145,7 +145,7 @@ export default function GLP1ClaimAuditPage() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="https://auditgpt.ai/snapshot?source=glp1-hero&intent=paid" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Get the $299 Claim Report
+              Get the $497 Claim Exposure Audit
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -205,13 +205,13 @@ export default function GLP1ClaimAuditPage() {
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-5 border-t border-sand-deep/20">
                 <p className="text-sm text-mist leading-snug">
-                  <span className="font-semibold text-espresso">Free snapshot</span> surfaces 3 findings like this. The $299 report includes all claims, proof-gap table, AI Answer Reality Receipt, and safer rewrites for every flagged phrase.
+                  <span className="font-semibold text-espresso">Free snapshot</span> surfaces 3 findings like this. The $497 audit includes all claims, proof-gap table, AI Answer Reality Receipt, and safer rewrites for every flagged phrase.
                 </p>
                 <Link
                   href="https://auditgpt.ai/snapshot?source=glp1-demo-card&intent=paid"
                   className="shrink-0 group px-5 py-3 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all text-sm inline-flex items-center gap-2"
                 >
-                  Unlock full Claim Intelligence Report — $299
+                  Unlock full Claim Exposure Audit — $497
                   <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
@@ -280,7 +280,7 @@ export default function GLP1ClaimAuditPage() {
       <section className="px-6 py-20 bg-cream border-b border-sand-deep/15">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4" style={{ fontFamily: MONO }}>What the $299 report includes</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4" style={{ fontFamily: MONO }}>What the $497 audit includes</p>
             <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
               Seven claim categories reviewed on every GLP-1 page.
             </h2>

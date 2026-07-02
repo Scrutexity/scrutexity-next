@@ -2,7 +2,7 @@
 
 import { ShieldCheck } from 'lucide-react';
 
-const trustItems = ['BAA on request', 'Read-only access', 'No migration', 'Works beside Boulevard / Mangomint / Zenoti'];
+const trustItems = ['Claims-first governance', 'Read-only access', 'No migration', 'Works beside Boulevard / Mangomint / Zenoti'];
 
 export default function TrustRail() {
   return (

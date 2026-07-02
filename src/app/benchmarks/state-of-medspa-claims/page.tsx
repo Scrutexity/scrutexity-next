@@ -83,7 +83,7 @@ export default function StateOfMedspaClaimsPage() {
                 ["Public teaser", "Publish anonymized findings and category charts to create operator urgency."],
                 ["Agency edition", "Give partners a client-ready version they can use in sales and retention conversations."],
                 ["PE / insurer edition", "Package deeper benchmark data, diligence questions, and treatment-category risk indicators."],
-                ["Monitoring conversion", "End every report with a private clinic snapshot and a Claim Drift Monitoring pilot."],
+                ["Monitoring conversion", "End every report with a private clinic snapshot and a Guardian pilot."],
               ].map(([label, body]) => (
                 <div key={label} className="rounded-md border border-[#F8F4F0]/15 bg-[#F8F4F0]/5 p-4">
                   <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[#F8F4F0]">{label}</p>

@@ -37,15 +37,15 @@ export default function PremiumHomepage() {
             <ul className="flex flex-col gap-4 mt-4 font-mono text-sm text-ivory/60 uppercase tracking-widest">
               <li className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-sage-deep"></div>
-                BAA Compliant
+                Public claim audit scope
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-sage-deep"></div>
-                SHA-256 Immutable Audit Trails
+                Evidence gap analysis
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-sage-deep"></div>
-                Sovereign Data Infrastructure
+                Enforcement pattern cross-reference
               </li>
             </ul>
           </div>

@@ -87,11 +87,11 @@ const REVIEW_CATEGORIES = [
 const PRICING = [
   {
     name: "Regenerative Medicine Claim Report",
-    price: "$299",
+    price: "$497",
     highlight: null,
     detail:
       "Full claim inventory of your regenerative medicine pages. Every flagged claim — disease-treatment framing, stem cell language, exosome marketing — gets a risk label, evidence map, and safer rewrite.",
-    cta: "Get the $299 Report",
+    cta: "Get the $497 Audit",
     href: "#",
   },
   {
@@ -105,7 +105,7 @@ const PRICING = [
   },
   {
     name: "Ongoing Monitoring",
-    price: "$299/mo",
+    price: "from $1,497/mo",
     highlight: "Regulatory alerts",
     detail:
       "Monthly re-scan of your regenerative medicine pages and AI answer surfaces. Get alerted when new risk language appears, when FTC enforcement actions occur, and when AI answers begin referencing your site in new ways.",
@@ -247,7 +247,7 @@ export default function RegenerativeMedicineClaimsPage() {
               href="#"
               className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Get the $299 Report
+              Get the $497 Audit
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"
@@ -575,7 +575,7 @@ export default function RegenerativeMedicineClaimsPage() {
               href="#"
               className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Get the $299 Report{" "}
+              Get the $497 Audit{" "}
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"

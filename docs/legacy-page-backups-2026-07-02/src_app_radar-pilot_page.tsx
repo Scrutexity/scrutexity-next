@@ -49,7 +49,7 @@ const timeline = [
   {
     day: "Day 7-15",
     title: "Drift and queue review",
-    body: "Claim Drift Monitoring watches for claim drift, new unsupported copy, risky AI answer changes, and evidence gaps that need owner action.",
+    body: "Guardian Monitoring watches for claim drift, new unsupported copy, risky AI answer changes, and evidence gaps that need owner action.",
   },
   {
     day: "Day 30",
@@ -60,8 +60,8 @@ const timeline = [
 
 const ladder = [
   ["Free Claim Snapshot", "$0", "One public-surface scan to identify the top claim, visibility, and proof gaps."],
-  ["Claim Intelligence Report", "$299", "Comprehensive review of priority claims with safer rewrite recommendations and proof requirements."],
-  ["Claim Drift Monitoring", "$299/mo", "Ongoing claim drift monitoring, proof binder exports, remediation queues, and executive reporting."],
+  ["Claim Exposure Audit", "$497", "Comprehensive review of priority claims with safer rewrite recommendations and proof requirements."],
+  ["Guardian Monitoring", "from $1,497/mo", "Ongoing claim drift monitoring, proof binder exports, remediation queues, and executive reporting."],
   ["PE / Agency expansion", "Custom", "Diligence bundles, partner consoles, portfolio monitoring, and benchmark index access."],
 ];
 
@@ -113,7 +113,7 @@ export default function RadarPilotPage() {
               </div>
               <div className="rounded-md border border-[#1C1C1C]/12 bg-[#F8F4F0] p-3">
                 <dt className="text-[#1C1C1C]/50">Commercial role</dt>
-                <dd className="mt-1 text-[#1C1C1C]">$299 paid proof bridge</dd>
+                <dd className="mt-1 text-[#1C1C1C]">$497 paid proof bridge</dd>
               </div>
             </dl>
           </aside>

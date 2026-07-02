@@ -73,7 +73,7 @@ export function HowItWorksSketch({ className = '' }: { className?: string }) {
         { text: 'No-shows', icon: 'calendar' },
         { text: 'Abandoned bookings', icon: 'clock' },
       ],
-      meta: '48-hour turnaround',
+      meta: '72-hour turnaround',
       stamp: false,
       visual: 'clipboard' as const,
     },

@@ -128,7 +128,7 @@ export default function SecurityVault() {
             {/* Footer fine print */}
             <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-[#B2AC88]/18 pt-5 sm:flex-row sm:items-center sm:gap-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#F8F7F3]/55">
-                Per-clinic BAA · SOC 2 Type I in progress
+                Per-clinic BAA framework
               </p>
               <a
                 href="/security-brief"

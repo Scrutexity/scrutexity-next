@@ -156,7 +156,7 @@ export default function PartnersPage() {
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </Link>
           <div className="mt-8 flex justify-center text-[10px] font-mono text-mist uppercase tracking-widest gap-2">
-            <ShieldCheck size={14} /> BAA on request · SHA-256 seals available
+            <ShieldCheck size={14} /> Claims-first governance · BAA on request
           </div>
         </div>
 

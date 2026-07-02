@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const betaTerms = [
-  '$499/month, billed monthly',
+  'From $1,497/month, billed monthly',
   'Cancel anytime after first month',
   '10 Claim Intelligence Receipts per month (white-label for clients)',
   'Claim Cleanup Record playbook + templates',
@@ -25,10 +25,10 @@ const betaTerms = [
 
 const sequence = [
   'Free sample finding for client page',
-  '$299 Claim Intelligence Report',
+  '$497 Claim Exposure Audit',
   'Claim Intelligence Receipt — client approval record',
   '$1,997 Claim Cleanup Record',
-  '$299/month Claim Drift Monitoring',
+  'From $1,497/month Guardian Monitoring',
   'Partner OS relationship',
 ];
 

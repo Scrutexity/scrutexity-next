@@ -74,16 +74,16 @@ const CLAIM_CATEGORIES = [
 
 const OFFER_STEPS = [
   { step: 1, name: 'Free NY/NJ Claim Snapshot', price: '$0', highlight: 'Start here', detail: 'Submit your URL. We surface the top 3 claim exposures on your public-facing pages — credential language, FDA terminology, outcome claims, or AI answer distortion.', cta: 'Run Free Snapshot', href: 'https://auditgpt.ai/snapshot?source=ny-nj-landing' },
-  { step: 2, name: 'NY/NJ Claim Intelligence Report', price: '$299', highlight: null, detail: 'Full claim inventory of your homepage and top service pages. Every flagged claim gets: evidence map, risk label, safer rewrite, and proof requirement.', cta: 'Get the $299 Report', href: 'https://auditgpt.ai/snapshot?source=ny-nj-landing&intent=paid' },
+  { step: 2, name: 'NY/NJ Claim Intelligence Report', price: '$497', highlight: null, detail: 'Full claim inventory of your homepage and top service pages. Every flagged claim gets: evidence map, risk label, safer rewrite, and proof requirement.', cta: 'Get the $497 Audit', href: 'https://auditgpt.ai/snapshot?source=ny-nj-landing&intent=paid' },
   { step: 3, name: 'Claim Cleanup Record', price: '$1,997', highlight: 'Best value', detail: 'Done-for-you: safer rewrites executed, proof-gap table delivered, AI Answer Reality Receipt, medical-director visibility check, and a final Claim Cleanup Record PDF — a structured record of what changed and why.', cta: 'Book Claim Cleanup Record', href: '/contact?intent=claim-cleanup-record&source=ny-nj-landing' },
-  { step: 4, name: 'Claim Drift Monitoring', price: '$299', highlight: 'Ongoing', detail: 'Monthly AuditGPT pass with risk delta. Claim drift alerts as your marketing team publishes. Ongoing evidence updates.', cta: 'Start Monitoring', href: '/pricing?source=ny-nj-landing#monitoring' },
+  { step: 4, name: 'Guardian Monitoring', price: 'from $1,497/mo', highlight: 'Ongoing', detail: 'Monthly AuditGPT pass with risk delta. Claim drift alerts as your marketing team publishes. Ongoing evidence updates.', cta: 'Start Monitoring', href: '/pricing?source=ny-nj-landing#monitoring' },
 ];
 
 const FAQS = [
   { q: 'Is this legal advice or compliance certification?', a: 'No. AuditGPT reviews public-facing claim language and visible proof. It does not provide legal advice, regulatory certification, or compliance guarantees. Use findings as input for your attorney or compliance officer.' },
   { q: 'What does "review-ready" mean?', a: 'We use "review-ready" and "claim-reviewed" to describe the output. Your Claim Cleanup Record documents what was changed, why, and what proof now backs each claim. That record exists as a business document — how any party interprets it is determined by your legal counsel.' },
   { q: 'How is this different from LegitScript?', a: 'LegitScript certifies that your advertising meets their network requirements. AuditGPT reviews the claim layer underneath that — the specific language on your site, what proof backs it, and what needs safer framing. Many practices use AuditGPT before pursuing LegitScript certification.' },
-  { q: 'Can agencies use this for med-spa clients?', a: 'Yes. Agencies can white-label AuditGPT audits for clients through the Partner OS program ($499/mo). You get client-ready reports, safer rewrite packs, and quarterly drift reviews as a billable product.' },
+  { q: 'Can agencies use this for med-spa clients?', a: 'Yes. Agencies can white-label AuditGPT audits for clients through the Partner OS program ($1,497/mo). You get client-ready reports, safer rewrite packs, and quarterly drift reviews as a billable product.' },
 ];
 
 /* ── Interactive Map ─────────────────────────────────────── */
@@ -224,7 +224,7 @@ export default function NYMedSpaClaimAuditPage() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="https://auditgpt.ai/snapshot?source=ny-nj-hero&intent=paid" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Get the $299 Claim Report
+              Get the $497 Audit
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -372,7 +372,7 @@ export default function NYMedSpaClaimAuditPage() {
               <span className="italic text-sage-soft">AuditGPT is the claim-risk layer.</span>
             </h2>
             <p className="mt-3 text-sm text-cream/65 leading-relaxed">
-              Turn claim audits into a billable product for every NY/NJ med-spa client. Founding partner rate: $499/mo for the first five agencies.
+              Turn claim audits into a billable product for every NY/NJ med-spa client. Founding partner rate: $1,497/mo for the first five agencies.
             </p>
           </div>
           <Link href="/partner-os?source=ny-nj-landing" className="shrink-0 group px-6 py-3.5 bg-sage-deep hover:bg-sage-deep/80 text-cream font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">

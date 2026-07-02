@@ -164,7 +164,7 @@ export default function MedSpasPage() {
         <div className="mt-20 bg-bone border border-sand-deep/30 rounded-3xl p-8 md:p-12 text-center">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-sage-deep mb-2 block">Offer</span>
           <h2 className="font-display text-3xl md:text-4xl text-espresso mb-4">Claim Intelligence Report</h2>
-          <p className="font-display text-4xl text-espresso mb-8">$299 <span className="text-lg text-mist italic font-sans">one-time</span></p>
+          <p className="font-display text-4xl text-espresso mb-8">$497 <span className="text-lg text-mist italic font-sans">one-time</span></p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
             <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Read-only claim surface scan</div>
             <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Patient-facing claim review</div>
@@ -176,7 +176,7 @@ export default function MedSpasPage() {
             href="/claim-audit?intent=claim-audit&source=med-spa-vertical" 
             className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
           >
-            Get the $299 Report
+            Get the $497 Audit
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>

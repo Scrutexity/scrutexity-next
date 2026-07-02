@@ -1,21 +1,9 @@
 'use client';
 
-/**
- * ClaimLadder — the canonical buyer path for the AuditGPT wedge.
- *
- * Free Claim Snapshot ($0) → Claim Intelligence Report ($299) → Claim Cleanup Record ($1,997) → Claim Drift Monitoring ($299/mo)
- *
- * Used on the homepage (between hero and services) and on /pricing (above tier grid).
- * Sequence is explicit — arrows between cards, "Start here" badge on Step 1, step numbers.
- *
- * Tracks every CTA via trackEvent + data-source attribute so we can read which step
- * the first paid signal came from.
- */
-
 import Link from 'next/link';
-import { ArrowRight, Check, Sparkles, Plus } from 'lucide-react';
+import { ArrowRight, Plus } from 'lucide-react';
 import { trackEvent } from '@/utils/analytics';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -29,8 +17,7 @@ type LadderStep = {
   ctaLabel: string;
   ctaHref: string;
   source: string;
-  accent: 'sage' | 'clay' | 'espresso';
-  highlight?: 'free' | 'recurring';
+  accent?: 'sage' | 'clay' | 'espresso';
 };
 
 const STEPS: LadderStep[] = [
@@ -39,83 +26,66 @@ const STEPS: LadderStep[] = [
     name: 'Free Claim Snapshot',
     price: '$0',
     cadence: 'one-time',
-    tagline: 'Find the claims your website cannot prove.',
+    tagline: 'See if your page has exposure before committing.',
     includes: [
-      'Public claim scan of your homepage and top service pages',
-      'Top 3 unsupported claims surfaced',
-      '1-page snapshot you keep regardless of next step',
+      'Automated scan of one public page',
+      'Top 3 claim risks surfaced',
+      'One suggested rewrite',
     ],
     ctaLabel: 'Start free',
-    ctaHref: '/claim-audit?source=ladder-step1',
+    ctaHref: 'https://auditgpt.ai/snapshot?source=ladder-step1',
     source: 'ladder-step1',
-    accent: 'sage',
-    highlight: 'free',
   },
   {
     step: 2,
-    name: 'Claim Intelligence Report',
-    price: '$299',
-    cadence: 'one-time',
-    tagline: 'A dated Claim Intelligence Receipt your team can keep, share, or attach to a launch.',
+    name: 'Claim Exposure Audit',
+    price: '$497',
+    cadence: 'one-time · credits toward Guardian',
+    tagline: 'Dated review record with enforcement-pattern matches, evidence gaps, and safer rewrites.',
     includes: [
-      'Evidence map for surfaced claims',
-      'Drop-in safer rewrites and citations',
-      'Reviewed by AuditGPT badge linked to a static review summary',
-      '30-day prioritized action plan for your team',
+      'One public page — every claim on it extracted and scored',
+      'AI Distortion Snapshot across 3+ LLMs',
+      'Source references from enforcement library',
+      'Safer rewrite language per claim',
+      'Dated PDF review receipt',
     ],
-    ctaLabel: 'Unlock Report',
-    ctaHref: '/pricing?source=ladder-step2#auditgpt',
+    ctaLabel: 'Get the $497 Audit',
+    ctaHref: 'https://auditgpt.ai/snapshot?source=ladder-step2&intent=paid',
     source: 'ladder-step2',
-    accent: 'sage',
   },
   {
     step: 3,
-    name: 'Claim Cleanup Record',
-    price: '$1,997',
-    cadence: 'one-time',
-    tagline: 'A structured record of what changed, why it changed, and what public support now backs each priority claim.',
+    name: 'Guardian',
+    price: 'from $1,497',
+    cadence: '/ mo',
+    tagline: 'Continuous monitoring with a dated review record that never goes stale.',
     includes: [
-      'Done-for-you copywriting rewrites across priority pages',
-      'Proof-gap table with evidence linked per claim',
-      'Final Claim Cleanup Record PDF — what changed and why',
+      'Monthly claim re-review + updated record',
+      'AI distortion alerts across major AI surfaces',
+      'Alerts when new enforcement patterns match your pages',
+      'S-Mark Review Record',
+      'Your $497 audit credits toward month one',
     ],
-    ctaLabel: 'Book Claim Cleanup Record',
-    ctaHref: '/pricing?source=ladder-step3',
+    ctaLabel: 'Book a Guardian call',
+    ctaHref: '/contact?plan=guardian',
     source: 'ladder-step3',
-    accent: 'clay',
+    accent: 'espresso',
   },
   {
     step: 4,
-    name: 'Claim Drift Monitoring',
-    price: '$299',
-    cadence: '/mo',
-    tagline: 'Keep claims, content, and visibility under continuous review.',
+    name: 'Enterprise',
+    price: 'from $4,997',
+    cadence: '/ mo',
+    tagline: 'Multi-location groups, platforms, and agencies operating at scale.',
     includes: [
-      'Monthly AuditGPT pass with risk delta',
-      'Claim drift alerts as marketing publishes',
-      'Ongoing evidence updates and badge status',
+      'Multi-domain monitoring under one record',
+      'API access to the Claim Graph',
+      'Claim Foundation setup across brands',
+      'Quarterly counsel-ready review summary',
     ],
-    ctaLabel: 'Start Monitoring',
-    ctaHref: '/pricing?source=ladder-step4#auditgpt',
+    ctaLabel: 'Talk to us',
+    ctaHref: '/contact?plan=enterprise',
     source: 'ladder-step4',
-    accent: 'espresso',
-    highlight: 'recurring',
-  },
-  {
-    step: 5,
-    name: 'Agency Receipt Beta',
-    price: '$499',
-    cadence: '/mo',
-    tagline: 'A billable claim-review artifact your agency can attach to every high-claim launch.',
-    includes: [
-      '10 Claim Intelligence Receipts per month',
-      'White-labeled PDFs and static reviewed-badge pages',
-      'Launch packet language for client approvals',
-    ],
-    ctaLabel: 'Apply for Partner Beta',
-    ctaHref: '/agency',
-    source: 'ladder-step5',
-    accent: 'clay',
   },
 ];
 
@@ -128,7 +98,7 @@ export default function ClaimLadder({ variant = 'homepage' }: { variant?: 'homep
     : 'Start with the free snapshot.';
   const subhead = variant === 'pricing'
     ? 'Each step earns the next. You never buy a tier you have not seen the value of first.'
-    : 'The snapshot surfaces the gap. The report creates the receipt. The next steps turn that receipt into proof you can publish.';
+    : 'The snapshot surfaces the gap. The receipt creates the dated record. Monitoring keeps it current.';
 
   return (
     <section
@@ -147,22 +117,20 @@ export default function ClaimLadder({ variant = 'homepage' }: { variant?: 'homep
           <p className="mt-4 text-base md:text-lg text-mist leading-[1.6] max-w-2xl">
             {subhead}
           </p>
-              <div className="mt-12 lg:mt-16 flex flex-col lg:flex-row gap-6 lg:gap-4 items-stretch relative">
+        </div>
+        <div className="mt-12 lg:mt-16 flex flex-col lg:flex-row gap-6 lg:gap-4 items-stretch relative">
           {STEPS.map((s, i) => (
             <motion.div
               key={s.step}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover="hover"
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: EASE, delay: i * 0.1 }}
               className="relative flex-1 group cursor-pointer"
             >
-              {/* Connector line for desktop */}
               {i < STEPS.length - 1 && (
                 <div className="hidden lg:block absolute top-[44px] left-[50%] right-[-50%] h-px bg-sand-deep/30 z-0 pointer-events-none" />
               )}
-              {/* Connector line for mobile */}
               {i < STEPS.length - 1 && (
                 <div className="block lg:hidden absolute top-[50px] bottom-[-24px] left-[24px] w-px bg-sand-deep/30 z-0 pointer-events-none" />
               )}
@@ -175,21 +143,9 @@ export default function ClaimLadder({ variant = 'homepage' }: { variant?: 'homep
                 className="relative z-10 w-full h-full flex flex-col rounded-2xl border border-sand-deep/40 bg-bone p-6 shadow-xs transition-colors overflow-hidden"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-cream border border-sand-deep/40 flex items-center justify-center font-mono text-[9px] font-bold text-mist group-hover:text-sage-deep group-hover:border-sage-deep transition-colors">
-                      {s.step}
-                    </div>
+                  <div className="w-6 h-6 rounded-full bg-cream border border-sand-deep/40 flex items-center justify-center font-mono text-[9px] font-bold text-mist">
+                    {s.step}
                   </div>
-                  {s.highlight === 'free' && (
-                    <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-sage-deep bg-sage-soft/10 px-2 py-1 rounded-sm">
-                      <Sparkles size={10} /> Start here
-                    </span>
-                  )}
-                  {s.highlight === 'recurring' && (
-                    <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-clay-deep bg-clay/10 px-2 py-1 rounded-sm">
-                      Ongoing
-                    </span>
-                  )}
                 </div>
 
                 <h3 className="font-display text-lg text-espresso font-semibold leading-tight mb-2">
@@ -218,40 +174,30 @@ export default function ClaimLadder({ variant = 'homepage' }: { variant?: 'homep
                   ))}
                 </ul>
 
-                {/* Animated CTA Reveal */}
                 <div className="mt-auto overflow-hidden">
-                  <motion.div
-                    variants={{
-                      hover: { opacity: 1, height: 'auto', y: 0 },
-                      rest: { opacity: 0, height: 0, y: 10 }
+                  <Link
+                    href={s.ctaHref}
+                    data-source={s.source}
+                    onClick={() => {
+                      trackEvent('cta_click', {
+                        cta_label: s.ctaLabel,
+                        destination: s.ctaHref,
+                        section: variant === 'pricing' ? 'pricing-ladder' : 'homepage-ladder',
+                        source: s.source,
+                        step: s.step,
+                      });
                     }}
-                    initial="rest"
-                    className="pt-2"
+                    className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-sans font-semibold text-xs transition-all duration-300 ${
+                      s.step === 1
+                        ? 'bg-sage-deep hover:bg-espresso text-cream'
+                        : s.step === 5
+                          ? 'bg-clay hover:bg-clay-deep text-cream'
+                          : 'bg-bone hover:bg-cream border border-sand-deep/45 text-espresso'
+                    }`}
                   >
-                    <Link
-                      href={s.ctaHref}
-                      data-source={s.source}
-                      onClick={() => {
-                        trackEvent('cta_click', {
-                          cta_label: s.ctaLabel,
-                          destination: s.ctaHref,
-                          section: variant === 'pricing' ? 'pricing-ladder' : 'homepage-ladder',
-                          source: s.source,
-                          step: s.step,
-                        });
-                      }}
-                      className={`w-full group/btn inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-sans font-semibold text-xs transition-all duration-300 ${
-                        s.step === 1
-                          ? 'bg-sage-deep hover:bg-espresso text-cream'
-                          : s.step === 5
-                            ? 'bg-clay hover:bg-clay-deep text-cream'
-                            : 'bg-bone hover:bg-cream border border-sand-deep/45 text-espresso'
-                      }`}
-                    >
-                      {s.ctaLabel}
-                      <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-0.5" />
-                    </Link>
-                  </motion.div>
+                    {s.ctaLabel}
+                    <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-0.5" />
+                  </Link>
                 </div>
               </motion.div>
             </motion.div>
@@ -262,7 +208,6 @@ export default function ClaimLadder({ variant = 'homepage' }: { variant?: 'homep
           Every reviewed claim strengthens the internal pattern library behind AuditGPT: claim category, proof gap,
           safer rewrite, AI answer distortion, and drift signal. Public outputs stay conservative; the dataset compounds.
         </p>
-      </div>
       </div>
     </section>
   );

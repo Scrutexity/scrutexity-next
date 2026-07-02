@@ -16,7 +16,7 @@ const agencyIncludes = [
   { icon: FileText, label: 'Fix recommendations and safer copy',      detail: 'Each surfaced claim ships with a recommended action and a drop-in safer rewrite.' },
   { icon: Eye,      label: 'Public and private report links',         detail: 'Share an unlocked sample with prospects, hold the full report behind a private link for clients.' },
   { icon: Award,    label: 'Launch packet language',                  detail: 'Clean approval language for the agency, client, and stakeholder thread before a high-claim page goes live.' },
-  { icon: Clock,    label: 'Priority review',                         detail: 'Agency audits jump the queue. Standard 48-hour turnaround; agency turnaround target is 24 hours.' },
+  { icon: Clock,    label: 'Priority review',                         detail: 'Agency audits jump the queue. Standard 72-hour turnaround; agency turnaround target is 48 hours.' },
 ];
 
 const idealClients = [
@@ -86,7 +86,7 @@ export default function AgencyContent() {
               style={{ fontFamily: MONO_STACK }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-sage-deep" />
-              Agency Receipt Beta
+              Guardian Agency Plan
             </span>
 
             <div className="mt-5 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -96,12 +96,12 @@ export default function AgencyContent() {
                   <span className="italic text-sage-deep">Your brand on every one.</span>
                 </h2>
                 <p className="mt-5 text-base text-mist leading-[1.6]">
-                  Built for agencies running client campaigns. Review before launch, deliver polished co-branded receipts, attach a reviewed-badge page, and monitor drift after cleanup. First five partners lock in the $499/mo beta rate (standard rate is $799/mo).
+                  Built for agencies running client campaigns. Review before launch, deliver polished co-branded receipts, attach a reviewed-badge page, and monitor drift after cleanup. First five partners lock in the $1,497/mo founding rate (standard rate is $2,497/mo).
                 </p>
               </div>
               <div className="md:text-right shrink-0">
                 <div className="font-display text-6xl text-ink tabular-nums leading-none">
-                  $499
+                  From $1,497
                 </div>
                 <div className="text-xs text-mist mt-1" style={{ fontFamily: MONO_STACK }}>
                   / mo (Founding Beta)
@@ -115,7 +115,7 @@ export default function AgencyContent() {
                 className="group inline-flex items-center gap-2 px-7 py-3.5 bg-sage-deep hover:bg-ink text-cream rounded-xl text-sm font-semibold transition-all duration-300 shadow-xs cursor-pointer"
                 style={{ boxShadow: '0 8px 24px rgba(94,122,90,0.15)' }}
               >
-                Apply for Agency Receipt Beta
+                Apply for Guardian Agency Plan
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -237,7 +237,7 @@ export default function AgencyContent() {
               className="group px-7 py-4 bg-sage-deep hover:bg-ink text-cream font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 cursor-pointer shadow-xs"
               style={{ boxShadow: '0 8px 24px rgba(94,122,90,0.15)' }}
             >
-              Apply for Agency Receipt Beta
+              Apply for Guardian Agency Plan
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link

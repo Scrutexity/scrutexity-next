@@ -134,7 +134,7 @@ export default function MirrorAuditSection() {
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sage-deep to-transparent opacity-50" />
             <ShieldCheck className="text-sage-deep mb-4" size={24} />
             <h3 className="font-display text-2xl text-espresso mb-2">Safer replacement approved</h3>
-            <p className="text-sm text-mist leading-relaxed">Governed messaging drops in, satisfying both marketing intent and compliance.</p>
+            <p className="text-sm text-mist leading-relaxed">Governed messaging drops in, keeping the marketing intent while staying inside the evidence.</p>
           </motion.div>
         </div>
       </div>

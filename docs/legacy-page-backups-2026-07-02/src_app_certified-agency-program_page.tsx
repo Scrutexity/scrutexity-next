@@ -31,7 +31,7 @@ const PAIN_POINTS = [
     icon: Users,
     title: "You're losing compliance upsells",
     detail:
-      "Every client with a website needs claim language reviewed — but most agencies have no compliance offering. You leave $299–$1,997 per client on the table every time you hand off a site without an audit.",
+      "Every client with a website needs claim language reviewed — but most agencies have no compliance offering. You leave $497-$4,997 per client on the table every time you hand off a site without an audit.",
   },
   {
     icon: Zap,
@@ -58,7 +58,7 @@ const WHAT_YOU_GET = [
     icon: Star,
     title: "White-Label Resell Rights",
     detail:
-      "Resell Scrutexity audits under your own brand. The $299 Claim Intelligence Report is yours to present as your service. No co-branding. No mention of Scrutexity. Your client sees your logo on every deliverable.",
+      "Resell Scrutexity audits under your own brand. The $497 Claim Exposure Audit is yours to present as your service. No co-branding. No mention of Scrutexity. Your client sees your logo on every deliverable.",
   },
   {
     icon: Zap,
@@ -71,7 +71,7 @@ const WHAT_YOU_GET = [
 const TIERS = [
   {
     name: "Partner",
-    price: "$499/mo",
+    price: "from $1,497/mo",
     highlight: null,
     includes: [
       "Certified Agency badge",

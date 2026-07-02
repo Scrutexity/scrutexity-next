@@ -4,7 +4,7 @@ import MedicalWellnessContent from '@/components/scrutexity/medical-wellness-con
 export const metadata: Metadata = {
   title: 'Scrutexity Medical & Wellness | Recover Missed Bookings Without Risky Marketing',
   description:
-    'Recover missed bookings without risky medical marketing. For med spas, urgent care clinics, veterinary practices, wellness centers, and spas. Read-only first, BAA on request before patient-adjacent activation, staff-approved follow-up, SHA-256 seals available.',
+    'Recover missed bookings without risky medical marketing. For med spas, urgent care clinics, veterinary practices, wellness centers, and spas. Read-only first, staff-approved follow-up, claims-first governance.',
   alternates: { canonical: '/medical-wellness' },
 };
 

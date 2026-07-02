@@ -58,7 +58,7 @@ const COMPARISON_ROWS = [
   { label: "Setup Time", traditional: "2–6 weeks", scrutexity: "2 minutes" },
   { label: "Downtime", traditional: "Yes", scrutexity: "Zero" },
   { label: "PHI Exposure", traditional: "Full patient records", scrutexity: "Redacted at ingress" },
-  { label: "Cost", traditional: "$15,000–$50,000", scrutexity: "$299–$1,997" },
+  { label: "Cost", traditional: "$15,000–$50,000", scrutexity: "$497–$4,997" },
   { label: "Frequency", traditional: "Quarterly / Annual", scrutexity: "Continuous" },
   { label: "Deliverable", traditional: "Static PDF", scrutexity: "Live claim ledger" },
 ];

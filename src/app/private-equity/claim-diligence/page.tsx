@@ -18,7 +18,7 @@ const diligenceScope = [
   "Optional demand-at-risk context with visible assumptions",
   "Booking and recovery exposure notes",
   "Evidence readiness and unresolved remediation log",
-  "Post-close Claim Drift Monitoring plan",
+  "Post-close Guardian monitoring plan",
 ];
 
 const packages = [
@@ -69,7 +69,7 @@ export default function ClaimDiligencePage() {
                 "Which treatment categories require evidence before scaled marketing?",
                 "Where is demand being created but not governed?",
                 "What must be fixed before post-close paid media expansion?",
-                "Which locations need Claim Drift Monitoring first?",
+                "Which locations need Guardian monitoring first?",
               ].map((question) => (
                 <div key={question} className="rounded-md border border-[#F8F4F0]/15 bg-[#F8F4F0]/5 p-3">
                   <p className="text-sm leading-6 text-[#F8F4F0]/72">{question}</p>
@@ -118,7 +118,7 @@ export default function ClaimDiligencePage() {
               </div>
               <h2 className="mt-3 font-display text-3xl tracking-normal">Pre-close diligence becomes post-close operating infrastructure.</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-[#1C1C1C]/68">
-                The same risks identified during diligence become Claim Drift Monitoring priorities after close. That is the enterprise wedge: one target engagement can seed a portfolio-wide governed growth contract.
+                The same risks identified during diligence become Guardian monitoring priorities after close. That is the enterprise wedge: one target engagement can seed a portfolio-wide governed growth contract.
               </p>
             </div>
             <Link

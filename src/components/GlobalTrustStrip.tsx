@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
 const signals = [
-  'BAA executed before activation',
-  'PHI minimized',
+  'Claims-first governance',
   'Clinical questions escalate',
   'Read-only bridge',
 ];

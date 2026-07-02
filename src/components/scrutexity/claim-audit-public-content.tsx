@@ -385,7 +385,7 @@ export default function ClaimAuditPublicContent({
                         className="shrink-0 group px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 whitespace-nowrap"
                         style={{ boxShadow: '0 8px 24px rgba(28,24,20,0.10)' }}
                       >
-                        Unlock full Claim Intelligence Report — $299
+                        Unlock full Claim Exposure Audit — $497
                         <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </div>

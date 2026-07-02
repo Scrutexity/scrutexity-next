@@ -82,7 +82,7 @@ export default function PersonalBrandAuditPage() {
     { label: "01 · Snapshot", title: "Personal Brand Snapshot", desc: "Scan public surfaces for top 3 credibility exposures.", price: "$99" },
     { label: "02 · Audit", title: "Sponsor-Ready Audit", desc: "Full manual claim inventory, source mapping, and rewrite recommendations.", price: "$399" },
     { label: "03 · Cleanup", title: "Creator Claim Cleanup Record", desc: "Build evidence library, implement rewrites, and deliver a structured record of what changed and why.", price: "$1,999" },
-    { label: "04 · Monitor", title: "Ongoing Governance", desc: "Continuous drift monitoring, automated alerts, and badge maintenance.", price: "$299/mo" }
+    { label: "04 · Monitor", title: "Ongoing Governance", desc: "Continuous drift monitoring, automated alerts, and badge maintenance.", price: "from $1,497/mo" }
   ];
 
   return (

@@ -38,7 +38,7 @@ const offers: Array<{
   {
     key: 'full',
     name: 'Claim Intelligence Report',
-    price: '$299',
+    price: '$497',
     cadence: 'one-time',
     audience: 'Founders, operators, and CMOs needing a full plan.',
     highlighted: true,
@@ -56,7 +56,7 @@ const offers: Array<{
   {
     key: 'rescan',
     name: 'Claim Drift Monitoring',
-    price: '$299',
+    price: '$497',
     cadence: '/ month',
     audience: 'Teams updating claims, content, or visibility regularly.',
     includes: [
@@ -68,8 +68,8 @@ const offers: Array<{
   },
   {
     key: 'agency',
-    name: 'Agency Receipt Beta',
-    price: '$499',
+    name: 'Guardian Agency Plan',
+    price: 'from $1,497/mo',
     cadence: '/ mo (Founding Beta)',
     audience: 'Agencies running client launches and diligence.',
     includes: [
@@ -376,7 +376,7 @@ function ClaimAuditContentInner() {
             </h2>
             <p className="mt-5 text-base text-mist leading-[1.6] max-w-xl">
               We&rsquo;ll scan the URL you give us, plus the founder and product
-              pages we can find from it. Results return within 24 to 48 hours.
+              pages we can find from it. Results return within 72 hours.
             </p>
           </motion.div>
 
@@ -415,7 +415,7 @@ function ClaimAuditContentInner() {
                     Expectations & Details:
                   </p>
                   <ul className="list-disc list-inside space-y-1 text-xs text-mist/90">
-                    <li>Expected response window: <strong>24–48 hours</strong></li>
+                    <li>Expected response window: <strong>72 hours</strong></li>
                     <li>Reminder: this report is for strategy purposes and does not constitute formal legal, clinical, or regulatory advice.</li>
                   </ul>
                 </div>

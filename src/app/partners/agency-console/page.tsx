@@ -54,12 +54,12 @@ export default function AgencyConsolePage() {
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#1C1C1C]/55">
               Channel offer
             </p>
-            <p className="mt-3 font-display text-4xl tracking-normal">$499/mo</p>
+            <p className="mt-3 font-display text-4xl tracking-normal">From $1,497/mo</p>
             <p className="mt-2 text-xs leading-5 text-[#1C1C1C]/62">
               Founding Beta partner license for up to 25 monthly claim snapshots, co-branded report exports, and Claim Intelligence Review handoff.
             </p>
             <p className="mt-3 font-mono text-[10px] leading-5 text-[#1C1C1C]/50">
-              Commercial options: platform fee, usage-based audit packs, or documented rev share on Claim Drift Monitoring conversions.
+              Commercial options: platform fee, usage-based audit packs, or documented rev share on Guardian Monitoring conversions.
             </p>
           </div>
         </header>
@@ -92,7 +92,7 @@ export default function AgencyConsolePage() {
               ))}
             </div>
             <p className="mt-5 text-sm leading-7 text-[#F8F4F0]/68">
-              Extension point: connect each workspace to AuditGPT scans, Claim Drift Monitoring, Contento remediation tasks, and proof binder exports. The agency keeps the client relationship; Scrutexity owns the trust-routing rail.
+              Extension point: connect each workspace to AuditGPT scans, Guardian Monitoring, Contento remediation tasks, and proof binder exports. The agency keeps the client relationship; Scrutexity owns the trust-routing rail.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export default function AgencyConsolePage() {
                 ["Snapshot", "Agency runs a public-surface AuditGPT scan and receives the top claim, AI visibility, reputation, and demand leakage findings."],
                 ["Fix", "Contento or the agency applies safer claim framing, evidence tags, and platform-specific copy boundaries."],
                 ["Issue", "Scrutexity creates a certificate with status, scope, last reviewed date, and a link to the sealed claim record."],
-                ["Monitor", "Claim Drift Monitoring watches for drift so the certificate cannot become stale marketing theater."],
+                ["Monitor", "Guardian Monitoring watches for drift so the certificate cannot become stale marketing theater."],
               ].map(([label, body]) => (
                 <div key={label} className="rounded-md border border-[#1C1C1C]/12 bg-[#F8F4F0] p-4">
                   <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[#1C1C1C]">{label}</p>
@@ -127,7 +127,7 @@ export default function AgencyConsolePage() {
               </div>
               <h2 className="mt-3 font-display text-3xl tracking-normal">Offer 20 agencies three free client snapshots.</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-[#1C1C1C]/68">
-                The ask is simple: show where their clients are exposed, then convert agencies into Claim Drift Monitoring distribution partners. Do not call this legal certification; call it claim-safe growth workflow.
+                The ask is simple: show where their clients are exposed, then convert agencies into Guardian Monitoring distribution partners. Do not call this legal certification; call it claim-safe growth workflow.
               </p>
             </div>
             <Link

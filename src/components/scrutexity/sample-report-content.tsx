@@ -441,7 +441,7 @@ export default function SampleReportContent() {
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
             <span className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5" style={{ fontFamily: MONO }}>
-              Recommended next step
+              Optional add-on to the $497 Audit
             </span>
             <h2 className="font-display text-4xl md:text-5xl text-ink tracking-[-0.02em] leading-[1.05]">
               Claim Cleanup Record{' '}
@@ -501,23 +501,23 @@ export default function SampleReportContent() {
             <span className="italic text-sage-deep">your practice?</span>
           </h2>
           <p className="mt-5 text-base text-mist leading-[1.6] max-w-xl mx-auto">
-            The free snapshot surfaces your top 3 claim exposures. The $299 Claim Intelligence Report goes deeper — 12 claims, full proof-gap table, AI receipt, safer rewrites, and Claim Cleanup Record recommendation.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
+            The free snapshot surfaces your top 3 claim exposures. The $497 Claim Risk + AI Distortion Receipt goes deeper — every claim on one public page scored, enforcement-pattern matches, AI distortion snapshot, and safer rewrites with source references. Delivered in 72 hours.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
             <Link
-              href="https://auditgpt.ai/snapshot?source=ny-sample-report"
-              className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
-              style={{ boxShadow: '0 8px 24px rgba(28,24,20,0.10)' }}
+             href="https://auditgpt.ai/snapshot?source=sample-report&intent=paid"
+             className="group px-7 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-xs"
             >
-              Run Free NY Claim Snapshot
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+             <Download size={14} />
+             Get the $497 Receipt
+             <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               href="https://auditgpt.ai/snapshot?source=ny-sample-report&intent=paid"
               className="group text-sm font-semibold text-ink hover:text-sage-deep transition-colors duration-300 inline-flex items-center gap-1.5"
             >
               <Download size={14} />
-              Get the $299 Report
+              Get the $497 Audit
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>

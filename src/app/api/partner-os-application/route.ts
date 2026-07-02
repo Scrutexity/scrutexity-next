@@ -102,7 +102,7 @@ We review applications within 48 hours. If selected, we will run a free sample s
 
 Beta reminder:
 - 5 founding partner spots
-- $499/month, billed monthly
+- From $1,497/month, billed monthly
 - 10 white-label AuditGPT Claim Intelligence Reports per month
 - Med Spa Claim Cleanup Sprint playbook + templates
 - Monthly 15-20 minute feedback call

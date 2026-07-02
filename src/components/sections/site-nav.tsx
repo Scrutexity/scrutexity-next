@@ -8,22 +8,12 @@ import { useStore } from '@/lib/store';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const navLinks = [
-  { 
-    label: 'Services', 
-    href: '#',
-    subLinks: [
-      { label: 'AuditGPT', href: '/auditgpt' },
-      { label: 'Contento', href: '/contento' },
-      { label: 'AI Visibility', href: '/ai-visibility' },
-      { label: 'Recovery Archive', href: '/recovery' },
-    ]
-  },
-  { label: 'Medical & Wellness', href: '/medical-wellness' },
-  { label: 'Agency',             href: '/agency/claim-intelligence-receipt' },
-  { label: 'Creators',           href: '/personal-brand-audit' },
-  { label: 'Proof',              href: '/proof' },
-  { label: 'Pricing',            href: '/pricing' },
+const navLinks: { label: string; href: string; subLinks?: { label: string; href: string }[] }[] = [
+  { label: 'Tracker',   href: '/tracker' },
+  { label: 'Reviews',   href: '/pricing' },
+  { label: 'Data Feed', href: '/tracker#data-feed' },
+  { label: 'AuditGPT',  href: '/auditgpt' },
+  { label: 'Contact',   href: 'mailto:nick@scrutexity.com' },
 ];
 
 export default function SiteNav() {
@@ -78,28 +68,7 @@ export default function SiteNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full pointer-events-none">
       
-      {/* 1. PERSISTENT OPERATING-STATE BAA STRIP (fixed height 32px) */}
-      <div className="relative flex items-center justify-center sm:justify-between gap-3 bg-ink/95 px-5 sm:px-6 py-1.5 text-[9px] font-mono uppercase tracking-[0.16em] text-cream/80 backdrop-blur-sm pointer-events-auto h-[32px] border-b border-sand-deep/10 shadow-xs">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 font-bold">
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-sage"
-              style={{ boxShadow: '0 0 6px rgba(94,122,90,0.8)' }}
-            />
-            BAA on request
-          </span>
-          <span className="hidden sm:inline opacity-30" aria-hidden="true">·</span>
-          <span className="hidden sm:inline text-cream/70">Read-Only</span>
-          <span className="hidden md:inline opacity-30" aria-hidden="true">·</span>
-          <span className="hidden md:inline text-cream/70">SHA-256 Ledger</span>
-        </div>
-
-        <div className="hidden sm:flex items-center gap-3 text-cream/60">
-          <span>Audits can be SHA-256 sealed</span>
-        </div>
-      </div>
-
-      {/* 2. FLOATING GLASSMORPHIC NAVIGATION PILL */}
+      {/* FLOATING GLASSMORPHIC NAVIGATION PILL */}
       <div className="relative w-full flex justify-center mt-2 px-4">
         <motion.nav 
           animate={{ 
@@ -173,11 +142,11 @@ export default function SiteNav() {
           {/* Primary CTA — Run AuditGPT */}
           <div className="hidden md:flex items-center">
             <a
-              href="/claim-audit"
+              href="/auditgpt"
               className="relative inline-flex items-center justify-center rounded-full bg-bark px-5 py-2.5 font-sans text-[10px] font-extrabold uppercase tracking-[0.16em] text-sage border border-ink/30 ring-1 ring-inset ring-cream/5 hover:bg-ink hover:text-sage-soft hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group/btn"
               style={{ boxShadow: '0 10px 24px -10px rgba(28,24,20,0.35)' }}
             >
-              Run AuditGPT
+              Request a Review
               <span className="ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden>→</span>
             </a>
           </div>
@@ -270,22 +239,22 @@ export default function SiteNav() {
               {/* Drawer Footer Actions */}
               <div className="mt-auto pt-6 flex flex-col gap-4">
                 <a
-                  href="/claim-audit"
+                  href="/auditgpt"
                   onClick={() => setOpen(false)}
                   className="relative inline-flex items-center justify-center rounded-full bg-sage-deep py-3.5 font-sans text-xs font-bold uppercase tracking-[0.16em] text-cream border border-ink/30 ring-1 ring-inset ring-cream/10 text-center"
                   style={{ boxShadow: '0 8px 22px -8px rgba(28,24,20,0.32)' }}
                 >
-                  Run AuditGPT →
+                  Request a Review →
                 </a>
                 <a
-                  href="/sample-report"
+                  href="/tracker"
                   onClick={() => setOpen(false)}
                   className="text-center text-xs font-sans font-semibold uppercase tracking-[0.14em] text-ink hover:text-sage-deep transition-colors"
                 >
-                  View Sample Report
+                  View Enforcement Tracker
                 </a>
                 <div className="flex items-center justify-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.14em] text-mist/70">
-                  <Lock size={8} className="text-sage" /> BAA LOCKED · READ-ONLY
+                  <Lock size={8} className="text-sage" /> PUBLIC SOURCES ONLY
                 </div>
               </div>
             </motion.div>

@@ -55,9 +55,9 @@ const artifactsList = [
 ];
 
 const proofSequence = [
-  ['01', 'Claim Intelligence Report', 'A dated receipt and static reviewed-badge summary are available immediately after the $299 report.'],
+  ['01', 'Claim Intelligence Report', 'A dated receipt and static reviewed-badge summary are available immediately after the $497 audit.'],
   ['02', 'Claim Cleanup Record', 'Priority claims are rewritten, evidence is linked, and the cleanup decisions are documented.'],
-  ['03', 'Claim Drift Monitoring', 'Monthly review keeps new copy, AI answer distortion, and badge status from drifting silently.'],
+  ['03', 'Guardian Monitoring', 'Monthly review keeps new copy, AI answer distortion, and badge status from drifting silently.'],
   ['04', 'Proof Page', 'Only after cleanup do public proof pages show stronger evidence, remediated claims, and review history.'],
 ] as const;
 
@@ -155,7 +155,7 @@ export default function ProofPage() {
 
         {/* Footer Disclaimer/Alignment */}
         <div className="mt-16 pt-8 border-t border-sand-deep/20 flex flex-wrap justify-between items-center gap-4 text-xs font-mono text-mist">
-          <span className="flex items-center gap-1.5"><Lock size={12} /> BAA on request · SHA-256 seals available</span>
+          <span className="flex items-center gap-1.5"><Lock size={12} /> BAA on request · Claims-first governance</span>
           <span>No autonomous clinical advice. Verification is structural only.</span>
         </div>
 

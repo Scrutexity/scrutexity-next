@@ -221,7 +221,7 @@ export default function ClaimIntelligenceReceiptPage() {
 
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: EASE, delay: 0.32 }} className="mt-8 flex flex-wrap gap-4">
                 <Link href="/agency" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-                  Apply for Agency Receipt Beta — $499/mo
+                  Apply for Guardian Agency Plan
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <Link href="/glp-1-weight-loss-claim-audit" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
@@ -348,11 +348,11 @@ export default function ClaimIntelligenceReceiptPage() {
             <span className="italic text-sage-deep">a claim receipt first.</span>
           </h2>
           <p className="mt-4 text-sm text-mist leading-[1.65] max-w-xl mx-auto">
-            Agency Receipt Beta includes 10 Claim Intelligence Receipts per month, white-labeled for your clients. Founding rate: $499/mo for the first 5 agencies.
+            Guardian Agency Plan includes 10 Claim Exposure Audits per month, white-labeled for your clients. Founding rate available for the first 5 agencies.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="/agency" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.45)]">
-              Apply for Agency Receipt Beta
+              Apply for Guardian Agency Plan
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="https://auditgpt.ai/snapshot?source=receipt-cta" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">

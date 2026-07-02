@@ -27,16 +27,16 @@ const jetBrainsMono = JetBrains_Mono({
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | The Claim Intelligence Platform",
-  description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
+  title: "Scrutexity | Claim Intelligence for the AI-Generated Internet",
+  description: "Scrutexity tracks enforcement patterns, public claims, and AI answer distortions. AuditGPT produces dated review receipts with safer rewrites.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
     google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | The Claim Intelligence Platform",
-    description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
+    title: "Scrutexity | Claim Intelligence for the AI-Generated Internet",
+    description: "Scrutexity tracks enforcement patterns, public claims, and AI answer distortions. AuditGPT produces dated review receipts with safer rewrites.",
     url: siteUrl,
     siteName: "Scrutexity",
     images: [{ url: "/logo-icon.png", width: 320, height: 365, alt: "Scrutexity" }],
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | The Claim Intelligence Platform",
-    description: "Every business makes claims. Scrutexity runs a Claim Audit to find the unsupported, overstated, and risky ones — then shows you how to fix them. AuditGPT is the front door.",
+    title: "Scrutexity | Claim Intelligence for the AI-Generated Internet",
+    description: "Scrutexity tracks enforcement patterns, public claims, and AI answer distortions. AuditGPT produces dated review receipts with safer rewrites.",
     images: ["/logo-icon.png"],
   },
 };
@@ -60,27 +60,22 @@ const jsonLdData = {
       name: "Scrutexity",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
-      description: "Claim intelligence platform for reviewing public marketing claims, evidence gaps, AI answer surfaces, and agent transcript risks before they become buyer, regulator, or brand-trust problems.",
-      applicationSubCategory: "Claim Intelligence, AI Answer Reality, and Agent Guardrail Audits",
-      audience: { "@type": "Audience", audienceType: "Marketing teams, agency operators, medical and wellness businesses, local-service founders, and compliance-adjacent teams" },
+      description: "Scrutexity tracks enforcement patterns, public claims, and AI answer distortions for high-trust businesses. AuditGPT produces dated review receipts with safer rewrites.",
+      applicationSubCategory: "Claim Intelligence and AI Distortion Detection",
+      audience: { "@type": "Audience", audienceType: "Marketing teams, agency operators, medical and wellness businesses, and compliance-adjacent teams" },
       featureList: [
-        "Public-facing claim extraction and review",
-        "Evidence-gap mapping for unsupported or overstated claims",
-        "AI Answer Reality receipts across answer engines",
-        "Agent transcript and guardrail audit workflows",
-        "SHA-256 sealed review records",
-        "Proof-backed rewrite and remediation plans",
-        "BAA available on request for eligible healthcare-adjacent reviews"
+        "Public FDA enforcement action tracking",
+        "AI answer distortion detection",
+        "Claim-pattern comparison against cited enforcement language",
+        "Safer rewrite recommendations",
+        "Dated review records"
       ],
-      offers: { "@type": "AggregateOffer", priceCurrency: "USD", offerCount: 3 },
+      offers: { "@type": "AggregateOffer", priceCurrency: "USD", offerCount: 1 },
       provider: { "@id": "https://scrutexity.com/#organization" },
       knowsAbout: [
-        "Claim Intelligence",
+        "FDA Enforcement Patterns",
         "Advertising Claim Substantiation",
-        "AI Answer Visibility",
-        "Agent Guardrail Audits",
-        "Marketing Compliance Workflows",
-        "Proof-Backed Content"
+        "Marketing Claim Review"
       ],
       softwareRequirements: "Web browser"
     },
@@ -90,24 +85,23 @@ const jsonLdData = {
       name: "Scrutexity",
       url: "https://scrutexity.com",
       logo: "https://scrutexity.com/logo-icon.png",
-      description: "Claim intelligence company behind AuditGPT and Contento.",
+      description: "Claim intelligence company behind AuditGPT. Tracks enforcement patterns, public claims, and AI answer distortions.",
       address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
       knowsAbout: [
-        "Claim Intelligence",
+        "FDA Enforcement Patterns",
+        "AI Answer Distortion",
         "Advertising Claim Substantiation",
-        "AI Answer Reality",
-        "Agent Guardrail Audits",
-        "Proof-Backed Content"
+        "Marketing Claim Review"
       ]
     },
     {
       "@type": "WebPage",
       "@id": "https://scrutexity.com/#webpage",
       url: "https://scrutexity.com",
-      name: "Scrutexity | The Claim Intelligence Platform",
+      name: "Scrutexity | Claim Intelligence for the AI-Generated Internet",
       isPartOf: { "@id": "https://scrutexity.com/#website" },
       about: { "@id": "https://scrutexity.com/#application" },
-      description: "Scrutexity runs claim audits, AI answer reality reviews, and proof-backed remediation workflows for businesses where public claims need evidence."
+      description: "Scrutexity tracks enforcement patterns, public claims, and AI answer distortions. AuditGPT produces dated review receipts with safer rewrites."
     }
   ]
 };
