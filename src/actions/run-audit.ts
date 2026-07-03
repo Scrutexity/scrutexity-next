@@ -82,49 +82,33 @@ export async function runAudit(
     // Phase 1 — Init scan record (URL already validated + canonicalized)
     createScan(scanId, normalized, ts);
 
-    // Phase 3 — DeepSeek extraction
-    const apiKey = process.env.DEEPSEEK_API_KEY;
+    // Phase 3 — Gemini extraction (Gemini API key is set in Vercel env)
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       updateScanStatus(scanId, 'failed');
-      return { success: false, error: 'DEEPSEEK_API_KEY not set in environment' };
+      return { success: false, error: 'GEMINI_API_KEY not set in environment' };
     }
 
-    const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'deepseek-chat',
-        messages: [
-          { role: 'system', content: AUDIT_SYSTEM_PROMPT },
-          {
-            role: 'user',
-            content: `Target URL: ${normalized}\n\nScraped Copy:\n${plainText}`,
-          },
-        ],
+    const { GoogleGenAI } = await import('@google/genai');
+    const ai = new GoogleGenAI({ apiKey });
+
+    const aiResponse = await ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: [
+        AUDIT_SYSTEM_PROMPT,
+        `Target URL: ${normalized}\n\nScraped Copy:\n${plainText}`,
+      ],
+      config: {
+        responseMimeType: 'application/json',
         temperature: 0.1,
-        response_format: { type: 'json_object' },
-      }),
-      signal: AbortSignal.timeout(30000),
+      },
     });
 
-    if (!res.ok) {
-      const body = await res.text().catch(() => '');
-      updateScanStatus(scanId, 'failed');
-      return { success: false, error: `DeepSeek API ${res.status}: ${body.slice(0, 200)}` };
-    }
-
-    const data = (await res.json()) as {
-      choices: Array<{ message: { content: string } }>;
-    };
-
-    const raw = data.choices?.[0]?.message?.content;
+    const raw = aiResponse.text;
     if (!raw) {
       updateScanStatus(scanId, 'failed');
-      return { success: false, error: 'Empty response from DeepSeek' };
+      return { success: false, error: 'Empty response from Gemini' };
     }
 
     const payload = JSON.parse(raw) as { risk_landscape?: unknown[] };
