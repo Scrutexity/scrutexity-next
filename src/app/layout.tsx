@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
-import SiteNav from "@/components/sections/site-nav";
+import { SiteNav } from "@/components/site-nav";
 import Footer from "@/components/sections/footer";
 
 const instrumentSerif = Instrument_Serif({
