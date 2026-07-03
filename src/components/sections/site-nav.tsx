@@ -86,7 +86,7 @@ export default function SiteNav() {
           {/* Brand Logo: shield + wordmark */}
           <a href="/" className="flex items-center gap-2 hover:scale-[1.01] transition-transform duration-300">
             <Image
-              src="/logo-shield.png"
+              src="/logo-icon.png"
               alt=""
               width={24}
               height={24}
@@ -199,7 +199,7 @@ export default function SiteNav() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Image
-                    src="/logo-shield.png"
+                    src="/logo-icon.png"
                     alt=""
                     width={22}
                     height={22}
