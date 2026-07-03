@@ -16,9 +16,10 @@ export async function POST(request: NextRequest) {
       .replace(/(^-|-$)/g, '');
     const publicId = `${companySlug || 'clinic'}-${Math.random().toString(36).substring(2, 8)}`;
 
-    let redirectUrl: string | null = null;
+    // Free tier: redirect to the $497 upsell on auditgpt.ai with the URL prefilled
+    let redirectUrl: string | null = `https://auditgpt.ai/audit?url=${encodeURIComponent(websiteUrl)}`;
 
-    // Determine checkout redirect URL for paid tiers
+    // Paid tiers: redirect to Stripe checkout
     if (selectedTier === 'full' || selectedTier === 'rescan') {
       const isRescan = selectedTier === 'rescan';
       const stripeSecret = process.env.STRIPE_SECRET_KEY;

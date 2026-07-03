@@ -27,15 +27,15 @@ const useCases = [
   },
 ];
 
-const records = [
-  'Public URL inventory',
-  'Observed claim text',
-  'Visible proof map',
-  'Evidence gap notes',
-  'Safer wording options',
-  'Review timestamp',
-  'Record digest reference',
-  'Open remediation log',
+const records: { label: string; category: string }[] = [
+  { label: 'Public URL inventory', category: 'SOURCE' },
+  { label: 'Observed claim text', category: 'SOURCE' },
+  { label: 'Visible proof map', category: 'ANALYSIS' },
+  { label: 'Evidence gap notes', category: 'ANALYSIS' },
+  { label: 'Safer wording options', category: 'REMEDIATION' },
+  { label: 'Open remediation log', category: 'REMEDIATION' },
+  { label: 'Review timestamp', category: 'PROVENANCE' },
+  { label: 'Record digest reference', category: 'PROVENANCE' },
 ];
 
 export default function EnterprisePage() {
@@ -50,10 +50,10 @@ export default function EnterprisePage() {
             Claim records for diligence, underwriting, and portfolio review.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-mist md:text-lg">
-            Scrutexity maintains structured public-claim records for businesses where reputation,
-            marketing language, and AI answer surfaces matter. The record is designed to inform
-            institutional review workflows, not to replace counsel, underwriting judgment, or
-            diligence advisors.
+            Scrutexity's AI Visibility Scanner architecture actively indexes and structures
+            public-claim records for businesses where reputation, marketing language, and AI
+            answer surfaces matter. The record is designed to inform institutional review
+            workflows, not to replace counsel, underwriting judgment, or diligence advisors.
           </p>
         </header>
 
@@ -76,7 +76,7 @@ export default function EnterprisePage() {
               </p>
             </div>
             <h2 className="mt-4 font-display text-4xl leading-tight text-espresso">
-              The bureau value is the record over time.
+              Longitudinal Surveillance &amp; Claim Drift Detection.
             </h2>
             <p className="mt-4 text-sm leading-7 text-mist">
               A one-time scan shows a surface at a moment in time. A Scrutexity archive shows how
@@ -85,10 +85,13 @@ export default function EnterprisePage() {
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {records.map((record) => (
-              <div key={record} className="border border-sand-deep/25 bg-bone p-4">
-                <p className="text-[11px] uppercase tracking-[0.12em] text-bark" style={{ fontFamily: MONO }}>
-                  {record}
+            {records.map((r) => (
+              <div key={r.label} className="border border-sand-deep/25 bg-bone p-4">
+                <p className="text-[9px] uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>
+                  {r.category}
+                </p>
+                <p className="mt-1.5 text-[11px] uppercase tracking-[0.12em] text-bark" style={{ fontFamily: MONO }}>
+                  {r.label}
                 </p>
               </div>
             ))}
@@ -110,6 +113,12 @@ export default function EnterprisePage() {
               Scrutexity records can accompany underwriting memos, diligence folders, portfolio
               monitoring reports, and agency launch records. The artifact shows observed public
               language and visible proof gaps; it does not make legal or regulatory determinations.
+            </p>
+            <p className="mt-4 text-sm leading-7 text-mist">
+              Architecture is read-only by design. Scrutexity indexes public web surfaces — it
+              never modifies them, never connects to practice management systems, and introduces
+              zero integration surface into clinical or underwriting environments. Deployment is
+              a DNS change, not a migration.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/methodology" className="inline-flex items-center gap-2 rounded-full bg-sage-deep px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-cream">
