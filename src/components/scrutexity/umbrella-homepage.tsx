@@ -18,6 +18,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { trackEvent } from '@/utils/analytics';
 import { WebsiteXRay } from '@/components/artifacts';
+import { ProcessFlowChart } from '@/components/process-flow-chart';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const MONO_STACK =
@@ -219,6 +220,25 @@ export default function UmbrellaHomepage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ══ PROCESS FLOW ════════════════════════════════════════════ */}
+      <section className="border-t border-sand-deep/15 bg-bone/50 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-10 text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-sage-deep/20 bg-sage-deep/8 px-4 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-sage-deep">
+              <span className="h-1.5 w-1.5 rounded-full bg-sage-deep" />
+              The Pipeline
+            </span>
+            <h2 className="mt-5 font-display text-3xl tracking-tight text-espresso">
+              From URL to risk landscape
+            </h2>
+            <p className="mt-3 text-sm text-mist max-w-md mx-auto">
+              Every scan runs through the same deterministic pipeline — no shortcuts, no black boxes.
+            </p>
+          </div>
+          <ProcessFlowChart />
         </div>
       </section>
 

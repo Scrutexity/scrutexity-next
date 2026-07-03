@@ -83,15 +83,22 @@ export default function SiteNav() {
               : '0 10px 34px -16px rgba(28,24,20,0.12), inset 0 1px 1px rgba(255,255,255,0.7)'
           }}
         >
-          {/* Brand Wordmark Logo */}
-          <a href="/" className="flex items-center hover:scale-[1.01] transition-transform duration-300">
+          {/* Brand Logo: shield + wordmark */}
+          <a href="/" className="flex items-center gap-2 hover:scale-[1.01] transition-transform duration-300">
             <Image
-              src="/logo-wordmark-black.png"
+              src="/logo-shield.png"
+              alt=""
+              width={24}
+              height={24}
+              className="h-5 w-5 object-contain"
+            />
+            <Image
+              src="/logo-black.png"
               alt="Scrutexity"
-              width={160}
-              height={32}
+              width={120}
+              height={22}
               priority
-              className="h-6.5 w-auto"
+              className="h-5 w-auto"
             />
           </a>
 
@@ -190,13 +197,22 @@ export default function SiteNav() {
             >
               {/* Drawer Header */}
               <div className="flex items-center justify-between">
-                <Image
-                  src="/logo-wordmark-black.png"
-                  alt="Scrutexity"
-                  width={140}
-                  height={30}
-                  className="h-6 w-auto"
-                />
+                <div className="flex items-center gap-2">
+                  <Image
+                    src="/logo-shield.png"
+                    alt=""
+                    width={22}
+                    height={22}
+                    className="h-[18px] w-[18px] object-contain"
+                  />
+                  <Image
+                    src="/logo-black.png"
+                    alt="Scrutexity"
+                    width={110}
+                    height={20}
+                    className="h-[18px] w-auto"
+                  />
+                </div>
                 <button
                   className="p-1.5 text-ink hover:bg-ink/5 rounded-full focus:outline-none"
                   onClick={() => setOpen(false)}
