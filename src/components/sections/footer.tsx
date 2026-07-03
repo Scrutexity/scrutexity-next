@@ -19,42 +19,44 @@ const linkColumns: { title: string; links: FooterLink[] }[] = [
     title: 'Company',
     links: [
       { label: 'Home',      href: '/' },
-      { label: 'Services',  href: '/#services' },
+      { label: 'Methodology', href: '/methodology' },
       { label: 'Partners',  href: '/partners' },
       { label: 'Proof',     href: '/proof' },
+      { label: 'Enterprise', href: '/enterprise' },
       { label: 'Verify',    href: '/verify' },
-      { label: 'Pricing',   href: '/pricing' },
     ],
   },
   {
-    title: 'Services',
+    title: 'Instrument',
     links: [
-      { label: 'AuditGPT',           href: '/auditgpt' },
-      { label: 'Enforcement Tracker', href: '/tracker' },
+      { label: 'Run AuditGPT',       href: 'https://auditgpt.ai/snapshot?source=scrutexity-footer' },
+      { label: 'Sample Report',      href: '/sample-report' },
       { label: 'Pricing',            href: '/pricing' },
+      { label: 'Enforcement Tracker', href: '/tracker' },
     ],
   },
   {
-    title: 'Artifacts',
+    title: 'Proof Library',
     links: [
-      { label: 'Sample Report',   href: '/sample-report' },
-      { label: 'Proof Designer',  href: '/proof#proof-designer' },
-      { label: 'Badge Standards', href: '/verify' },
-      { label: 'Claim Receipts',  href: '/proof' },
+      { label: 'Proof Home',           href: '/proof' },
+      { label: 'Sealed Audit Trail',   href: '/proof/sealed-audit-trail' },
+      { label: 'Verification',         href: '/verify' },
+      { label: 'Claim Receipts',       href: '/proof' },
     ],
   },
   {
     title: 'Discipline',
     links: [
-      { label: 'Methodology',     href: '/sample-report#methodology' },
-      { label: 'Claim Standards', href: '/verify' },
+      { label: 'CRT Methodology', href: '/methodology' },
+      { label: 'Claim Standards', href: '/methodology' },
+      { label: 'Insurers & Acquirers', href: '/enterprise' },
       { label: 'Disclaimer',      href: '#disclaimer' },
     ],
   },
 ];
 
 const FOOTER_DISCLAIMER =
-  'Scrutexity compares public marketing language against enforcement patterns and AI-generated claim distortions. It does not provide legal, clinical, regulatory, or medical advice.';
+  'Scrutexity reviews public claim language, visible proof, and AI answer risk. It does not provide legal, medical, regulatory, financial, or clinical advice.';
 
 export default function Footer() {
   const [legalOpen, setLegalOpen] = useState(false);
@@ -76,7 +78,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-xs leading-5 text-cream/70">
-              Claim intelligence infrastructure for businesses where trust, public claims, and AI answers matter.
+              Claim-risk bureau behind AuditGPT. Methodology, proof library, and review records for public trust.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="sage-pill border-cream/15 text-[10px] text-cream/70">

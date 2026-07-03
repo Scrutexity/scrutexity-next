@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Activity,
   ArrowRight,
   ShieldCheck,
   FileText,
@@ -12,7 +11,6 @@ import {
   CheckCircle2,
   AlertTriangle,
   Search,
-  Sparkles,
   RadioTower,
   X,
 } from 'lucide-react';
@@ -20,8 +18,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { trackEvent } from '@/utils/analytics';
 import { WebsiteXRay } from '@/components/artifacts';
-import { OperatingSystemDiagram } from './operating-system-diagram';
-import { ENFORCEMENT_TRACKER, ENFORCEMENT_TRACKER_LAST_REVIEWED } from '@/data/enforcement-tracker';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const MONO_STACK =
@@ -29,13 +25,6 @@ const MONO_STACK =
 
 /* ── Data ─────────────────────────────────────────────────── */
 
-
-const VERTICALS = [
-  { name: 'Med Spas', copy: 'Claim-safe treatment content for aggressive aesthetic and outcome language.' },
-  { name: 'Medical Weight Loss', copy: 'GLP-1, compounded medication, testimonial, and outcome-claim review.' },
-  { name: 'Urgent Care', copy: 'Accurate service messaging and public claim support.' },
-  { name: 'Wellness & Spa', copy: 'Content and proof mapping that does not overpromise results.' },
-];
 
 const HERO_MODES = [
   {
@@ -57,35 +46,18 @@ const HERO_MODES = [
   },
 ] as const;
 
-type HeroModeId = (typeof HERO_MODES)[number]['id'];
-
 type ArtifactPreview = {
   title: string;
   meta: string;
   status: string;
 };
 
-const BEFORE_AFTER = [
-  {
-    label: 'Before Scrutexity',
-    tone: 'before',
-    points: ['Claims scattered across pages', 'AI answers describe you inconsistently', 'Proof is buried in folders', 'Agent behavior is reviewed after launch'],
-  },
-  {
-    label: 'After Scrutexity',
-    tone: 'after',
-    points: ['Claims mapped to evidence', 'AI visibility monitored by surface', 'Proof artifacts ready for buyers', 'Agent transcripts tied to guardrail fixes'],
-  },
-];
-
-
 /* ── Component ────────────────────────────────────────────── */
 
 
 export default function UmbrellaHomepage() {
-  const [activeMode, setActiveMode] = useState<HeroModeId>('claim-audit');
   const [activeArtifact, setActiveArtifact] = useState<ArtifactPreview | null>(null);
-  const heroMode = HERO_MODES.find((mode) => mode.id === activeMode) ?? HERO_MODES[0];
+  const heroMode = HERO_MODES[0];
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -95,14 +67,14 @@ export default function UmbrellaHomepage() {
         name: 'Scrutexity',
         url: 'https://www.scrutexity.com',
         description:
-          'Scrutexity tracks enforcement patterns in claim-sensitive markets. AuditGPT reviews public marketing language against cited claim patterns and produces safer rewrites.',
+          'Scrutexity is the claim-risk bureau behind AuditGPT, maintaining public claim records, review receipts, and verification artifacts for high-trust businesses.',
       },
       {
         '@type': 'WebSite',
         name: 'Scrutexity',
         url: 'https://www.scrutexity.com',
         description:
-          'Enforcement intelligence for public claims in claim-sensitive markets.',
+          'Claim intelligence infrastructure for public trust.',
         publisher: { '@type': 'Organization', name: 'Scrutexity' },
       },
     ],
@@ -117,16 +89,10 @@ export default function UmbrellaHomepage() {
       <EvidenceSpine />
 
       {/* ══ HERO ══════════════════════════════════════════════════════ */}
-      <section className="relative px-5 pt-28 pb-16 md:px-6 md:pt-40 md:pb-28 overflow-hidden bg-cream-deep">
+      <section className="relative px-5 pt-28 pb-16 md:px-6 md:pt-40 md:pb-28 overflow-hidden bg-cream">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_50%_0%,rgba(94,122,90,0.07)_0%,transparent_70%)]" />
-          <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(92,70,51,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(92,70,51,0.08)_1px,transparent_1px)] [background-size:42px_42px]" />
-          <motion.div
-            aria-hidden
-            className="absolute left-1/2 top-24 h-px w-[70vw] -translate-x-1/2 bg-gradient-to-r from-transparent via-sage-deep/35 to-transparent"
-            animate={{ opacity: [0.2, 0.8, 0.2], scaleX: [0.8, 1, 0.8] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
+          <div className="absolute inset-x-0 top-0 h-px bg-sand-deep/30" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-sand-deep/20" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -143,7 +109,7 @@ export default function UmbrellaHomepage() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-sage-deep opacity-40 animate-ping" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-sage-deep" />
                 </span>
-                Scrutexity · Claim Intelligence
+                Scrutexity · Claim-Risk Bureau
               </motion.div>
 
               <motion.h1
@@ -153,7 +119,7 @@ export default function UmbrellaHomepage() {
                 className="mt-5 font-display text-4xl md:text-6xl lg:text-[4.65rem] text-espresso tracking-[-0.03em] leading-[1.05] max-w-4xl flex flex-wrap items-center gap-x-2"
               >
                 <span>Claim intelligence</span>
-                <span className="italic text-sage-deep">for the AI-generated internet.</span>
+                <span className="italic text-sage-deep">for public trust.</span>
               </motion.h1>
 
               <motion.p
@@ -162,9 +128,9 @@ export default function UmbrellaHomepage() {
                 transition={{ duration: 0.9, ease: EASE, delay: 0.18 }}
                 className="mt-6 text-base md:text-lg text-mist leading-[1.62] max-w-2xl"
               >
-                Scrutexity tracks enforcement patterns, public claims, and AI answer distortions
-                for high-trust businesses. AuditGPT turns that intelligence into dated review
-                receipts with safer rewrites.
+                Scrutexity helps high-trust businesses review public claims, visible proof,
+                and AI answer risk so they can see what is supported, what is overstated,
+                and what needs safer wording.
               </motion.p>
 
               <motion.div
@@ -173,7 +139,7 @@ export default function UmbrellaHomepage() {
                 transition={{ duration: 0.9, ease: EASE, delay: 0.22 }}
                 className="mt-3.5 flex flex-wrap gap-1.5"
               >
-                {['Enforcement tracking', 'AI distortion detection', 'Dated review records'].map((label) => (
+                {['Public claim records', 'Evidence mapping', 'Dated review receipts'].map((label) => (
                   <span
                     key={label}
                     className="inline-flex items-center gap-1 rounded-full border border-sand-deep/30 bg-bone/60 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-sage-deep/90"
@@ -182,7 +148,10 @@ export default function UmbrellaHomepage() {
                     <ShieldCheck size={10} />
                     {label}
                   </span>
-                ))}\n              </motion.div>\n\n              <motion.div
+                ))}
+              </motion.div>
+
+              <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: EASE, delay: 0.26 }}
@@ -192,7 +161,7 @@ export default function UmbrellaHomepage() {
                   href="https://auditgpt.ai/snapshot?source=scrutexity-home"
                   onClick={() =>
                     trackEvent('cta_click', {
-                      cta_label: 'Request a Claim Exposure Audit',
+                      cta_label: 'Run AuditGPT Scan',
                       destination: 'https://auditgpt.ai/snapshot?source=scrutexity-home',
                       section: 'hero',
                     })
@@ -200,21 +169,21 @@ export default function UmbrellaHomepage() {
                   className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
                   style={{ boxShadow: '0 18px 40px -20px rgba(94,122,90,0.8)' }}
                 >
-                  Request a Claim Exposure Audit
+                  Run AuditGPT Scan
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <Link
-                  href="/tracker"
+                  href="/methodology"
                   onClick={() =>
                     trackEvent('cta_click', {
-                      cta_label: 'View the Enforcement Tracker',
-                      destination: '/tracker',
+                      cta_label: 'View Methodology',
+                      destination: '/methodology',
                       section: 'hero',
                     })
                   }
                   className="group px-7 py-4 bg-bone/80 hover:bg-cream border border-sand-deep/45 text-espresso font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
                 >
-                  View the Enforcement Tracker
+                  View Methodology
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </motion.div>
@@ -236,8 +205,9 @@ export default function UmbrellaHomepage() {
           <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-between">
             {[
               { label: 'Public sources only', Icon: Eye },
-              { label: 'No legal or clinical advice', Icon: RefreshCw },
-              { label: 'Dated review record', Icon: FileText },
+              { label: 'No legal, medical, or regulatory advice', Icon: RefreshCw },
+              { label: 'Dated review records', Icon: FileText },
+              { label: 'Validation slot reserved for named partners', Icon: ShieldCheck },
             ].map(({ label, Icon }) => (
               <li
                 key={label}
@@ -266,20 +236,20 @@ export default function UmbrellaHomepage() {
                 className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
                 style={{ fontFamily: MONO_STACK }}
               >
-                Parent Company / Product
+                Institution / Instrument
               </span>
               <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
-                Scrutexity tracks the patterns.{' '}
-                <span className="italic text-sage-deep">AuditGPT reviews your language against them.</span>
+                AuditGPT is the scanner.{' '}
+                <span className="italic text-sage-deep">Scrutexity is the bureau behind it.</span>
               </h2>
               <p className="mt-5 text-base text-mist leading-[1.6]">
-                Scrutexity is not an agency, and it is not a generic AI audit tool. It maintains a
-                source-linked record of the claim patterns regulators are already citing in
-                claim-sensitive markets.
+                AuditGPT gives operators a fast public-claims scan. Scrutexity maintains the deeper
+                institutional layer: methodology, review records, validation artifacts, and the
+                evidence library behind the work.
               </p>
               <p className="mt-4 text-sm text-mist/80 leading-[1.6]">
-                AuditGPT is the response product. It compares your public marketing language against
-                the patterns Scrutexity tracks, and returns safer rewrites with a dated review record.
+                This split keeps the tool simple and the institution durable. The scanner earns the
+                first result; Scrutexity explains how claims are reviewed, recorded, and verified.
               </p>
             </div>
 
@@ -296,8 +266,8 @@ export default function UmbrellaHomepage() {
                   <div>
                     <p className="font-display text-lg text-espresso mb-1">Scrutexity</p>
                     <p className="text-sm text-mist leading-[1.55]">
-                      Enforcement intelligence. Tracks public claim patterns regulators are citing,
-                      source-linked, updated as new actions are published.
+                      The claim-risk bureau. Maintains methodology, public proof review standards,
+                      validation artifacts, and longitudinal claim records.
                     </p>
                   </div>
                 </div>
@@ -306,8 +276,8 @@ export default function UmbrellaHomepage() {
                   <div>
                     <p className="font-display text-lg text-espresso mb-1">AuditGPT</p>
                     <p className="text-sm text-mist leading-[1.55]">
-                      The response product. Reviews your public page against the patterns Scrutexity
-                      tracks and returns safer rewrites with a dated record.
+                      The instrument. A single-purpose scanner and report workflow for public
+                      websites, designed to produce a first-pass review and route deeper work.
                     </p>
                   </div>
                 </div>
@@ -317,383 +287,195 @@ export default function UmbrellaHomepage() {
         </div>
       </section>
 
-      {/* ══ THE OPERATING SYSTEM (signature diagram) ═════════════════ */}
-      <section id="system" className="relative px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-bone">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl mb-12">
-            <span
-              className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
-              style={{ fontFamily: MONO_STACK }}
-            >
-              The Infrastructure
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
-              Four moves.{' '}
-              <span className="italic text-sage-deep">One operating layer.</span>
-            </h2>
-            <p className="mt-4 text-base text-mist leading-[1.6] max-w-2xl">
-              Find what is unsupported. Fix it with governed content. Monitor how AI describes you.
-              Prove it with a claim evidence trail. Everything beneath these four moves is implementation.
-            </p>
-          </div>
-
-          {/* Simplified mental model — the thing a first-time visitor remembers */}
-          <div className="mb-14 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {[
-              { n: '01', word: 'Find', sub: 'what is unsupported' },
-              { n: '02', word: 'Fix', sub: 'with governed content' },
-              { n: '03', word: 'Monitor', sub: 'how AI describes you' },
-              { n: '04', word: 'Prove', sub: 'with claim evidence' },
-            ].map((step, i, arr) => (
-              <div key={step.word} className="flex items-center gap-3 sm:gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: EASE, delay: i * 0.1 }}
-                  className="flex min-w-[150px] flex-col items-center rounded-2xl border border-sand-deep/35 bg-bone px-6 py-4 text-center shadow-[0_1px_2px_rgba(28,24,20,0.04)]"
-                >
-                  <span className="text-[10px] tracking-[0.22em] text-sage-deep" style={{ fontFamily: MONO_STACK }}>
-                    {step.n}
-                  </span>
-                  <span className="mt-1 font-display text-2xl text-espresso">{step.word}</span>
-                  <span className="mt-1 text-[11px] text-mist">{step.sub}</span>
-                </motion.div>
-                {i < arr.length - 1 && (
-                  <ArrowRight size={18} className="shrink-0 text-sage-deep/45" />
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* The canonical Scrutexity Operating System diagram */}
-          <div className="relative overflow-hidden rounded-3xl border border-sand-deep/30 bg-gradient-to-b from-cream to-bone p-6 md:p-12 shadow-[0_30px_80px_-55px_rgba(28,24,20,0.45)]">
-            <div className="absolute inset-0 pointer-events-none opacity-[0.5] [background-image:linear-gradient(rgba(92,70,51,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(92,70,51,0.05)_1px,transparent_1px)] [background-size:38px_38px]" />
-            <motion.div
-              aria-hidden
-              className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-sage/10 to-transparent blur-2xl"
-              animate={{ y: ['-20%', '320%'] }}
-              transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
-            />
-            <OperatingSystemDiagram className="relative z-10 mx-auto max-w-[640px]" />
-          </div>
-        </div>
-      </section>
-
-      {/* ══ BEFORE / AFTER ARTIFACTS ═════════════════════════════════ */}
-      <section className="relative overflow-hidden px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-espresso text-cream" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
-        <div className="absolute inset-0 pointer-events-none opacity-25 [background-image:linear-gradient(rgba(248,243,234,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(248,243,234,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
-        <div className="absolute -top-24 left-1/2 h-64 w-[70vw] -translate-x-1/2 rounded-full bg-sage-deep/20 blur-3xl" />
-        <div className="relative max-w-6xl mx-auto">
-          <div className="max-w-3xl mb-14">
-            <span
-              className="text-[11px] uppercase tracking-[0.18em] text-sage-soft block mb-5"
-              style={{ fontFamily: MONO_STACK }}
-            >
-              Artifact Transformation
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl text-cream tracking-[-0.02em] leading-[1.1]">
-              From scattered claims to{' '}
-              <span className="italic text-sage-soft">operating proof.</span>
-            </h2>
-            <p className="mt-4 text-base text-cream/68 leading-[1.6] max-w-2xl">
-              Scans, receipts, briefs, maps, and workflows make the infrastructure visible.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
-            {BEFORE_AFTER.map((column, index) => (
-              <motion.div
-                key={column.label}
-                initial={{ opacity: 0, x: index === 0 ? -18 : 18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: EASE, delay: index * 0.1 }}
-                className={`rounded-3xl border p-6 md:p-7 ${
-                  column.tone === 'before'
-                    ? 'border-clay/25 bg-cream/5'
-                    : 'border-sage-soft/30 bg-sage-soft/10'
-                }`}
-              >
-                <div className="mb-6 flex items-center justify-between gap-4">
-                  <h3 className="font-display text-2xl text-cream">{column.label}</h3>
-                  <span
-                    className={`rounded-full border px-3 py-1 text-[9px] uppercase tracking-[0.14em] ${
-                      column.tone === 'before'
-                        ? 'border-clay/30 text-clay'
-                        : 'border-sage-soft/35 text-sage-soft'
-                    }`}
-                    style={{ fontFamily: MONO_STACK }}
-                  >
-                    {column.tone === 'before' ? 'Unmapped' : 'Governed'}
-                  </span>
-                </div>
-                <div className="space-y-3">
-                  {column.points.map((point, i) => (
-                    <motion.div
-                      key={point}
-                      initial={{ opacity: 0, y: 8 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.45, ease: EASE, delay: 0.15 + i * 0.08 }}
-                      className="flex items-start gap-3 rounded-2xl border border-cream/10 bg-cream/[0.035] p-4"
-                    >
-                      <span
-                        className={`mt-1 h-2 w-2 rounded-full ${
-                          column.tone === 'before' ? 'bg-clay' : 'bg-sage-soft'
-                        }`}
-                      />
-                      <p className="text-sm leading-relaxed text-cream/76">{point}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-
-            <div className="hidden items-center justify-center lg:flex">
-              <motion.div
-                className="relative flex h-full min-h-[280px] w-16 items-center justify-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: EASE, delay: 0.18 }}
-              >
-                <div className="absolute inset-y-4 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-sage-soft/40 to-transparent" />
-                <motion.div
-                  className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-sage-soft/30 bg-sage-soft/15 text-sage-soft"
-                  animate={{ y: [-6, 6, -6] }}
-                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <Sparkles size={18} />
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ FOUNDER'S THESIS ════════════════════════════════════ */}
-      <section className="px-6 py-24 md:py-32 bg-cream-deep border-t border-sand-deep/15">
+      {/* ══ INSTITUTIONAL USE CASE ═══════════════════════════════════ */}
+      <section className="relative px-6 py-20 bg-cream border-t border-sand-deep/15">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-start">
-            <div className="w-16 h-16 rounded-full bg-espresso flex items-center justify-center text-cream font-display text-2xl shrink-0 mx-auto lg:mx-0">
-              N
-            </div>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
-              <div className="inline-flex items-center gap-2 mb-4" style={{ fontFamily: MONO_STACK }}>
-                <span className="text-[11px] uppercase tracking-[0.18em] text-sage-deep font-semibold">Founder&apos;s Thesis</span>
-              </div>
-              <blockquote className="font-display text-2xl md:text-3xl text-espresso leading-[1.25] tracking-[-0.01em]">
-                &ldquo;Generative AI fundamentally changed how businesses are described, discovered, and trusted. Yet most organizations still manage their public claims with documents, marketing teams, and disconnected workflows. Scrutexity was built as the operating layer that connects every public claim to evidence, every published statement to governance, and every customer interaction to verifiable proof. Trust should not depend on memory&mdash;it should be infrastructure.&rdquo;
-              </blockquote>
-              <div className="mt-6 flex items-center gap-4">
-                <div className="w-px h-10 bg-sand-deep/40" />
-                <div>
-                  <p className="font-sans text-sm font-semibold text-espresso">Nick Altstein</p>
-                  <p className="text-xs text-mist" style={{ fontFamily: MONO_STACK }}>Systems Architect · Scrutexity</p>
-                </div>
-              </div>
-              <div className="mt-6">
-                <Link href="/thesis" className="group inline-flex items-center gap-2 text-sm font-sans font-semibold text-sage-deep hover:text-espresso transition-colors duration-300">
-                  Read the full thesis
-                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-                </Link>
-              </div>
-
-              {/* Pull quotes — the phrases people remember */}
-              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                {['Trust should not depend on memory.', 'Evidence beats marketing.', 'Claims become infrastructure.'].map((q, i) => (
-                  <motion.blockquote
-                    key={q}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: EASE, delay: i * 0.12 }}
-                    className="rounded-2xl border border-sand-deep/30 bg-bone/70 p-5"
-                  >
-                    <span className="block font-display text-lg text-espresso leading-snug">&ldquo;{q}&rdquo;</span>
-                  </motion.blockquote>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ WHY THIS MATTERS NOW ═══════════════════════════════════════ */}
-      <section className="px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-cream" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
-        <div className="max-w-5xl mx-auto">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5" style={{ fontFamily: MONO_STACK }}>
-            Why This Matters Now
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1] max-w-3xl">
-            FDA has issued multiple waves of GLP-1 marketing warning letters since 2025.
-          </h2>
-          <p className="mt-5 text-base text-mist leading-[1.6] max-w-2xl">
-            The recurring issue: public claims that may imply FDA approval, clinical proof,
-            generic/equivalent status, or unsupported safety or efficacy — starting in September 2025,
-            with further waves in March 2026 and mid-June 2026.
-          </p>
-          <p className="mt-3 text-xs text-mist/60 font-mono">Last reviewed: {ENFORCEMENT_TRACKER_LAST_REVIEWED}.</p>
-
-          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div>
-              <h3 className="font-display text-2xl text-espresso mb-4">What Scrutexity tracks</h3>
-              <div className="overflow-x-auto rounded-2xl border border-sand-deep/30 bg-bone">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="text-left border-b border-sand-deep/25 text-[9px] uppercase tracking-[0.1em] text-mist/70 font-mono">
-                      <th className="py-3 px-4">Company</th>
-                      <th className="py-3 px-4">Date</th>
-                      <th className="py-3 px-4">Claim pattern</th>
-                      <th className="py-3 px-4">Source</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[...ENFORCEMENT_TRACKER]
-                      .filter((e) => e.sourceUrl !== 'TODO_SOURCE')
-                      .sort((a, b) => b.date.localeCompare(a.date))
-                      .slice(0, 6)
-                      .map((e) => (
-                      <tr key={e.company} className="border-b border-sand-deep/15 align-top">
-                        <td className="py-3 px-4 font-semibold text-espresso">{e.company}</td>
-                        <td className="py-3 px-4 text-mist whitespace-nowrap">{e.date}</td>
-                        <td className="py-3 px-4 text-mist">{e.pattern}</td>
-                        <td className="py-3 px-4">
-                          <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-sage-deep underline underline-offset-2">FDA</a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <Link href="/tracker" className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.12em] text-sage-deep hover:text-espresso" style={{ fontFamily: MONO_STACK }}>
-                View the full Enforcement Tracker <ArrowRight size={12} />
-              </Link>
-            </div>
-
-            <div>
-              <h3 className="font-display text-2xl text-espresso mb-4">What AuditGPT delivers</h3>
-              <ul className="space-y-3">
-                {[
-                  'Review of one public GLP-1 / health-claim landing page',
-                  'Comparison against current FDA-cited claim patterns',
-                  'Flagged phrases with page context',
-                  'Safer replacement language',
-                  'Dated review record',
-                  '72-hour turnaround',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-bark">
-                    <CheckCircle2 size={14} className="text-sage-deep mt-0.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Offer card */}
-          <div className="mt-16 rounded-2xl border border-espresso/20 bg-espresso text-cream p-8 md:p-10">
-            <span className="text-[10px] uppercase tracking-[0.18em] text-sage-soft block mb-3" style={{ fontFamily: MONO_STACK }}>Offer</span>
-            <h3 className="font-display text-3xl md:text-4xl mb-2">Claim Exposure Audit</h3>
-            <p className="text-cream/80 mb-1">$497 — one public page, every claim on it. Delivered in 72 hours. Credits toward Guardian.</p>
-            <ul className="mt-6 space-y-2 mb-8">
-              {[
-                'Every claim on the page extracted and scored',
-                'Comparison against current FDA-cited claim patterns',
-                'Flagged phrases with page context',
-                'Safer replacement language per claim',
-                'AI Distortion Snapshot across major AI surfaces',
-                'Dated review record',
-              ].map((b) => (
-                <li key={b} className="flex items-start gap-2.5 text-sm text-cream/85">
-                  <CheckCircle2 size={14} className="text-sage-soft mt-0.5 shrink-0" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <p className="text-xs text-cream/60 mb-8 max-w-xl leading-relaxed">
-              Scrutexity does not provide legal, clinical, regulatory, ranking, or revenue advice.
-              Reviews are based on public claim-language patterns and source-linked enforcement materials.
-            </p>
-            <Link
-              href="https://auditgpt.ai/snapshot?source=scrutexity-offer-card"
-              className="group inline-flex items-center gap-2 px-7 py-4 bg-sage-deep hover:bg-cream hover:text-espresso text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm"
-            >
-              Request a Claim Exposure Audit
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-
-          {/* Data feed teaser */}
-          <div className="mt-10 rounded-2xl border border-sand-deep/30 bg-bone p-8">
-            <h3 className="font-display text-xl text-espresso mb-2">Enforcement Data Feed</h3>
-            <p className="text-sm text-mist leading-relaxed max-w-xl mb-4">
-              Scrutexity is building a structured feed of enforcement letters and claim patterns for
-              regulatory teams, agencies, compliance consultants, and health-market operators.
-              Spreadsheet access available for early partners.
-            </p>
-            <a
-              href="mailto:nick@scrutexity.com?subject=Enforcement%20Data%20Feed%20Access"
-              className="text-sm font-semibold text-sage-deep hover:text-espresso underline underline-offset-2"
-            >
-              Ask about feed access
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ MEDICAL & WELLNESS VERTICAL ═══════════════════════════════ */}
-      <section className="px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-cream-deep" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
-        <div className="max-w-5xl mx-auto">
-          <div className="max-w-3xl mb-16">
-            <span
-              className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
-              style={{ fontFamily: MONO_STACK }}
-            >
-              Primary Use Case Vertical
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
-              Built for operators where{' '}
-              <span className="italic text-sage-deep">claim language matters.</span>
-            </h2>
-            <p className="mt-4 text-base text-mist leading-[1.6] max-w-2xl">
-              Medical, wellness, and high-trust local businesses face the exact Scrutexity problem:
-              sensitive claims, aggressive outcome language, reputation risk, and AI answer drift.
-              Scrutexity Infrastructure was built for them.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {VERTICALS.map((v, i) => (
-              <motion.div
-                key={v.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, ease: EASE, delay: i * 0.07 }}
-                className="rounded-xl border border-sand-deep/30 bg-bone p-6"
+              <span
+                className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
+                style={{ fontFamily: MONO_STACK }}
               >
-                <span
-                  className="font-mono text-[9px] uppercase tracking-[0.14em] text-sage-deep block mb-3"
+                For Insurers &amp; Acquirers
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
+                Dated claim records for underwriting, diligence, and portfolio surveillance.
+              </h2>
+            </div>
+            <div className="space-y-5 text-sm leading-[1.75] text-mist">
+              <p>
+                Scrutexity maintains a longitudinal archive of public claim language, visible proof,
+                review receipts, and claim-change history. These records are designed to help teams
+                understand what was claimed, what support was visible, and what changed over time.
+              </p>
+              <p>
+                For insurers, lenders, acquirers, and portfolio operators, the value is not a promise
+                of legal status. It is a consistent record format that can sit beside underwriting,
+                diligence, and operating review materials.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  href="/enterprise"
+                  className="inline-flex items-center gap-2 rounded-full border border-sand-deep/45 bg-bone px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-espresso hover:bg-cream"
                   style={{ fontFamily: MONO_STACK }}
                 >
-                  0{i + 1} · vertical
-                </span>
-                <h3 className="font-display text-xl text-espresso mb-3">{v.name}</h3>
-                <p className="text-xs text-mist leading-[1.65]">{v.copy}</p>
-              </motion.div>
-            ))}
+                  View enterprise brief
+                  <ArrowRight size={13} />
+                </Link>
+                <Link
+                  href="/proof"
+                  className="inline-flex items-center gap-2 rounded-full border border-sand-deep/45 bg-bone px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-espresso hover:bg-cream"
+                  style={{ fontFamily: MONO_STACK }}
+                >
+                  View proof library
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ PUBLIC RECORD SYSTEM ═════════════════════════════════════ */}
+      <section className="px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-bone" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <span
+                className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
+                style={{ fontFamily: MONO_STACK }}
+              >
+                Public Record System
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
+                The scanner creates a finding.{' '}
+                <span className="italic text-sage-deep">The bureau keeps the record.</span>
+              </h2>
+              <p className="mt-5 text-base text-mist leading-[1.65]">
+                Scrutexity is not another dashboard for marketers. It is the institutional layer
+                behind AuditGPT: a method, a proof library, and a dated record format for public
+                claims that may be repeated by buyers, partners, investors, or AI answer engines.
+              </p>
+            </div>
+
+            <div className="divide-y divide-sand-deep/20 border-y border-sand-deep/20">
+              {[
+                {
+                  title: 'Methodology',
+                  body: 'How public claims are captured, separated, reviewed against visible support, and rewritten closer to evidence.',
+                  href: '/methodology',
+                },
+                {
+                  title: 'Proof Library',
+                  body: 'Where validation reports, anonymized receipts, digest references, and verification links live when they exist.',
+                  href: '/proof',
+                },
+                {
+                  title: 'Institutional Brief',
+                  body: 'How dated claim records can sit beside diligence, underwriting, portfolio review, and agency launch materials.',
+                  href: '/enterprise',
+                },
+              ].map((item, index) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="group grid gap-4 py-6 md:grid-cols-[72px_1fr_auto] md:items-start"
+                >
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep"
+                    style={{ fontFamily: MONO_STACK }}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>
+                    <span className="block font-display text-2xl text-espresso">{item.title}</span>
+                    <span className="mt-2 block text-sm leading-7 text-mist">{item.body}</span>
+                  </span>
+                  <ArrowRight size={17} className="text-sage-deep transition-transform group-hover:translate-x-1" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ WHAT GETS RECORDED ═══════════════════════════════════════ */}
+      <section className="px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-cream" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <span
+              className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
+              style={{ fontFamily: MONO_STACK }}
+            >
+              Claim Record Transparency
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
+              A review record should be boring, dated, and checkable.
+            </h2>
+            <p className="mt-5 text-base text-mist leading-[1.65]">
+              The Scrutexity standard is intentionally plain. Each artifact should show the public
+              URL, the observed claim, the visible support, the proof gap, a safer wording option,
+              the review timestamp, and a digest reference when available.
+            </p>
           </div>
 
-          <div className="mt-12 text-center">
-            <Link
-              href="/medical-wellness"
-              className="group px-6 py-3 bg-espresso hover:bg-sage-deep text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
-            >
-              Explore Medical &amp; Wellness
-              <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
+          <div className="mt-12 overflow-x-auto border border-sand-deep/25 bg-bone">
+            <table className="w-full min-w-[760px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-sand-deep/25 text-[10px] uppercase tracking-[0.14em] text-mist" style={{ fontFamily: MONO_STACK }}>
+                  <th className="px-5 py-4 font-semibold">Record field</th>
+                  <th className="px-5 py-4 font-semibold">Why it matters</th>
+                  <th className="px-5 py-4 font-semibold">Artifact</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sand-deep/15">
+                {[
+                  ['Observed claim', 'The exact public language under review.', 'Claim receipt'],
+                  ['Visible support', 'The proof a visitor can actually see or reach from the page.', 'Evidence map'],
+                  ['Proof gap', 'The missing or weak support that creates review risk.', 'Review note'],
+                  ['Safer wording', 'A lower-exposure alternative closer to visible evidence.', 'Rewrite exhibit'],
+                  ['Record digest', 'A reference for later artifact verification where available.', 'Public digest'],
+                ].map(([field, why, artifact]) => (
+                  <tr key={field}>
+                    <td className="px-5 py-4 font-display text-lg text-espresso">{field}</td>
+                    <td className="px-5 py-4 text-mist">{why}</td>
+                    <td className="px-5 py-4 text-sage-deep">{artifact}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ══ BOUNDARY STATEMENT ═══════════════════════════════════════ */}
+      <section className="px-6 py-20 border-t border-sand-deep/15 bg-cream-deep" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 520px' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <span
+                className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
+                style={{ fontFamily: MONO_STACK }}
+              >
+                What Scrutexity Is
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
+                A record layer for public claims.
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                'Reviews public pages and public claim language.',
+                'Maps claims to visible support and proof gaps.',
+                'Maintains dated receipts and verification references.',
+                'Does not issue legal, medical, regulatory, financial, clinical, ranking, or revenue opinions.',
+              ].map((item) => (
+                <div key={item} className="border border-sand-deep/25 bg-bone p-5 text-sm leading-7 text-mist">
+                  <CheckCircle2 className="mb-4 h-4 w-4 text-sage-deep" />
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -708,12 +490,12 @@ export default function UmbrellaHomepage() {
             Send Your Page
           </span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] text-espresso tracking-[-0.02em] leading-[1.05]">
-            Send your page.{' '}
-            <span className="italic text-sage-deep">Get the review in 72 hours.</span>
+            Run the scanner.{' '}
+            <span className="italic text-sage-deep">Keep the record.</span>
           </h2>
           <p className="mt-5 text-base text-mist leading-[1.6] max-w-xl mx-auto">
-            AuditGPT compares your public GLP-1 or health-claim page against the patterns Scrutexity
-            tracks, and returns safer rewrites with a dated review record.
+            AuditGPT scans a public website and returns the first-pass finding. Scrutexity keeps
+            the methodology, proof library, and review-record infrastructure behind the artifact.
           </p>
 
           {/* What's generated — durable artifacts, not dashboard views */}
@@ -741,7 +523,7 @@ export default function UmbrellaHomepage() {
               href="https://auditgpt.ai/snapshot?source=scrutexity-home"
               onClick={() =>
                 trackEvent('cta_click', {
-                  cta_label: 'Request a Claim Exposure Audit — Bottom',
+                  cta_label: 'Run AuditGPT Scan — Bottom',
                   destination: 'https://auditgpt.ai/snapshot?source=scrutexity-home',
                   section: 'bottom-cta',
                 })
@@ -749,21 +531,21 @@ export default function UmbrellaHomepage() {
               className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
               style={{ boxShadow: '0 8px 24px rgba(28,24,20,0.10)' }}
             >
-              Request a Claim Exposure Audit
+              Run AuditGPT Scan
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              href="/tracker"
+              href="/methodology"
               onClick={() =>
                 trackEvent('cta_click', {
-                  cta_label: 'View the Enforcement Tracker — Bottom',
-                  destination: '/tracker',
+                  cta_label: 'View Methodology — Bottom',
+                  destination: '/methodology',
                   section: 'bottom-cta',
                 })
               }
               className="group px-7 py-4 bg-espresso hover:bg-sage-deep text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
             >
-              View the Enforcement Tracker
+              View Methodology
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -789,47 +571,6 @@ function EvidenceSpine() {
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>
-  );
-}
-
-function HeroModeTabs({
-  activeMode,
-  onChange,
-}: {
-  activeMode: HeroModeId;
-  onChange: (mode: HeroModeId) => void;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: EASE, delay: 0.22 }}
-      className="mt-7 inline-flex max-w-full flex-wrap gap-1.5 rounded-2xl border border-sand-deep/35 bg-bone/80 p-1.5 backdrop-blur"
-    >
-      {HERO_MODES.map((mode) => {
-        const active = mode.id === activeMode;
-        return (
-          <button
-            key={mode.id}
-            type="button"
-            onClick={() => onChange(mode.id)}
-            className={`relative rounded-xl px-3.5 py-2 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors sm:px-4 ${
-              active ? 'text-cream' : 'text-mist hover:text-espresso'
-            }`}
-            style={{ fontFamily: MONO_STACK }}
-          >
-            {active && (
-              <motion.span
-                layoutId="hero-mode-pill"
-                className="absolute inset-0 rounded-xl bg-sage-deep"
-                transition={{ duration: 0.35, ease: EASE }}
-              />
-            )}
-            <span className="relative z-10">{mode.label}</span>
-          </button>
-        );
-      })}
-    </motion.div>
   );
 }
 
@@ -1039,38 +780,6 @@ function HeroArtifactCockpit({
         </div>
       </div>
     </motion.div>
-  );
-}
-
-function SystemSignalStrip({ activeMode }: { activeMode: string }) {
-  return (
-    <div className="relative overflow-hidden rounded-2xl border border-sand-deep/30 bg-bone/70 px-4 py-3 backdrop-blur">
-      <motion.div
-        aria-hidden
-        className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-transparent via-sage/20 to-transparent"
-        animate={{ x: ['-100%', '850%'] }}
-        transition={{ duration: 7.5, repeat: Infinity, ease: 'linear' }}
-      />
-      <div className="relative flex flex-wrap items-center gap-2 md:justify-between">
-        <span
-          className="mr-2 rounded-full border border-sage/25 bg-sage/10 px-3 py-1 text-[9px] uppercase tracking-[0.14em] text-sage-deep"
-          style={{ fontFamily: MONO_STACK }}
-        >
-          {activeMode}
-        </span>
-        {['Claim Scan', 'AI Answer Reality', 'Proof Map', 'Guardrail Audit', 'Owner Brief'].map((step, index) => (
-          <div key={step} className="flex items-center gap-2">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full border border-sage/25 bg-sage/10 text-[10px] font-semibold text-sage-deep">
-              {index + 1}
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.13em] text-mist" style={{ fontFamily: MONO_STACK }}>
-              {step}
-            </span>
-            {index < 4 && <ArrowRight size={13} className="hidden text-sand-deep md:block" />}
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
 

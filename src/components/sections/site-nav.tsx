@@ -9,11 +9,11 @@ import { useStore } from '@/lib/store';
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const navLinks: { label: string; href: string; subLinks?: { label: string; href: string }[] }[] = [
-  { label: 'Tracker',   href: '/tracker' },
-  { label: 'Reviews',   href: '/pricing' },
-  { label: 'Data Feed', href: '/tracker#data-feed' },
-  { label: 'AuditGPT',  href: '/auditgpt' },
-  { label: 'Contact',   href: 'mailto:nick@scrutexity.com' },
+  { label: 'Methodology', href: '/methodology' },
+  { label: 'Proof',       href: '/proof' },
+  { label: 'Enterprise',  href: '/enterprise' },
+  { label: 'Pricing',     href: '/pricing' },
+  { label: 'AuditGPT',    href: 'https://auditgpt.ai/snapshot?source=scrutexity-nav' },
 ];
 
 export default function SiteNav() {
@@ -142,11 +142,11 @@ export default function SiteNav() {
           {/* Primary CTA — Run AuditGPT */}
           <div className="hidden md:flex items-center">
             <a
-              href="/auditgpt"
+              href="https://auditgpt.ai/snapshot?source=scrutexity-nav"
               className="relative inline-flex items-center justify-center rounded-full bg-bark px-5 py-2.5 font-sans text-[10px] font-extrabold uppercase tracking-[0.16em] text-sage border border-ink/30 ring-1 ring-inset ring-cream/5 hover:bg-ink hover:text-sage-soft hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group/btn"
               style={{ boxShadow: '0 10px 24px -10px rgba(28,24,20,0.35)' }}
             >
-              Request a Review
+              Run AuditGPT
               <span className="ml-1.5 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden>→</span>
             </a>
           </div>
@@ -239,19 +239,19 @@ export default function SiteNav() {
               {/* Drawer Footer Actions */}
               <div className="mt-auto pt-6 flex flex-col gap-4">
                 <a
-                  href="/auditgpt"
+                  href="https://auditgpt.ai/snapshot?source=scrutexity-mobile-nav"
                   onClick={() => setOpen(false)}
                   className="relative inline-flex items-center justify-center rounded-full bg-sage-deep py-3.5 font-sans text-xs font-bold uppercase tracking-[0.16em] text-cream border border-ink/30 ring-1 ring-inset ring-cream/10 text-center"
                   style={{ boxShadow: '0 8px 22px -8px rgba(28,24,20,0.32)' }}
                 >
-                  Request a Review →
+                  Run AuditGPT →
                 </a>
                 <a
-                  href="/tracker"
+                  href="/methodology"
                   onClick={() => setOpen(false)}
                   className="text-center text-xs font-sans font-semibold uppercase tracking-[0.14em] text-ink hover:text-sage-deep transition-colors"
                 >
-                  View Enforcement Tracker
+                  View Methodology
                 </a>
                 <div className="flex items-center justify-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.14em] text-mist/70">
                   <Lock size={8} className="text-sage" /> PUBLIC SOURCES ONLY

@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       .replace(/(^-|-$)/g, '');
     const publicId = `${companySlug || 'clinic'}-${Math.random().toString(36).substring(2, 8)}`;
 
-    let redirectUrl = `/claim-audit/${publicId}`;
+    let redirectUrl: string | null = null;
 
     // Determine checkout redirect URL for paid tiers
     if (selectedTier === 'full' || selectedTier === 'rescan') {
