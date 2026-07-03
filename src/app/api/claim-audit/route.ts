@@ -136,9 +136,58 @@ www.scrutexity.com`,
       });
     }
 
+    // 3. Fire-and-forget: trigger canonical scan so free submissions feed the Claim Graph
+    triggerCanonicalScan(websiteUrl, email, publicId).then((scanId) => {
+      if (scanId) {
+        console.log(`[ClaimAudit] Scan ${scanId} linked to lead ${publicId}`);
+      }
+    });
+
     return NextResponse.json({ success: true, redirectUrl });
   } catch (error) {
     console.error('[ClaimAudit] Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+/**
+ * Fire a free-snapshot scan through the canonical backend so every free
+ * submission feeds the Claim Graph. Fire-and-forget — doesn't block the
+ * form response. Errors are logged but never surface to the user.
+ */
+async function triggerCanonicalScan(
+  websiteUrl: string,
+  email: string,
+  publicId: string,
+): Promise<string | null> {
+  const backendUrl = process.env.CANONICAL_BACKEND_URL ?? 'https://scrutexity-api.vercel.app';
+  const adminKey = process.env.INTERNAL_ADMIN_KEY;
+  if (!adminKey) {
+    console.warn('[ClaimAudit] INTERNAL_ADMIN_KEY not set; skipping canonical scan');
+    return null;
+  }
+  try {
+    const res = await fetch(`${backendUrl}/api/scan`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-admin-key': adminKey,
+      },
+      body: JSON.stringify({
+        url: websiteUrl,
+        user_id: email,
+        source_context: 'free_snapshot',
+      }),
+    });
+    const data = await res.json();
+    if (res.ok && data.scan_id) {
+      console.log(`[ClaimAudit] Canonical scan complete: ${data.scan_id} for ${publicId}`);
+      return data.scan_id;
+    }
+    console.warn('[ClaimAudit] Canonical scan returned unexpected response:', data);
+    return null;
+  } catch (err) {
+    console.error('[ClaimAudit] Canonical scan failed:', err);
+    return null;
   }
 }

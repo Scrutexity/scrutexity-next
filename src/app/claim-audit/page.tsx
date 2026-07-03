@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import ClaimAuditContent from '@/components/scrutexity/claim-audit-content';
 
 export const metadata: Metadata = {
-  title: 'AuditGPT by Scrutexity | Audit, Visibility, Reputation, and Recovery Plan',
+  title: 'AuditGPT by Scrutexity | Claim Exposure Review Intake',
   description:
-    'AuditGPT reviews your website, claims, visibility, reputation surface, and follow-up paths, then gives you a clear plan for what to fix first. Diagnose unsupported claims, evidence gaps, AI visibility issues, and leakage.',
+    'Submit a public marketing URL for an AuditGPT Claim Exposure Review. Scrutexity maps public claim language against current enforcement patterns and returns safer replacement language.',
   alternates: { canonical: '/claim-audit' },
 };
 

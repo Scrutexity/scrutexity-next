@@ -35,6 +35,12 @@
   --color-sage-soft: #C7D4C2;
   --color-ink: #1C1814;
   --color-mist: #6B6259;
+  --color-scrutexity-ivory: #FAF9F6;
+  --color-scrutexity-charcoal: #1A1A1A;
+  --color-scrutexity-terracotta: #E2725B;
+  --color-scrutexity-sage: #6F8772;
+  --color-scrutexity-surface: #FFFFFF;
+  --color-scrutexity-border: #E5E5E5;
 
   --font-display: var(--font-instrument-serif), serif;
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -49,6 +55,8 @@
   --shadow-float: 0 30px 70px -22px rgba(28,24,20,0.30);
   --shadow-cta-clay: 0 12px 30px -10px rgba(183,137,107,0.50);
   --shadow-cta-sage: 0 12px 30px -10px rgba(143,169,138,0.50);
+  --shadow-soft-float: 0 20px 40px -15px rgba(26,26,26,0.05);
+  --shadow-ambient-glow: 0 0 40px -10px rgba(226,114,91,0.12);
 }
 
 /* ── Global Body Styling ── */

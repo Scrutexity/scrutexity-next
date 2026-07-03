@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agency Claim Review Portal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">Agency OS</div>
+      <button>Client audits</button>
+      <button>Batch PDFs</button>
+      <button>Risk feed</button>
+    </aside>
+    <main class="app">
+      <header>
+        <div>
+          <p class="eyebrow">White-label prototype</p>
+          <h1>Client claim receipts</h1>
+        </div>
+        <button class="download">Download batch PDFs</button>
+      </header>
+
+      <section class="filters">
+        <button data-risk="All" class="active">All</button>
+        <button data-risk="High">High</button>
+        <button data-risk="Medium">Medium</button>
+        <button data-risk="Low">Low</button>
+      </section>
+
+      <section class="cards" id="auditCards"></section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

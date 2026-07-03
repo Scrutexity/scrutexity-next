@@ -18,7 +18,7 @@
 - Claims they challenged: {{challenged}}
 - Claims they agreed with: {{agreed}}
 - Would they pay $99? {{wouldPay99}}
-- Would they pay $299? {{wouldPay299}}
+- Would they pay $497? {{wouldPay497}}
 - Would they refer? {{refer}}
 - What would make it worth $1,997? {{worth1997}}
 

@@ -19,7 +19,7 @@
                  └──────────────┬───────────────┘
                                 │
                           ┌─────▼─────┐
-                          │ $299 REPORT│
+                          │ $497 AUDIT│
                           │ Claim inv. │
                           │ Proof gaps │
                           └─────┬─────┘
@@ -31,12 +31,12 @@
                     └───────────┬───────────┘
                                 │
                     ┌───────────▼───────────┐
-                    │ $299/MO CLAIM DRIFT   │
+                    │ $1,497/MO GUARDIAN   │
                     │ MONITORING             │
                     └───────────┬───────────┘
                                 │
                     ┌───────────▼───────────┐
-                    │ PARTNER OS ($499-799) │
+                    │ GUARDIAN AGENCY ($1,497-4,997) │
                     │ Agency distribution   │
                     └───────────┬───────────┘
                                 │
@@ -60,7 +60,7 @@
 
 | Component | Role | Location |
 |-----------|------|----------|
-| **AuditGPT** | Diagnostic engine — Free Snapshot + $299 Report | `auditgpt.ai`, `~/Projects/auditgpt.nosync` |
+| **AuditGPT** | Diagnostic engine — Free Snapshot + $497 Audit | `auditgpt.ai`, `~/Projects/auditgpt.nosync` |
 | **Scrutexity** | Activation layer — Sprint, Monitoring, Partner OS | `scrutexity.com`, `Website/scrutexity-next/` |
 | **Contento** | Fulfillment engine — rewrites, proof, AI snippets | `GEM/04-CONTENTO/`, `GEM/11-FULFILLMENT/` |
 | **Obsidian** | Learning vault — sales logs, objections, patterns | `Scrutexity Proof Vault/` |

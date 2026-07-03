@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       // AuditGPT scanner. [publicId] subroutes still resolve to /claim-audit.
       {
         source: '/snapshot',
-        destination: 'https://auditgpt.ai/?source=scrutexity-snapshot',
+        destination: 'https://auditgpt.ai/auditgpt?source=scrutexity-snapshot',
         permanent: false,
       },
       // Routes whose names assert compliance/certification — outside our

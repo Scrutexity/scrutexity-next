@@ -164,7 +164,7 @@ Submit your GLP-1 or medical weight-loss page to our free snapshot tool. You'll 
 
 [**Run Free Snapshot →**](https://auditgpt.ai/snapshot?source=glp1-teardown)
 
-For a full audit covering every claim phrase, proof-gap table, AI Answer Reality Receipt, and a structured Claim Cleanup Record with safer rewrites across your entire weight-loss page portfolio: [**Get the $299 Claim Intelligence Report**](https://auditgpt.ai/snapshot?source=glp1-teardown&intent=paid).
+For a full audit covering every claim phrase, proof-gap table, AI Answer Reality Receipt, and a structured Claim Cleanup Record with safer rewrites across your entire weight-loss page portfolio: [**Get the $497 Claim Exposure Audit**](https://auditgpt.ai/snapshot?source=glp1-teardown&intent=paid).
 
 ---
 

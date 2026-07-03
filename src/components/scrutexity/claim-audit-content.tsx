@@ -25,83 +25,82 @@ const offers: Array<{
 }> = [
   {
     key: 'free',
-    name: 'Free 3-Point Visibility & Trust Snapshot',
+    name: 'Free 3-Point Claim Snapshot',
     price: '$0',
     cadence: 'one-time',
-    audience: 'Test the diagnostic wedge before purchasing.',
+    audience: 'A quick read on one public page before you purchase.',
     includes: [
-      'One weak/unsupported claim',
-      'One AI/search/local visibility gap',
-      'One quick fix you can use immediately',
+      'One exposed claim pattern',
+      'One evidence or wording gap',
+      'One safer rewrite direction',
     ],
   },
   {
     key: 'full',
-    name: 'Claim Intelligence Report',
+    name: 'Claim Exposure Review',
     price: '$497',
     cadence: 'one-time',
-    audience: 'Founders, operators, and CMOs needing a full plan.',
+    audience: 'Operators reviewing a public GLP-1, health, or wellness page before the next campaign.',
     highlighted: true,
-    badge: 'Most chosen',
+    badge: 'Founding review',
     includes: [
-      'Full claim audit & risk score',
-      'Dated Claim Intelligence Receipt',
-      'Reviewed by AuditGPT badge + static summary',
-      'AI visibility snapshot & gaps',
-      'Reputation surface review',
-      'Demand leakage & follow-up notes',
-      '30-day prioritized action plan',
+      'Public URL claim-language review',
+      'Comparison against source-linked enforcement patterns',
+      'Flagged phrases with page context',
+      'Safer replacement language',
+      'Dated review record',
+      '72-hour turnaround',
     ],
   },
   {
     key: 'rescan',
-    name: 'Claim Drift Monitoring',
+    name: 'Claim Review Monitoring',
     price: '$497',
     cadence: '/ month',
-    audience: 'Teams updating claims, content, or visibility regularly.',
+    audience: 'Teams that update landing pages, offers, ads, or FAQs regularly.',
     includes: [
-      'Continuous claim drift monitoring',
-      'Monthly updated report & change notes',
-      'Badge eligibility',
-      'Historical logs and alerts',
+      'Monthly review of selected public pages',
+      'Claim drift notes and rewrite queue',
+      'Source-linked change record',
+      'Review-current status notes',
     ],
   },
   {
     key: 'agency',
-    name: 'Guardian Agency Plan',
+    name: 'Agency Claim QA Desk',
     price: 'from $1,497/mo',
     cadence: '/ mo (Founding Beta)',
-    audience: 'Agencies running client launches and diligence.',
+    audience: 'Agencies shipping sensitive pages, ads, and launch copy for clients.',
     includes: [
-      '10 Claim Intelligence Receipts / month',
-      'White-label PDFs & client-ready briefs',
-      'Static reviewed-badge pages',
-      'Client approval language for launch packets',
+      '10 client claim reviews / month',
+      'White-label review notes',
+      'Safer rewrite blocks',
+      'Client-ready approval language',
       'Priority 24h processing',
-      'Standard rate is $799/mo',
+      'Source-linked pattern references',
     ],
   },
 ];
 
 const companyTypes = [
-  'AI / SaaS',
-  'Agency',
   'Medical / Wellness',
+  'Med-Spa / Aesthetic Clinic',
+  'Telehealth / Compounding Operator',
+  'Agency',
+  'Health / Supplement Brand',
+  'Compliance / Legal Services',
+  'AI / SaaS',
   'Local Service Business',
-  'E-commerce / Health Brand',
-  'Fractional CMO / Consultant',
-  'VC / Investor',
   'Other',
 ];
 
 const primaryGoals = [
-  'Claim audit',
-  'AI visibility',
-  'Governed content',
-  'Demand recovery',
-  'Reputation / proof',
+  'Warning letter exposure review',
+  'GLP-1 claim language review',
+  'Safer landing page rewrites',
+  'Ad / campaign preflight',
   'Agency white-label',
-  'Partner referral',
+  'Data feed / enforcement tracker',
   'Not sure',
 ];
 
@@ -115,21 +114,21 @@ function getIntentDefaults(intent: string | null): {
     return { selected: 'agency', primaryGoal: 'Agency white-label', isAgency: true, isMedicalOperator: false };
   }
   if (intent === 'contento') {
-    return { selected: 'full', primaryGoal: 'Governed content', isAgency: false, isMedicalOperator: false };
+    return { selected: 'full', primaryGoal: 'Safer landing page rewrites', isAgency: false, isMedicalOperator: false };
   }
   if (intent === 'ai-visibility') {
-    return { selected: 'full', primaryGoal: 'AI visibility', isAgency: false, isMedicalOperator: false };
+    return { selected: 'full', primaryGoal: 'Warning letter exposure review', isAgency: false, isMedicalOperator: false };
   }
   if (intent === 'recovery') {
-    return { selected: 'full', primaryGoal: 'Demand recovery', isAgency: false, isMedicalOperator: true };
+    return { selected: 'full', primaryGoal: 'GLP-1 claim language review', isAgency: false, isMedicalOperator: true };
   }
   if (intent === 'claim-audit' || intent === 'auditgpt') {
-    return { selected: 'full', primaryGoal: 'Claim audit', isAgency: false, isMedicalOperator: false };
+    return { selected: 'full', primaryGoal: 'Warning letter exposure review', isAgency: false, isMedicalOperator: false };
   }
   if (intent === 'partner_referral') {
     return { selected: 'agency', primaryGoal: 'Partner referral', isAgency: false, isMedicalOperator: false };
   }
-  return { selected: 'full', primaryGoal: '', isAgency: false, isMedicalOperator: false };
+  return { selected: 'full', primaryGoal: 'Warning letter exposure review', isAgency: false, isMedicalOperator: false };
 }
 
 function ClaimAuditContentInner() {
@@ -139,6 +138,7 @@ function ClaimAuditContentInner() {
   const [selected, setSelected] = useState<OfferKey>(intentDefaults.selected);
   const [submitted, setSubmitted] = useState(false);
   const [hasStartedForm, setHasStartedForm] = useState(false);
+  const [isUrlFocused, setIsUrlFocused] = useState(false);
 
   // Form fields state
   const [name, setName] = useState('');
@@ -220,38 +220,185 @@ function ClaimAuditContentInner() {
 
   return (
     <div className="min-h-screen bg-cream text-ink font-sans">
-      {/* HERO */}
-      <section className="relative px-6 pt-32 pb-16 md:pt-40 md:pb-20">
-        <div className="max-w-5xl mx-auto">
+      {/* CLAIM EXPOSURE INGESTION */}
+      <section className="relative min-h-screen px-6 py-28 md:py-36 bg-scrutexity-ivory flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_42%_at_72%_16%,rgba(226,114,91,0.08),transparent_66%),radial-gradient(ellipse_42%_34%_at_18%_18%,rgba(111,135,114,0.10),transparent_62%)] pointer-events-none" />
+        <div className="relative z-10 max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-sage-deep"
-            style={{ fontFamily: MONO_STACK }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="text-scrutexity-charcoal"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-sage-deep" />
-            AuditGPT by Scrutexity
+            <div
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-scrutexity-sage"
+              style={{ fontFamily: MONO_STACK }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-scrutexity-sage" />
+              AuditGPT by Scrutexity
+            </div>
+
+            <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-[4.75rem] tracking-[-0.03em] leading-[1.02] max-w-3xl">
+              Map your public claims against{' '}
+              <span className="italic text-scrutexity-sage">current enforcement patterns.</span>
+            </h1>
+
+            <p className="mt-7 text-base md:text-lg text-scrutexity-charcoal/75 leading-[1.6] max-w-2xl">
+              Submit a high-traffic marketing URL. Scrutexity reviews the public language against source-linked FDA/FTC claim patterns and returns flagged phrases, safer replacement language, and a dated review record.
+            </p>
+
+            <ul className="mt-9 space-y-4 border-t border-scrutexity-border pt-7">
+              {[
+                'Public materials only; no login or system access required.',
+                'Source-linked pattern matching against known enforcement language.',
+                'Safer rewrite artifacts delivered for campaign and page updates.',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-scrutexity-sage shrink-0" />
+                  <span className="text-sm tracking-wide text-scrutexity-charcoal/80">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-7 text-xs text-scrutexity-charcoal/45 leading-relaxed max-w-xl">
+              Not legal, clinical, regulatory, FDA, ranking, or revenue advice. Review notes describe public claim-language patterns and practical rewrite options.
+            </p>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            className="mt-5 font-display text-5xl md:text-6xl lg:text-[4.75rem] text-ink tracking-[-0.03em] leading-[1.02] max-w-3xl"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
+            className={`bg-scrutexity-surface p-7 md:p-10 rounded-2xl border border-scrutexity-border transition-shadow duration-500 ${
+              isUrlFocused ? 'shadow-ambient-glow' : 'shadow-soft-float'
+            }`}
           >
-            Find the claims your website{' '}
-            <span className="italic text-sage-deep">cannot yet prove.</span>
-          </motion.h1>
+            <div className="mb-8">
+              <p
+                className="text-[10px] uppercase tracking-[0.18em] text-scrutexity-sage mb-3"
+                style={{ fontFamily: MONO_STACK }}
+              >
+                Claim Exposure Intake
+              </p>
+              <h2 className="font-display text-3xl text-scrutexity-charcoal tracking-[-0.02em] leading-tight">
+                Start the review run.
+              </h2>
+              <p className="mt-3 text-sm text-scrutexity-charcoal/60 leading-[1.6]">
+                Enter the target URL and contact details. Paid reviews route through checkout; free snapshots enter the same intake queue.
+              </p>
+            </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
-            className="mt-7 text-base md:text-lg text-mist leading-[1.55] font-sans max-w-2xl"
-          >
-            AuditGPT reviews your website, claims, visibility, reputation surface, and follow-up paths, then gives you a clear plan for what to fix first — covering unsupported claims, evidence gaps, AI visibility gaps, reputation surface issues, and missed-demand leakage.
-          </motion.p>
+            {submitted ? (
+              <div className="rounded-xl border border-scrutexity-sage/25 bg-scrutexity-sage/10 p-5">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 size={22} className="text-scrutexity-sage shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-scrutexity-charcoal">Request registered.</h3>
+                    <p className="mt-2 text-sm text-scrutexity-charcoal/65 leading-[1.6]">
+                      We received your URL and will follow up with next steps.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <form className="space-y-5" onSubmit={handleSubmit} onChange={handleInputChange}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Field label="Contact name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+                  <Field label="Corporate email" name="email" type="email" placeholder="ops@yourclinic.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                </div>
+
+                <Field label="Company" name="company" type="text" value={company} onChange={(e) => setCompany(e.target.value)} required />
+
+                <div>
+                  <label
+                    htmlFor="heroWebsiteUrl"
+                    className="block text-[10px] uppercase tracking-[0.16em] text-mist/65 mb-2"
+                    style={{ fontFamily: MONO_STACK }}
+                  >
+                    Target asset URL <span className="text-clay-deep ml-1">*</span>
+                  </label>
+                  <input
+                    id="heroWebsiteUrl"
+                    name="websiteUrl"
+                    type="url"
+                    placeholder="https://yourclinic.com/glp-1"
+                    required
+                    value={websiteUrl}
+                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                    onFocus={() => setIsUrlFocused(true)}
+                    onBlur={() => setIsUrlFocused(false)}
+                    className="w-full rounded-xl bg-scrutexity-ivory border border-scrutexity-border px-4 py-3 text-sm text-scrutexity-charcoal placeholder:text-scrutexity-charcoal/35 focus:outline-none focus:border-scrutexity-sage focus:ring-2 focus:ring-scrutexity-sage/15 transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="heroWorry"
+                    className="block text-[10px] uppercase tracking-[0.16em] text-mist/65 mb-2"
+                    style={{ fontFamily: MONO_STACK }}
+                  >
+                    Focus area
+                  </label>
+                  <textarea
+                    id="heroWorry"
+                    name="worry"
+                    rows={3}
+                    value={worry}
+                    onChange={(e) => setWorry(e.target.value)}
+                    placeholder="Example: compounded GLP-1 page, FDA-approved wording, outcome claims, before/after language."
+                    className="w-full rounded-xl bg-scrutexity-ivory border border-scrutexity-border px-4 py-3 text-sm text-scrutexity-charcoal placeholder:text-scrutexity-charcoal/35 focus:outline-none focus:border-scrutexity-sage focus:ring-2 focus:ring-scrutexity-sage/15 transition-all"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <SelectField
+                    label="Review type"
+                    name="primaryGoal"
+                    value={primaryGoal}
+                    onChange={(e) => setPrimaryGoal(e.target.value)}
+                    options={primaryGoals}
+                  />
+                  <div>
+                    <label
+                      htmlFor="heroSelectedTier"
+                      className="block text-[10px] uppercase tracking-[0.16em] text-mist/65 mb-2"
+                      style={{ fontFamily: MONO_STACK }}
+                    >
+                      Offer
+                    </label>
+                    <select
+                      id="heroSelectedTier"
+                      name="selectedTier"
+                      value={selected}
+                      onChange={(e) => setSelected(e.target.value as OfferKey)}
+                      className="w-full rounded-xl bg-cream border border-sand-deep/40 px-4 py-3 text-sm text-ink focus:outline-none focus:border-sage-deep focus:ring-2 focus:ring-sage-deep/15 transition-all"
+                    >
+                      {offers.map((offer) => (
+                        <option key={offer.key} value={offer.key}>
+                          {offer.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full bg-scrutexity-sage text-white rounded-xl px-4 py-3.5 text-sm font-medium hover:bg-sage-deep transition-all mt-2 ${isSubmitting ? 'opacity-75 cursor-wait' : ''}`}
+                >
+                  {isSubmitting ? 'Submitting review request...' : 'Request Claim Exposure Review'}
+                </button>
+
+                <p
+                  className="text-center text-[10px] uppercase tracking-[0.16em] text-scrutexity-charcoal/40"
+                  style={{ fontFamily: MONO_STACK }}
+                >
+                  $497 USD · 72-hour turnaround · free snapshot available
+                </p>
+              </form>
+            )}
+          </motion.div>
         </div>
       </section>
 
@@ -435,7 +582,7 @@ function ClaimAuditContentInner() {
                         href="/pilot-application"
                         className="text-xs font-semibold text-ink/75 hover:text-sage-deep transition-colors"
                       >
-                        Apply for Recovery Pilot
+                        Ask about agency reviews
                       </Link>
                     </div>
                   ) : (
@@ -556,7 +703,7 @@ function ClaimAuditContentInner() {
                     className="w-4 h-4 rounded border-ink/30 text-sage-deep focus:ring-sage-deep/30"
                   />
                   <span className="text-xs text-mist font-semibold leading-[1.6]">
-                    Are you a medical/wellness operator? (Interested in Patient Recovery Systems)
+                    Are you a medical/wellness operator? (Interested in GLP-1 or health-claim review)
                   </span>
                 </label>
               </div>

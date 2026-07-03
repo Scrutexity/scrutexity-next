@@ -79,7 +79,7 @@ This is the fastest trust and visibility improvement without requiring a full re
 
 ---
 
-## Next Step: The $299 AuditGPT
+## Next Step: The $497 Claim Exposure Audit
 *This is the paid discovery phase. It is not an automated PDF score. It is a decision board that forces them to confront operational leakage.*
 
 **Example AuditGPT Decision Board:**
