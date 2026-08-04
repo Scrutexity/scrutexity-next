@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
+import ContactIntakeForm from "@/components/scrutexity/contact-intake-form";
 
 export const metadata: Metadata = {
   title: "Contact Scrutexity | Scope an Evidence-Grounded Review",
@@ -41,9 +42,9 @@ const intentCopy: Record<string, { label: string; subject: string; prompt: strin
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ intent?: string }>;
+  searchParams: Promise<{ intent?: string; source?: string; checkout?: string }>;
 }) {
-  const { intent } = await searchParams;
+  const { intent, source, checkout } = await searchParams;
   const selection = intent ? intentCopy[intent] : undefined;
   const subject = selection?.subject ?? "Scrutexity review inquiry";
 
@@ -53,7 +54,7 @@ export default async function ContactPage({
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep">
           Contact Scrutexity
         </p>
-        <div className="mt-6 grid gap-12 lg:grid-cols-[1fr_0.8fr]">
+        <div className="mt-6 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <h1 className="font-display text-5xl leading-tight text-espresso md:text-6xl">
               Bring one page, transcript set, or business question.
@@ -69,16 +70,20 @@ export default async function ContactPage({
               </div>
             )}
 
-            <a
-              href={`mailto:nick@scrutexity.com?subject=${encodeURIComponent(subject)}`}
-              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
-            >
-              <Mail size={16} aria-hidden="true" />
-              Email nick@scrutexity.com
-            </a>
+            {checkout === "cancelled" && (
+              <p className="mt-6 rounded-md border border-clay/35 bg-bone p-4 text-sm text-bark" role="status">
+                Checkout was cancelled. Your saved request is still available, and no payment was taken.
+              </p>
+            )}
           </div>
 
-          <aside className="rounded-lg border border-sand-deep/45 bg-white p-7">
+          <div>
+            <ContactIntakeForm initialOffer={intent} source={source} />
+          </div>
+        </div>
+
+        <aside className="mt-12 rounded-lg border border-sand-deep/45 bg-white p-7 md:flex md:items-start md:justify-between md:gap-10">
+          <div>
             <h2 className="font-display text-3xl text-espresso">What to include</h2>
             <ol className="mt-6 divide-y divide-sand-deep/30">
               {[
@@ -93,12 +98,19 @@ export default async function ContactPage({
                 </li>
               ))}
             </ol>
+          </div>
+          <div className="mt-7 shrink-0 md:mt-0 md:max-w-xs">
+            <p className="text-sm leading-6 text-mist">Prefer email? The form is the reliable intake path, with email available as a fallback.</p>
+            <a href={`mailto:nick@scrutexity.com?subject=${encodeURIComponent(subject)}`} className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">
+              <Mail size={15} aria-hidden="true" />
+              Email Nick
+            </a>
             <Link href="/pricing" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">
               Review pricing
               <ArrowRight size={15} aria-hidden="true" />
             </Link>
-          </aside>
-        </div>
+          </div>
+        </aside>
       </main>
     </div>
   );

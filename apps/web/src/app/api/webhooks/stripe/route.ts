@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type Stripe from 'stripe';
 import { unlockAudit } from '../../../../lib/entitlements';
+import { markInquiryPaid } from '../../../../lib/inquiries';
 
 const ENTITLEMENTS: Record<string, 'snapshot' | 'full_report' | 'monitoring' | 'agency'> = {
   claim_intelligence_report: 'full_report',
@@ -13,19 +15,16 @@ export async function POST(req: NextRequest) {
   const sig = req.headers.get('stripe-signature');
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-  let event: any;
+  let event: Stripe.Event;
   const rawBody = await req.text();
 
   try {
-    const StripeMod = await import('stripe');
-    const StripeClass = (StripeMod.default || StripeMod.Stripe || StripeMod) as any;
+    const { Stripe: StripeClient } = await import('stripe');
     if (!process.env.STRIPE_SECRET_KEY) {
       throw new Error('STRIPE_SECRET_KEY environment variable is not configured.');
     }
 
-    const stripe = new StripeClass(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-03-31.basil' as any,
-    });
+    const stripe = new StripeClient(process.env.STRIPE_SECRET_KEY);
 
     if (isProduction || webhookSecret) {
       if (!sig || !webhookSecret) {
@@ -37,14 +36,15 @@ export async function POST(req: NextRequest) {
       console.warn('[Stripe Webhook] Warning: Running in development mode without signature verification.');
       event = JSON.parse(rawBody);
     }
-  } catch (err: any) {
-    console.error(`[Stripe Webhook] Signature verification failed: ${err.message}`);
-    return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Unknown webhook error';
+    console.error(`[Stripe Webhook] Signature verification failed: ${message}`);
+    return NextResponse.json({ error: `Webhook Error: ${message}` }, { status: 400 });
   }
 
   // Handle the event
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
+    const session = event.data.object as Stripe.Checkout.Session;
 
     const paymentStatus = session.payment_status;
     const metadata = session.metadata || {};
@@ -52,7 +52,9 @@ export async function POST(req: NextRequest) {
     const publicId = metadata.publicId || metadata.public_id;
     const email = metadata.email || session.customer_details?.email || null;
     const stripeSessionId = session.id;
-    const stripeCustomerId = session.customer;
+    const stripeCustomerId = typeof session.customer === 'string'
+      ? session.customer
+      : session.customer?.id ?? null;
     const priceId = session.line_items?.data?.[0]?.price?.id || session.metadata?.priceId || null;
     const amountTotal = session.amount_total;
     const currency = session.currency;
@@ -68,6 +70,21 @@ export async function POST(req: NextRequest) {
     if (paymentStatus !== 'paid') {
       console.log(`[Stripe Webhook] Ignored checkout session ${stripeSessionId} with payment_status: ${paymentStatus}`);
       return NextResponse.json({ success: true, message: 'Session ignored (unpaid)' });
+    }
+
+    if (product === 'claim_support_review') {
+      const inquiryId = metadata.inquiryId;
+      if (!inquiryId) {
+        return NextResponse.json({ error: 'Missing inquiryId in metadata' }, { status: 400 });
+      }
+      try {
+        await markInquiryPaid(inquiryId, stripeSessionId);
+        console.log(`[Stripe Webhook] Marked inquiry ${inquiryId} paid`);
+        return NextResponse.json({ success: true });
+      } catch (error) {
+        console.error('[Stripe Webhook] Failed to mark inquiry paid:', error instanceof Error ? error.message : 'unknown');
+        return NextResponse.json({ error: 'Inquiry update failed' }, { status: 500 });
+      }
     }
 
     if (!product || !ENTITLEMENTS[product]) {
@@ -124,14 +141,14 @@ The Scrutexity Team
 www.scrutexity.com`,
           });
           console.log(`[Stripe Webhook] Sent payment confirmation email to ${email}`);
-        } catch (emailErr: any) {
-          console.error(`[Stripe Webhook] Failed to send email: ${emailErr.message}`);
+        } catch (emailErr: unknown) {
+          console.error(`[Stripe Webhook] Failed to send email: ${emailErr instanceof Error ? emailErr.message : 'unknown'}`);
         }
       } else {
         console.log('[Stripe Webhook] Email skipped (no API key, or customer email is null)');
       }
-    } catch (dbErr: any) {
-      console.error(`[Stripe Webhook] Failed to save entitlement to DB: ${dbErr.message}`);
+    } catch (dbErr: unknown) {
+      console.error(`[Stripe Webhook] Failed to save entitlement to DB: ${dbErr instanceof Error ? dbErr.message : 'unknown'}`);
       return NextResponse.json({ error: 'Database write failed' }, { status: 500 });
     }
   } else {

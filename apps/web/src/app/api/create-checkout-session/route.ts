@@ -3,27 +3,26 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { priceId, tier } = body;
+    const { inquiryId, email } = body;
+    const priceId = process.env.STRIPE_CLAIM_SUPPORT_REVIEW_PRICE_ID;
 
-    if (!priceId) {
-      return NextResponse.json({ error: 'Missing priceId' }, { status: 400 });
+    if (!inquiryId || !email) {
+      return NextResponse.json({ error: 'Missing inquiry details' }, { status: 400 });
     }
 
-    // If no Stripe key, fall back to payment link
-    if (!process.env.STRIPE_SECRET_KEY) {
-      console.log('[Stripe] No STRIPE_SECRET_KEY — returning payment link fallback');
-      return NextResponse.json({
-        url: 'https://buy.stripe.com/YOUR_PAYMENT_LINK',
-      });
+    if (!process.env.STRIPE_SECRET_KEY || !priceId) {
+      return NextResponse.json(
+        { error: 'Checkout is not configured. No payment was created.' },
+        { status: 503 },
+      );
     }
 
     const { Stripe } = await import('stripe');
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-03-31.basil' as any,
-    });
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
     const session = await stripe.checkout.sessions.create({
-      mode: 'subscription',
+      mode: 'payment',
+      customer_email: email,
       payment_method_types: ['card'],
       line_items: [
         {
@@ -31,11 +30,12 @@ export async function POST(request: NextRequest) {
           quantity: 1,
         },
       ],
-      success_url: `${request.nextUrl.origin}/checkout/success?tier=${tier || 'lite'}`,
-      cancel_url: `${request.nextUrl.origin}/lite`,
+      success_url: `${request.nextUrl.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${request.nextUrl.origin}/contact?intent=claim-support-review&checkout=cancelled`,
       metadata: {
-        tier: tier || 'lite',
-        source: 'lite_checkout',
+        product: 'claim_support_review',
+        inquiryId,
+        email,
       },
     });
 

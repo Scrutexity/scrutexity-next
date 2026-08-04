@@ -9,12 +9,11 @@ const nextConfig: NextConfig = {
         destination: 'https://www.scrutexity.com/:path*',
         permanent: true,
       },
-      // The old /snapshot route rendered an internal test artifact
-      // (CLN_NODETEST recovery brief). All scan intent goes to the live
-      // AuditGPT scanner. [publicId] subroutes still resolve to /claim-audit.
+      // Keep legacy product entry points on the canonical Scrutexity intake.
+      // Sending these routes back to auditgpt.ai creates a cross-project loop.
       {
         source: '/snapshot',
-        destination: 'https://auditgpt.ai/auditgpt?source=scrutexity-snapshot',
+        destination: '/contact?intent=claim-support-review&source=scrutexity-snapshot',
         permanent: false,
       },
       // Batch 3a — Internal / Test routes
@@ -25,7 +24,7 @@ const nextConfig: NextConfig = {
       { source: '/proof/telemetry-alpha', destination: '/proof', permanent: true },
       // Batch 3b — P0 Banned name slugs & cross-brand redirects
       { source: '/agency/claim-intelligence-receipt', destination: '/agency/claim-receipt', permanent: true },
-      { source: '/auditgpt', destination: 'https://auditgpt.ai/auditgpt?source=scrutexity-auditgpt', permanent: true },
+      { source: '/auditgpt', destination: '/contact?intent=claim-support-review&source=scrutexity-auditgpt', permanent: true },
       // Sub-batch 3c-1 — Legacy /about/* routes
       { source: '/about/clinical-demand-governance', destination: '/methodology', permanent: true },
       { source: '/about/clinical-demand-governance/ai-ingress-protocols', destination: '/methodology', permanent: true },
