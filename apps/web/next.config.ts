@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       { source: '/aesthetic-device-claim-audit', destination: '/pricing', permanent: true },
       { source: '/regenerative-medicine-claims', destination: '/pricing', permanent: true },
       { source: '/insights/glp-1-claim-audit', destination: '/methodology', permanent: true },
+      { source: '/benchmarks', destination: '/methodology', permanent: true },
       { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
       { source: '/private-equity/claim-diligence', destination: '/pricing', permanent: true },
       { source: '/private-equity/report', destination: '/sample-report', permanent: true },
@@ -33,6 +34,10 @@ const nextConfig: NextConfig = {
       { source: '/use-cases/agency-white-label-audits', destination: '/agency', permanent: true },
       { source: '/proof', destination: '/sample-report', permanent: true },
       { source: '/proof/sealed-audit-trail', destination: '/sample-report', permanent: true },
+      { source: '/verify', destination: '/sample-report', permanent: true },
+      { source: '/verify-receipt', destination: '/methodology', permanent: true },
+      { source: '/claim-audit/:publicId', destination: '/sample-report', permanent: true },
+      { source: '/snapshot/:publicId', destination: '/sample-report', permanent: true },
       { source: '/sample-owner-brief', destination: '/sample-report', permanent: true },
       { source: '/claim-receipt', destination: '/sample-report', permanent: true },
       { source: '/ai-visibility', destination: '/what-we-do', permanent: true },
@@ -40,8 +45,8 @@ const nextConfig: NextConfig = {
       // Sending these routes back to auditgpt.ai creates a cross-project loop.
       {
         source: '/snapshot',
-        destination: '/contact?intent=buyer-narrative-alignment&source=scrutexity-snapshot',
-        permanent: false,
+        destination: '/contact?intent=claim-support-review&source=scrutexity-snapshot',
+        permanent: true,
       },
       // Batch 3a — Internal / Test routes
       { source: '/dashboard-test', destination: '/claim-audit', permanent: true },
@@ -133,7 +138,7 @@ const nextConfig: NextConfig = {
       { source: '/sample-snapshot', destination: '/sample-report', permanent: true },
       { source: '/platform', destination: '/', permanent: true },
       { source: '/demo', destination: '/', permanent: true },
-      { source: '/pilot', destination: '/', permanent: true },
+      { source: '/pilot', destination: '/agency', permanent: true },
       { source: '/radar-pilot', destination: '/', permanent: true },
       { source: '/radar-pilot/:path*', destination: '/', permanent: true },
       { source: '/roi', destination: '/', permanent: true },

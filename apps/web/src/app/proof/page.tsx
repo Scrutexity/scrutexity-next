@@ -23,7 +23,7 @@ const artifactsList = [
   },
   {
     name: '3. Anonymized Receipt Excerpts',
-    desc: 'Redacted examples of real review artifacts, published only after customer-sensitive details are removed or permission is granted.',
+    desc: 'Illustrative archetype records showing the review structure. These fixtures are not live customer output.',
     icon: Eye,
   },
   {
@@ -62,8 +62,8 @@ export default function ProofPage() {
             Evidence artifacts, <span className="italic text-sage-deep font-sans">not marketing theater.</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-mist leading-relaxed">
-            Scrutexity publishes the record layer behind AuditGPT: validation reports, anonymized
-            receipt excerpts, public digest references, and hash-chain verification links.
+            Scrutexity documents how claim reviews are captured, classified, and returned: sample
+            report structures, source references, and review boundaries.
           </p>
         </div>
 
@@ -105,10 +105,10 @@ export default function ProofPage() {
 
         {/* Live Interactive Artifacts Section */}
         <div className="mb-16 rounded-2xl border border-sage-deep/30 bg-bone p-6 md:p-8 shadow-sm">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-sage-deep block mb-2">Live Sample Artifacts</span>
-          <h2 className="font-display text-3xl text-espresso tracking-tight mb-4">Read real review artifacts in full format.</h2>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-sage-deep block mb-2">Sample review artifacts</span>
+          <h2 className="font-display text-3xl text-espresso tracking-tight mb-4">Illustrative archetype records showing the review structure.</h2>
           <p className="text-sm text-mist mb-6 max-w-2xl">
-            Explore complete, un-redacted archetype review records demonstrating the Scrutexity Claim Record Transparency format.
+            Fictional examples · illustrative data · not live customer output.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
@@ -206,11 +206,11 @@ export default function ProofPage() {
         <div className="mt-16 text-center border-t border-sand-deep/15 pt-16">
           <h2 className="font-display text-3xl text-espresso mb-4">Start with the scanner. Keep the record.</h2>
           <p className="text-sm text-mist max-w-lg mx-auto mb-8">
-            AuditGPT produces the first-pass scan. Scrutexity maintains the deeper proof and review infrastructure behind the artifact.
+            Start with one public page. Scrutexity returns the exact claim, visible support, why the finding matters, and the next action.
           </p>
           <div className="flex flex-wrap justify-center gap-4 items-center">
-            <Link href="https://auditgpt.ai/snapshot?source=scrutexity-proof" className="px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream text-xs font-bold font-mono tracking-widest uppercase rounded-xl transition-colors shadow-xs">
-              Run AuditGPT Scan
+            <Link href="/contact?intent=claim-support-review&source=proof" className="px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream text-xs font-bold font-mono tracking-widest uppercase rounded-xl transition-colors shadow-xs">
+              Start a Claim Review
             </Link>
             <Link href="/sample-report" className="px-6 py-3.5 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso text-xs font-bold font-mono tracking-widest uppercase rounded-xl transition-colors shadow-xs">
               View Sample Report

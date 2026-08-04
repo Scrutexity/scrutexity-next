@@ -8,7 +8,7 @@ import { INQUIRY_OFFERS, PUBLIC_INQUIRY_OFFER_VALUES, isPublicInquiryOffer, type
 const schedulingUrl = process.env.NEXT_PUBLIC_SCHEDULING_URL;
 
 export default function ContactIntakeForm({
-  initialOffer = 'buyer-narrative-alignment',
+  initialOffer = 'claim-support-review',
   source = 'contact',
   focusOnLoad = false,
 }: {
@@ -18,7 +18,7 @@ export default function ContactIntakeForm({
 }) {
   const idempotencyKey = useRef(crypto.randomUUID());
   const [offer, setOffer] = useState<InquiryOffer>(
-    isPublicInquiryOffer(initialOffer) ? initialOffer : 'buyer-narrative-alignment',
+    isPublicInquiryOffer(initialOffer) ? initialOffer : 'claim-support-review',
   );
   const [state, setState] = useState<'idle' | 'submitting' | 'saved' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -165,7 +165,7 @@ export default function ContactIntakeForm({
       <div className="mt-4 space-y-2 border-t border-sand-deep/35 pt-4 text-xs leading-5 text-mist">
         <p>Your submission is used to review and respond to this request. Scrutexity does not sell inquiry information.</p>
         <p>
-          The sprint scope, question set, source surfaces, and timing are confirmed before payment. Work begins after payment and receipt of the agreed inputs.
+          Scoped engagement details, source surfaces, and timing are confirmed before payment. Work begins after payment and receipt of the agreed inputs.
         </p>
       </div>
     </form>

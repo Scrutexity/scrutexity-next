@@ -209,7 +209,7 @@ export default function RegenerativeMedicineClaimsPage() {
           >
             Regenerative Medicine Claim Compliance.{" "}
             <span className="italic text-sage-deep">
-              The FTC fined $5.1M. Don&apos;t be next.
+              Strong claims need visible support.
             </span>
           </motion.h1>
 
@@ -224,7 +224,7 @@ export default function RegenerativeMedicineClaimsPage() {
             stem cell marketing face active enforcement. Treating stem
             cells as systemic cures classifies them as unapproved
             biological drugs. Scrutexity audits your regenerative medicine
-            pages before regulators do.
+            pages before buyers have to ask.
           </motion.p>
 
           <motion.div
@@ -557,7 +557,7 @@ export default function RegenerativeMedicineClaimsPage() {
           <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
             Regenerative medicine marketing reviewed.{" "}
             <span className="italic text-sage-deep">
-              Before the FTC arrives.
+              Before the next buyer review.
             </span>
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">

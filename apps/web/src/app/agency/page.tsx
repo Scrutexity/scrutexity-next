@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import AgencyContent from '@/components/scrutexity/agency-content';
 
-const title = 'Agency Claim QA Pilot | Scrutexity';
-const description = 'Add claim QA to client websites, campaigns, case studies, and launches without building an internal audit team. Pilot pricing starts at $1,500.';
+const title = 'Agency Claim QA | Scrutexity';
+const description = 'Add claim QA to client websites, campaigns, case studies, and launches without building an internal audit team. Engagements start at $1,500.';
 
 export const metadata: Metadata = {
   title,

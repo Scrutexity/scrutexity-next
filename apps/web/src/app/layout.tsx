@@ -29,16 +29,16 @@ const jetBrainsMono = JetBrains_Mono({
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | Buyer Narrative Alignment",
-  description: "Scrutexity compares AI-generated buyer narratives with your published record, improves controllable sources, and reruns the same questions after 14 days.",
+  title: "Scrutexity | Evidence-Grounded Claim Review",
+  description: "Scrutexity reviews public claims and customer-facing AI outputs against visible evidence, then returns precise findings and prioritized next actions.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
     google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | Buyer Narrative Alignment",
-    description: "Compare AI-generated buyer narratives with your published record, improve controllable sources, and rerun the same questions after 14 days.",
+    title: "Scrutexity | Evidence-Grounded Claim Review",
+    description: "Review public claims and customer-facing AI outputs against evidence buyers can inspect.",
     url: siteUrl,
     siteName: "Scrutexity",
     images: [{ url: "/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity", width: 1200, height: 630, alt: "Scrutexity evidence-grounded business review" }],
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | Buyer Narrative Alignment",
-    description: "Compare AI-generated buyer narratives with your published record, improve controllable sources, and rerun the same questions after 14 days.",
+    title: "Scrutexity | Evidence-Grounded Claim Review",
+    description: "Review public claims and customer-facing AI outputs against evidence buyers can inspect.",
     images: ["/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity"],
   },
 };
@@ -62,11 +62,11 @@ const jsonLdData = {
       name: "Scrutexity",
       url: "https://www.scrutexity.com",
       logo: "https://www.scrutexity.com/logo-icon.png",
-      description: "Evidence-grounded comparison of AI-generated buyer narratives and published company source material.",
+      description: "Evidence-grounded review of public claims and customer-facing AI outputs.",
       email: "nick@scrutexity.com",
       address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
       knowsAbout: [
-        "Buyer Narrative Alignment",
+        "Claim Support Review",
         "AI Answer Capture",
         "Visible Evidence Review",
         "Source Record Comparison"
@@ -75,16 +75,19 @@ const jsonLdData = {
     {
       "@type": "Service",
       "@id": "https://www.scrutexity.com/#service",
-      name: "Buyer Narrative Alignment Sprint",
-      serviceType: "AI answer and published source alignment review",
+      name: "Scrutexity Claim Review",
+      serviceType: "Evidence-grounded claim and AI output review",
       provider: { "@id": "https://www.scrutexity.com/#organization" },
       areaServed: "US",
-      description: "A fixed engagement that captures buyer-intent AI answers, compares material statements with published sources, recommends controllable source changes, and reruns the same questions after 14 days.",
+      description: "Defined reviews that compare public claims or supplied customer-facing AI outputs with visible evidence and document prioritized next actions.",
       offers: {
         "@type": "OfferCatalog",
-        name: "Scrutexity first engagement",
+        name: "Scrutexity public offers",
         itemListElement: [
-          { "@type": "Offer", name: "Buyer Narrative Alignment Sprint", price: "1500", priceCurrency: "USD" }
+          { "@type": "Offer", name: "Claim Support Review", price: "99", priceCurrency: "USD" },
+          { "@type": "Offer", name: "Founder’s Audit", price: "750", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "750", priceCurrency: "USD" } },
+          { "@type": "Offer", name: "Agency Claim QA", price: "1500", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "1500", priceCurrency: "USD" } },
+          { "@type": "Offer", name: "Agent Evidence Pack", price: "2500", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "2500", priceCurrency: "USD" } }
         ]
       }
     },

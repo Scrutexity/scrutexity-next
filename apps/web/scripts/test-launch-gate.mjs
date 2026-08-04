@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 
 const values = new Map();
 const lists = new Map();
@@ -100,8 +101,11 @@ assert.deepEqual(offers.INQUIRY_OFFER_VALUES, [
   'monitoring',
 ]);
 assert.deepEqual(offers.PUBLIC_INQUIRY_OFFER_VALUES, [
-  'buyer-narrative-alignment',
+  'claim-support-review',
+  'founders-audit',
   'agency-claim-qa',
+  'agent-evidence-pack',
+  'monitoring',
 ]);
 assert.equal(offers.INQUIRY_OFFERS['buyer-narrative-alignment'].formLabel, 'Buyer Narrative Alignment Sprint · $1,500');
 assert.equal(offers.INQUIRY_OFFERS['claim-support-review'].scoped, false);
@@ -173,5 +177,22 @@ assert.equal(
   'evt_internal',
 );
 assert.throws(() => stripeClient.webhooks.constructEvent(webhookPayload, validHeader, 'whsec_wrong'));
+
+const redirectsSource = await readFile(new URL('../next.config.ts', import.meta.url), 'utf8');
+assert.match(redirectsSource, /source: '\/pilot', destination: '\/agency', permanent: true/);
+assert.match(redirectsSource, /source: '\/benchmarks\/state-of-medspa-claims', destination: '\/methodology'/);
+assert.match(redirectsSource, /source: '\/claim-audit\/:publicId', destination: '\/sample-report'/);
+assert.match(redirectsSource, /intent=claim-support-review&source=scrutexity-snapshot/);
+
+const evidenceChainSource = await readFile(new URL('../src/components/scrutexity/evidence-chain.tsx', import.meta.url), 'utf8');
+assert.match(evidenceChainSource, /Sample workflow illustration · fictional data · not a live client record/);
+for (const prohibited of ['BLOCK 89424', 'e7d3…5a80', '14 mins ago', '4-min median response', '06.18 ·']) {
+  assert.equal(evidenceChainSource.includes(prohibited), false, `fabricated telemetry remained: ${prohibited}`);
+}
+
+const sitemapSource = await readFile(new URL('../src/app/sitemap.ts', import.meta.url), 'utf8');
+for (const excluded of ['/benchmarks', '/proof', '/verify', '/pilot', '/private-equity']) {
+  assert.equal(sitemapSource.includes(`"${excluded}"`), false, `non-index route entered sitemap: ${excluded}`);
+}
 
 console.log('launch-gate tests passed');

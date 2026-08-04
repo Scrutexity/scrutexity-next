@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import PricingContent from '@/components/scrutexity/pricing-content';
 
-const title = 'Buyer Narrative Alignment Sprint | Scrutexity Pricing';
-const description = 'A $1,500 engagement that captures buyer-intent AI answers, compares them with the published record, improves controllable sources, and reruns the same questions after 14 days.';
+const title = 'Claim Review Pricing | Scrutexity';
+const description = 'Public starting prices for the $99 Claim Support Review, Founder’s Audit, Agency Claim QA, and Agent Evidence Pack.';
 
 export const metadata: Metadata = {
   title,

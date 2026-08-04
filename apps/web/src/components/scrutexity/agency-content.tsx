@@ -27,14 +27,14 @@ export default function AgencyContent() {
               </p>
             </div>
             <div className="rounded-lg border border-sand-deep/45 bg-white p-6">
-              <p className="text-sm font-semibold text-sage-deep">Agency Claim QA Pilot</p>
+              <p className="text-sm font-semibold text-sage-deep">Agency Claim QA</p>
               <p className="mt-2 font-display text-4xl text-espresso">From $1,500</p>
               <p className="mt-3 text-sm leading-6 text-mist">Three client sites, up to 15 material claims per site, with a 72-hour target turnaround.</p>
             </div>
           </div>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href="/contact?intent=agency-claim-qa&source=agency" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-              Request the $1,500 founding pilot
+              Request Agency Claim QA
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
             <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">
@@ -99,7 +99,7 @@ export default function AgencyContent() {
           <h2 className="font-display text-4xl text-espresso md:text-5xl">Use one upcoming launch as the test.</h2>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">Use the inquiry form and select Agency Claim QA. Send the three client URLs and deadline; Nick will confirm the scope before work begins.</p>
           <Link href="/contact?intent=agency-claim-qa&source=agency-bottom" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-sage-deep px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-espresso">
-            Request the $1,500 founding pilot
+            Request Agency Claim QA
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>

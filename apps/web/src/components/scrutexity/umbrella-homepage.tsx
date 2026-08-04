@@ -13,7 +13,7 @@ import {
 import { trackEvent } from "@/utils/analytics";
 import { SourceReference } from "@/components/scrutexity/source-reference";
 
-const SPRINT_URL = "/contact?intent=buyer-narrative-alignment&source=scrutexity-home";
+const REVIEW_URL = "/contact?intent=claim-support-review&source=scrutexity-home";
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
@@ -44,11 +44,11 @@ const reviewSteps = [
   },
 ];
 
-const sprintDetails = [
-  ["Question set", "8–12 agreed buyer-intent questions"],
-  ["Surfaces", "ChatGPT, Perplexity, and Google"],
-  ["Source work", "Published pages and citations the company can inspect"],
-  ["Retest", "The same question set rerun after 14 days"],
+const publicOffers = [
+  ["Claim Support Review", "$99", "One public page and its visible support."],
+  ["Founder’s Audit", "From $750", "Claims, positioning, offer clarity, and trust architecture."],
+  ["Agency Claim QA", "From $1,500", "Client sites, campaigns, case studies, and launch review."],
+  ["Agent Evidence Pack", "From $2,500", "Supplied transcripts, grounding, escalation, and policy drift."],
 ] as const;
 
 function TrackedLink({
@@ -104,12 +104,12 @@ export default function UmbrellaHomepage() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <TrackedLink
-                href={SPRINT_URL}
-                label="Request an Alignment Sprint"
+                href={REVIEW_URL}
+                label="Start a Claim Support Review"
                 section="hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
               >
-                Request an Alignment Sprint
+                Start a $99 Claim Review
                 <ArrowRight size={16} aria-hidden="true" />
               </TrackedLink>
               <TrackedLink
@@ -209,29 +209,30 @@ export default function UmbrellaHomepage() {
           <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-                First engagement
+                Public offers
               </p>
-              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">One defined sprint. One rerun.</h2>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Choose the review outcome, then confirm the scope.</h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-mist lg:justify-self-end">
-              The Buyer Narrative Alignment Sprint creates a dated baseline, improves the public sources you control, and measures what changes after the same questions are asked again.
+              Start with one page or scope a broader review for a founder-led team, agency, or customer-facing agent. Monitoring pilots are available only after an initial review for selected customers.
             </p>
           </div>
 
           <div className="mt-12 grid gap-px border border-sand-deep/45 bg-sand-deep/45 lg:grid-cols-[0.78fr_1.22fr]">
             <div className="bg-espresso p-7 text-cream md:p-9">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-soft" style={{ fontFamily: MONO }}>Buyer Narrative Alignment Sprint</p>
-              <p className="mt-5 font-display text-5xl">$1,500</p>
-              <p className="mt-3 text-sm leading-6 text-cream/70">Fixed first engagement · scope confirmed before payment</p>
-              <TrackedLink href={SPRINT_URL} label="Request an Alignment Sprint" section="offers" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso">
-                Request an Alignment Sprint<ArrowRight size={15} aria-hidden="true" />
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-soft" style={{ fontFamily: MONO }}>Start with one page</p>
+              <p className="mt-5 font-display text-5xl">$99</p>
+              <p className="mt-3 text-sm leading-6 text-cream/70">Claim Support Review · 48-hour target turnaround</p>
+              <TrackedLink href={REVIEW_URL} label="Start a Claim Support Review" section="offers" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso">
+                Start a Claim Review<ArrowRight size={15} aria-hidden="true" />
               </TrackedLink>
             </div>
             <dl className="grid bg-white sm:grid-cols-2">
-              {sprintDetails.map(([label, value]) => (
+              {publicOffers.map(([label, price, value]) => (
                 <div key={label} className="border-b border-sand-deep/30 p-6 sm:border-r sm:last:border-r-0">
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
-                  <dd className="mt-3 text-sm leading-6 text-mist">{value}</dd>
+                  <dd className="mt-3 font-display text-2xl text-espresso">{price}</dd>
+                  <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -385,12 +386,12 @@ export default function UmbrellaHomepage() {
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <TrackedLink
-              href={SPRINT_URL}
-              label="Request an Alignment Sprint"
+              href={REVIEW_URL}
+              label="Start a Claim Support Review"
               section="final-cta"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Request an Alignment Sprint
+              Start a $99 Claim Review
               <ArrowRight size={16} aria-hidden="true" />
             </TrackedLink>
             <a

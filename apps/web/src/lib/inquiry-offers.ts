@@ -8,8 +8,11 @@ export const INQUIRY_OFFER_VALUES = [
 ] as const;
 
 export const PUBLIC_INQUIRY_OFFER_VALUES = [
-  'buyer-narrative-alignment',
+  'claim-support-review',
+  'founders-audit',
   'agency-claim-qa',
+  'agent-evidence-pack',
+  'monitoring',
 ] as const satisfies readonly InquiryOffer[];
 
 export type InquiryOffer = (typeof INQUIRY_OFFER_VALUES)[number];

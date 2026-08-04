@@ -25,7 +25,7 @@ export default function PartnersPage() {
     },
     {
       q: "What can partners introduce?",
-      a: "Partners can introduce clients to AuditGPT, Contento, AI Visibility sprints, and Missed Demand Recovery workflows, either as direct referrals or white-label deliverables."
+      a: "Partners can introduce clients to Scrutexity claim reviews or scope rewrite support after an initial review."
     },
     {
       q: "Are partners employees?",

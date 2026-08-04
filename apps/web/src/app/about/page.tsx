@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
 const title = "Nick Altstein | Founder of Scrutexity";
-const description = "Meet Nick Altstein, founder and systems architect at Scrutexity, and learn how he leads the Buyer Narrative Alignment Sprint.";
+const description = "Meet Nick Altstein, founder and systems architect at Scrutexity, and learn how he leads evidence-grounded claim reviews.";
 
 export const metadata: Metadata = {
   title,
@@ -52,15 +52,15 @@ export default function AboutPage() {
                 Nick Altstein founded Scrutexity to create an inspectable record of how companies describe their products, how AI answer engines restate those descriptions, and where material discrepancies appear.
               </p>
               <p>
-                He leads every Buyer Narrative Alignment Sprint from question-set design through source review and the 14-day rerun. The work focuses on observable answer behavior and published source material, not claims of access to proprietary ranking or retrieval systems.
+                He leads Scrutexity reviews from source capture through final findings. The work focuses on observable wording and published source material, not claims of access to proprietary ranking or retrieval systems.
               </p>
               <p>
                 Nick also maintains Scrutexity’s public methodology and personally reviews every material finding before it is delivered.
               </p>
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact?intent=buyer-narrative-alignment&source=about" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-                Request an Alignment Sprint
+              <Link href="/contact?intent=claim-support-review&source=about" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
+                Start a Claim Support Review
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <a href="mailto:nick@scrutexity.com?subject=Scrutexity%20inquiry" className="inline-flex min-h-12 items-center justify-center rounded-md border border-sand-deep bg-white px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">

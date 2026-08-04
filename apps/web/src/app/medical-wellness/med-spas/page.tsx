@@ -16,7 +16,7 @@ export default function MedSpasPage() {
     },
     {
       q: "Does Scrutexity write treatment content?",
-      a: "Yes. Our Contento service produces governed content based entirely on your reviewed claims, focusing on patient education, safety, and local discovery."
+      a: "Rewrite support can be scoped after the initial review."
     },
     {
       q: "Does Scrutexity provide medical advice?",
@@ -76,7 +76,7 @@ export default function MedSpasPage() {
               href="/claim-audit?intent=claim-audit&source=med-spa-vertical" 
               className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Run AuditGPT for patient-facing claims
+              Request a claim review
             </Link>
             <Link 
               href="/sample-report" 
