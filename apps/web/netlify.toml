@@ -1,0 +1,74 @@
+[build]
+  command = "next build"
+
+# Redirect rules to match next.config.ts behavior on Netlify Edge
+[[redirects]]
+  from = "https://scrutexity.com/*"
+  to = "https://www.scrutexity.com/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/snapshot"
+  to = "https://auditgpt.ai/auditgpt?source=scrutexity-snapshot"
+  status = 307
+
+[[redirects]]
+  from = "/compliance"
+  to = "/trust"
+  status = 301
+
+[[redirects]]
+  from = "/certified-agency-program"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/dscsa-compliance"
+  to = "/medical-wellness"
+  status = 301
+
+[[redirects]]
+  from = "/iv-therapy-compliance"
+  to = "/medical-wellness"
+  status = 301
+
+[[redirects]]
+  from = "/compounding-pharmacy-compliance"
+  to = "/medical-wellness"
+  status = 301
+
+[[redirects]]
+  from = "/snapshot/:publicId"
+  to = "/claim-audit/:publicId"
+  status = 301
+
+[[redirects]]
+  from = "/auditgpt"
+  to = "/scanner"
+  status = 307
+
+# Legacy product routes — preserve inbound links
+[[redirects]]
+  from = "/revenue-leak-audit"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/boulevard-lead-recovery"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/mangomint-lead-recovery"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/pilot"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/demo"
+  to = "/"
+  status = 301
