@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Instrument_Serif, Geist, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -110,11 +111,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
       </head>
       <body
-        className={`${instrumentSerif.variable} ${geistSans.variable} ${jetBrainsMono.variable} font-sans tracking-tight bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
+        className={`${instrumentSerif.variable} ${geistSans.variable} ${jetBrainsMono.variable} font-sans bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
       >
+        <div className="fixed left-3 top-3 z-[100] flex -translate-y-24 gap-2 focus-within:translate-y-0">
+          <Link href="#main-content" className="bg-white px-4 py-2 text-sm font-semibold text-espresso shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep">
+            Skip to main content
+          </Link>
+          <Link href="/#sample-report" className="bg-white px-4 py-2 text-sm font-semibold text-espresso shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep">
+            Skip to sample report
+          </Link>
+        </div>
         <SmoothScrollProvider>
           <SiteNav />
-          <main className="pt-nav-offset">
+          <main id="main-content" className="pt-nav-offset">
             {children}
           </main>
           <Footer />

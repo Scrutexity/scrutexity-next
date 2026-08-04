@@ -23,76 +23,56 @@ const reviewSteps = [
     number: "01",
     title: "Capture",
     body: "Review public pages or supplied customer-facing agent transcripts.",
+    exampleLabel: "Captured source",
+    example: "Homepage hero · exact wording retained",
     icon: ScanSearch,
   },
   {
     number: "02",
     title: "Ground",
     body: "Match material claims to evidence a buyer can actually see and check.",
+    exampleLabel: "Visible support",
+    example: "Internal pilot result · scope recorded",
     icon: FileSearch,
   },
   {
     number: "03",
     title: "Prioritize",
     body: "Return the support gaps, trust issues, safer framing drafts, and next actions that matter most.",
+    exampleLabel: "Priority action",
+    example: "Restore pilot scope or publish the method",
     icon: Layers3,
   },
 ];
 
-const offers = [
-  {
-    name: "Claim Support Review",
-    price: "$99 one-time",
-    description: "A focused review of the public claims on one priority page.",
-    includes: [
-      "Material public claims",
-      "Visible evidence and support gaps",
-      "Priority findings",
-      "Safer framing drafts",
-      "48-hour target turnaround",
-    ],
-    cta: "Start a Claim Review",
-    href: "/contact?intent=claim-support-review&source=home",
-  },
+const premiumOffers = [
   {
     name: "Founder’s Audit",
     price: "From $750",
-    description: "A broader business review for founders tightening how the company earns trust.",
-    includes: [
-      "Claims and evidence",
-      "Positioning and differentiation",
-      "Offer clarity and buyer friction",
-      "Trust architecture",
-      "30-day action plan",
-    ],
+    outcome: "Full trust and positioning picture",
+    scope: "Claims, positioning, offer clarity, and trust architecture",
+    buyer: "Founder-led teams",
+    turnaround: "Confirmed before work begins",
     cta: "Request a Founder’s Audit",
     href: "/contact?intent=founders-audit&source=home",
   },
   {
     name: "Agency Claim QA",
-    price: "Pilot from $1,500",
-    description: "A repeatable review layer for client launches, campaigns, and case studies.",
-    includes: [
-      "Agency client-site reviews",
-      "Client-ready findings",
-      "Launch and onboarding QA",
-      "Case-study claim review",
-      "Repeatable per-client workflow",
-    ],
+    price: "From $1,500",
+    outcome: "Repeatable claim QA for client delivery",
+    scope: "Client sites, campaigns, case studies, and launch review",
+    buyer: "Agencies",
+    turnaround: "Confirmed per engagement",
     cta: "Discuss an Agency Pilot",
     href: "/contact?intent=agency-claim-qa&source=home",
   },
   {
     name: "Agent Evidence Pack",
-    price: "Pilot from $2,500",
-    description: "Transcript-based review for customer-facing agents making consequential promises.",
-    includes: [
-      "Supplied transcript testing",
-      "Unsupported-promise findings",
-      "Grounding and escalation gaps",
-      "Policy drift",
-      "Dated remediation priorities",
-    ],
+    price: "From $2,500",
+    outcome: "Dated evidence review of supplied agent outputs",
+    scope: "Transcripts, grounding, escalation, and policy drift",
+    buyer: "Teams deploying customer-facing agents",
+    turnaround: "Confirmed per evidence pack",
     cta: "Request an Agent Review",
     href: "/contact?intent=agent-evidence-pack&source=home",
   },
@@ -131,104 +111,92 @@ function TrackedLink({
 export default function UmbrellaHomepage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
-      <section className="border-b border-sand-deep/30 bg-cream px-5 pb-20 pt-28 sm:px-8 md:pb-24 md:pt-40">
-        <div className="mx-auto max-w-6xl">
-          <p
-            className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep"
-            style={{ fontFamily: MONO }}
-          >
-            Scrutexity · Evidence-grounded business review
-          </p>
-
-          <div className="mt-7 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div>
-              <h1 className="max-w-4xl font-display text-5xl leading-[1.02] text-espresso sm:text-6xl lg:text-7xl">
-                Find the claims and AI outputs your buyers can’t verify.
-              </h1>
-              <p className="mt-7 max-w-3xl text-lg leading-8 text-mist">
-                Scrutexity reviews public claims and customer-facing AI outputs, maps them to visible evidence, and gives you the fixes that matter first. Powered by AuditGPT.
-              </p>
-            </div>
-
-            <div className="border-l-2 border-sage-deep/45 pl-5">
-              <p className="text-sm leading-6 text-bark">
-                For AI/SaaS teams, agencies, medical and wellness operators, and companies deploying customer-facing agents.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <TrackedLink
-              href={SNAPSHOT_URL}
-              label="Get a Claim Snapshot"
-              section="hero"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+      <section className="border-b border-sand-deep/30 bg-cream px-5 pb-16 pt-24 sm:px-8 md:pb-20 md:pt-28">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+          <div>
+            <p
+              className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep"
+              style={{ fontFamily: MONO }}
             >
-              Get a Claim Snapshot
-              <ArrowRight size={16} aria-hidden="true" />
-            </TrackedLink>
-            <TrackedLink
-              href="/sample-report"
-              label="View a Sample Report"
-              section="hero"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
-            >
-              View a Sample Report
-              <ArrowRight size={16} aria-hidden="true" />
-            </TrackedLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-sand-deep/30 bg-bone px-5 py-20 sm:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-              Claim-drift demonstration
+              Scrutexity · Evidence-grounded business review
             </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-espresso md:text-5xl">
-              Keep the wording, evidence, and review history in the same record.
-            </h2>
-            <p className="mt-5 text-sm leading-7 text-mist">
-              Sample fixture with illustrative data. It is not live customer output.
+            <h1 className="mt-7 max-w-4xl font-display text-5xl leading-[1.08] text-espresso sm:text-6xl lg:text-[4rem]">
+              Find the claims and AI outputs your buyers can’t verify.
+            </h1>
+            <p className="mt-7 max-w-2xl text-base leading-7 text-mist md:text-lg md:leading-8">
+              Scrutexity reviews public claims and customer-facing AI outputs, maps them to visible evidence, and gives you the fixes that matter first. Powered by AuditGPT.
             </p>
+            <p className="mt-6 border-l border-sand-deep pl-4 text-sm leading-6 text-bark">
+              For AI/SaaS teams, agencies, medical and wellness operators, and companies deploying customer-facing agents.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <TrackedLink
+                href={SNAPSHOT_URL}
+                label="Get a Claim Snapshot"
+                section="hero"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+              >
+                Get a Claim Snapshot
+                <ArrowRight size={16} aria-hidden="true" />
+              </TrackedLink>
+              <TrackedLink
+                href="/sample-report"
+                label="View a Sample Report"
+                section="hero"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-white px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+              >
+                View a Sample Report
+                <ArrowRight size={16} aria-hidden="true" />
+              </TrackedLink>
+            </div>
           </div>
 
-          <div className="mt-10 grid overflow-hidden rounded-lg border border-sand-deep/45 bg-white lg:grid-cols-3">
-            <article className="border-b border-sand-deep/30 p-6 lg:border-b-0 lg:border-r">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
-                01 · Source wording
-              </p>
-              <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
-                “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
-              </blockquote>
-              <SourceReference surface="Homepage hero" className="mt-6" />
-            </article>
-
-            <article className="border-b border-sand-deep/30 bg-cream-deep/45 p-6 lg:border-b-0 lg:border-r">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>
-                02 · Changed wording
-              </p>
-              <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
-                “Cut customer response time by 64%.”
-              </blockquote>
-              <SourceReference surface="Campaign summary" className="mt-6" />
-              <div className="mt-4 rounded-md border border-clay/35 bg-bone p-4">
-                <p className="text-xs font-semibold text-clay-deep">Support gap detected</p>
-                <p className="mt-2 text-xs leading-5 text-mist">The broader statement drops the pilot scope and internal-test context.</p>
+          <div id="exhibit-claim-drift" className="border border-sand-deep/55 bg-bone p-3 sm:p-4">
+            <div className="flex flex-col gap-2 border-b border-sand-deep/35 px-2 pb-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
+                  Claim-drift exhibit
+                </p>
+                <h2 className="mt-2 font-display text-3xl leading-tight text-espresso">One claim, kept in context.</h2>
               </div>
-            </article>
+              <p className="text-[10px] leading-5 text-mist" style={{ fontFamily: MONO }}>
+                Illustrative data · reviewed Aug. 4, 2026
+              </p>
+            </div>
 
-            <article className="p-6">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
-                03 · Review record updated
-              </p>
-              <p className="mt-5 text-sm font-semibold text-espresso">Safer framing draft</p>
-              <p className="mt-3 text-sm leading-6 text-mist">
-                “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
-              </p>
-              <SourceReference surface="Scrutexity review note" className="mt-6" />
-            </article>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <article className="border border-sand-deep/45 bg-white p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>01 · Source wording</p>
+                <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
+                  “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
+                </p>
+                <SourceReference surface="Homepage hero" className="mt-4 pl-4" />
+              </article>
+
+              <article className="border border-sand-deep/45 bg-white p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>02 · Changed wording</p>
+                <p className="mt-4 border-l border-sand-deep pl-4 font-mono text-[15px] leading-7 text-espresso">
+                  “Cut customer response time by 64%.”
+                </p>
+                <SourceReference surface="Campaign summary" className="mt-4 pl-4" />
+              </article>
+
+              <article className="border border-sand-deep/45 bg-white p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>03 · Support gap</p>
+                <p className="mt-4 text-[15px] leading-7 text-bark">
+                  The broader statement drops the pilot scope and internal-test context.
+                </p>
+                <SourceReference surface="Scrutexity comparison note" className="mt-4" />
+              </article>
+
+              <article className="border border-sand-deep/45 bg-white p-5">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>04 · Suggested framing</p>
+                <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
+                  “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
+                </p>
+                <SourceReference surface="Scrutexity review note" className="mt-4 pl-4" />
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -241,15 +209,21 @@ export default function UmbrellaHomepage() {
             </p>
             <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">A clear review path from source to action.</h2>
           </div>
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-sand-deep/35 bg-sand-deep/35 md:grid-cols-3">
-            {reviewSteps.map(({ number, title, body, icon: Icon }) => (
-              <li key={title} className="bg-bone p-7">
+          <ol className="relative mt-12 grid gap-4 md:grid-cols-3 md:gap-0 before:absolute before:left-[16.66%] before:right-[16.66%] before:top-9 before:hidden before:h-px before:bg-sand-deep md:before:block">
+            {reviewSteps.map(({ number, title, body, exampleLabel, example, icon: Icon }) => (
+              <li key={title} className="relative border border-sand-deep/45 bg-bone p-7 md:border-r-0 md:last:border-r">
                 <div className="flex items-center justify-between">
-                  <Icon className="h-5 w-5 text-sage-deep" aria-hidden="true" />
+                  <span className="flex h-9 w-9 items-center justify-center border border-sand-deep bg-white">
+                    <Icon className="h-4 w-4 text-sage-deep" aria-hidden="true" />
+                  </span>
                   <span className="text-[10px] font-semibold text-mist" style={{ fontFamily: MONO }}>{number}</span>
                 </div>
                 <h3 className="mt-8 font-display text-3xl text-espresso">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-mist">{body}</p>
+                <div className="mt-6 border-t border-sand-deep/35 pt-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{exampleLabel}</p>
+                  <p className="mt-2 text-xs leading-5 text-bark">{example}</p>
+                </div>
               </li>
             ))}
           </ol>
@@ -270,35 +244,86 @@ export default function UmbrellaHomepage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {offers.map((offer) => (
-              <article key={offer.name} className="flex flex-col rounded-lg border border-sand-deep/45 bg-bone p-7">
-                <div className="flex flex-col gap-2 border-b border-sand-deep/30 pb-6 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h3 className="font-display text-3xl text-espresso">{offer.name}</h3>
-                    <p className="mt-3 max-w-md text-sm leading-6 text-mist">{offer.description}</p>
-                  </div>
-                  <p className="shrink-0 text-sm font-semibold text-sage-deep">{offer.price}</p>
-                </div>
-                <ul className="mt-6 grid gap-3 text-sm text-bark sm:grid-cols-2">
-                  {offer.includes.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
+          <div className="mt-12">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Premium engagements</p>
+            <div className="mt-4 hidden overflow-hidden border border-sand-deep/45 bg-white lg:block">
+              <table className="w-full table-fixed border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-sand-deep/45 bg-bone">
+                    <th className="w-[17%] px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-mist" style={{ fontFamily: MONO }}>Compare</th>
+                    {premiumOffers.map((offer) => (
+                      <th key={offer.name} className="border-l border-sand-deep/35 px-5 py-4 align-top">
+                        <span className="block font-display text-2xl font-normal text-espresso">{offer.name}</span>
+                        <span className="mt-2 block text-sm font-semibold text-espresso">{offer.price}</span>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Outcome", "outcome"],
+                    ["Scope", "scope"],
+                    ["Buyer", "buyer"],
+                    ["Target turnaround", "turnaround"],
+                  ].map(([label, field]) => (
+                    <tr key={field} className="border-b border-sand-deep/30 last:border-b-0">
+                      <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</th>
+                      {premiumOffers.map((offer) => (
+                        <td key={offer.name} className="border-l border-sand-deep/30 px-5 py-4 text-sm leading-6 text-mist">{offer[field as keyof typeof offer]}</td>
+                      ))}
+                    </tr>
                   ))}
-                </ul>
-                <TrackedLink
-                  href={offer.href}
-                  label={offer.cta}
-                  section="offers"
-                  className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-md border border-sand-deep bg-white px-4 py-2.5 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep hover:text-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
-                >
-                  {offer.cta}
-                  <ArrowRight size={15} aria-hidden="true" />
-                </TrackedLink>
-              </article>
-            ))}
+                  <tr>
+                    <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>Next step</th>
+                    {premiumOffers.map((offer) => (
+                      <td key={offer.name} className="border-l border-sand-deep/30 px-5 py-4">
+                        <TrackedLink href={offer.href} label={offer.cta} section="offers" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
+                          {offer.cta}<ArrowRight size={14} aria-hidden="true" />
+                        </TrackedLink>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 grid gap-4 lg:hidden">
+              {premiumOffers.map((offer) => (
+                <article key={offer.name} className="border border-sand-deep/45 bg-white p-6">
+                  <div className="flex flex-col gap-2 border-b border-sand-deep/30 pb-5 sm:flex-row sm:items-start sm:justify-between">
+                    <h3 className="font-display text-3xl text-espresso">{offer.name}</h3>
+                    <p className="text-sm font-semibold text-espresso">{offer.price}</p>
+                  </div>
+                  <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                    {[
+                      ["Outcome", offer.outcome],
+                      ["Scope", offer.scope],
+                      ["Buyer", offer.buyer],
+                      ["Target turnaround", offer.turnaround],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
+                        <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <TrackedLink href={offer.href} label={offer.cta} section="offers" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
+                    {offer.cta}<ArrowRight size={14} aria-hidden="true" />
+                  </TrackedLink>
+                </article>
+              ))}
+            </div>
+
+            <aside className="mt-8 border-y border-sand-deep/45 bg-bone px-6 py-7 md:flex md:items-center md:justify-between md:gap-10">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Start with one page</p>
+                <h3 className="mt-3 font-display text-3xl text-espresso">Claim Support Review · $99</h3>
+                <p className="mt-3 text-sm leading-6 text-mist">Focused review · 48-hour target turnaround</p>
+              </div>
+              <TrackedLink href="/contact?intent=claim-support-review&source=home" label="Start a Claim Review" section="offers" className="mt-6 inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2 md:mt-0">
+                Start a Claim Review<ArrowRight size={15} aria-hidden="true" />
+              </TrackedLink>
+            </aside>
           </div>
         </div>
       </section>
@@ -324,34 +349,43 @@ export default function UmbrellaHomepage() {
             </TrackedLink>
           </div>
 
-          <article className="rounded-lg border border-cream/15 bg-cream p-6 text-bark md:p-8">
+          <article className="border border-cream/20 bg-white p-6 text-bark md:p-8">
             <div className="flex flex-col gap-2 border-b border-sand-deep/40 pb-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
-                  Sample · illustrative data, not live customer output
+                  Illustrative data · not live customer output
                 </p>
-                <h3 className="mt-2 font-display text-3xl text-espresso">Claim Support Record</h3>
+                <h3 className="mt-2 font-display text-3xl leading-tight text-espresso">Primary finding · Claim Support Record</h3>
               </div>
-              <span className="text-xs text-mist">Reviewed 2026-08-04</span>
+              <time dateTime="2026-08-04" className="text-xs text-mist">Reviewed Aug. 4, 2026</time>
             </div>
-            <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+            <dl className="mt-6 divide-y divide-sand-deep/30 border-y border-sand-deep/30">
+              <div className="grid gap-2 py-4 sm:grid-cols-[150px_1fr]">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Executive verdict</dt>
+                <dd className="text-sm font-semibold leading-6 text-espresso">Material claim needs narrower wording or visible support.</dd>
+              </div>
+              <div className="grid gap-2 py-4 sm:grid-cols-[150px_1fr]">
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Exact claim</dt>
+                <dd>
+                  <p className="border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">“Resolve 80% of support tickets automatically.”</p>
+                  <SourceReference surface="Homepage hero" className="mt-3 pl-4" />
+                </dd>
+              </div>
               {[
-                ["Executive verdict", "Material claim needs narrower wording or visible support."],
-                ["Exact reviewed claim", "“Resolve 80% of support tickets automatically.”"],
-                ["Visible evidence", "Product page names the feature; no public evaluation method is linked."],
-                ["Support gap", "No test set, sample size, exclusions, or definition of resolved."],
-                ["Business impact", "A buyer cannot reproduce or qualify the headline result."],
-                ["Recommended next step", "Publish the evaluation method or narrow the claim to the tested context."],
+                ["Visible support", "Product page names the feature; no public evaluation method is linked."],
+                ["Classification", "Partial — related capability is described, but the numeric result is not visibly supported."],
+                ["Why it matters", "A buyer cannot reproduce or qualify the headline result from the public material."],
+                ["Next action", "Publish the evaluation method or narrow the claim to the tested context."],
               ].map(([term, value]) => (
-                <div key={term}>
+                <div key={term} className="grid gap-2 py-4 sm:grid-cols-[150px_1fr]">
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>{term}</dt>
-                  <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
-                  {term === "Exact reviewed claim" && (
-                    <SourceReference surface="Homepage hero" className="mt-3" />
-                  )}
+                  <dd className="text-sm leading-6 text-mist">{value}</dd>
                 </div>
               ))}
             </dl>
+            <Link href="/sample-report" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
+              Open the permanent sample report <ArrowRight size={14} aria-hidden="true" />
+            </Link>
           </article>
         </div>
       </section>
@@ -416,40 +450,6 @@ export default function UmbrellaHomepage() {
                 Scrutexity provides evidence-grounded business review. It does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings are based on reviewed public material, supplied transcripts, and visible support.
               </p>
             </aside>
-          </div>
-        </div>
-      </section>
-
-      <section id="pricing" className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Pricing</p>
-              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Starting prices, stated plainly.</h2>
-            </div>
-            <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">
-              Compare scopes
-              <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="mt-10 overflow-hidden rounded-lg border border-sand-deep/45 bg-bone">
-            {[
-              ["Claim Support Review", "$99"],
-              ["Founder’s Audit", "from $750"],
-              ["Agency Claim QA Pilot", "from $1,500"],
-              ["Agent Evidence Pack", "from $2,500"],
-            ].map(([name, price]) => (
-              <div key={name} className="flex flex-col gap-1 border-b border-sand-deep/30 px-5 py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
-                <span className="text-sm font-semibold text-espresso">{name}</span>
-                <span className="text-sm text-mist">{price}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 rounded-lg border border-sand-deep/45 bg-bone p-5">
-            <p className="text-sm font-semibold text-espresso">Monitoring pilots</p>
-            <p className="mt-2 text-sm leading-6 text-mist">
-              Available after an initial review for selected customers. Contact us to discuss scope.
-            </p>
           </div>
         </div>
       </section>

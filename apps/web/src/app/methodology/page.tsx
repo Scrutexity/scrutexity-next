@@ -39,6 +39,14 @@ const steps = [
   },
 ];
 
+const classifications = [
+  ["Present", "The reviewed surface includes visible support that directly matches the wording."],
+  ["Partial", "Related support is visible, but it does not fully support the scope or specificity of the claim."],
+  ["Missing", "No visible support was found within the reviewed surface or its directly linked sources."],
+  ["Narrow", "The visible support covers a smaller population, condition, timeframe, or outcome than the claim."],
+  ["Undefined", "A material term is not defined clearly enough for a buyer to evaluate the claim."],
+] as const;
+
 export default function MethodologyPage() {
   return (
     <div className="min-h-screen bg-cream text-bark">
@@ -47,6 +55,9 @@ export default function MethodologyPage() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Methodology</p>
           <h1 className="mt-6 font-display text-5xl leading-tight text-espresso md:text-6xl">Every finding should point back to something a buyer can inspect.</h1>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-mist">The Scrutexity method keeps the reviewed wording, visible support, stated gap, safer framing draft, and next action together in one dated report.</p>
+          <p className="mt-6 text-xs leading-5 text-mist" style={{ fontFamily: MONO }}>
+            Method v1.0 · Published Aug. 4, 2026 · Last updated Aug. 4, 2026 · 6 min read
+          </p>
         </div>
       </section>
 
@@ -64,6 +75,22 @@ export default function MethodologyPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="border-b border-sand-deep/30 bg-bone px-5 py-20 sm:px-8 md:py-24" aria-labelledby="classification-heading">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Classification system</p>
+          <h2 id="classification-heading" className="mt-4 max-w-3xl font-display text-4xl leading-tight text-espresso md:text-5xl">Five descriptive support states.</h2>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-mist">These labels describe the relationship between wording and visible support. They are not risk scores, legal conclusions, or approval marks.</p>
+          <dl className="mt-10 divide-y divide-sand-deep/35 border-y border-sand-deep/45 bg-white">
+            {classifications.map(([label, explanation]) => (
+              <div key={label} id={`classification-${label.toLowerCase()}`} className="scroll-mt-32 grid gap-3 px-5 py-5 sm:grid-cols-[140px_1fr] sm:px-6">
+                <dt className="font-mono text-[13px] font-semibold text-espresso">{label}</dt>
+                <dd className="text-sm leading-6 text-mist">{explanation}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

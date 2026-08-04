@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Check, FileText, TriangleAlert } from "lucide-react";
+import { ArrowRight, Check, FileText } from "lucide-react";
 import { SourceReference } from "@/components/scrutexity/source-reference";
+import { PrintReportButton } from "@/components/scrutexity/print-report-button";
 
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
@@ -9,6 +10,7 @@ const findings = [
   {
     claim: "“Resolve 80% of customer support tickets automatically.”",
     source: "Homepage hero",
+    classification: "Partial",
     visibleSupport: "The product page describes automated ticket handling, but no public evaluation method, test set, or definition of resolved is linked.",
     whyItMatters: "A buyer cannot determine which ticket types were included, whether human intervention counted, or how the 80% figure was calculated.",
     nextAction: "Publish the evaluation method, sample size, exclusions, review period, and definition of resolution. Otherwise, narrow the claim.",
@@ -17,6 +19,7 @@ const findings = [
   {
     claim: "“Our agent never hallucinates.”",
     source: "Security and trust page",
+    classification: "Missing",
     visibleSupport: "The page mentions retrieval grounding and response checks. No public test result supports an absolute error-free statement.",
     whyItMatters: "The word never is broader than the visible evidence and leaves no room for model, source, or configuration failure.",
     nextAction: "Replace the absolute statement and link to a dated evaluation protocol when one is available.",
@@ -33,9 +36,12 @@ export default function SampleReportContent() {
 
       <section className="border-b border-sand-deep/30 bg-bone px-5 pb-16 pt-20 sm:px-8 md:pb-20 md:pt-28">
         <div className="mx-auto max-w-6xl">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-            Scrutexity · Sample Claim Support Report
-          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
+              Scrutexity · Sample Claim Support Report
+            </p>
+            <PrintReportButton />
+          </div>
           <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_0.65fr] lg:items-end">
             <div>
               <h1 className="font-display text-5xl leading-tight text-espresso md:text-6xl">A report built for decisions, not theater.</h1>
@@ -58,14 +64,14 @@ export default function SampleReportContent() {
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.14em] text-mist" style={{ fontFamily: MONO }}>Status</dt>
-                <dd className="mt-2 text-sm font-semibold text-clay-deep">Needs revision</dd>
+                <dd className="mt-2 text-sm font-semibold text-espresso">Illustrative fixture</dd>
               </div>
             </dl>
           </div>
         </div>
       </section>
 
-      <main className="px-5 py-16 sm:px-8 md:py-20">
+      <div className="px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto max-w-6xl">
           <section className="grid gap-5 md:grid-cols-[0.7fr_1.3fr]">
             <div className="rounded-lg bg-espresso p-7 text-cream">
@@ -101,7 +107,7 @@ export default function SampleReportContent() {
 
           <section className="mt-12">
             <div className="flex items-center gap-3">
-              <TriangleAlert className="h-5 w-5 text-clay-deep" aria-hidden="true" />
+              <FileText className="h-5 w-5 text-sage-deep" aria-hidden="true" />
               <h2 className="font-display text-4xl text-espresso">Detailed findings</h2>
             </div>
 
@@ -111,6 +117,7 @@ export default function SampleReportContent() {
                   <div className="border-b border-sand-deep/35 bg-white p-6">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Finding {String(index + 1).padStart(2, "0")}</p>
                     <h3 className="mt-4 font-display text-3xl leading-tight text-espresso">Claim review</h3>
+                    <p className="mt-3 font-mono text-xs text-espresso">Classification: {finding.classification}</p>
                   </div>
                   <dl className="divide-y divide-sand-deep/30">
                     <div className="grid gap-3 bg-bone p-6 md:grid-cols-[150px_1fr]">
@@ -125,7 +132,7 @@ export default function SampleReportContent() {
                       <dd className="text-sm leading-6 text-mist">{finding.visibleSupport}</dd>
                     </div>
                     <div className="grid gap-3 bg-bone p-6 md:grid-cols-[150px_1fr]">
-                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-clay-deep" style={{ fontFamily: MONO }}>Why it matters</dt>
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Why it matters</dt>
                       <dd className="text-sm leading-6 text-mist">{finding.whyItMatters}</dd>
                     </div>
                     <div className="grid gap-3 bg-cream p-6 md:grid-cols-[150px_1fr]">
@@ -170,7 +177,7 @@ export default function SampleReportContent() {
             </div>
           </section>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

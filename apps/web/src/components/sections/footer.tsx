@@ -77,6 +77,9 @@ export default function Footer() {
           <p id="disclaimer" className="max-w-4xl text-xs leading-5 text-cream/55">
             Scrutexity provides evidence-grounded business review. It does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings are based on reviewed public material, supplied transcripts, and visible support.
           </p>
+          <p className="mt-5 font-mono text-[11px] leading-5 text-cream/45">
+            Method v1.0 · Published Aug. 4, 2026 · Last methodology update Aug. 4, 2026
+          </p>
           <p className="mt-5 text-xs text-cream/35">
             &copy; {new Date().getFullYear()} Scrutexity. All rights reserved.
           </p>

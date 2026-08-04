@@ -1,71 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, Clock3 } from "lucide-react";
+import { ArrowRight, Clock3 } from "lucide-react";
 import { trackEvent } from "@/utils/analytics";
 
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
-const plans = [
-  {
-    name: "Claim Support Review",
-    price: "$99",
-    cadence: "one-time",
-    summary: "For one priority public page with claims a buyer may question.",
-    includes: [
-      "Review of material public claims",
-      "Visible evidence and support gaps",
-      "Priority findings",
-      "Safer framing drafts",
-      "48-hour target turnaround",
-    ],
-    cta: "Start a Claim Review",
-    href: "/contact?intent=claim-support-review&source=pricing",
-  },
+const premiumPlans = [
   {
     name: "Founder’s Audit",
     price: "From $750",
-    cadence: "scoped engagement",
-    summary: "For founders who need the full trust and positioning picture, not one isolated page.",
-    includes: [
-      "Claims and visible evidence",
-      "Positioning and differentiation",
-      "Offer clarity",
-      "Trust architecture and buyer friction",
-      "Competitor context",
-      "30-day action plan",
-    ],
+    outcome: "Full trust and positioning picture",
+    scope: "Claims, positioning, offer clarity, and trust architecture",
+    buyer: "Founder-led teams",
+    turnaround: "Confirmed before work begins",
     cta: "Request a Founder’s Audit",
     href: "/contact?intent=founders-audit&source=pricing",
   },
   {
     name: "Agency Claim QA",
     price: "From $1,500",
-    cadence: "pilot",
-    summary: "For agencies adding a documented claim-review step to client delivery.",
-    includes: [
-      "Agency client-site reviews",
-      "Campaign and case-study claim QA",
-      "Client-ready findings",
-      "Launch and onboarding QA",
-      "Repeatable per-client workflow",
-    ],
+    outcome: "Repeatable claim QA for client delivery",
+    scope: "Client sites, campaigns, case studies, and launch review",
+    buyer: "Agencies",
+    turnaround: "Confirmed per engagement",
     cta: "Discuss an Agency Pilot",
     href: "/contact?intent=agency-claim-qa&source=pricing",
   },
   {
     name: "Agent Evidence Pack",
     price: "From $2,500",
-    cadence: "pilot",
-    summary: "For teams reviewing customer-facing agent outputs against approved sources and policies.",
-    includes: [
-      "Supplied transcript testing",
-      "Unsupported-promise findings",
-      "Grounding failures",
-      "Missing escalation and policy drift",
-      "Dated evidence and remediation priorities",
-    ],
+    outcome: "Dated evidence review of supplied agent outputs",
+    scope: "Transcripts, grounding, escalation, and policy drift",
+    buyer: "Teams deploying customer-facing agents",
+    turnaround: "Confirmed per evidence pack",
     cta: "Request an Agent Review",
     href: "/contact?intent=agent-evidence-pack&source=pricing",
   },
@@ -98,36 +67,87 @@ export default function PricingContent() {
 
       <section className="bg-white px-5 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="grid gap-5 md:grid-cols-2">
-            {plans.map((plan) => (
-              <article key={plan.name} className="flex flex-col rounded-lg border border-sand-deep/45 bg-bone p-7">
-                <div className="border-b border-sand-deep/30 pb-6">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>{plan.cadence}</p>
-                  <h2 className="mt-3 font-display text-3xl text-espresso">{plan.name}</h2>
-                  <p className="mt-3 text-2xl font-semibold text-espresso">{plan.price}</p>
-                  <p className="mt-4 text-sm leading-6 text-mist">{plan.summary}</p>
-                </div>
+          <p id="premium-engagements" className="scroll-mt-32 text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Premium engagements</p>
+          <h2 className="mt-4 max-w-3xl font-display text-4xl leading-tight text-espresso md:text-5xl">Choose the review outcome, then confirm the scope.</h2>
 
-                <ul className="mt-6 flex-1 space-y-3">
-                  {plan.includes.map((item) => (
-                    <li key={item} className="flex gap-2 text-sm text-bark">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
+          <div className="mt-10 hidden overflow-hidden border border-sand-deep/45 lg:block">
+            <table className="w-full table-fixed border-collapse text-left">
+              <thead>
+                <tr className="border-b border-sand-deep/45 bg-bone">
+                  <th className="w-[17%] px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-mist" style={{ fontFamily: MONO }}>Compare</th>
+                  {premiumPlans.map((plan) => (
+                    <th key={plan.name} className="border-l border-sand-deep/35 px-5 py-5 align-top">
+                      <span className="block font-display text-2xl font-normal text-espresso">{plan.name}</span>
+                      <span className="mt-2 block text-sm font-semibold text-espresso">{plan.price}</span>
+                    </th>
                   ))}
-                </ul>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Outcome", "outcome"],
+                  ["Scope", "scope"],
+                  ["Buyer", "buyer"],
+                  ["Target turnaround", "turnaround"],
+                ].map(([label, field]) => (
+                  <tr key={field} className="border-b border-sand-deep/30">
+                    <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</th>
+                    {premiumPlans.map((plan) => (
+                      <td key={plan.name} className="border-l border-sand-deep/30 px-5 py-4 text-sm leading-6 text-mist">{plan[field as keyof typeof plan]}</td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>Next step</th>
+                  {premiumPlans.map((plan) => (
+                    <td key={plan.name} className="border-l border-sand-deep/30 px-5 py-4">
+                      <Link href={plan.href} onClick={() => trackEvent("pricing_plan_click", { plan_name: plan.name, destination: plan.href, section: "pricing" })} className="inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
+                        {plan.cta}<ArrowRight size={14} aria-hidden="true" />
+                      </Link>
+                    </td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-                <Link
-                  href={plan.href}
-                  onClick={() => trackEvent("pricing_plan_click", { plan_name: plan.name, destination: plan.href, section: "pricing" })}
-                  className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-sage-deep px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
-                >
-                  {plan.cta}
-                  <ArrowRight size={15} aria-hidden="true" />
+          <div className="mt-10 grid gap-4 lg:hidden">
+            {premiumPlans.map((plan) => (
+              <article key={plan.name} className="border border-sand-deep/45 bg-bone p-6">
+                <div className="border-b border-sand-deep/30 pb-5 sm:flex sm:items-start sm:justify-between sm:gap-6">
+                  <h3 className="font-display text-3xl text-espresso">{plan.name}</h3>
+                  <p className="mt-2 text-sm font-semibold text-espresso sm:mt-1">{plan.price}</p>
+                </div>
+                <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {[
+                    ["Outcome", plan.outcome],
+                    ["Scope", plan.scope],
+                    ["Buyer", plan.buyer],
+                    ["Target turnaround", plan.turnaround],
+                  ].map(([label, value]) => (
+                    <div key={label}>
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
+                      <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <Link href={plan.href} onClick={() => trackEvent("pricing_plan_click", { plan_name: plan.name, destination: plan.href, section: "pricing" })} className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
+                  {plan.cta}<ArrowRight size={14} aria-hidden="true" />
                 </Link>
               </article>
             ))}
           </div>
+
+          <section className="mt-12 border-y border-sand-deep/45 bg-cream px-6 py-8 md:flex md:items-center md:justify-between md:gap-10" aria-labelledby="entry-review-heading">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Start with one page</p>
+              <h2 id="entry-review-heading" className="scroll-mt-32 mt-3 font-display text-3xl text-espresso">Claim Support Review · $99</h2>
+              <p className="mt-3 text-sm leading-6 text-mist">Focused review · 48-hour target turnaround</p>
+            </div>
+            <Link href="/contact?intent=claim-support-review&source=pricing" onClick={() => trackEvent("pricing_plan_click", { plan_name: "Claim Support Review", destination: "/contact?intent=claim-support-review&source=pricing", section: "pricing" })} className="mt-6 inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2 md:mt-0">
+              Start a Claim Review<ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </section>
 
           <aside className="mt-8 rounded-lg border border-sand-deep/45 bg-cream p-7 md:flex md:items-center md:justify-between md:gap-8">
             <div className="flex gap-4">

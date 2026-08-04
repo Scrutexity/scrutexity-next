@@ -89,8 +89,13 @@ html {
 /* ── Font Helpers ── */
 .font-display {
   font-family: var(--font-instrument-serif), Georgia, serif;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-feature-settings: 'ss01' on, 'ss02' on;
+}
+
+:focus-visible {
+  outline-color: #5E7A5A;
+  outline-offset: 3px;
 }
 
 /* ── Glassmorphism – paper-glass ── */
@@ -272,4 +277,41 @@ html {
   .luxury-slider::-webkit-slider-thumb { transition: none; }
   .clay-cta, .sage-cta { transition: none; }
   .clay-cta:hover, .sage-cta:hover { transform: none; }
+}
+
+@media print {
+  @page { margin: 16mm; }
+
+  header,
+  footer,
+  [data-mobile-sticky-cta],
+  [data-print-hidden] {
+    display: none !important;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #1C1814 !important;
+    overflow: visible !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  article {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
 }

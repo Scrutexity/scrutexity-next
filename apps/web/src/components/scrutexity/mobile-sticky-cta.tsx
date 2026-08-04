@@ -12,8 +12,8 @@ export function MobileStickyCTA() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show CTA after scrolling past the first 400px (roughly the hero text on mobile)
-      if (window.scrollY > 400) {
+      // Keep the primary page content unobstructed until the opening composition has passed.
+      if (window.scrollY > 900) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -28,13 +28,14 @@ export function MobileStickyCTA() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          data-mobile-sticky-cta
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 lg:hidden pointer-events-none"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center border-t border-sand-deep/35 bg-cream/95 px-4 py-3 backdrop-blur-md lg:hidden"
         >
-          <div className="pointer-events-auto">
+          <div className="pointer-events-auto w-full max-w-sm">
             <Link
               href="/contact?intent=claim-support-review&source=scrutexity-mobile-sticky"
               onClick={() =>
@@ -44,7 +45,7 @@ export function MobileStickyCTA() {
                   section: 'mobile-sticky',
                 })
               }
-              className="flex min-h-12 items-center gap-2 rounded-md bg-espresso px-6 py-3 font-sans text-sm font-semibold text-cream shadow-[0_12px_28px_rgba(28,24,20,0.24)] transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 font-sans text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
               Get a Claim Snapshot
               <ArrowRight size={16} />
