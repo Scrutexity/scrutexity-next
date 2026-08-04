@@ -9,11 +9,38 @@ const nextConfig: NextConfig = {
         destination: 'https://www.scrutexity.com/:path*',
         permanent: true,
       },
+      // Consolidate retired fear-framed and legacy offer pages before outreach.
+      { source: '/partner-os', destination: '/agency', permanent: true },
+      { source: '/agency/claim-receipt', destination: '/agency', permanent: true },
+      { source: '/new-york-med-spa-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/glp-1-weight-loss-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/medical-wellness', destination: '/pricing', permanent: true },
+      { source: '/medical-wellness/med-spas', destination: '/pricing', permanent: true },
+      { source: '/aesthetic-device-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/regenerative-medicine-claims', destination: '/pricing', permanent: true },
+      { source: '/insights/glp-1-claim-audit', destination: '/methodology', permanent: true },
+      { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
+      { source: '/private-equity/claim-diligence', destination: '/pricing', permanent: true },
+      { source: '/private-equity/report', destination: '/sample-report', permanent: true },
+      { source: '/tracker', destination: '/methodology', permanent: true },
+      { source: '/claim-audit', destination: '/sample-report', permanent: true },
+      { source: '/safety-architecture', destination: '/methodology', permanent: true },
+      { source: '/agent-audit', destination: '/pricing', permanent: true },
+      { source: '/enterprise', destination: '/pricing', permanent: true },
+      { source: '/for-multi-location', destination: '/pricing', permanent: true },
+      { source: '/company', destination: '/about', permanent: true },
+      { source: '/partners', destination: '/agency', permanent: true },
+      { source: '/use-cases/agency-white-label-audits', destination: '/agency', permanent: true },
+      { source: '/proof', destination: '/sample-report', permanent: true },
+      { source: '/proof/sealed-audit-trail', destination: '/sample-report', permanent: true },
+      { source: '/sample-owner-brief', destination: '/sample-report', permanent: true },
+      { source: '/claim-receipt', destination: '/sample-report', permanent: true },
+      { source: '/ai-visibility', destination: '/what-we-do', permanent: true },
       // Keep legacy product entry points on the canonical Scrutexity intake.
       // Sending these routes back to auditgpt.ai creates a cross-project loop.
       {
         source: '/snapshot',
-        destination: '/contact?intent=claim-support-review&source=scrutexity-snapshot',
+        destination: '/contact?intent=buyer-narrative-alignment&source=scrutexity-snapshot',
         permanent: false,
       },
       // Batch 3a — Internal / Test routes
@@ -23,8 +50,8 @@ const nextConfig: NextConfig = {
       { source: '/techweek', destination: '/what-we-do', permanent: true },
       { source: '/proof/telemetry-alpha', destination: '/proof', permanent: true },
       // Batch 3b — P0 Banned name slugs & cross-brand redirects
-      { source: '/agency/claim-intelligence-receipt', destination: '/agency/claim-receipt', permanent: true },
-      { source: '/auditgpt', destination: '/contact?intent=claim-support-review&source=scrutexity-auditgpt', permanent: true },
+      { source: '/agency/claim-intelligence-receipt', destination: '/agency', permanent: true },
+      { source: '/auditgpt', destination: '/pricing', permanent: true },
       // Sub-batch 3c-1 — Legacy /about/* routes
       { source: '/about/clinical-demand-governance', destination: '/methodology', permanent: true },
       { source: '/about/clinical-demand-governance/ai-ingress-protocols', destination: '/methodology', permanent: true },
@@ -73,12 +100,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/dscsa-compliance',
-        destination: '/medical-wellness',
+        destination: '/methodology',
         permanent: true,
       },
       {
         source: '/iv-therapy-compliance',
-        destination: '/medical-wellness',
+        destination: '/methodology',
         permanent: true,
       },
       {

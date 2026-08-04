@@ -1,10 +1,16 @@
 export const INQUIRY_OFFER_VALUES = [
+  'buyer-narrative-alignment',
   'claim-support-review',
   'founders-audit',
   'agency-claim-qa',
   'agent-evidence-pack',
   'monitoring',
 ] as const;
+
+export const PUBLIC_INQUIRY_OFFER_VALUES = [
+  'buyer-narrative-alignment',
+  'agency-claim-qa',
+] as const satisfies readonly InquiryOffer[];
 
 export type InquiryOffer = (typeof INQUIRY_OFFER_VALUES)[number];
 
@@ -17,6 +23,15 @@ export const INQUIRY_OFFERS: Record<InquiryOffer, {
   confirmationTitle: string;
   scoped: boolean;
 }> = {
+  'buyer-narrative-alignment': {
+    label: 'Buyer Narrative Alignment Sprint',
+    formLabel: 'Buyer Narrative Alignment Sprint · $1,500',
+    submitLabel: 'Request an Alignment Sprint',
+    subject: 'Buyer Narrative Alignment Sprint inquiry',
+    prompt: 'Share the company URL, the buyer questions that matter, and any AI answer discrepancy you have already noticed.',
+    confirmationTitle: 'Alignment Sprint inquiry received.',
+    scoped: true,
+  },
   'claim-support-review': {
     label: 'Claim Support Review',
     formLabel: 'Claim Support Review · $99',
@@ -66,4 +81,8 @@ export const INQUIRY_OFFERS: Record<InquiryOffer, {
 
 export function isInquiryOffer(value: string | undefined): value is InquiryOffer {
   return Boolean(value && INQUIRY_OFFER_VALUES.includes(value as InquiryOffer));
+}
+
+export function isPublicInquiryOffer(value: string | undefined): value is (typeof PUBLIC_INQUIRY_OFFER_VALUES)[number] {
+  return Boolean(value && PUBLIC_INQUIRY_OFFER_VALUES.includes(value as (typeof PUBLIC_INQUIRY_OFFER_VALUES)[number]));
 }

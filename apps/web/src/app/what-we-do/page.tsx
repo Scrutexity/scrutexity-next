@@ -23,7 +23,7 @@ export default function WhatWeDoPage() {
         <header className="max-w-4xl">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep">Operating boundary</p>
           <h1 className="mt-5 font-display text-5xl leading-tight text-espresso md:text-6xl">Evidence-grounded review, with the limits stated plainly.</h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-mist">Scrutexity reviews what a business says, what visible evidence supports it, where trust breaks, and what to fix first. AuditGPT powers the first-pass extraction and review workflow.</p>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-mist">Scrutexity captures how AI answer engines describe a company, compares material statements with its published record, improves the sources the company controls, and reruns the same questions after 14 days.</p>
         </header>
 
         <section className="mt-12 overflow-hidden rounded-lg border border-sand-deep/45 bg-white">
@@ -50,7 +50,7 @@ export default function WhatWeDoPage() {
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-mist">When the answer is unclear, the review records the exact wording, visible support, remaining gap, safer framing draft, and next action.</p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/sample-report" className="inline-flex min-h-11 items-center justify-center rounded-md border border-sand-deep bg-white px-5 py-2.5 text-sm font-semibold text-espresso">View a Sample Report</Link>
-            <Link href="/contact?intent=claim-support-review&source=what-we-do" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">Get a Claim Snapshot <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link href="/contact?intent=buyer-narrative-alignment&source=what-we-do" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">Request an Alignment Sprint <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>

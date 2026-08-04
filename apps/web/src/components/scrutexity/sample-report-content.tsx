@@ -170,11 +170,11 @@ export default function SampleReportContent() {
           <section className="mt-12 border-t border-sand-deep/35 pt-12 text-center">
             <h2 className="font-display text-4xl text-espresso md:text-5xl">Start with one public page.</h2>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
-              The $99 Claim Support Review applies this structure to one priority page and returns the highest-value fixes first.
+              The $1,500 Buyer Narrative Alignment Sprint applies this structure across an agreed question set, improves controllable source pages, and reruns the same questions after 14 days.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/contact?intent=claim-support-review&source=sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-                Start a Claim Review
+              <Link href="/contact?intent=buyer-narrative-alignment&source=sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
+                Request an Alignment Sprint
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link href="/methodology" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">

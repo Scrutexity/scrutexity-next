@@ -12,13 +12,7 @@ const staticRoutes = [
   "/sample-report",
   "/contact",
   "/agency",
-
-  // Preserved vertical solutions
-  "/medical-wellness",
-  "/medical-wellness/med-spas",
-  "/aesthetic-device-claim-audit",
-  "/glp-1-weight-loss-claim-audit",
-  "/regenerative-medicine-claims",
+  "/about",
 
   // Company and legal
   "/data-handling",

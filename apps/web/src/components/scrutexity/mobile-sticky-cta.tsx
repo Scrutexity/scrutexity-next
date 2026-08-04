@@ -37,17 +37,17 @@ export function MobileStickyCTA() {
         >
           <div className="pointer-events-auto w-full max-w-sm">
             <Link
-              href="/contact?intent=claim-support-review&source=scrutexity-mobile-sticky"
+              href="/contact?intent=buyer-narrative-alignment&source=scrutexity-mobile-sticky"
               onClick={() =>
                 trackEvent('cta_click', {
-                  cta_label: 'Get a Claim Snapshot - Mobile Sticky',
-                  destination: '/contact?intent=claim-support-review&source=scrutexity-mobile-sticky',
+                  cta_label: 'Request an Alignment Sprint - Mobile Sticky',
+                  destination: '/contact?intent=buyer-narrative-alignment&source=scrutexity-mobile-sticky',
                   section: 'mobile-sticky',
                 })
               }
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 font-sans text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Get a Claim Snapshot
+              Request an Alignment Sprint
               <ArrowRight size={16} />
             </Link>
           </div>

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Bot,
   Building2,
   Check,
   FileCheck2,
@@ -14,7 +13,7 @@ import {
 import { trackEvent } from "@/utils/analytics";
 import { SourceReference } from "@/components/scrutexity/source-reference";
 
-const SNAPSHOT_URL = "/contact?intent=claim-support-review&source=scrutexity-home";
+const SPRINT_URL = "/contact?intent=buyer-narrative-alignment&source=scrutexity-home";
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
@@ -45,38 +44,12 @@ const reviewSteps = [
   },
 ];
 
-const premiumOffers = [
-  {
-    name: "Founder’s Audit",
-    price: "From $750",
-    outcome: "Full trust and positioning picture",
-    scope: "Claims, positioning, offer clarity, and trust architecture",
-    buyer: "Founder-led teams",
-    turnaround: "Confirmed before work begins",
-    cta: "Request a Founder’s Audit",
-    href: "/contact?intent=founders-audit&source=home",
-  },
-  {
-    name: "Agency Claim QA",
-    price: "From $1,500",
-    outcome: "Repeatable claim QA for client delivery",
-    scope: "Client sites, campaigns, case studies, and launch review",
-    buyer: "Agencies",
-    turnaround: "Confirmed per engagement",
-    cta: "Discuss an Agency Pilot",
-    href: "/contact?intent=agency-claim-qa&source=home",
-  },
-  {
-    name: "Agent Evidence Pack",
-    price: "From $2,500",
-    outcome: "Dated evidence review of supplied agent outputs",
-    scope: "Transcripts, grounding, escalation, and policy drift",
-    buyer: "Teams deploying customer-facing agents",
-    turnaround: "Confirmed per evidence pack",
-    cta: "Request an Agent Review",
-    href: "/contact?intent=agent-evidence-pack&source=home",
-  },
-];
+const sprintDetails = [
+  ["Question set", "8–12 agreed buyer-intent questions"],
+  ["Surfaces", "ChatGPT, Perplexity, and Google"],
+  ["Source work", "Published pages and citations the company can inspect"],
+  ["Retest", "The same question set rerun after 14 days"],
+] as const;
 
 function TrackedLink({
   href,
@@ -121,22 +94,22 @@ export default function UmbrellaHomepage() {
               Scrutexity · Evidence-grounded business review
             </p>
             <h1 className="mt-7 max-w-4xl font-display text-5xl leading-[1.08] text-espresso sm:text-6xl lg:text-[4rem]">
-              Find the claims and AI outputs your buyers can’t verify.
+              See where AI answers and your published record diverge.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-7 text-mist md:text-lg md:leading-8">
-              Scrutexity reviews public claims and customer-facing AI outputs, maps them to visible evidence, and gives you the fixes that matter first. Powered by AuditGPT.
+              Scrutexity captures how major AI answer engines describe your company, compares material statements with the sources buyers can inspect, improves the pages you control, and reruns the same questions after 14 days.
             </p>
             <p className="mt-6 border-l border-sand-deep pl-4 text-sm leading-6 text-bark">
-              For AI/SaaS teams, agencies, medical and wellness operators, and companies deploying customer-facing agents.
+              Built for founder-led AI and software companies where buyer understanding matters during evaluation, diligence, and procurement.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <TrackedLink
-                href={SNAPSHOT_URL}
-                label="Get a Claim Snapshot"
+                href={SPRINT_URL}
+                label="Request an Alignment Sprint"
                 section="hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
               >
-                Get a Claim Snapshot
+                Request an Alignment Sprint
                 <ArrowRight size={16} aria-hidden="true" />
               </TrackedLink>
               <TrackedLink
@@ -155,9 +128,9 @@ export default function UmbrellaHomepage() {
             <div className="flex flex-col gap-2 border-b border-sand-deep/35 px-2 pb-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
-                  Claim-drift exhibit
+                  Buyer-narrative exhibit
                 </p>
-                <h2 className="mt-2 font-display text-3xl leading-tight text-espresso">One claim, kept in context.</h2>
+                <h2 className="mt-2 font-display text-3xl leading-tight text-espresso">One captured discrepancy, bounded by evidence.</h2>
               </div>
               <p className="text-[10px] leading-5 text-mist" style={{ fontFamily: MONO }}>
                 Illustrative data · reviewed Aug. 4, 2026
@@ -166,34 +139,34 @@ export default function UmbrellaHomepage() {
 
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <article id="exhibit-01" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>01 · Source wording</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>01 · Published record</p>
                 <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
-                  “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
+                  “Northstar routes support requests to the appropriate service queue.”
                 </p>
-                <SourceReference surface="Homepage hero" className="mt-4 pl-4" />
+                <SourceReference surface="Product page" className="mt-4 pl-4" />
               </article>
 
               <article id="exhibit-02" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>02 · Changed wording</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>02 · Captured answer</p>
                 <p className="mt-4 border-l border-sand-deep pl-4 font-mono text-[15px] leading-7 text-espresso">
-                  “Cut customer response time by 64%.”
+                  “Northstar independently resolves customer support requests.”
                 </p>
-                <SourceReference surface="Campaign summary" className="mt-4 pl-4" />
+                <SourceReference surface="Illustrative AI answer capture" className="mt-4 pl-4" />
               </article>
 
               <article id="exhibit-03" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>03 · Support gap</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>03 · Observed discrepancy</p>
                 <p className="mt-4 text-[15px] leading-7 text-bark">
-                  The broader statement drops the pilot scope and internal-test context.
+                  The captured answer changes routing into autonomous resolution, a capability not found on the reviewed product page.
                 </p>
                 <SourceReference surface="Scrutexity comparison note" className="mt-4" />
-                <p className="mt-2 font-mono text-[10px] leading-5 text-mist">Classification: Narrow · Scope: Illustrative homepage and campaign-summary wording compared Aug. 4, 2026.</p>
+                <p className="mt-2 font-mono text-[10px] leading-5 text-mist">Classification: Missing · Scope: Illustrative product wording and answer capture compared Aug. 4, 2026.</p>
               </article>
 
               <article id="exhibit-04" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>04 · Suggested framing</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>04 · Next action</p>
                 <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
-                  “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
+                  Review the answer’s cited sources, clarify the routing boundary on the product page, then rerun the same question set.
                 </p>
                 <SourceReference surface="Scrutexity review note" className="mt-4 pl-4" />
               </article>
@@ -236,95 +209,32 @@ export default function UmbrellaHomepage() {
           <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-                Product offers
+                First engagement
               </p>
-              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Start with the scope you actually need.</h2>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">One defined sprint. One rerun.</h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-mist lg:justify-self-end">
-              The review is the product. Every scope ends with concrete findings, visible evidence notes, safer framing drafts, and a prioritized next step.
+              The Buyer Narrative Alignment Sprint creates a dated baseline, improves the public sources you control, and measures what changes after the same questions are asked again.
             </p>
           </div>
 
-          <div className="mt-12">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Premium engagements</p>
-            <div className="mt-4 hidden overflow-hidden border border-sand-deep/45 bg-white lg:block">
-              <table className="w-full table-fixed border-collapse text-left">
-                <thead>
-                  <tr className="border-b border-sand-deep/45 bg-bone">
-                    <th className="w-[17%] px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-mist" style={{ fontFamily: MONO }}>Compare</th>
-                    {premiumOffers.map((offer) => (
-                      <th key={offer.name} className="border-l border-sand-deep/35 px-5 py-4 align-top">
-                        <span className="block font-display text-2xl font-normal text-espresso">{offer.name}</span>
-                        <span className="mt-2 block text-sm font-semibold text-espresso">{offer.price}</span>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["Outcome", "outcome"],
-                    ["Scope", "scope"],
-                    ["Buyer", "buyer"],
-                    ["Target turnaround", "turnaround"],
-                  ].map(([label, field]) => (
-                    <tr key={field} className="border-b border-sand-deep/30 last:border-b-0">
-                      <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</th>
-                      {premiumOffers.map((offer) => (
-                        <td key={offer.name} className="border-l border-sand-deep/30 px-5 py-4 text-sm leading-6 text-mist">{offer[field as keyof typeof offer]}</td>
-                      ))}
-                    </tr>
-                  ))}
-                  <tr>
-                    <th className="bg-bone px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>Next step</th>
-                    {premiumOffers.map((offer) => (
-                      <td key={offer.name} className="border-l border-sand-deep/30 px-5 py-4">
-                        <TrackedLink href={offer.href} label={offer.cta} section="offers" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
-                          {offer.cta}<ArrowRight size={14} aria-hidden="true" />
-                        </TrackedLink>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-4 grid gap-4 lg:hidden">
-              {premiumOffers.map((offer) => (
-                <article key={offer.name} className="border border-sand-deep/45 bg-white p-6">
-                  <div className="flex flex-col gap-2 border-b border-sand-deep/30 pb-5 sm:flex-row sm:items-start sm:justify-between">
-                    <h3 className="font-display text-3xl text-espresso">{offer.name}</h3>
-                    <p className="text-sm font-semibold text-espresso">{offer.price}</p>
-                  </div>
-                  <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-                    {[
-                      ["Outcome", offer.outcome],
-                      ["Scope", offer.scope],
-                      ["Buyer", offer.buyer],
-                      ["Target turnaround", offer.turnaround],
-                    ].map(([label, value]) => (
-                      <div key={label}>
-                        <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
-                        <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <TrackedLink href={offer.href} label={offer.cta} section="offers" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2">
-                    {offer.cta}<ArrowRight size={14} aria-hidden="true" />
-                  </TrackedLink>
-                </article>
-              ))}
-            </div>
-
-            <aside className="mt-8 border-y border-sand-deep/45 bg-bone px-6 py-7 md:flex md:items-center md:justify-between md:gap-10">
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Start with one page</p>
-                <h3 className="mt-3 font-display text-3xl text-espresso">Claim Support Review · $99</h3>
-                <p className="mt-3 text-sm leading-6 text-mist">Focused review · 48-hour target turnaround</p>
-              </div>
-              <TrackedLink href="/contact?intent=claim-support-review&source=home" label="Start a Claim Review" section="offers" className="mt-6 inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2 md:mt-0">
-                Start a Claim Review<ArrowRight size={15} aria-hidden="true" />
+          <div className="mt-12 grid gap-px border border-sand-deep/45 bg-sand-deep/45 lg:grid-cols-[0.78fr_1.22fr]">
+            <div className="bg-espresso p-7 text-cream md:p-9">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-soft" style={{ fontFamily: MONO }}>Buyer Narrative Alignment Sprint</p>
+              <p className="mt-5 font-display text-5xl">$1,500</p>
+              <p className="mt-3 text-sm leading-6 text-cream/70">Fixed first engagement · scope confirmed before payment</p>
+              <TrackedLink href={SPRINT_URL} label="Request an Alignment Sprint" section="offers" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso">
+                Request an Alignment Sprint<ArrowRight size={15} aria-hidden="true" />
               </TrackedLink>
-            </aside>
+            </div>
+            <dl className="grid bg-white sm:grid-cols-2">
+              {sprintDetails.map(([label, value]) => (
+                <div key={label} className="border-b border-sand-deep/30 p-6 sm:border-r sm:last:border-r-0">
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
+                  <dd className="mt-3 text-sm leading-6 text-mist">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
@@ -458,28 +368,29 @@ export default function UmbrellaHomepage() {
 
       <section className="border-b border-sand-deep/30 bg-bone px-5 py-16 sm:px-8 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-display text-4xl text-espresso md:text-5xl">Founder-reviewed, not blindly generated.</h2>
+          <h2 className="font-display text-4xl text-espresso md:text-5xl">Founder-led from capture through retest.</h2>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-mist">
-            Scrutexity was built by Nick, who personally reviews every paid Claim Support Review and Founder’s Audit before delivery.
+            Nick Altstein leads every sprint, reviews each material discrepancy, and maintains the dated record of source changes and rerun results.
           </p>
+          <Link href="/about" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">About the founder<ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
       </section>
 
       <section className="bg-white px-5 py-24 sm:px-8 md:py-32">
         <div className="mx-auto max-w-4xl text-center">
-          <Bot className="mx-auto h-7 w-7 text-sage-deep" aria-hidden="true" />
-          <h2 className="mt-6 font-display text-4xl text-espresso md:text-6xl">Start with one claim your buyers may question.</h2>
+          <ScanSearch className="mx-auto h-7 w-7 text-sage-deep" aria-hidden="true" />
+          <h2 className="mt-6 font-display text-4xl text-espresso md:text-6xl">Start with the questions your buyers already ask.</h2>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
-            AuditGPT handles the first-pass snapshot. Scrutexity turns the important findings into a prioritized business review.
+            Establish the current buyer narrative, improve the source material you control, and measure what changes after 14 days.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <TrackedLink
-              href={SNAPSHOT_URL}
-              label="Get a Claim Snapshot"
+              href={SPRINT_URL}
+              label="Request an Alignment Sprint"
               section="final-cta"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Get a Claim Snapshot
+              Request an Alignment Sprint
               <ArrowRight size={16} aria-hidden="true" />
             </TrackedLink>
             <a

@@ -92,12 +92,18 @@ assert.equal(duplicate.record.id, first.record.id);
 assert.equal(first.record.environment, 'preview');
 
 assert.deepEqual(offers.INQUIRY_OFFER_VALUES, [
+  'buyer-narrative-alignment',
   'claim-support-review',
   'founders-audit',
   'agency-claim-qa',
   'agent-evidence-pack',
   'monitoring',
 ]);
+assert.deepEqual(offers.PUBLIC_INQUIRY_OFFER_VALUES, [
+  'buyer-narrative-alignment',
+  'agency-claim-qa',
+]);
+assert.equal(offers.INQUIRY_OFFERS['buyer-narrative-alignment'].formLabel, 'Buyer Narrative Alignment Sprint · $1,500');
 assert.equal(offers.INQUIRY_OFFERS['claim-support-review'].scoped, false);
 for (const offer of offers.INQUIRY_OFFER_VALUES.filter((value) => value !== 'claim-support-review')) {
   assert.equal(offers.INQUIRY_OFFERS[offer].scoped, true);

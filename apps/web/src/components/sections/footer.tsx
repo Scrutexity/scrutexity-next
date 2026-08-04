@@ -7,25 +7,26 @@ const columns = [
       ["What we do", "/what-we-do"],
       ["Sample report", "/sample-report"],
       ["Pricing", "/pricing"],
-      ["AuditGPT snapshot", "https://auditgpt.ai/snapshot?source=scrutexity-footer"],
+      ["Alignment Sprint", "/pricing"],
     ],
   },
   {
     title: "Company",
     links: [
       ["Methodology", "/methodology"],
+      ["About Nick", "/about"],
       ["For agencies", "/agency"],
       ["Home", "/"],
       ["Contact", "/contact"],
     ],
   },
   {
-    title: "Solutions",
+    title: "Engagement",
     links: [
-      ["Agent review", "/contact?intent=agent-evidence-pack"],
-      ["Medical & wellness", "/medical-wellness"],
-      ["Med spas", "/medical-wellness/med-spas"],
-      ["GLP-1 claims", "/glp-1-weight-loss-claim-audit"],
+      ["What is included", "/pricing"],
+      ["Request a sprint", "/contact?intent=buyer-narrative-alignment&source=footer"],
+      ["For agencies", "/agency"],
+      ["Sample report", "/sample-report"],
     ],
   },
   {
@@ -53,7 +54,7 @@ export default function Footer() {
               className="h-7 w-auto"
             />
             <p className="mt-5 max-w-xs text-xs leading-5 text-cream/65">
-              Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.
+              Evidence-grounded comparison of your published record and the AI-generated narratives buyers encounter.
             </p>
           </div>
 

@@ -29,16 +29,16 @@ const jetBrainsMono = JetBrains_Mono({
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
-  description: "Scrutexity reviews public business claims and customer-facing AI outputs, maps them to visible evidence, and prioritizes what to fix first. Powered by AuditGPT.",
+  title: "Scrutexity | Buyer Narrative Alignment",
+  description: "Scrutexity compares AI-generated buyer narratives with your published record, improves controllable sources, and reruns the same questions after 14 days.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
     google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
-    description: "Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.",
+    title: "Scrutexity | Buyer Narrative Alignment",
+    description: "Compare AI-generated buyer narratives with your published record, improve controllable sources, and rerun the same questions after 14 days.",
     url: siteUrl,
     siteName: "Scrutexity",
     images: [{ url: "/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity", width: 1200, height: 630, alt: "Scrutexity evidence-grounded business review" }],
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
-    description: "Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.",
+    title: "Scrutexity | Buyer Narrative Alignment",
+    description: "Compare AI-generated buyer narratives with your published record, improve controllable sources, and rerun the same questions after 14 days.",
     images: ["/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity"],
   },
 };
@@ -62,32 +62,29 @@ const jsonLdData = {
       name: "Scrutexity",
       url: "https://www.scrutexity.com",
       logo: "https://www.scrutexity.com/logo-icon.png",
-      description: "Evidence-grounded business review for public claims and customer-facing AI outputs. Powered by AuditGPT.",
+      description: "Evidence-grounded comparison of AI-generated buyer narratives and published company source material.",
       email: "nick@scrutexity.com",
       address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
       knowsAbout: [
-        "Public Claim Review",
+        "Buyer Narrative Alignment",
+        "AI Answer Capture",
         "Visible Evidence Review",
-        "Customer-Facing AI Output Review",
-        "Agency Claim Quality Assurance"
+        "Source Record Comparison"
       ]
     },
     {
       "@type": "Service",
       "@id": "https://www.scrutexity.com/#service",
-      name: "Scrutexity Evidence-Grounded Business Review",
-      serviceType: "Business claim and customer-facing AI output review",
+      name: "Buyer Narrative Alignment Sprint",
+      serviceType: "AI answer and published source alignment review",
       provider: { "@id": "https://www.scrutexity.com/#organization" },
       areaServed: "US",
-      description: "Review of public business claims and supplied customer-facing AI outputs against visible evidence, with prioritized findings and safer framing drafts.",
+      description: "A fixed engagement that captures buyer-intent AI answers, compares material statements with published sources, recommends controllable source changes, and reruns the same questions after 14 days.",
       offers: {
         "@type": "OfferCatalog",
-        name: "Scrutexity review services",
+        name: "Scrutexity first engagement",
         itemListElement: [
-          { "@type": "Offer", name: "Claim Support Review", price: "99", priceCurrency: "USD" },
-          { "@type": "Offer", name: "Founder’s Audit", price: "750", priceCurrency: "USD" },
-          { "@type": "Offer", name: "Agency Claim QA Pilot", price: "1500", priceCurrency: "USD" },
-          { "@type": "Offer", name: "Agent Evidence Pack", price: "2500", priceCurrency: "USD" }
+          { "@type": "Offer", name: "Buyer Narrative Alignment Sprint", price: "1500", priceCurrency: "USD" }
         ]
       }
     },

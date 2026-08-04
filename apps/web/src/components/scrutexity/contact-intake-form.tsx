@@ -3,12 +3,12 @@
 import { CheckCircle2, Loader2, Send } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import { trackEvent } from '@/utils/analytics';
-import { INQUIRY_OFFERS, INQUIRY_OFFER_VALUES, isInquiryOffer, type InquiryOffer } from '@/lib/inquiry-offers';
+import { INQUIRY_OFFERS, PUBLIC_INQUIRY_OFFER_VALUES, isPublicInquiryOffer, type InquiryOffer } from '@/lib/inquiry-offers';
 
 const schedulingUrl = process.env.NEXT_PUBLIC_SCHEDULING_URL;
 
 export default function ContactIntakeForm({
-  initialOffer = 'claim-support-review',
+  initialOffer = 'buyer-narrative-alignment',
   source = 'contact',
   focusOnLoad = false,
 }: {
@@ -18,7 +18,7 @@ export default function ContactIntakeForm({
 }) {
   const idempotencyKey = useRef(crypto.randomUUID());
   const [offer, setOffer] = useState<InquiryOffer>(
-    isInquiryOffer(initialOffer) ? initialOffer : 'claim-support-review',
+    isPublicInquiryOffer(initialOffer) ? initialOffer : 'buyer-narrative-alignment',
   );
   const [state, setState] = useState<'idle' | 'submitting' | 'saved' | 'error'>('idle');
   const [message, setMessage] = useState('');
@@ -133,7 +133,7 @@ export default function ContactIntakeForm({
       <label className="mt-5 block text-sm font-medium text-espresso">
         Requested review
         <select className={fieldClass} name="offer" value={offer} onChange={(event) => setOffer(event.target.value as InquiryOffer)}>
-          {INQUIRY_OFFER_VALUES.map((value) => <option key={value} value={value}>{INQUIRY_OFFERS[value].formLabel}</option>)}
+          {PUBLIC_INQUIRY_OFFER_VALUES.map((value) => <option key={value} value={value}>{INQUIRY_OFFERS[value].formLabel}</option>)}
         </select>
       </label>
 
@@ -165,7 +165,7 @@ export default function ContactIntakeForm({
       <div className="mt-4 space-y-2 border-t border-sand-deep/35 pt-4 text-xs leading-5 text-mist">
         <p>Your submission is used to review and respond to this request. Scrutexity does not sell inquiry information.</p>
         <p>
-          The $99 review proceeds to Stripe when checkout is available. Scoped engagements require scope confirmation before payment; work begins after payment and receipt of the agreed inputs. Response timing is confirmed directly.
+          The sprint scope, question set, source surfaces, and timing are confirmed before payment. Work begins after payment and receipt of the agreed inputs.
         </p>
       </div>
     </form>

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import ContactIntakeForm from "@/components/scrutexity/contact-intake-form";
-import { INQUIRY_OFFERS, isInquiryOffer } from "@/lib/inquiry-offers";
+import { INQUIRY_OFFERS, isPublicInquiryOffer } from "@/lib/inquiry-offers";
 
 export const metadata: Metadata = {
-  title: "Contact Scrutexity | Scope an Evidence-Grounded Review",
-  description: "Contact Scrutexity about a Claim Support Review, Founder’s Audit, Agency Claim QA pilot, or Agent Evidence Pack.",
+  title: "Contact Scrutexity | Buyer Narrative Alignment Sprint",
+  description: "Request a $1,500 Buyer Narrative Alignment Sprint or discuss an agency engagement with Scrutexity.",
   alternates: { canonical: "/contact" },
 };
 
@@ -18,7 +18,7 @@ export default async function ContactPage({
   searchParams: Promise<{ intent?: string; source?: string; checkout?: string }>;
 }) {
   const { intent, source, checkout } = await searchParams;
-  const selection = isInquiryOffer(intent) ? INQUIRY_OFFERS[intent] : undefined;
+  const selection = isPublicInquiryOffer(intent) ? INQUIRY_OFFERS[intent] : INQUIRY_OFFERS["buyer-narrative-alignment"];
   const subject = selection?.subject ?? "Scrutexity review inquiry";
 
   return (
@@ -30,10 +30,10 @@ export default async function ContactPage({
         <div className="mt-6 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <h1 className="font-display text-5xl leading-tight text-espresso md:text-6xl">
-              Bring one page, transcript set, or business question.
+              Bring the buyer questions that matter.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-mist">
-              Nick will confirm the useful scope, expected inputs, price, and turnaround before work begins.
+              Nick will confirm the engines, questions, source surfaces, expected inputs, and timing before work begins.
             </p>
 
             {selection && (
@@ -60,10 +60,10 @@ export default async function ContactPage({
             <h2 className="font-display text-3xl text-espresso">What to include</h2>
             <ol className="mt-6 divide-y divide-sand-deep/30">
               {[
-                "The public URL or type of agent output",
-                "The claim, launch, or buyer question that matters",
-                "Any visible evidence you already rely on",
-                "Your desired decision date",
+                "The company and product URLs buyers rely on",
+                "The buyer-intent questions that matter",
+                "Any AI answer discrepancy you have already captured",
+                "Your target decision or launch date",
               ].map((item, index) => (
                 <li key={item} className="grid grid-cols-[28px_1fr] gap-3 py-4 text-sm leading-6 text-mist">
                   <span className="font-semibold text-sage-deep">{index + 1}</span>
