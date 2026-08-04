@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Check, FileText, TriangleAlert } from "lucide-react";
+import { SourceReference } from "@/components/scrutexity/source-reference";
 
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
@@ -8,22 +9,18 @@ const findings = [
   {
     claim: "“Resolve 80% of customer support tickets automatically.”",
     source: "Homepage hero",
-    evidence: "The product page describes automated ticket handling, but no public evaluation method, test set, or definition of resolved is linked.",
-    gap: "A buyer cannot determine which ticket types were included, whether human intervention counted, or how the 80% figure was calculated.",
-    needed: "Evaluation method, sample size, excluded ticket classes, review period, and a stable definition of resolution.",
-    impact: "The headline result may create diligence friction because the scope cannot be reproduced from public material.",
-    rewrite: "“Automates selected support workflows, with escalation rules configured by your team.”",
-    next: "Publish the evaluation note or replace the numeric claim with the narrower product-capability statement.",
+    visibleSupport: "The product page describes automated ticket handling, but no public evaluation method, test set, or definition of resolved is linked.",
+    whyItMatters: "A buyer cannot determine which ticket types were included, whether human intervention counted, or how the 80% figure was calculated.",
+    nextAction: "Publish the evaluation method, sample size, exclusions, review period, and definition of resolution. Otherwise, narrow the claim.",
+    suggestedFraming: "“Automates selected support workflows, with escalation rules configured by your team.”",
   },
   {
     claim: "“Our agent never hallucinates.”",
     source: "Security and trust page",
-    evidence: "The page mentions retrieval grounding and response checks. No public test result supports an absolute error-free statement.",
-    gap: "The absolute word never is broader than the visible evidence and leaves no room for model, source, or configuration failure.",
-    needed: "Defined evaluation set, error taxonomy, observed failure rate, model version, and test date.",
-    impact: "An absolute promise can undermine trust when a buyer asks for the benchmark behind it.",
-    rewrite: "“Uses retrieval grounding and configurable checks designed to reduce unsupported responses.”",
-    next: "Replace the absolute statement and link to the evaluation protocol when available.",
+    visibleSupport: "The page mentions retrieval grounding and response checks. No public test result supports an absolute error-free statement.",
+    whyItMatters: "The word never is broader than the visible evidence and leaves no room for model, source, or configuration failure.",
+    nextAction: "Replace the absolute statement and link to a dated evaluation protocol when one is available.",
+    suggestedFraming: "“Uses retrieval grounding and configurable checks designed to reduce unsupported responses.”",
   },
 ];
 
@@ -43,7 +40,7 @@ export default function SampleReportContent() {
             <div>
               <h1 className="font-display text-5xl leading-tight text-espresso md:text-6xl">A report built for decisions, not theater.</h1>
               <p className="mt-6 max-w-3xl text-base leading-7 text-mist">
-                This fictional Northstar Support AI fixture shows the structure of a Scrutexity review: exact claim, visible evidence, support gap, business impact, safer framing, and the next action.
+                This fictional Northstar Support AI fixture shows the structure of a Scrutexity review: claim, visible support, why the finding matters, and the next action.
               </p>
             </div>
             <dl className="grid grid-cols-2 gap-5 rounded-lg border border-sand-deep/45 bg-white p-6">
@@ -86,6 +83,7 @@ export default function SampleReportContent() {
                   <span className="text-sm font-semibold text-sage-deep">01</span>
                   <div>
                     <p className="font-semibold text-espresso">Remove or qualify the absolute “never hallucinates” statement.</p>
+                    <SourceReference surface="Security and trust page" className="mt-2" />
                     <p className="mt-1 text-sm leading-6 text-mist">Fastest trust improvement; no new evidence is required to narrow the wording.</p>
                   </div>
                 </li>
@@ -93,6 +91,7 @@ export default function SampleReportContent() {
                   <span className="text-sm font-semibold text-sage-deep">02</span>
                   <div>
                     <p className="font-semibold text-espresso">Publish the method behind the 80% resolution claim.</p>
+                    <SourceReference surface="Homepage hero" className="mt-2" />
                     <p className="mt-1 text-sm leading-6 text-mist">If the measurement cannot be explained, use a capability statement instead.</p>
                   </div>
                 </li>
@@ -110,32 +109,33 @@ export default function SampleReportContent() {
               {findings.map((finding, index) => (
                 <article key={finding.claim} className="overflow-hidden rounded-lg border border-sand-deep/45 bg-bone">
                   <div className="border-b border-sand-deep/35 bg-white p-6">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Finding {String(index + 1).padStart(2, "0")} · {finding.source}</p>
-                    <h3 className="mt-4 font-display text-3xl leading-tight text-espresso">{finding.claim}</h3>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Finding {String(index + 1).padStart(2, "0")}</p>
+                    <h3 className="mt-4 font-display text-3xl leading-tight text-espresso">Claim review</h3>
                   </div>
-                  <dl className="grid gap-px bg-sand-deep/35 sm:grid-cols-2 lg:grid-cols-4">
-                    {[
-                      ["Visible evidence", finding.evidence],
-                      ["Support gap", finding.gap],
-                      ["Evidence needed", finding.needed],
-                      ["Business impact", finding.impact],
-                    ].map(([term, value]) => (
-                      <div key={term} className="bg-bone p-5">
-                        <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>{term}</dt>
-                        <dd className="mt-3 text-sm leading-6 text-mist">{value}</dd>
-                      </div>
-                    ))}
+                  <dl className="divide-y divide-sand-deep/30">
+                    <div className="grid gap-3 bg-bone p-6 md:grid-cols-[150px_1fr]">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Claim</dt>
+                      <dd>
+                        <p className="border-l border-sage-deep/45 pl-4 font-mono text-sm leading-6 text-espresso">{finding.claim}</p>
+                        <SourceReference surface={finding.source} className="mt-3 pl-4" />
+                      </dd>
+                    </div>
+                    <div className="grid gap-3 bg-white p-6 md:grid-cols-[150px_1fr]">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Visible support</dt>
+                      <dd className="text-sm leading-6 text-mist">{finding.visibleSupport}</dd>
+                    </div>
+                    <div className="grid gap-3 bg-bone p-6 md:grid-cols-[150px_1fr]">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-clay-deep" style={{ fontFamily: MONO }}>Why it matters</dt>
+                      <dd className="text-sm leading-6 text-mist">{finding.whyItMatters}</dd>
+                    </div>
+                    <div className="grid gap-3 bg-cream p-6 md:grid-cols-[150px_1fr]">
+                      <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Next action</dt>
+                      <dd className="text-sm leading-6 text-mist">
+                        <p>{finding.nextAction}</p>
+                        <p className="mt-3 font-semibold text-espresso">Suggested framing: {finding.suggestedFraming}</p>
+                      </dd>
+                    </div>
                   </dl>
-                  <div className="grid gap-6 border-t border-sand-deep/35 bg-cream p-6 lg:grid-cols-2">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Safer framing draft</p>
-                      <p className="mt-3 text-sm font-semibold leading-6 text-espresso">{finding.rewrite}</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>Recommended next step</p>
-                      <p className="mt-3 text-sm leading-6 text-mist">{finding.next}</p>
-                    </div>
-                  </div>
                 </article>
               ))}
             </div>

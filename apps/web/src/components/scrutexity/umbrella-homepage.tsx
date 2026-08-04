@@ -12,6 +12,7 @@ import {
   ScanSearch,
 } from "lucide-react";
 import { trackEvent } from "@/utils/analytics";
+import { SourceReference } from "@/components/scrutexity/source-reference";
 
 const SNAPSHOT_URL = "/contact?intent=claim-support-review&source=scrutexity-home";
 const MONO =
@@ -201,7 +202,7 @@ export default function UmbrellaHomepage() {
               <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
                 “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
               </blockquote>
-              <p className="mt-6 text-xs leading-5 text-mist">Source captured · 2026-08-04 · Fictional example</p>
+              <SourceReference surface="Homepage hero" className="mt-6" />
             </article>
 
             <article className="border-b border-sand-deep/30 bg-cream-deep/45 p-6 lg:border-b-0 lg:border-r">
@@ -211,7 +212,8 @@ export default function UmbrellaHomepage() {
               <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
                 “Cut customer response time by 64%.”
               </blockquote>
-              <div className="mt-6 rounded-md border border-clay/35 bg-bone p-4">
+              <SourceReference surface="Campaign summary" className="mt-6" />
+              <div className="mt-4 rounded-md border border-clay/35 bg-bone p-4">
                 <p className="text-xs font-semibold text-clay-deep">Support gap detected</p>
                 <p className="mt-2 text-xs leading-5 text-mist">The broader statement drops the pilot scope and internal-test context.</p>
               </div>
@@ -225,7 +227,7 @@ export default function UmbrellaHomepage() {
               <p className="mt-3 text-sm leading-6 text-mist">
                 “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
               </p>
-              <p className="mt-6 text-xs leading-5 text-mist">Dated review note · evidence requirement retained</p>
+              <SourceReference surface="Scrutexity review note" className="mt-6" />
             </article>
           </div>
         </div>
@@ -344,6 +346,9 @@ export default function UmbrellaHomepage() {
                 <div key={term}>
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>{term}</dt>
                   <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
+                  {term === "Exact reviewed claim" && (
+                    <SourceReference surface="Homepage hero" className="mt-3" />
+                  )}
                 </div>
               ))}
             </dl>
