@@ -1,11 +1,7 @@
 import crypto from 'crypto';
+import type { InquiryOffer } from '@/lib/inquiry-offers';
 
-export type InquiryOffer =
-  | 'claim-support-review'
-  | 'founders-audit'
-  | 'agency-claim-qa'
-  | 'agent-evidence-pack'
-  | 'monitoring';
+export type { InquiryOffer } from '@/lib/inquiry-offers';
 
 export interface InquiryRecord {
   id: string;

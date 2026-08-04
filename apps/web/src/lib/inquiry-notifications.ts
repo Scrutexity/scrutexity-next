@@ -4,6 +4,7 @@ import {
   releaseInquiryNotification,
   type InquiryRecord,
 } from '@/lib/inquiries';
+import { INQUIRY_OFFERS } from '@/lib/inquiry-offers';
 
 export async function notifyInquiryOwner(
   record: InquiryRecord,
@@ -18,6 +19,7 @@ export async function notifyInquiryOwner(
   if (!claimed) return { configured: true, sent: false, duplicate: true };
 
   try {
+    const offer = INQUIRY_OFFERS[record.offer];
     const { Resend } = await import('resend');
     const resend = new Resend(apiKey);
     const paid = kind === 'payment';
@@ -25,7 +27,7 @@ export async function notifyInquiryOwner(
       `Inquiry ID: ${record.id}`,
       `Submitted: ${record.createdAt}`,
       `Payment state: ${paid ? 'Paid' : 'Not paid'}`,
-      `Offer: ${record.offer}`,
+      `Offer: ${offer.label} (${record.offer})`,
       `Name: ${record.name}`,
       `Email: ${record.email}`,
       `Website: ${record.websiteUrl}`,
@@ -48,7 +50,7 @@ export async function notifyInquiryOwner(
       replyTo: record.email,
       subject: paid
         ? `PAID Scrutexity Claim Support Review · ${record.id}`
-        : `New unpaid Scrutexity inquiry · ${record.id}`,
+        : `New ${offer.label} inquiry · ${record.id}`,
       text: lines.join('\n'),
     });
     if (result.error) throw new Error('OWNER_NOTIFICATION_FAILED');

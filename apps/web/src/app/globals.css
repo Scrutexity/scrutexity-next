@@ -314,4 +314,20 @@ html {
     color: inherit !important;
     text-decoration: none !important;
   }
+
+  .print-document,
+  .print-document * {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #1C1814 !important;
+    text-shadow: none !important;
+  }
+
+  .print-document {
+    font-size: 11pt;
+  }
+
+  .print-page-break {
+    break-before: page;
+  }
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, FileText } from "lucide-react";
 import { SourceReference } from "@/components/scrutexity/source-reference";
 import { PrintReportButton } from "@/components/scrutexity/print-report-button";
+import { CopyLinkButton } from "@/components/scrutexity/copy-link-button";
 
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
@@ -11,6 +12,7 @@ const findings = [
     claim: "“Resolve 80% of customer support tickets automatically.”",
     source: "Homepage hero",
     classification: "Partial",
+    scope: "Visible homepage copy reviewed on Aug. 4, 2026.",
     visibleSupport: "The product page describes automated ticket handling, but no public evaluation method, test set, or definition of resolved is linked.",
     whyItMatters: "A buyer cannot determine which ticket types were included, whether human intervention counted, or how the 80% figure was calculated.",
     nextAction: "Publish the evaluation method, sample size, exclusions, review period, and definition of resolution. Otherwise, narrow the claim.",
@@ -20,6 +22,7 @@ const findings = [
     claim: "“Our agent never hallucinates.”",
     source: "Security and trust page",
     classification: "Missing",
+    scope: "Visible security and trust page copy reviewed on Aug. 4, 2026.",
     visibleSupport: "The page mentions retrieval grounding and response checks. No public test result supports an absolute error-free statement.",
     whyItMatters: "The word never is broader than the visible evidence and leaves no room for model, source, or configuration failure.",
     nextAction: "Replace the absolute statement and link to a dated evaluation protocol when one is available.",
@@ -29,7 +32,7 @@ const findings = [
 
 export default function SampleReportContent() {
   return (
-    <div className="min-h-screen bg-cream text-bark">
+    <div className="print-document min-h-screen bg-cream text-bark">
       <div className="border-b border-cream/10 bg-espresso px-5 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.14em] text-cream" style={{ fontFamily: MONO }}>
         Sample · illustrative data, not live customer output
       </div>
@@ -105,7 +108,7 @@ export default function SampleReportContent() {
             </div>
           </section>
 
-          <section className="mt-12">
+          <section className="print-page-break mt-12">
             <div className="flex items-center gap-3">
               <FileText className="h-5 w-5 text-sage-deep" aria-hidden="true" />
               <h2 className="font-display text-4xl text-espresso">Detailed findings</h2>
@@ -113,11 +116,15 @@ export default function SampleReportContent() {
 
             <div className="mt-7 space-y-6">
               {findings.map((finding, index) => (
-                <article key={finding.claim} className="overflow-hidden rounded-lg border border-sand-deep/45 bg-bone">
+                <article id={`finding-${String(index + 1).padStart(2, "0")}`} tabIndex={-1} key={finding.claim} className="scroll-mt-32 overflow-hidden rounded-lg border border-sand-deep/45 bg-bone focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sage-deep">
                   <div className="border-b border-sand-deep/35 bg-white p-6">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Finding {String(index + 1).padStart(2, "0")}</p>
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>Finding {String(index + 1).padStart(2, "0")}</p>
+                      <CopyLinkButton canonicalPath="/sample-report" anchor={`finding-${String(index + 1).padStart(2, "0")}`} label={`Copy finding ${index + 1} link`} />
+                    </div>
                     <h3 className="mt-4 font-display text-3xl leading-tight text-espresso">Claim review</h3>
-                    <p className="mt-3 font-mono text-xs text-espresso">Classification: {finding.classification}</p>
+                    <p className="mt-3 font-mono text-xs leading-5 text-espresso">Classification: {finding.classification}</p>
+                    <p className="mt-2 font-mono text-[10px] leading-5 text-mist">Scope: {finding.scope}</p>
                   </div>
                   <dl className="divide-y divide-sand-deep/30">
                     <div className="grid gap-3 bg-bone p-6 md:grid-cols-[150px_1fr]">
@@ -176,6 +183,9 @@ export default function SampleReportContent() {
               </Link>
             </div>
           </section>
+          <p className="mt-12 hidden border-t border-sand-deep/35 pt-4 font-mono text-[10px] leading-5 print:block">
+            Scrutexity · Sample Claim Support Report · https://www.scrutexity.com/sample-report · reviewed Aug. 4, 2026
+          </p>
         </div>
       </div>
     </div>

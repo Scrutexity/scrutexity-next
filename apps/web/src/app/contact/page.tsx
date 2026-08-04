@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import ContactIntakeForm from "@/components/scrutexity/contact-intake-form";
+import { INQUIRY_OFFERS, isInquiryOffer } from "@/lib/inquiry-offers";
 
 export const metadata: Metadata = {
   title: "Contact Scrutexity | Scope an Evidence-Grounded Review",
@@ -11,41 +12,13 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-const intentCopy: Record<string, { label: string; subject: string; prompt: string }> = {
-  "claim-support-review": {
-    label: "Claim Support Review · $99",
-    subject: "Claim Support Review inquiry",
-    prompt: "Send the public page you want reviewed and the claim that matters most.",
-  },
-  "founders-audit": {
-    label: "Founder’s Audit · from $750",
-    subject: "Founder’s Audit inquiry",
-    prompt: "Share the company URL, current offer, and the business question you need the audit to answer.",
-  },
-  "agency-claim-qa": {
-    label: "Agency Claim QA · pilot from $1,500",
-    subject: "Agency Claim QA pilot inquiry",
-    prompt: "Share your agency URL, typical client volume, and one representative client page.",
-  },
-  "agent-evidence-pack": {
-    label: "Agent Evidence Pack · pilot from $2,500",
-    subject: "Agent Evidence Pack inquiry",
-    prompt: "Share the agent’s customer-facing use case and the approximate transcript volume available for review.",
-  },
-  monitoring: {
-    label: "Monitoring pilots · selected customers",
-    subject: "Scrutexity monitoring inquiry",
-    prompt: "Available after an initial review for selected customers. Contact us to discuss scope.",
-  },
-};
-
 export default async function ContactPage({
   searchParams,
 }: {
   searchParams: Promise<{ intent?: string; source?: string; checkout?: string }>;
 }) {
   const { intent, source, checkout } = await searchParams;
-  const selection = intent ? intentCopy[intent] : undefined;
+  const selection = isInquiryOffer(intent) ? INQUIRY_OFFERS[intent] : undefined;
   const subject = selection?.subject ?? "Scrutexity review inquiry";
 
   return (
@@ -65,7 +38,7 @@ export default async function ContactPage({
 
             {selection && (
               <div className="mt-8 rounded-lg border border-sage-deep/25 bg-bone p-5">
-                <p className="text-sm font-semibold text-espresso">{selection.label}</p>
+                <p className="text-sm font-semibold text-espresso">{selection.formLabel}</p>
                 <p className="mt-2 text-sm leading-6 text-mist">{selection.prompt}</p>
               </div>
             )}

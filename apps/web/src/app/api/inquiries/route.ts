@@ -3,18 +3,13 @@ import { z } from 'zod';
 import { saveInquiry, type InquiryOffer } from '@/lib/inquiries';
 import { notifyInquiryOwner } from '@/lib/inquiry-notifications';
 import { CLAIM_SUPPORT_PRODUCT } from '@/lib/claim-support-payment';
+import { INQUIRY_OFFER_VALUES } from '@/lib/inquiry-offers';
 
 const inquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(254),
   websiteUrl: z.string().trim().url().max(2048),
-  offer: z.enum([
-    'claim-support-review',
-    'founders-audit',
-    'agency-claim-qa',
-    'agent-evidence-pack',
-    'monitoring',
-  ]),
+  offer: z.enum(INQUIRY_OFFER_VALUES),
   context: z.string().trim().max(2000).optional().default(''),
   source: z.string().trim().max(100).optional().default('contact'),
   consent: z.literal(true),

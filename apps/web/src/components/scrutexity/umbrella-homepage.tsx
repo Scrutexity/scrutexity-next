@@ -165,7 +165,7 @@ export default function UmbrellaHomepage() {
             </div>
 
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              <article className="border border-sand-deep/45 bg-white p-5">
+              <article id="exhibit-01" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>01 · Source wording</p>
                 <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
                   “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
@@ -173,7 +173,7 @@ export default function UmbrellaHomepage() {
                 <SourceReference surface="Homepage hero" className="mt-4 pl-4" />
               </article>
 
-              <article className="border border-sand-deep/45 bg-white p-5">
+              <article id="exhibit-02" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>02 · Changed wording</p>
                 <p className="mt-4 border-l border-sand-deep pl-4 font-mono text-[15px] leading-7 text-espresso">
                   “Cut customer response time by 64%.”
@@ -181,15 +181,16 @@ export default function UmbrellaHomepage() {
                 <SourceReference surface="Campaign summary" className="mt-4 pl-4" />
               </article>
 
-              <article className="border border-sand-deep/45 bg-white p-5">
+              <article id="exhibit-03" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>03 · Support gap</p>
                 <p className="mt-4 text-[15px] leading-7 text-bark">
                   The broader statement drops the pilot scope and internal-test context.
                 </p>
                 <SourceReference surface="Scrutexity comparison note" className="mt-4" />
+                <p className="mt-2 font-mono text-[10px] leading-5 text-mist">Classification: Narrow · Scope: Illustrative homepage and campaign-summary wording compared Aug. 4, 2026.</p>
               </article>
 
-              <article className="border border-sand-deep/45 bg-white p-5">
+              <article id="exhibit-04" className="scroll-mt-32 border border-sand-deep/45 bg-white p-5">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-espresso" style={{ fontFamily: MONO }}>04 · Suggested framing</p>
                 <p className="mt-4 border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">
                   “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
@@ -349,7 +350,7 @@ export default function UmbrellaHomepage() {
             </TrackedLink>
           </div>
 
-          <article className="border border-cream/20 bg-white p-6 text-bark md:p-8">
+          <article id="exhibit-05" className="scroll-mt-32 border border-cream/20 bg-white p-6 text-bark md:p-8">
             <div className="flex flex-col gap-2 border-b border-sand-deep/40 pb-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
@@ -369,6 +370,7 @@ export default function UmbrellaHomepage() {
                 <dd>
                   <p className="border-l border-sage-deep/55 pl-4 font-mono text-[15px] leading-7 text-espresso">“Resolve 80% of support tickets automatically.”</p>
                   <SourceReference surface="Homepage hero" className="mt-3 pl-4" />
+                  <p className="mt-2 pl-4 font-mono text-[10px] leading-5 text-mist">Scope: Visible homepage copy reviewed on Aug. 4, 2026.</p>
                 </dd>
               </div>
               {[

@@ -71,6 +71,7 @@ process.env.UPSTASH_REDIS_REST_TOKEN = 'test-token';
 process.env.VERCEL_ENV = 'preview';
 
 const inquiries = await import('../src/lib/inquiries.ts');
+const offers = await import('../src/lib/inquiry-offers.ts');
 const payments = await import('../src/lib/claim-support-payment.ts');
 const { Stripe } = await import('stripe');
 
@@ -89,6 +90,26 @@ assert.equal(first.duplicate, false);
 assert.equal(duplicate.duplicate, true);
 assert.equal(duplicate.record.id, first.record.id);
 assert.equal(first.record.environment, 'preview');
+
+assert.deepEqual(offers.INQUIRY_OFFER_VALUES, [
+  'claim-support-review',
+  'founders-audit',
+  'agency-claim-qa',
+  'agent-evidence-pack',
+  'monitoring',
+]);
+assert.equal(offers.INQUIRY_OFFERS['claim-support-review'].scoped, false);
+for (const offer of offers.INQUIRY_OFFER_VALUES.filter((value) => value !== 'claim-support-review')) {
+  assert.equal(offers.INQUIRY_OFFERS[offer].scoped, true);
+}
+
+const agency = await inquiries.saveInquiry({
+  ...input,
+  offer: 'agency-claim-qa',
+  source: 'agency-test',
+}, 'launch-gate-agency-001');
+assert.equal(agency.record.offer, 'agency-claim-qa');
+assert.equal(offers.INQUIRY_OFFERS[agency.record.offer].submitLabel, 'Send Agency Claim QA inquiry');
 
 const paid = await inquiries.markInquiryPaid({
   id: first.record.id,
