@@ -148,6 +148,10 @@ export default function GLP1ClaimAuditPage() {
               Get the $497 Claim Exposure Audit
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
+            <Link href="/sample-report" className="group px-7 py-4 bg-transparent hover:bg-bone/70 border border-sand-deep/25 text-espresso/80 hover:text-espresso font-medium rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
+              View Sample GLP-1 Audit Report
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </motion.div>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.45 }} className="mt-5 text-xs text-mist/55" style={{ fontFamily: MONO }}>
             Not legal advice. Not medical advice. Not regulatory certification. Claim language review only.

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const betaTerms = [
   'From $1,497/month, billed monthly',
   'Cancel anytime after first month',
-  '10 Claim Intelligence Receipts per month (white-label for clients)',
+  '10 Claim Audit Receipts per month (white-label for clients)',
   'Claim Cleanup Record playbook + templates',
   'AI Answer Reality Receipts',
   'Safer rewrite packs + proof-gap maps',
@@ -26,7 +26,7 @@ const betaTerms = [
 const sequence = [
   'Free sample finding for client page',
   '$497 Claim Exposure Audit',
-  'Claim Intelligence Receipt — client approval record',
+  'Claim Audit Receipt — client approval record',
   '$1,997 Claim Cleanup Record',
   'From $1,497/month Guardian Monitoring',
   'Partner OS relationship',
@@ -46,7 +46,7 @@ export default function PartnerOsPage() {
               <span className="block italic text-sage-deep">Limited to 5 founding partners.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-[1.65] text-mist md:text-lg">
-              Before your agency launches GLP-1, body-contouring, IV therapy, exosome, or RF microneedling pages, give your client a Claim Intelligence Receipt — showing what was reviewed, what proof was found, what language was adjusted, and what the client approved. That is your CYA document. It is also a billable product.
+              Before your agency launches GLP-1, body-contouring, IV therapy, exosome, or RF microneedling pages, give your client a Claim Audit Receipt — showing what was reviewed, what proof was found, what language was adjusted, and what the client approved. That is your CYA document. It is also a billable product.
             </p>
             <p className="mt-3 max-w-2xl text-sm leading-[1.65] text-mist">
               We are opening 5 beta spots for agencies that serve med spas, wellness clinics, aesthetic practices, and high-trust local healthcare clients.
@@ -114,6 +114,96 @@ export default function PartnerOsPage() {
             <p className="mt-3 text-sm leading-6 text-mist">
               Turn claim audits into a billable product for every GLP-1, body-contouring, exosome, and IV therapy client. The receipt is yours to sell.
             </p>
+          </div>
+        </section>
+
+        {/* ══ WHITE-LABEL RECEIPT PREVIEW ══════════════════════════════ */}
+        <section className="mt-20">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-sage-deep">
+              White-label receipt preview
+            </p>
+            <h2 className="mt-4 font-display text-3xl leading-tight text-espresso">
+              The artifact your agency attaches to every high-claim launch.
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-mist">
+              White-labeled with your agency brand. A dated, review-ready record your client signs off on
+              before launch — and the exact document that wins pitches against agencies with no proof trail.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+            <div className="rounded-2xl border border-sand-deep/30 bg-white/70 p-6 md:p-8 shadow-[0_24px_80px_-60px_rgba(28,24,20,0.45)]">
+              <div className="flex items-start justify-between gap-4 border-b border-sand-deep/15 pb-5">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-sage-deep font-semibold" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                    Claim Intelligence Receipt
+                  </p>
+                  <p className="mt-1 text-lg font-display text-espresso">[Your Agency Name]</p>
+                </div>
+                <div className="text-right text-[10px] text-mist" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                  Review date: 06/28/2026
+                </div>
+              </div>
+
+              <dl className="mt-5 grid gap-3 sm:grid-cols-2">
+                {[
+                  ['Client', 'Radiance Medical Spa (example)'],
+                  ['Page reviewed', 'GLP-1 Weight Loss Landing Page'],
+                  ['Claims reviewed', '8 public-facing claims'],
+                  ['Support found', '3 of 8 have visible public support'],
+                  ['Support missing', '5 of 8 have evidence gaps'],
+                  ['Client approval', 'Pending sign-off'],
+                ].map(([k, v]) => (
+                  <div key={k} className="rounded-lg border border-sand-deep/15 bg-bone/60 px-4 py-3">
+                    <dt className="text-[9px] uppercase tracking-[0.14em] text-mist" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>{k}</dt>
+                    <dd className="mt-1 text-xs text-espresso">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="mt-5 rounded-lg border border-clay/25 bg-clay/5 px-4 py-3">
+                <p className="text-[9px] uppercase tracking-[0.14em] text-clay font-semibold" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                  Example flagged claim
+                </p>
+                <p className="mt-1 text-sm italic text-espresso">
+                  &ldquo;Compounded semaglutide works the same as Ozempic.&rdquo;
+                </p>
+                <p className="mt-2 text-xs leading-5 text-mist">
+                  Support missing: no public FDA equivalence statement found. Safer rewrite delivered
+                  to client for approval.
+                </p>
+              </div>
+
+              <p className="mt-5 text-[9px] leading-4 text-mist/70" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                Not legal advice. Not medical advice. Not regulatory certification. This receipt documents
+                what was reviewed and what was found — not compliance with any regulatory requirement.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-sand-deep/30 bg-bone p-6">
+              <h3 className="font-display text-xl text-espresso">Why it wins pitches</h3>
+              <ul className="mt-4 space-y-3">
+                {[
+                  'Shows the prospective client a dated proof trail — the current agency has none',
+                  'Positions you as the agency that protects their brand before launch',
+                  'Becomes a billable deliverable: attach it to the proposal, invoice it as a line item',
+                  'Your brand on every page — Scrutexity stays behind the scenes',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-mist">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="https://auditgpt.ai/snapshot?source=partner-os-receipt"
+                className="group mt-6 inline-flex items-center gap-2 rounded-xl bg-sage-deep px-5 py-3 text-sm font-semibold text-cream transition-colors hover:bg-espresso"
+              >
+                Run a free sample on a client page
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
         </section>
 

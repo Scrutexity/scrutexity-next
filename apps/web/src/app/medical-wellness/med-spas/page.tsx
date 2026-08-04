@@ -78,6 +78,13 @@ export default function MedSpasPage() {
             >
               Run AuditGPT for patient-facing claims
             </Link>
+            <Link 
+              href="/sample-report" 
+              className="group px-7 py-4 bg-transparent hover:bg-bone/70 border border-sand-deep/25 text-espresso/80 hover:text-espresso font-sans font-medium rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
+            >
+              View Sample Audit Report
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </div>
 

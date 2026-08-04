@@ -13,6 +13,7 @@ import { SMarkLifecycle } from '@/components/scrutexity/motion/SMarkLifecycle';
 import { InstitutionalPipeline } from '@/components/scrutexity/motion/institutional-pipeline';
 import { OperatingSystemDiagram } from '@/components/scrutexity/operating-system-diagram';
 import { HoverProofLink } from '@/components/scrutexity/motion/hover-proof-link';
+import { AIAnswerRealityPreview } from '@/components/scrutexity/ai-answer-reality-preview';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const MONO_STACK =
@@ -141,6 +142,9 @@ export default function UmbrellaHomepage() {
           <InstitutionalPipeline />
         </div>
       </section>
+
+      {/* ══ AI ANSWER REALITY PREVIEW ════════════════════════════════ */}
+      <AIAnswerRealityPreview />
 
       {/* ══ INSTITUTIONAL PROOF & HISTORY ══════════════════════════════ */}
       <section aria-label="Institutional Proof" className="border-y border-sand-deep/15 bg-cream">
