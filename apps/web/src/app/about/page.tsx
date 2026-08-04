@@ -59,8 +59,8 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link href="/contact?intent=claim-support-review&source=about" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-                Start a Claim Support Review
+              <Link href="/contact?intent=buyer-narrative-alignment-sprint&source=about" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
+                Request the $1,500 Sprint
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <a href="mailto:nick@scrutexity.com?subject=Scrutexity%20inquiry" className="inline-flex min-h-12 items-center justify-center rounded-md border border-sand-deep bg-white px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">

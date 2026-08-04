@@ -13,7 +13,7 @@ import {
 import { trackEvent } from "@/utils/analytics";
 import { SourceReference } from "@/components/scrutexity/source-reference";
 
-const REVIEW_URL = "/contact?intent=claim-support-review&source=scrutexity-home";
+const REVIEW_URL = "/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-home";
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
@@ -43,13 +43,6 @@ const reviewSteps = [
     icon: Layers3,
   },
 ];
-
-const publicOffers = [
-  ["Claim Support Review", "$99", "One public page and its visible support."],
-  ["Founder’s Audit", "From $750", "Claims, positioning, offer clarity, and trust architecture."],
-  ["Agency Claim QA", "From $1,500", "Client sites, campaigns, case studies, and launch review."],
-  ["Agent Evidence Pack", "From $2,500", "Supplied transcripts, grounding, escalation, and policy drift."],
-] as const;
 
 function TrackedLink({
   href,
@@ -105,20 +98,20 @@ export default function UmbrellaHomepage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <TrackedLink
                 href={REVIEW_URL}
-                label="Start a Claim Support Review"
+                label="Request the $1,500 Sprint"
                 section="hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
               >
-                Start a $99 Claim Review
+                Request the $1,500 Sprint
                 <ArrowRight size={16} aria-hidden="true" />
               </TrackedLink>
               <TrackedLink
                 href="/sample-report"
-                label="View a Sample Report"
+                label="View the Sample"
                 section="hero"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-white px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
               >
-                View a Sample Report
+                View the Sample
                 <ArrowRight size={16} aria-hidden="true" />
               </TrackedLink>
             </div>
@@ -209,33 +202,32 @@ export default function UmbrellaHomepage() {
           <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-                Public offers
+                The engagement
               </p>
-              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Choose the review outcome, then confirm the scope.</h2>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Buyer Narrative Alignment Sprint</h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-mist lg:justify-self-end">
-              Start with one page or scope a broader review for a founder-led team, agency, or customer-facing agent. Monitoring pilots are available only after an initial review for selected customers.
+              A founder-reviewed analysis of what your company claims, what buyers can verify, where the story breaks, and what to change before the next sales conversation.
             </p>
           </div>
 
           <div className="mt-12 grid gap-px border border-sand-deep/45 bg-sand-deep/45 lg:grid-cols-[0.78fr_1.22fr]">
             <div className="bg-espresso p-7 text-cream md:p-9">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-soft" style={{ fontFamily: MONO }}>Start with one page</p>
-              <p className="mt-5 font-display text-5xl">$99</p>
-              <p className="mt-3 text-sm leading-6 text-cream/70">Claim Support Review · 48-hour target turnaround</p>
-              <TrackedLink href={REVIEW_URL} label="Start a Claim Support Review" section="offers" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso">
-                Start a Claim Review<ArrowRight size={15} aria-hidden="true" />
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-soft" style={{ fontFamily: MONO }}>Fixed engagement</p>
+              <p className="mt-5 font-display text-5xl">$1,500</p>
+              <p className="mt-3 text-sm leading-6 text-cream/70">Fixed fee · five-business-day target turnaround</p>
+              <TrackedLink href={REVIEW_URL} label="Request the $1,500 Sprint" section="offers" className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso">
+                Request the $1,500 Sprint<ArrowRight size={15} aria-hidden="true" />
               </TrackedLink>
             </div>
-            <dl className="grid bg-white sm:grid-cols-2">
-              {publicOffers.map(([label, price, value]) => (
-                <div key={label} className="border-b border-sand-deep/30 p-6 sm:border-r sm:last:border-r-0">
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-sage-deep" style={{ fontFamily: MONO }}>{label}</dt>
-                  <dd className="mt-3 font-display text-2xl text-espresso">{price}</dd>
-                  <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
-                </div>
+            <div className="grid bg-white sm:grid-cols-2">
+              {["Up to five core public pages", "Up to 15 material claims", "Three priority buyer-narrative gaps", "Replacement framing for priority findings", "One concise decision document", "One 30-minute founder readout", "Founder review", "One revision"].map((item) => (
+                <p key={item} className="flex gap-3 border-b border-sand-deep/30 p-5 text-sm leading-6 text-mist sm:border-r sm:last:border-r-0">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
+                  {item}
+                </p>
               ))}
-            </dl>
+            </div>
           </div>
         </div>
       </section>
@@ -308,25 +300,25 @@ export default function UmbrellaHomepage() {
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>For agencies</p>
             <h2 className="mt-4 max-w-3xl font-display text-4xl text-espresso md:text-5xl">
-              Add claim QA to every client launch without building an internal audit team.
+              Use the same sprint for one selected client or agency effort.
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-mist">
-              Review websites, campaigns, and case-study claims before launch, then hand the client a clear record of what was checked and what needs approval.
+              Apply the Buyer Narrative Alignment Sprint to your own positioning, one client, one case study, or one launch or repositioning effort.
             </p>
             <TrackedLink
               href="/agency"
-              label="Explore Agency Claim QA"
+              label="See the agency use case"
               section="agencies"
               className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-sage-deep px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Explore Agency Claim QA
+              See the agency use case
               <ArrowRight size={15} aria-hidden="true" />
             </TrackedLink>
           </div>
           <div className="rounded-lg border border-sand-deep/40 bg-bone p-7">
             <Building2 className="h-6 w-6 text-sage-deep" aria-hidden="true" />
             <ul className="mt-7 divide-y divide-sand-deep/30">
-              {["Website and campaign reviews", "Case-study claim reviews", "Client-ready reports", "Fixed turnaround", "Pilot pricing from $1,500"].map((item) => (
+              {["One selected company or effort", "Up to five core public pages", "Up to 15 material claims", "Five-business-day target turnaround", "$1,500 fixed fee"].map((item) => (
                 <li key={item} className="flex items-center gap-3 py-4 text-sm font-medium text-espresso">
                   <Check className="h-4 w-4 text-sage-deep" aria-hidden="true" />
                   {item}
@@ -387,11 +379,11 @@ export default function UmbrellaHomepage() {
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <TrackedLink
               href={REVIEW_URL}
-              label="Start a Claim Support Review"
+              label="Request the Buyer Narrative Alignment Sprint"
               section="final-cta"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Start a $99 Claim Review
+              Request the Buyer Narrative Alignment Sprint
               <ArrowRight size={16} aria-hidden="true" />
             </TrackedLink>
             <a

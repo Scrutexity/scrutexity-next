@@ -1,4 +1,5 @@
 export const INQUIRY_OFFER_VALUES = [
+  'buyer-narrative-alignment-sprint',
   'buyer-narrative-alignment',
   'claim-support-review',
   'founders-audit',
@@ -8,11 +9,7 @@ export const INQUIRY_OFFER_VALUES = [
 ] as const;
 
 export const PUBLIC_INQUIRY_OFFER_VALUES = [
-  'claim-support-review',
-  'founders-audit',
-  'agency-claim-qa',
-  'agent-evidence-pack',
-  'monitoring',
+  'buyer-narrative-alignment-sprint',
 ] as const satisfies readonly InquiryOffer[];
 
 export type InquiryOffer = (typeof INQUIRY_OFFER_VALUES)[number];
@@ -26,6 +23,15 @@ export const INQUIRY_OFFERS: Record<InquiryOffer, {
   confirmationTitle: string;
   scoped: boolean;
 }> = {
+  'buyer-narrative-alignment-sprint': {
+    label: 'Buyer Narrative Alignment Sprint',
+    formLabel: 'Buyer Narrative Alignment Sprint · $1,500 fixed fee',
+    submitLabel: 'Request the $1,500 Sprint',
+    subject: 'Buyer Narrative Alignment Sprint request',
+    prompt: 'Share the company URL, the buyer questions that matter, and the public pages that should be reviewed.',
+    confirmationTitle: 'Request received.',
+    scoped: true,
+  },
   'buyer-narrative-alignment': {
     label: 'Buyer Narrative Alignment Sprint',
     formLabel: 'Buyer Narrative Alignment Sprint · $1,500',

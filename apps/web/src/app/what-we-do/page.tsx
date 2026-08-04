@@ -50,7 +50,7 @@ export default function WhatWeDoPage() {
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-mist">When the answer is unclear, the review records the exact wording, visible support, remaining gap, safer framing draft, and next action.</p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/sample-report" className="inline-flex min-h-11 items-center justify-center rounded-md border border-sand-deep bg-white px-5 py-2.5 text-sm font-semibold text-espresso">View a Sample Report</Link>
-            <Link href="/contact?intent=claim-support-review&source=what-we-do" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">Start a Claim Support Review <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link href="/contact?intent=buyer-narrative-alignment-sprint&source=what-we-do" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">Request the $1,500 Sprint <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>

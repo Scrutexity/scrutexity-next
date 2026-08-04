@@ -45,7 +45,7 @@ const nextConfig: NextConfig = {
       // Sending these routes back to auditgpt.ai creates a cross-project loop.
       {
         source: '/snapshot',
-        destination: '/contact?intent=claim-support-review&source=scrutexity-snapshot',
+        destination: '/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-snapshot',
         permanent: true,
       },
       // Batch 3a — Internal / Test routes

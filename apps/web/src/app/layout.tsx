@@ -29,27 +29,27 @@ const jetBrainsMono = JetBrains_Mono({
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | Evidence-Grounded Claim Review",
-  description: "Scrutexity reviews public claims and customer-facing AI outputs against visible evidence, then returns precise findings and prioritized next actions.",
+  title: "Scrutexity | Buyer Narrative Alignment Sprint",
+  description: "A $1,500 founder-reviewed analysis of what your company claims, what buyers can verify, where the story breaks, and what to change.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
     google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | Evidence-Grounded Claim Review",
-    description: "Review public claims and customer-facing AI outputs against evidence buyers can inspect.",
+    title: "Scrutexity | Buyer Narrative Alignment Sprint",
+    description: "A $1,500 founder-reviewed analysis of claims, visible support, and buyer-narrative gaps.",
     url: siteUrl,
     siteName: "Scrutexity",
-    images: [{ url: "/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity", width: 1200, height: 630, alt: "Scrutexity evidence-grounded business review" }],
+    images: [{ url: "/api/og?title=Buyer%20Narrative%20Alignment%20Sprint&type=Scrutexity", width: 1200, height: 630, alt: "Scrutexity Buyer Narrative Alignment Sprint" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | Evidence-Grounded Claim Review",
-    description: "Review public claims and customer-facing AI outputs against evidence buyers can inspect.",
-    images: ["/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity"],
+    title: "Scrutexity | Buyer Narrative Alignment Sprint",
+    description: "A $1,500 founder-reviewed analysis of claims, visible support, and buyer-narrative gaps.",
+    images: ["/api/og?title=Buyer%20Narrative%20Alignment%20Sprint&type=Scrutexity"],
   },
 };
 
@@ -66,7 +66,7 @@ const jsonLdData = {
       email: "nick@scrutexity.com",
       address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
       knowsAbout: [
-        "Claim Support Review",
+        "Buyer Narrative Alignment Sprint",
         "AI Answer Capture",
         "Visible Evidence Review",
         "Source Record Comparison"
@@ -75,20 +75,17 @@ const jsonLdData = {
     {
       "@type": "Service",
       "@id": "https://www.scrutexity.com/#service",
-      name: "Scrutexity Claim Review",
-      serviceType: "Evidence-grounded claim and AI output review",
+      name: "Buyer Narrative Alignment Sprint",
+      serviceType: "Evidence-grounded buyer narrative review",
       provider: { "@id": "https://www.scrutexity.com/#organization" },
       areaServed: "US",
-      description: "Defined reviews that compare public claims or supplied customer-facing AI outputs with visible evidence and document prioritized next actions.",
+      description: "A founder-reviewed analysis of what a company claims, what buyers can verify, where the story breaks, and what to change before the next sales conversation.",
       offers: {
-        "@type": "OfferCatalog",
-        name: "Scrutexity public offers",
-        itemListElement: [
-          { "@type": "Offer", name: "Claim Support Review", price: "99", priceCurrency: "USD" },
-          { "@type": "Offer", name: "Founder’s Audit", price: "750", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "750", priceCurrency: "USD" } },
-          { "@type": "Offer", name: "Agency Claim QA", price: "1500", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "1500", priceCurrency: "USD" } },
-          { "@type": "Offer", name: "Agent Evidence Pack", price: "2500", priceCurrency: "USD", priceSpecification: { "@type": "PriceSpecification", minPrice: "2500", priceCurrency: "USD" } }
-        ]
+        "@type": "Offer",
+        name: "Buyer Narrative Alignment Sprint",
+        price: "1500",
+        priceCurrency: "USD",
+        url: "https://www.scrutexity.com/pricing",
       }
     },
     {

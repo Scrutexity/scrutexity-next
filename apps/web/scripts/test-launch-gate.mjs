@@ -93,6 +93,7 @@ assert.equal(duplicate.record.id, first.record.id);
 assert.equal(first.record.environment, 'preview');
 
 assert.deepEqual(offers.INQUIRY_OFFER_VALUES, [
+  'buyer-narrative-alignment-sprint',
   'buyer-narrative-alignment',
   'claim-support-review',
   'founders-audit',
@@ -101,12 +102,10 @@ assert.deepEqual(offers.INQUIRY_OFFER_VALUES, [
   'monitoring',
 ]);
 assert.deepEqual(offers.PUBLIC_INQUIRY_OFFER_VALUES, [
-  'claim-support-review',
-  'founders-audit',
-  'agency-claim-qa',
-  'agent-evidence-pack',
-  'monitoring',
+  'buyer-narrative-alignment-sprint',
 ]);
+assert.equal(offers.INQUIRY_OFFERS['buyer-narrative-alignment-sprint'].formLabel, 'Buyer Narrative Alignment Sprint · $1,500 fixed fee');
+assert.equal(offers.INQUIRY_OFFERS['buyer-narrative-alignment-sprint'].submitLabel, 'Request the $1,500 Sprint');
 assert.equal(offers.INQUIRY_OFFERS['buyer-narrative-alignment'].formLabel, 'Buyer Narrative Alignment Sprint · $1,500');
 assert.equal(offers.INQUIRY_OFFERS['claim-support-review'].scoped, false);
 for (const offer of offers.INQUIRY_OFFER_VALUES.filter((value) => value !== 'claim-support-review')) {
@@ -182,7 +181,7 @@ const redirectsSource = await readFile(new URL('../next.config.ts', import.meta.
 assert.match(redirectsSource, /source: '\/pilot', destination: '\/agency', permanent: true/);
 assert.match(redirectsSource, /source: '\/benchmarks\/state-of-medspa-claims', destination: '\/methodology'/);
 assert.match(redirectsSource, /source: '\/claim-audit\/:publicId', destination: '\/sample-report'/);
-assert.match(redirectsSource, /intent=claim-support-review&source=scrutexity-snapshot/);
+assert.match(redirectsSource, /intent=buyer-narrative-alignment-sprint&source=scrutexity-snapshot/);
 
 const evidenceChainSource = await readFile(new URL('../src/components/scrutexity/evidence-chain.tsx', import.meta.url), 'utf8');
 assert.match(evidenceChainSource, /Sample workflow illustration · fictional data · not a live client record/);
@@ -194,5 +193,32 @@ const sitemapSource = await readFile(new URL('../src/app/sitemap.ts', import.met
 for (const excluded of ['/benchmarks', '/proof', '/verify', '/pilot', '/private-equity']) {
   assert.equal(sitemapSource.includes(`"${excluded}"`), false, `non-index route entered sitemap: ${excluded}`);
 }
+
+const publicCommercialFiles = [
+  '../src/app/layout.tsx',
+  '../src/app/pricing/page.tsx',
+  '../src/app/contact/page.tsx',
+  '../src/app/agency/page.tsx',
+  '../src/app/about/page.tsx',
+  '../src/app/what-we-do/page.tsx',
+  '../src/components/site-nav.tsx',
+  '../src/components/sections/footer.tsx',
+  '../src/components/scrutexity/umbrella-homepage.tsx',
+  '../src/components/scrutexity/pricing-content.tsx',
+  '../src/components/scrutexity/agency-content.tsx',
+  '../src/components/scrutexity/contact-intake-form.tsx',
+  '../src/components/scrutexity/mobile-sticky-cta.tsx',
+  '../src/components/scrutexity/sample-report-content.tsx',
+];
+const publicCommercialSource = (await Promise.all(
+  publicCommercialFiles.map((file) => readFile(new URL(file, import.meta.url), 'utf8')),
+)).join('\n');
+for (const retired of ['$99', '$750', '$2,500', 'Claim Support Review', 'Founder’s Audit', 'Agency Claim QA', 'Agent Evidence Pack', 'Monitoring pilots']) {
+  assert.equal(publicCommercialSource.includes(retired), false, `retired public offer remained: ${retired}`);
+}
+assert.match(publicCommercialSource, /Buyer Narrative Alignment Sprint/);
+assert.match(publicCommercialSource, /\$1,500 fixed fee/);
+assert.equal(publicCommercialSource.includes('intent=claim-support-review'), false);
+assert.match(publicCommercialSource, /intent=buyer-narrative-alignment-sprint/);
 
 console.log('launch-gate tests passed');

@@ -7,7 +7,7 @@ const columns = [
       ["What we do", "/what-we-do"],
       ["Sample report", "/sample-report"],
       ["Pricing", "/pricing"],
-      ["Claim Support Review", "/pricing"],
+      ["Buyer Narrative Alignment Sprint", "/pricing"],
     ],
   },
   {
@@ -24,7 +24,7 @@ const columns = [
     title: "Engagement",
     links: [
       ["What is included", "/pricing"],
-      ["Start a claim review", "/contact?intent=claim-support-review&source=footer"],
+      ["Request the sprint", "/contact?intent=buyer-narrative-alignment-sprint&source=footer"],
       ["For agencies", "/agency"],
       ["Sample report", "/sample-report"],
     ],

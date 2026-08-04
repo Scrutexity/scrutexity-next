@@ -5,9 +5,16 @@ import ContactIntakeForm from "@/components/scrutexity/contact-intake-form";
 import { INQUIRY_OFFERS, isPublicInquiryOffer } from "@/lib/inquiry-offers";
 
 export const metadata: Metadata = {
-  title: "Contact Scrutexity | Request a Claim Review",
-  description: "Request a Claim Support Review, Founder’s Audit, Agency Claim QA engagement, or Agent Evidence Pack.",
+  title: "Request the Buyer Narrative Alignment Sprint | Scrutexity",
+  description: "Request Scrutexity’s $1,500 Buyer Narrative Alignment Sprint, a founder-reviewed analysis of claims, visible support, and buyer-narrative gaps.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Request the Buyer Narrative Alignment Sprint | Scrutexity",
+    description: "Request the $1,500 founder-reviewed sprint for claims, visible support, and buyer-narrative gaps.",
+    type: "website",
+    url: "https://www.scrutexity.com/contact",
+    images: ["/api/og?title=Request%20the%20Buyer%20Narrative%20Alignment%20Sprint&eyebrow=Scrutexity"],
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -18,7 +25,7 @@ export default async function ContactPage({
   searchParams: Promise<{ intent?: string; source?: string; checkout?: string }>;
 }) {
   const { intent, source, checkout } = await searchParams;
-  const selection = isPublicInquiryOffer(intent) ? INQUIRY_OFFERS[intent] : INQUIRY_OFFERS["claim-support-review"];
+  const selection = isPublicInquiryOffer(intent) ? INQUIRY_OFFERS[intent] : INQUIRY_OFFERS["buyer-narrative-alignment-sprint"];
   const subject = selection?.subject ?? "Scrutexity review inquiry";
 
   return (
@@ -30,10 +37,10 @@ export default async function ContactPage({
         <div className="mt-6 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <h1 className="font-display text-5xl leading-tight text-espresso md:text-6xl">
-              Bring the claim or output that matters.
+              Bring the buyer story that matters.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-mist">
-              Nick will confirm the reviewed surfaces, expected inputs, scope, and timing before work begins.
+              Request the $1,500 fixed-fee sprint. Nick will review the company, requested scope, and whether the engagement is a useful fit before work begins.
             </p>
 
             {selection && (

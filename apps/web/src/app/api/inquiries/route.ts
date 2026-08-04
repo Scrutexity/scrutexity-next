@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
         duplicate: saved.duplicate,
         ownerNotified,
         checkoutUrl,
-        checkoutAvailable: saved.record.offer !== 'claim-support-review' || Boolean(checkoutUrl),
+        checkoutAvailable: Boolean(checkoutUrl),
       },
       { status: saved.duplicate ? 200 : 201 },
     );

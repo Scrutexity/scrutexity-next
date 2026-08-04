@@ -3,12 +3,12 @@
 import { CheckCircle2, Loader2, Send } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import { trackEvent } from '@/utils/analytics';
-import { INQUIRY_OFFERS, PUBLIC_INQUIRY_OFFER_VALUES, isPublicInquiryOffer, type InquiryOffer } from '@/lib/inquiry-offers';
+import { INQUIRY_OFFERS, isPublicInquiryOffer, type InquiryOffer } from '@/lib/inquiry-offers';
 
 const schedulingUrl = process.env.NEXT_PUBLIC_SCHEDULING_URL;
 
 export default function ContactIntakeForm({
-  initialOffer = 'claim-support-review',
+  initialOffer = 'buyer-narrative-alignment-sprint',
   source = 'contact',
   focusOnLoad = false,
 }: {
@@ -17,9 +17,9 @@ export default function ContactIntakeForm({
   focusOnLoad?: boolean;
 }) {
   const idempotencyKey = useRef(crypto.randomUUID());
-  const [offer, setOffer] = useState<InquiryOffer>(
-    isPublicInquiryOffer(initialOffer) ? initialOffer : 'claim-support-review',
-  );
+  const offer: InquiryOffer = isPublicInquiryOffer(initialOffer)
+    ? initialOffer
+    : 'buyer-narrative-alignment-sprint';
   const [state, setState] = useState<'idle' | 'submitting' | 'saved' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
@@ -62,13 +62,7 @@ export default function ContactIntakeForm({
       }
 
       setState('saved');
-      setMessage(
-        offer === 'claim-support-review' && payload.checkoutAvailable === false
-          ? 'Your request is saved. Checkout is temporarily unavailable, so no payment was taken.'
-          : payload.ownerNotified
-            ? `${INQUIRY_OFFERS[offer].label} was sent to Nick with the selected intent and request details.`
-            : 'Your request is stored, but automatic owner notification is unavailable. Use the direct contact action below so it does not wait unseen.',
-      );
+      setMessage('Request received. Nick will review the company, requested scope, and whether the sprint is a useful fit. No payment has been taken.');
     } catch (error) {
       setState('error');
       setMessage(error instanceof Error ? error.message : 'Unable to save your request.');
@@ -79,11 +73,7 @@ export default function ContactIntakeForm({
     const config = INQUIRY_OFFERS[offer];
     const emailHref = `mailto:nick@scrutexity.com?subject=${encodeURIComponent(config.subject)}`;
     const nextHref = config.scoped && schedulingUrl ? schedulingUrl : emailHref;
-    const nextLabel = config.scoped && schedulingUrl
-      ? 'Schedule the scope call'
-      : offer === 'claim-support-review'
-        ? 'Email Nick about checkout'
-        : 'Email Nick to schedule';
+    const nextLabel = config.scoped && schedulingUrl ? 'Schedule the scope call' : 'Email Nick';
 
     return (
       <div className="rounded-lg border border-sage-deep/30 bg-white p-7">
@@ -92,9 +82,7 @@ export default function ContactIntakeForm({
         <p className="mt-3 text-sm leading-6 text-mist" aria-live="polite">{message}</p>
         <div className="mt-6 border-t border-sand-deep/35 pt-5">
           <p className="text-sm leading-6 text-mist">
-            {config.scoped
-              ? 'No payment has been taken. Scope, price, required inputs, and timing are confirmed before payment. Work begins after payment and receipt of the agreed inputs.'
-              : 'The $99 review begins after payment and confirmation of the public URL to review.'}
+            No payment has been taken. Scope, required inputs, and timing are confirmed before work begins.
           </p>
           <a
             href={nextHref}
@@ -111,8 +99,8 @@ export default function ContactIntakeForm({
 
   return (
     <form className="rounded-lg border border-sand-deep/45 bg-bone p-6 sm:p-7" onSubmit={handleSubmit}>
-      <h2 className="font-display text-3xl text-espresso">Start the conversation</h2>
-      <p className="mt-2 text-sm leading-6 text-mist">Your request is stored before any checkout begins.</p>
+      <h2 className="font-display text-3xl text-espresso">Request the Buyer Narrative Alignment Sprint</h2>
+      <p className="mt-2 text-sm leading-6 text-mist">Nick reviews each request before confirming fit and scope. No payment is taken here.</p>
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         <label className="text-sm font-medium text-espresso">
@@ -130,12 +118,12 @@ export default function ContactIntakeForm({
         <input className={fieldClass} name="websiteUrl" type="url" placeholder="https://example.com/page" required />
       </label>
 
-      <label className="mt-5 block text-sm font-medium text-espresso">
-        Requested review
-        <select className={fieldClass} name="offer" value={offer} onChange={(event) => setOffer(event.target.value as InquiryOffer)}>
-          {PUBLIC_INQUIRY_OFFER_VALUES.map((value) => <option key={value} value={value}>{INQUIRY_OFFERS[value].formLabel}</option>)}
-        </select>
-      </label>
+      <div className="mt-5">
+        <p className="text-sm font-medium text-espresso">Requested review</p>
+        <p className={`${fieldClass} flex items-center`}>{INQUIRY_OFFERS[offer].formLabel}</p>
+        <input type="hidden" name="offer" value={offer} />
+        <input type="hidden" name="intent" value="buyer-narrative-alignment-sprint" />
+      </div>
 
       <label className="mt-5 block text-sm font-medium text-espresso">
         What decision should this review help you make? <span className="font-normal text-mist">(optional)</span>

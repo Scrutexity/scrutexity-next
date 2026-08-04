@@ -50,7 +50,7 @@ export async function notifyInquiryOwner(
       replyTo: record.email,
       subject: paid
         ? `PAID Scrutexity Claim Support Review · ${record.id}`
-        : `New ${offer.label} inquiry · ${record.id}`,
+        : `${offer.subject} · ${record.id}`,
       text: lines.join('\n'),
     });
     if (result.error) throw new Error('OWNER_NOTIFICATION_FAILED');

@@ -122,10 +122,10 @@ export function SiteNav() {
               })}
             </div>
             <Link
-              href="/contact?intent=claim-support-review&source=scrutexity-nav"
+              href="/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-nav"
               className="rounded-md bg-espresso px-4 py-2.5 text-xs font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Start a Claim Review
+              Request the Sprint
             </Link>
           </nav>
 
@@ -170,11 +170,11 @@ export function SiteNav() {
             </nav>
             <div className="mt-12 pt-8 border-t border-sand-deep/20">
               <Link
-                href="/contact?intent=claim-support-review&source=scrutexity-nav"
+                href="/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-nav"
                 onClick={() => setIsOpen(false)}
                 className="flex min-h-12 w-full items-center justify-center rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep"
               >
-                Start a Claim Review
+                Request the Sprint
               </Link>
             </div>
           </div>

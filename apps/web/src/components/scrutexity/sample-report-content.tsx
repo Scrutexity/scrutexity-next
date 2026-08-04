@@ -168,13 +168,13 @@ export default function SampleReportContent() {
           </section>
 
           <section className="mt-12 border-t border-sand-deep/35 pt-12 text-center">
-            <h2 className="font-display text-4xl text-espresso md:text-5xl">Start with one public page.</h2>
+            <h2 className="font-display text-4xl text-espresso md:text-5xl">Align the story before the next buyer conversation.</h2>
             <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
-              Start with a $99 Claim Support Review for one public page. Broader founder, agency, and agent-output work is scoped after the initial review.
+              The $1,500 Buyer Narrative Alignment Sprint reviews up to five core public pages and turns the highest-priority gaps into a concise decision document.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/contact?intent=claim-support-review&source=sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-                Start a Claim Support Review
+              <Link href="/contact?intent=buyer-narrative-alignment-sprint&source=sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
+                Request the $1,500 Sprint
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link href="/methodology" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">
