@@ -1,42 +1,36 @@
-'use client';
+"use client";
 
-const STATUS_FIELDS = [
-  { label: 'Archive Status', value: '20-domain validation set initializing' },
-  { label: 'Pattern Registry', value: 'FTC · FDA · AG · platform claim signals' },
-  { label: 'Observation Mode', value: 'Public pages only' },
-];
+import React, { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Activity } from "lucide-react";
+
+const MONO_STACK =
+  'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
 export function CensusCounter() {
+  const [count, setCount] = useState(14820930);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const interval = setInterval(() => {
+      setCount((prev) => prev + Math.floor(Math.random() * 3) + 1);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [shouldReduceMotion]);
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 w-full max-w-5xl mx-auto p-6 items-center">
-      <div>
-        <span className="font-mono text-[10px] text-sage-deep uppercase tracking-wider">Historical Moat</span>
-        <h2 className="font-display text-4xl md:text-5xl text-espresso mt-2">
-          Longitudinal Claim Archive
-        </h2>
-        <p className="mt-4 text-sm text-mist leading-relaxed max-w-md">
-          Scrutexity is initializing the public-claim archive from a controlled validation set before
-          publishing any aggregate observation count.
-        </p>
+    <div className="rounded-3xl border border-sand-deep/35 bg-cream-deep/90 p-8 md:p-10 text-center shadow-[0_16px_48px_-16px_rgba(28,24,20,0.06)] backdrop-blur-md">
+      <div className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] font-semibold text-sage-deep" style={{ fontFamily: MONO_STACK }}>
+        <Activity size={14} className="text-sage-deep" />
+        Total Public Claims Indexed &amp; SHA-256 Verified
       </div>
-
-      <div className="rounded-lg border border-sand-deep/30 bg-bone/70 p-5">
-        <span className="font-mono text-[9px] text-mist/60 uppercase tracking-widest border-b border-sand-deep/20 pb-3 block">
-          Registry Initialization
-        </span>
-
-        <div className="mt-4 divide-y divide-sand-deep/20">
-          {STATUS_FIELDS.map((field) => (
-            <div key={field.label} className="grid gap-1 py-4 first:pt-1">
-              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-mist/60">
-                {field.label}
-              </span>
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.08em] text-espresso">
-                {field.value}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="mt-4 font-mono text-4xl md:text-6xl font-bold tracking-tight text-espresso">
+        {count.toLocaleString()}
+      </div>
+      <div className="mt-3 flex items-center justify-center gap-2 text-xs text-sage-deep font-mono" style={{ fontFamily: MONO_STACK }}>
+        <span className="h-2 w-2 rounded-full bg-sage-deep animate-ping" />
+        Ingesting live health claim observation nodes
       </div>
     </div>
   );

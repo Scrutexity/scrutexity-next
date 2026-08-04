@@ -10,6 +10,7 @@ import { ScrollyTimeline } from '@/components/scrutexity/motion/ScrollyTimeline'
 import { HashChainProof } from '@/components/scrutexity/motion/HashChainProof';
 import { CensusCounter } from '@/components/scrutexity/motion/CensusCounter';
 import { SMarkLifecycle } from '@/components/scrutexity/motion/SMarkLifecycle';
+import { HeroVerifyLoop } from '@/components/scrutexity/motion/HeroVerifyLoop';
 import { InstitutionalPipeline } from '@/components/scrutexity/motion/institutional-pipeline';
 import { OperatingSystemDiagram } from '@/components/scrutexity/operating-system-diagram';
 import { HoverProofLink } from '@/components/scrutexity/motion/hover-proof-link';
@@ -138,8 +139,8 @@ export default function UmbrellaHomepage() {
           </motion.div>
         </div>
 
-        <div className="relative z-10 mt-16 md:mt-24">
-          <InstitutionalPipeline />
+        <div className="relative z-10 mt-16 md:mt-24 flex justify-center">
+          <HeroVerifyLoop />
         </div>
       </section>
 

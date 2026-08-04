@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import { ShieldCheck, FileText, Lock, Eye, BadgeCheck, FileSearch, Hash } from 'lucide-react';
+import { CensusCounter } from '@/components/scrutexity/motion/CensusCounter';
+import { HashChainProof } from '@/components/scrutexity/motion/HashChainProof';
+import { ScrollyTimeline } from '@/components/scrutexity/motion/ScrollyTimeline';
+import { SMarkLifecycle } from '@/components/scrutexity/motion/SMarkLifecycle';
 
 export const metadata = {
   title: 'Scrutexity Proof Library | Validation Reports, Receipts, and Verification',
@@ -148,6 +152,28 @@ export default function ProofPage() {
               </div>
             );
           })}
+        </div>
+
+        {/* ══ ENTERPRISE MOTION SYSTEM VISUALIZERS ═══════════════════════ */}
+        <div className="mt-20 space-y-16">
+          {/* 1. Census Counter */}
+          <CensusCounter />
+
+          {/* 2. Hash Chain Proof & S-Mark Lifecycle */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <HashChainProof />
+            <SMarkLifecycle />
+          </div>
+
+          {/* 3. Scrolly Timeline */}
+          <div className="rounded-3xl border border-sand-deep/35 bg-bone p-8 md:p-12">
+            <div className="text-center max-w-2xl mx-auto mb-8">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-sage-deep font-semibold block mb-2">Process Sequence</span>
+              <h2 className="font-display text-3xl text-espresso">Scroll-Driven Claim Ingestion Pipeline</h2>
+              <p className="text-sm text-mist mt-2">How every public claim moves from initial observation to hash-sealed record.</p>
+            </div>
+            <ScrollyTimeline />
+          </div>
         </div>
 
         {/* Standards Section */}
