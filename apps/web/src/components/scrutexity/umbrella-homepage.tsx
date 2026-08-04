@@ -433,7 +433,6 @@ export default function UmbrellaHomepage() {
               ["Founder’s Audit", "from $750"],
               ["Agency Claim QA Pilot", "from $1,500"],
               ["Agent Evidence Pack", "from $2,500"],
-              ["Monitoring", "Later option · contact"],
             ].map(([name, price]) => (
               <div key={name} className="flex flex-col gap-1 border-b border-sand-deep/30 px-5 py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
                 <span className="text-sm font-semibold text-espresso">{name}</span>
@@ -441,6 +440,21 @@ export default function UmbrellaHomepage() {
               </div>
             ))}
           </div>
+          <div className="mt-6 rounded-lg border border-sand-deep/45 bg-bone p-5">
+            <p className="text-sm font-semibold text-espresso">Monitoring pilots</p>
+            <p className="mt-2 text-sm leading-6 text-mist">
+              Available after an initial review for selected customers. Contact us to discuss scope.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-sand-deep/30 bg-bone px-5 py-16 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="font-display text-4xl text-espresso md:text-5xl">Founder-reviewed, not blindly generated.</h2>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-mist">
+            Scrutexity was built by Nick, who personally reviews every paid Claim Support Review and Founder’s Audit before delivery.
+          </p>
         </div>
       </section>
 

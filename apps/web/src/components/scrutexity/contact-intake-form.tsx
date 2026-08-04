@@ -9,7 +9,7 @@ const offers = [
   { value: 'founders-audit', label: 'Founder’s Audit · from $750' },
   { value: 'agency-claim-qa', label: 'Agency Claim QA · pilot from $1,500' },
   { value: 'agent-evidence-pack', label: 'Agent Evidence Pack · pilot from $2,500' },
-  { value: 'monitoring', label: 'Monitoring · later option' },
+  { value: 'monitoring', label: 'Monitoring pilots · selected customers' },
 ] as const;
 
 type Offer = (typeof offers)[number]['value'];
@@ -17,9 +17,11 @@ type Offer = (typeof offers)[number]['value'];
 export default function ContactIntakeForm({
   initialOffer = 'claim-support-review',
   source = 'contact',
+  focusOnLoad = false,
 }: {
   initialOffer?: string;
   source?: string;
+  focusOnLoad?: boolean;
 }) {
   const idempotencyKey = useRef(crypto.randomUUID());
   const [offer, setOffer] = useState<Offer>(
@@ -97,7 +99,7 @@ export default function ContactIntakeForm({
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         <label className="text-sm font-medium text-espresso">
           Contact name
-          <input className={fieldClass} name="name" autoComplete="name" required minLength={2} />
+          <input className={fieldClass} name="name" autoComplete="name" required minLength={2} autoFocus={focusOnLoad} />
         </label>
         <label className="text-sm font-medium text-espresso">
           Email

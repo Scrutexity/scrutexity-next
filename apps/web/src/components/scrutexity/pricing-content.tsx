@@ -133,14 +133,14 @@ export default function PricingContent() {
             <div className="flex gap-4">
               <Clock3 className="mt-1 h-5 w-5 shrink-0 text-sage-deep" aria-hidden="true" />
               <div>
-                <h2 className="font-display text-2xl text-espresso">Monitoring is a later option.</h2>
+                <h2 className="font-display text-2xl text-espresso">Monitoring pilots</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-mist">
-                  Ongoing monitoring is scoped only where the workflow and update cadence are operationally supported. It is not presented as a self-serve product.
+                  Available after an initial review for selected customers. Contact us to discuss scope.
                 </p>
               </div>
             </div>
             <Link href="/contact?intent=monitoring&source=pricing" className="mt-5 inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso md:mt-0">
-              Ask about monitoring
+              Discuss a monitoring pilot
               <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </aside>

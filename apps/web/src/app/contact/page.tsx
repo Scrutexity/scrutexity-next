@@ -33,9 +33,9 @@ const intentCopy: Record<string, { label: string; subject: string; prompt: strin
     prompt: "Share the agent’s customer-facing use case and the approximate transcript volume available for review.",
   },
   monitoring: {
-    label: "Monitoring · later option",
+    label: "Monitoring pilots · selected customers",
     subject: "Scrutexity monitoring inquiry",
-    prompt: "Share the surfaces that change most often and the review cadence you need.",
+    prompt: "Available after an initial review for selected customers. Contact us to discuss scope.",
   },
 };
 
@@ -78,7 +78,7 @@ export default async function ContactPage({
           </div>
 
           <div>
-            <ContactIntakeForm initialOffer={intent} source={source} />
+            <ContactIntakeForm initialOffer={intent} source={source} focusOnLoad={Boolean(selection)} />
           </div>
         </div>
 

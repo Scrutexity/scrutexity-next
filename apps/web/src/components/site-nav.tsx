@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 const links = [
   { name: 'Product', href: '/#product' },
@@ -18,9 +17,11 @@ const links = [
 
 export function SiteNav() {
   const pathname = usePathname();
-  const reducedMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileDrawerRef = useRef<HTMLDivElement>(null);
+  const restoreMenuFocusRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +38,49 @@ export function SiteNav() {
     return () => {
       document.body.style.overflow = previousOverflow;
     };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      if (restoreMenuFocusRef.current) {
+        restoreMenuFocusRef.current = false;
+        menuButtonRef.current?.focus();
+      }
+      return;
+    }
+
+    const drawer = mobileDrawerRef.current;
+    const firstLink = drawer?.querySelector<HTMLAnchorElement>('a[href]');
+    firstLink?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        restoreMenuFocusRef.current = true;
+        setIsOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !drawer) return;
+
+      const focusable = [
+        menuButtonRef.current,
+        ...Array.from(drawer.querySelectorAll<HTMLAnchorElement>('a[href]')),
+      ].filter((element): element is HTMLButtonElement | HTMLAnchorElement => Boolean(element));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
   return (
@@ -86,6 +130,7 @@ export function SiteNav() {
 
           {/* Mobile Toggle */}
           <button
+            ref={menuButtonRef}
             type="button"
             className="flex min-h-11 min-w-11 items-center justify-center rounded-md p-2 text-espresso lg:hidden z-50"
             onClick={() => setIsOpen(!isOpen)}
@@ -99,14 +144,13 @@ export function SiteNav() {
       </header>
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: reducedMotion ? 0 : 0.2 }}
+      {isOpen && (
+          <div
+            ref={mobileDrawerRef}
             id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
             className="fixed inset-0 z-40 flex flex-col bg-cream pt-24 pb-8 px-6 lg:hidden overflow-y-auto"
           >
             <nav aria-label="Mobile navigation" className="flex flex-col gap-5">
@@ -132,9 +176,8 @@ export function SiteNav() {
                 Get a Claim Snapshot
               </Link>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </>
   );
 }

@@ -29,12 +29,12 @@ export default function AgencyContent() {
             <div className="rounded-lg border border-sand-deep/45 bg-white p-6">
               <p className="text-sm font-semibold text-sage-deep">Agency Claim QA Pilot</p>
               <p className="mt-2 font-display text-4xl text-espresso">From $1,500</p>
-              <p className="mt-3 text-sm leading-6 text-mist">Scope and turnaround are confirmed before the pilot begins.</p>
+              <p className="mt-3 text-sm leading-6 text-mist">Three client sites, up to 15 material claims per site, with a 72-hour target turnaround.</p>
             </div>
           </div>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href="/contact?intent=agency-claim-qa&source=agency" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-              Discuss an Agency Pilot
+              Request the $1,500 founding pilot
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
             <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">
@@ -53,12 +53,14 @@ export default function AgencyContent() {
           </div>
           <ul className="mt-10 grid gap-px overflow-hidden rounded-lg border border-sand-deep/35 bg-sand-deep/35 md:grid-cols-2">
             {[
-              "Website and campaign reviews",
-              "Case-study claim reviews",
+              "Three client sites",
+              "Up to 15 material claims per site",
               "Client-ready findings",
               "Safer framing drafts",
-              "Launch and onboarding QA",
-              "Fixed turnaround agreed per pilot",
+              "72-hour target turnaround",
+              "One revision",
+              "Co-branded delivery during the initial pilot",
+              "Fully white-label delivery only by separate agreement",
             ].map((item) => (
               <li key={item} className="flex gap-3 bg-bone p-6 text-sm font-medium text-espresso">
                 <Check className="h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
@@ -95,9 +97,9 @@ export default function AgencyContent() {
       <section className="bg-white px-5 py-20 text-center sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-display text-4xl text-espresso md:text-5xl">Use one upcoming launch as the test.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">Send the draft surface and deadline. The pilot scope will state exactly what is reviewed, what is delivered, and what remains your client’s decision.</p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">Use the inquiry form and select Agency Claim QA. Send the three client URLs and deadline; Nick will confirm the scope before work begins.</p>
           <Link href="/contact?intent=agency-claim-qa&source=agency-bottom" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-sage-deep px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-espresso">
-            Discuss an Agency Pilot
+            Request the $1,500 founding pilot
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
