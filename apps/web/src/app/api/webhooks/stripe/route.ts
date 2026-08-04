@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import type Stripe from 'stripe';
 import { unlockAudit } from '../../../../lib/entitlements';
 import { markInquiryPaid } from '../../../../lib/inquiries';
+import { notifyInquiryOwner } from '../../../../lib/inquiry-notifications';
+import { CLAIM_SUPPORT_PRODUCT, verifyClaimSupportSession } from '../../../../lib/claim-support-payment';
 
 const ENTITLEMENTS: Record<string, 'snapshot' | 'full_report' | 'monitoring' | 'agency'> = {
   claim_intelligence_report: 'full_report',
@@ -16,6 +18,7 @@ export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
   let event: Stripe.Event;
+  let stripe: Stripe;
   const rawBody = await req.text();
 
   try {
@@ -24,7 +27,7 @@ export async function POST(req: NextRequest) {
       throw new Error('STRIPE_SECRET_KEY environment variable is not configured.');
     }
 
-    const stripe = new StripeClient(process.env.STRIPE_SECRET_KEY);
+    stripe = new StripeClient(process.env.STRIPE_SECRET_KEY);
 
     if (isProduction || webhookSecret) {
       if (!sig || !webhookSecret) {
@@ -43,7 +46,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Handle the event
-  if (event.type === 'checkout.session.completed') {
+  if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
     const session = event.data.object as Stripe.Checkout.Session;
 
     const paymentStatus = session.payment_status;
@@ -64,7 +67,6 @@ export async function POST(req: NextRequest) {
       paymentStatus,
       product,
       publicId,
-      email,
     });
 
     if (paymentStatus !== 'paid') {
@@ -72,14 +74,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, message: 'Session ignored (unpaid)' });
     }
 
-    if (product === 'claim_support_review') {
-      const inquiryId = metadata.inquiryId;
-      if (!inquiryId) {
-        return NextResponse.json({ error: 'Missing inquiryId in metadata' }, { status: 400 });
-      }
+    if (product === CLAIM_SUPPORT_PRODUCT) {
       try {
-        await markInquiryPaid(inquiryId, stripeSessionId);
-        console.log(`[Stripe Webhook] Marked inquiry ${inquiryId} paid`);
+        const configuredPriceId = process.env.STRIPE_CLAIM_SUPPORT_REVIEW_PRICE_ID;
+        if (!configuredPriceId) {
+          return NextResponse.json({ error: 'Payment configuration is incomplete' }, { status: 500 });
+        }
+        const verified = await verifyClaimSupportSession(stripe, session, configuredPriceId);
+        if (!verified.valid) {
+          console.error(`[Stripe Webhook] Rejected claim review payment: ${verified.reason}`);
+          return NextResponse.json({ error: 'Payment verification failed' }, { status: 400 });
+        }
+        const paid = await markInquiryPaid({
+          id: verified.inquiryId,
+          stripeSessionId,
+          stripePriceId: verified.priceId,
+          amountTotal: verified.amountTotal,
+          currency: verified.currency,
+        });
+        try {
+          await notifyInquiryOwner(paid.record, 'payment');
+        } catch (notificationError) {
+          console.error('[Stripe Webhook] Paid owner notification failed:', notificationError instanceof Error ? notificationError.message : 'unknown');
+        }
+        console.log(`[Stripe Webhook] Claim review payment processed; state changed: ${paid.changed}`);
         return NextResponse.json({ success: true });
       } catch (error) {
         console.error('[Stripe Webhook] Failed to mark inquiry paid:', error instanceof Error ? error.message : 'unknown');

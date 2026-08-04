@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { saveInquiry, type InquiryOffer } from '@/lib/inquiries';
+import { notifyInquiryOwner } from '@/lib/inquiry-notifications';
+import { CLAIM_SUPPORT_PRODUCT } from '@/lib/claim-support-payment';
 
 const inquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -19,41 +21,6 @@ const inquirySchema = z.object({
   companyWebsite: z.string().max(0).optional().default(''),
 });
 
-async function notifyOwner(record: {
-  id: string;
-  name: string;
-  email: string;
-  websiteUrl: string;
-  offer: InquiryOffer;
-  context: string | null;
-}) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.INQUIRY_FROM_EMAIL;
-  const owner = process.env.INQUIRY_OWNER_EMAIL ?? 'nick@scrutexity.com';
-  if (!apiKey || !from) return false;
-
-  const { Resend } = await import('resend');
-  const resend = new Resend(apiKey);
-  const result = await resend.emails.send({
-    from,
-    to: owner,
-    replyTo: record.email,
-    subject: `New Scrutexity inquiry: ${record.offer}`,
-    text: [
-      `Inquiry ID: ${record.id}`,
-      `Offer: ${record.offer}`,
-      `Name: ${record.name}`,
-      `Email: ${record.email}`,
-      `Website: ${record.websiteUrl}`,
-      '',
-      'Context:',
-      record.context || 'Not provided',
-    ].join('\n'),
-  });
-  if (result.error) throw new Error('OWNER_NOTIFICATION_FAILED');
-  return true;
-}
-
 async function createCheckout(record: {
   id: string;
   email: string;
@@ -67,20 +34,26 @@ async function createCheckout(record: {
 
   const { Stripe } = await import('stripe');
   const stripe = new Stripe(secretKey);
-  const appUrl = process.env.APP_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? origin;
-  const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
-    customer_email: record.email,
-    line_items: [{ price: priceId, quantity: 1 }],
-    client_reference_id: record.id,
-    success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${appUrl}/contact?intent=claim-support-review&checkout=cancelled`,
-    metadata: {
-      product: 'claim_support_review',
-      inquiryId: record.id,
-      email: record.email,
+  const appUrl = process.env.VERCEL_ENV === 'production'
+    ? process.env.APP_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? origin
+    : origin;
+  const session = await stripe.checkout.sessions.create(
+    {
+      mode: 'payment',
+      customer_email: record.email,
+      line_items: [{ price: priceId, quantity: 1 }],
+      client_reference_id: record.id,
+      success_url: `${appUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${appUrl}/contact?intent=claim-support-review&checkout=cancelled`,
+      metadata: {
+        product: CLAIM_SUPPORT_PRODUCT,
+        inquiryId: record.id,
+        email: record.email,
+        priceId,
+      },
     },
-  });
+    { idempotencyKey: `claim-support-review:${record.id}` },
+  );
   return session.url;
 }
 
@@ -111,7 +84,7 @@ export async function POST(request: NextRequest) {
     let ownerNotified = false;
     if (!saved.duplicate) {
       try {
-        ownerNotified = await notifyOwner(saved.record);
+        ownerNotified = (await notifyInquiryOwner(saved.record, 'submission')).sent;
       } catch (error) {
         console.error('[Inquiry] Owner notification failed:', error instanceof Error ? error.message : 'unknown');
       }
