@@ -28,27 +28,27 @@ const jetBrainsMono = JetBrains_Mono({
 const siteUrl = "https://www.scrutexity.com";
 
 export const metadata: Metadata = {
-  title: "Scrutexity | Claim Exposure Audits & Monitoring",
-  description: "Scrutexity is the claim-risk bureau behind AuditGPT, maintaining methodology, proof artifacts, and dated public-claim review records.",
+  title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
+  description: "Scrutexity reviews public business claims and customer-facing AI outputs, maps them to visible evidence, and prioritizes what to fix first. Powered by AuditGPT.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   verification: {
     google: "9xUsbtOiH3M_YGMX2Z3bRwAl45Tcs2rtwGTrzYh6mmc",
   },
   openGraph: {
-    title: "Scrutexity | Claim Exposure Audits & Monitoring",
-    description: "The claim-risk bureau behind AuditGPT. Methodology, proof library, and review records for public trust.",
+    title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
+    description: "Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.",
     url: siteUrl,
     siteName: "Scrutexity",
-    images: [{ url: "/api/og?title=Claim%20Exposure%20Audits%20%26%20Monitoring&type=Scrutexity%20%C2%B7%20Claim%20Bureau", width: 1200, height: 630, alt: "Scrutexity" }],
+    images: [{ url: "/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity", width: 1200, height: 630, alt: "Scrutexity evidence-grounded business review" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scrutexity | Claim Exposure Audits & Monitoring",
-    description: "The claim-risk bureau behind AuditGPT. Methodology, proof library, and review records for public trust.",
-    images: ["/api/og?title=Claim%20Intelligence%20for%20Public%20Trust&type=Scrutexity%20%C2%B7%20Claim%20Bureau"],
+    title: "Scrutexity | Evidence-Grounded Claim and AI Output Audits",
+    description: "Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.",
+    images: ["/api/og?title=Evidence-Grounded%20Claim%20and%20AI%20Output%20Audits&type=Scrutexity"],
   },
 };
 
@@ -56,53 +56,46 @@ const jsonLdData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "SoftwareApplication",
-      "@id": "https://scrutexity.com/#application",
-      name: "Scrutexity",
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      description: "Scrutexity maintains claim intelligence methodology, proof artifacts, and dated public-claim review records for high-trust businesses.",
-      applicationSubCategory: "Claim Intelligence and Public Proof Review",
-      audience: { "@type": "Audience", audienceType: "Operators, agencies, insurers, acquirers, and high-trust businesses" },
-      featureList: [
-        "Public claim review records",
-        "Visible proof mapping",
-        "AI answer risk review",
-        "Claim Record Transparency",
-        "Dated review receipts"
-      ],
-      offers: { "@type": "AggregateOffer", priceCurrency: "USD", offerCount: 1 },
-      provider: { "@id": "https://scrutexity.com/#organization" },
-      knowsAbout: [
-        "Public Claim Review",
-        "Claim Record Transparency",
-        "AI Answer Risk"
-      ],
-      softwareRequirements: "Web browser"
-    },
-    {
       "@type": "Organization",
-      "@id": "https://scrutexity.com/#organization",
+      "@id": "https://www.scrutexity.com/#organization",
       name: "Scrutexity",
-      url: "https://scrutexity.com",
-      logo: "https://scrutexity.com/logo-icon.png",
-      description: "Claim-risk bureau behind AuditGPT. Maintains methodology, proof artifacts, and dated public-claim review records.",
+      url: "https://www.scrutexity.com",
+      logo: "https://www.scrutexity.com/logo-icon.png",
+      description: "Evidence-grounded business review for public claims and customer-facing AI outputs. Powered by AuditGPT.",
+      email: "nick@scrutexity.com",
       address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
       knowsAbout: [
         "Public Claim Review",
-        "Claim Record Transparency",
-        "AI Answer Risk",
-        "Public Proof Review"
+        "Visible Evidence Review",
+        "Customer-Facing AI Output Review",
+        "Agency Claim Quality Assurance"
       ]
     },
     {
-      "@type": "WebPage",
-      "@id": "https://scrutexity.com/#webpage",
-      url: "https://scrutexity.com",
-      name: "Scrutexity | Claim Intelligence for Public Trust",
-      isPartOf: { "@id": "https://scrutexity.com/#website" },
-      about: { "@id": "https://scrutexity.com/#application" },
-      description: "Scrutexity is the claim-risk bureau behind AuditGPT, maintaining methodology, proof artifacts, and dated public-claim review records."
+      "@type": "Service",
+      "@id": "https://www.scrutexity.com/#service",
+      name: "Scrutexity Evidence-Grounded Business Review",
+      serviceType: "Business claim and customer-facing AI output review",
+      provider: { "@id": "https://www.scrutexity.com/#organization" },
+      areaServed: "US",
+      description: "Review of public business claims and supplied customer-facing AI outputs against visible evidence, with prioritized findings and safer framing drafts.",
+      offers: {
+        "@type": "OfferCatalog",
+        name: "Scrutexity review services",
+        itemListElement: [
+          { "@type": "Offer", name: "Claim Support Review", price: "99", priceCurrency: "USD" },
+          { "@type": "Offer", name: "Founder’s Audit", price: "750", priceCurrency: "USD" },
+          { "@type": "Offer", name: "Agency Claim QA Pilot", price: "1500", priceCurrency: "USD" },
+          { "@type": "Offer", name: "Agent Evidence Pack", price: "2500", priceCurrency: "USD" }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.scrutexity.com/#website",
+      url: "https://www.scrutexity.com",
+      name: "Scrutexity",
+      publisher: { "@id": "https://www.scrutexity.com/#organization" }
     }
   ]
 };

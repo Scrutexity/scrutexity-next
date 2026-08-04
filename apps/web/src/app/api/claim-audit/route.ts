@@ -30,9 +30,7 @@ export async function POST(request: NextRequest) {
       if (stripeSecret) {
         try {
           const { Stripe } = await import('stripe');
-          const stripe = new Stripe(stripeSecret, {
-            apiVersion: '2025-03-31.basil' as any,
-          });
+          const stripe = new Stripe(stripeSecret);
 
           const session = await stripe.checkout.sessions.create({
             mode: isRescan ? 'subscription' : 'payment',
@@ -52,13 +50,25 @@ export async function POST(request: NextRequest) {
             },
           });
           redirectUrl = session.url || redirectUrl;
-        } catch (checkoutErr: any) {
-          console.error('[ClaimAudit] Failed to create Stripe checkout session:', checkoutErr.message);
-          // Fallback to dev auto-unlock URL if Stripe fails
+        } catch (checkoutErr: unknown) {
+          const checkoutMessage = checkoutErr instanceof Error ? checkoutErr.message : 'Unknown checkout error';
+          console.error('[ClaimAudit] Failed to create Stripe checkout session:', checkoutMessage);
+          if (process.env.NODE_ENV === 'production') {
+            return NextResponse.json(
+              { error: 'Checkout is temporarily unavailable. No payment was created.' },
+              { status: 503 },
+            );
+          }
           redirectUrl = `/claim-audit/${publicId}?unlocked=1`;
         }
       } else {
-        console.warn('[ClaimAudit] STRIPE_SECRET_KEY not set. Falling back to dev-unlocked path.');
+        console.warn('[ClaimAudit] STRIPE_SECRET_KEY not set.');
+        if (process.env.NODE_ENV === 'production') {
+          return NextResponse.json(
+            { error: 'Checkout is not configured. No payment was created.' },
+            { status: 503 },
+          );
+        }
         redirectUrl = `/claim-audit/${publicId}?unlocked=1`;
       }
     }

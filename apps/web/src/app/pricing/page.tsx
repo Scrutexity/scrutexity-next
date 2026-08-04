@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import PricingContent from '@/components/scrutexity/pricing-content';
 
 export const metadata: Metadata = {
-  title: 'Scrutexity Pricing | Claim Exposure Audit & Guardian Monitoring',
+  title: 'Scrutexity Pricing | Evidence-Grounded Business Reviews',
   description:
-    'Claim reviews for regulated marketing. Free snapshot, $497 Claim Exposure Audit with a dated review record, Guardian monitoring from $1,497/mo, Enterprise multi-site from $4,997/mo.',
+    'Starting prices for Scrutexity Claim Support Reviews, Founder’s Audits, Agency Claim QA pilots, and Agent Evidence Packs.',
 };
 
 export default function PricingPage() {

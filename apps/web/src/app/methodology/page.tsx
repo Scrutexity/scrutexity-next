@@ -1,130 +1,104 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight, FileSearch, Hash, ShieldCheck, Library } from 'lucide-react';
-import { MethodologyHeader } from '@/components/methodology-header';
-import { CRTVisualization } from '@/components/crt-visualization';
-import { BoundariesMatrix } from '@/components/boundaries-matrix';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Check, FileSearch, ScanText, SquarePen, TriangleAlert } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: 'Scrutexity Methodology | Claim Resolution Topology',
-  description:
-    'An institutional-grade framework for structuring public-claim records, mapping visible proof gaps, and quantifying AI answer risk.',
-  alternates: { canonical: '/methodology' },
+  title: "Scrutexity Methodology | Evidence-Grounded Business Review",
+  description: "How Scrutexity captures public claims or supplied AI outputs, matches visible evidence, classifies support gaps, and prioritizes safer framing and next actions.",
+  alternates: { canonical: "/methodology" },
 };
 
 const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
-const reviewSteps = [
+const steps = [
   {
-    title: 'Public surface capture',
-    body: 'We review public pages, source URLs, screenshots or retained text extracts, timestamps, and the visible context around each claim.',
+    title: "Capture the reviewed surface",
+    body: "Record the public URL or supplied transcript set, the wording in context, and the review date.",
+    icon: ScanText,
   },
   {
-    title: 'Claim extraction',
-    body: 'Claims are separated from ordinary copy so each statement can be reviewed as its own record with source location and category.',
+    title: "Extract material claims",
+    body: "Separate testable business promises from ordinary description so each claim can be reviewed on its own terms.",
+    icon: FileSearch,
   },
   {
-    title: 'Visible proof review',
-    body: 'We look for support that is publicly visible or directly linked near the claim. Hidden files and private assertions are not treated as public proof.',
+    title: "Match visible support",
+    body: "Look for evidence a buyer can inspect on the reviewed surface or through a directly linked source.",
+    icon: Check,
   },
   {
-    title: 'Safer wording',
-    body: 'When a claim appears unsupported, overstated, or weakly evidenced, we provide a lower-exposure rewrite that stays closer to visible support.',
+    title: "Classify the gap",
+    body: "Record whether support is present, partial, missing, too narrow for the wording, or dependent on undefined terms.",
+    icon: TriangleAlert,
   },
   {
-    title: 'Record and digest',
-    body: 'When applicable, the record is assigned a digest reference so the retained artifact can be checked without exposing sensitive material.',
+    title: "Draft safer framing",
+    body: "Provide a narrower draft that stays closer to the evidence without pretending to replace owner, counsel, or clinical approval.",
+    icon: SquarePen,
   },
 ];
 
 export default function MethodologyPage() {
   return (
     <div className="min-h-screen bg-cream text-bark">
-      <main className="mx-auto max-w-6xl px-6 pb-24">
-        {/* Hero — replaced by MethodologyHeader */}
-        <MethodologyHeader />
+      <section className="border-b border-sand-deep/30 bg-bone px-5 pb-20 pt-28 sm:px-8 md:pb-24 md:pt-40">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Methodology</p>
+          <h1 className="mt-6 font-display text-5xl leading-tight text-espresso md:text-6xl">Every finding should point back to something a buyer can inspect.</h1>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-mist">The Scrutexity method keeps the reviewed wording, visible support, stated gap, safer framing draft, and next action together in one dated report.</p>
+        </div>
+      </section>
 
-        {/* 3 Pillars (unchanged) */}
-        <section className="grid gap-6 border-b border-sand-deep/20 pb-14 md:grid-cols-3">
-          {[
-            { icon: FileSearch, title: 'Public pages only', body: 'No login, no write access, no private systems.' },
-            { icon: ShieldCheck, title: 'Evidence nearby', body: 'Visible support is reviewed in the context where the claim appears.' },
-            { icon: Hash, title: 'Record integrity', body: 'Digest references and retained artifacts support later verification.' },
-          ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="border border-sand-deep/25 bg-bone p-6">
-              <Icon className="h-5 w-5 text-sage-deep" />
-              <h2 className="mt-5 font-display text-2xl text-espresso">{title}</h2>
-              <p className="mt-3 text-sm leading-7 text-mist">{body}</p>
-            </div>
-          ))}
-        </section>
-
-        {/* Deterministic Evidence Pipeline (was Review Process) */}
-        <section className="grid gap-10 border-b border-sand-deep/20 py-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-              Evidence Pipeline
-            </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-espresso">
-              Deterministic Evidence Pipeline.
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-mist">
-              The methodology is designed to make the review reproducible. Every finding should point
-              back to a source URL, visible evidence, a stated gap, and a safer alternative.
-            </p>
-          </div>
-          <ol className="divide-y divide-sand-deep/20 border-y border-sand-deep/20">
-            {reviewSteps.map((step, index) => (
-              <li key={step.title} className="grid gap-4 py-5 md:grid-cols-[64px_1fr]">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="font-display text-xl text-espresso">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-mist">{step.body}</p>
+      <section className="border-b border-sand-deep/30 bg-white px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <ol className="grid gap-px overflow-hidden rounded-lg border border-sand-deep/35 bg-sand-deep/35 lg:grid-cols-5">
+            {steps.map(({ title, body, icon: Icon }, index) => (
+              <li key={title} className="bg-bone p-6">
+                <div className="flex items-center justify-between">
+                  <Icon className="h-5 w-5 text-sage-deep" aria-hidden="true" />
+                  <span className="text-[10px] font-semibold text-mist" style={{ fontFamily: MONO }}>0{index + 1}</span>
                 </div>
+                <h2 className="mt-7 font-display text-2xl text-espresso">{title}</h2>
+                <p className="mt-3 text-sm leading-6 text-mist">{body}</p>
               </li>
             ))}
           </ol>
-        </section>
+        </div>
+      </section>
 
-        {/* CRT Visualization (was CRT Format / Core Fields) */}
-        <section className="border-b border-sand-deep/20 py-16">
-          <div className="mb-10 flex items-center gap-2 text-sage-deep">
-            <Library size={18} />
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ fontFamily: MONO }}>
-              Structured Output
-            </p>
+      <section className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Shipped capabilities</p>
+            <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">The report contains the useful parts.</h2>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {["Source-grounded extraction", "Visible-evidence matching", "Support-gap classification", "Safety-language scanning", "Safer framing drafts", "Dated report metadata"].map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-bark">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <h2 className="font-display text-4xl leading-tight text-espresso">
-                Claim Record Transparency is the common record.
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-mist">
-                CRT is Scrutexity&apos;s structured format for claim review artifacts. It is intended
-                to make the record portable across reports, public proof pages, internal review
-                packets, and future verification workflows.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/proof" className="inline-flex items-center gap-2 rounded-full bg-sage-deep px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-cream">
-                  View proof library
-                  <ArrowRight size={13} />
-                </Link>
-                <Link href="/verify" className="inline-flex items-center gap-2 rounded-full border border-sand-deep/40 bg-bone px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-espresso">
-                  Verify artifact
-                  <ArrowRight size={13} />
-                </Link>
-              </div>
-            </div>
-            <CRTVisualization />
-          </div>
-        </section>
+          <aside className="rounded-lg border border-sand-deep/45 bg-white p-7">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>Boundaries</p>
+            <h2 className="mt-4 font-display text-3xl text-espresso">A business review, not a substituted professional opinion.</h2>
+            <p className="mt-5 text-sm leading-7 text-mist">Scrutexity does not provide legal advice, clinical advice, certification, or guaranteed outcomes. It does not determine whether a claim is legal or compliant. Findings describe reviewed public material or supplied transcripts and the support visible within the agreed scope.</p>
+          </aside>
+        </div>
+      </section>
 
-        {/* Boundaries Matrix */}
-        <BoundariesMatrix />
-      </main>
+      <section className="bg-white px-5 py-20 text-center sm:px-8 md:py-24">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="font-display text-4xl text-espresso md:text-5xl">See the method in report form.</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">The sample uses fictional data and labels every field required to understand the finding and act on it.</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">View a Sample Report <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">Review Pricing <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

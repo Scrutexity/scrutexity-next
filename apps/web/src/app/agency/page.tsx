@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import AgencyContent from '@/components/scrutexity/agency-content';
 
 export const metadata: Metadata = {
-  title: 'Agency Claim Intelligence Receipts | Scrutexity',
+  title: 'Agency Claim QA Pilot | Scrutexity',
   description:
-    'Scrutexity acts as your invisible backend. Attach dated Claim Intelligence Receipts, reviewed-badge pages, and client approval language to high-claim launches.',
+    'Add claim QA to client websites, campaigns, case studies, and launches without building an internal audit team. Pilot pricing starts at $1,500.',
   alternates: { canonical: '/agency' },
 };
 

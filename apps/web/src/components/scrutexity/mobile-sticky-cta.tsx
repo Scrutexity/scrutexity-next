@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { trackEvent } from '@/utils/analytics';
 
 export function MobileStickyCTA() {
   const [isVisible, setIsVisible] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,22 +31,22 @@ export function MobileStickyCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 lg:hidden pointer-events-none"
         >
           <div className="pointer-events-auto">
             <Link
-              href="https://auditgpt.ai/snapshot?source=scrutexity-mobile-sticky"
+              href="/contact?intent=claim-support-review&source=scrutexity-mobile-sticky"
               onClick={() =>
                 trackEvent('cta_click', {
-                  cta_label: 'Run AuditGPT Scan - Mobile Sticky',
-                  destination: 'https://auditgpt.ai/snapshot?source=scrutexity-mobile-sticky',
+                  cta_label: 'Get a Claim Snapshot - Mobile Sticky',
+                  destination: '/contact?intent=claim-support-review&source=scrutexity-mobile-sticky',
                   section: 'mobile-sticky',
                 })
               }
-              className="flex items-center gap-2 rounded-full bg-sage-deep px-6 py-3.5 font-sans text-sm font-semibold text-cream shadow-[0_12px_28px_rgba(94,122,90,0.45)] transition-transform active:scale-95"
+              className="flex min-h-12 items-center gap-2 rounded-md bg-espresso px-6 py-3 font-sans text-sm font-semibold text-cream shadow-[0_12px_28px_rgba(28,24,20,0.24)] transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Run Scanner
+              Get a Claim Snapshot
               <ArrowRight size={16} />
             </Link>
           </div>

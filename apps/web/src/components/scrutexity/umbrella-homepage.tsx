@@ -1,542 +1,475 @@
 "use client";
 
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
-import { ArrowRight, FileText, CheckCircle2, X } from 'lucide-react';
-import Link from 'next/link';
-import { trackEvent } from '@/utils/analytics';
-import { ScrollyTimeline } from '@/components/scrutexity/motion/ScrollyTimeline';
-import { HashChainProof } from '@/components/scrutexity/motion/HashChainProof';
-import { CensusCounter } from '@/components/scrutexity/motion/CensusCounter';
-import { SMarkLifecycle } from '@/components/scrutexity/motion/SMarkLifecycle';
-import { HeroVerifyLoop } from '@/components/scrutexity/motion/HeroVerifyLoop';
-import { InstitutionalPipeline } from '@/components/scrutexity/motion/institutional-pipeline';
-import { OperatingSystemDiagram } from '@/components/scrutexity/operating-system-diagram';
-import { HoverProofLink } from '@/components/scrutexity/motion/hover-proof-link';
-import { AIAnswerRealityPreview } from '@/components/scrutexity/ai-answer-reality-preview';
+import Link from "next/link";
+import {
+  ArrowRight,
+  Bot,
+  Building2,
+  Check,
+  FileCheck2,
+  FileSearch,
+  Layers3,
+  ScanSearch,
+} from "lucide-react";
+import { trackEvent } from "@/utils/analytics";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-const MONO_STACK =
+const SNAPSHOT_URL = "/contact?intent=claim-support-review&source=scrutexity-home";
+const MONO =
   'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
-/* ── Data ─────────────────────────────────────────────────── */
+const reviewSteps = [
+  {
+    number: "01",
+    title: "Capture",
+    body: "Review public pages or supplied customer-facing agent transcripts.",
+    icon: ScanSearch,
+  },
+  {
+    number: "02",
+    title: "Ground",
+    body: "Match material claims to evidence a buyer can actually see and check.",
+    icon: FileSearch,
+  },
+  {
+    number: "03",
+    title: "Prioritize",
+    body: "Return the support gaps, trust issues, safer framing drafts, and next actions that matter most.",
+    icon: Layers3,
+  },
+];
 
-type ArtifactPreview = {
-  title: string;
-  meta: string;
-  status: string;
-};
+const offers = [
+  {
+    name: "Claim Support Review",
+    price: "$99 one-time",
+    description: "A focused review of the public claims on one priority page.",
+    includes: [
+      "Material public claims",
+      "Visible evidence and support gaps",
+      "Priority findings",
+      "Safer framing drafts",
+      "48-hour target turnaround",
+    ],
+    cta: "Start a Claim Review",
+    href: "/contact?intent=claim-support-review&source=home",
+  },
+  {
+    name: "Founder’s Audit",
+    price: "From $750",
+    description: "A broader business review for founders tightening how the company earns trust.",
+    includes: [
+      "Claims and evidence",
+      "Positioning and differentiation",
+      "Offer clarity and buyer friction",
+      "Trust architecture",
+      "30-day action plan",
+    ],
+    cta: "Request a Founder’s Audit",
+    href: "/contact?intent=founders-audit&source=home",
+  },
+  {
+    name: "Agency Claim QA",
+    price: "Pilot from $1,500",
+    description: "A repeatable review layer for client launches, campaigns, and case studies.",
+    includes: [
+      "Agency client-site reviews",
+      "Client-ready findings",
+      "Launch and onboarding QA",
+      "Case-study claim review",
+      "Repeatable per-client workflow",
+    ],
+    cta: "Discuss an Agency Pilot",
+    href: "/contact?intent=agency-claim-qa&source=home",
+  },
+  {
+    name: "Agent Evidence Pack",
+    price: "Pilot from $2,500",
+    description: "Transcript-based review for customer-facing agents making consequential promises.",
+    includes: [
+      "Supplied transcript testing",
+      "Unsupported-promise findings",
+      "Grounding and escalation gaps",
+      "Policy drift",
+      "Dated remediation priorities",
+    ],
+    cta: "Request an Agent Review",
+    href: "/contact?intent=agent-evidence-pack&source=home",
+  },
+];
 
-/* ── Component ────────────────────────────────────────────── */
-
+function TrackedLink({
+  href,
+  label,
+  section,
+  className,
+  children,
+}: {
+  href: string;
+  label: string;
+  section: string;
+  className: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className={className}
+      onClick={() =>
+        trackEvent("cta_click", {
+          cta_label: label,
+          destination: href,
+          section,
+        })
+      }
+    >
+      {children}
+    </Link>
+  );
+}
 
 export default function UmbrellaHomepage() {
-  const [activeArtifact, setActiveArtifact] = useState<ArtifactPreview | null>(null);
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Organization',
-        name: 'Scrutexity',
-        url: 'https://www.scrutexity.com',
-        description:
-          'Scrutexity is the claim-risk bureau behind AuditGPT, maintaining public claim records, review receipts, and verification artifacts for high-trust businesses.',
-      },
-      {
-        '@type': 'WebSite',
-        name: 'Scrutexity',
-        url: 'https://www.scrutexity.com',
-        description:
-          'Claim intelligence infrastructure for public trust.',
-        publisher: { '@type': 'Organization', name: 'Scrutexity' },
-      },
-    ],
-  };
-
   return (
-    <div className="relative min-h-screen bg-cream text-bark font-sans overflow-x-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <EvidenceSpine />
-
-      {/* ══ HERO ══════════════════════════════════════════════════════ */}
-      <section className="relative px-5 pt-32 pb-16 md:px-6 md:pt-48 md:pb-24 overflow-hidden bg-cream">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:32px_32px]" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-sage-deep/5 rounded-full blur-[120px]" />
-          {/* subtle paper grain */}
-          <div className="absolute inset-0 opacity-[0.015] mix-blend-multiply" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-sage-deep font-semibold mb-6"
-            style={{ fontFamily: MONO_STACK }}
+    <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
+      <section className="border-b border-sand-deep/30 bg-cream px-5 pb-20 pt-28 sm:px-8 md:pb-24 md:pt-40">
+        <div className="mx-auto max-w-6xl">
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep"
+            style={{ fontFamily: MONO }}
           >
-            SCRUTEXITY <span className="w-1 h-1 rounded-full bg-sage-deep/50" /> Claim Intelligence Standard
-          </motion.div>
+            Scrutexity · Evidence-grounded business review
+          </p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.06 }}
-            className="font-display text-5xl md:text-6xl lg:text-[5rem] text-espresso tracking-[-0.03em] leading-[1.05]"
-          >
-            Claim intelligence for public trust.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
-            className="mt-8 text-base md:text-lg text-mist leading-relaxed max-w-2xl mx-auto"
-          >
-            <span className="block text-espresso font-medium mb-4">
-              Claims should be preserved as they were published, reviewed against publicly visible evidence, and revisited when that evidence changes.
-            </span>
-            Organizations publish claims that are repeated by search engines, AI assistants, customers, and partners. Scrutexity documents what was claimed, what evidence was publicly visible, and how that record changes over time.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.18 }}
-            className="mt-12 flex flex-col items-center justify-center gap-5"
-          >
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <Link
-                href="https://auditgpt.ai/snapshot?source=scrutexity-home"
-                onClick={() => trackEvent('cta_click', { cta_label: 'Run Claim Scan', destination: 'https://auditgpt.ai/snapshot?source=scrutexity-home', section: 'hero' })}
-                className="group px-7 py-3.5 bg-espresso text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5 shadow-lg"
-              >
-                Run a claim scan
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-              </Link>
-              
-              <HoverProofLink
-                href="/proof"
-                className="group px-7 py-3.5 bg-transparent border border-sand-deep/40 text-espresso font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:bg-bone/50 hover:-translate-y-0.5"
-              >
-                Sample Claim Record
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5 text-sage-deep" />
-              </HoverProofLink>
+          <div className="mt-7 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div>
+              <h1 className="max-w-4xl font-display text-5xl leading-[1.02] text-espresso sm:text-6xl lg:text-7xl">
+                Find the claims and AI outputs your buyers can’t verify.
+              </h1>
+              <p className="mt-7 max-w-3xl text-lg leading-8 text-mist">
+                Scrutexity reviews public claims and customer-facing AI outputs, maps them to visible evidence, and gives you the fixes that matter first. Powered by AuditGPT.
+              </p>
             </div>
-            
-            <Link
-              href="/methodology"
-              className="text-[11px] mt-2 text-mist hover:text-espresso transition-colors tracking-wide border-b border-transparent hover:border-mist/40 pb-0.5"
-              style={{ fontFamily: MONO_STACK }}
-            >
-              Explore the Methodology
-            </Link>
-          </motion.div>
-        </div>
 
-        <div className="relative z-10 mt-16 md:mt-24 flex justify-center">
-          <HeroVerifyLoop />
+            <div className="border-l-2 border-sage-deep/45 pl-5">
+              <p className="text-sm leading-6 text-bark">
+                For AI/SaaS teams, agencies, medical and wellness operators, and companies deploying customer-facing agents.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <TrackedLink
+              href={SNAPSHOT_URL}
+              label="Get a Claim Snapshot"
+              section="hero"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+            >
+              Get a Claim Snapshot
+              <ArrowRight size={16} aria-hidden="true" />
+            </TrackedLink>
+            <TrackedLink
+              href="/sample-report"
+              label="View a Sample Report"
+              section="hero"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+            >
+              View a Sample Report
+              <ArrowRight size={16} aria-hidden="true" />
+            </TrackedLink>
+          </div>
         </div>
       </section>
 
-      {/* ══ AI ANSWER REALITY PREVIEW ════════════════════════════════ */}
-      <AIAnswerRealityPreview />
+      <section className="border-b border-sand-deep/30 bg-bone px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
+              Claim-drift demonstration
+            </p>
+            <h2 className="mt-4 font-display text-4xl leading-tight text-espresso md:text-5xl">
+              Keep the wording, evidence, and review history in the same record.
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-mist">
+              Sample fixture with illustrative data. It is not live customer output.
+            </p>
+          </div>
 
-      {/* ══ INSTITUTIONAL PROOF & HISTORY ══════════════════════════════ */}
-      <section aria-label="Institutional Proof" className="border-y border-sand-deep/15 bg-cream">
-        <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center divide-sand-deep/10 lg:divide-x">
+          <div className="mt-10 grid overflow-hidden rounded-lg border border-sand-deep/45 bg-white lg:grid-cols-3">
+            <article className="border-b border-sand-deep/30 p-6 lg:border-b-0 lg:border-r">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
+                01 · Source wording
+              </p>
+              <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
+                “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes.”
+              </blockquote>
+              <p className="mt-6 text-xs leading-5 text-mist">Source captured · 2026-08-04 · Fictional example</p>
+            </article>
+
+            <article className="border-b border-sand-deep/30 bg-cream-deep/45 p-6 lg:border-b-0 lg:border-r">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>
+                02 · Changed wording
+              </p>
+              <blockquote className="mt-5 font-display text-2xl leading-8 text-espresso">
+                “Cut customer response time by 64%.”
+              </blockquote>
+              <div className="mt-6 rounded-md border border-clay/35 bg-bone p-4">
+                <p className="text-xs font-semibold text-clay-deep">Support gap detected</p>
+                <p className="mt-2 text-xs leading-5 text-mist">The broader statement drops the pilot scope and internal-test context.</p>
+              </div>
+            </article>
+
+            <article className="p-6">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
+                03 · Review record updated
+              </p>
+              <p className="mt-5 text-sm font-semibold text-espresso">Safer framing draft</p>
+              <p className="mt-3 text-sm leading-6 text-mist">
+                “In a 30-day internal pilot, average first-response time fell from 11 minutes to 4 minutes. Results may vary by team and workflow.”
+              </p>
+              <p className="mt-6 text-xs leading-5 text-mist">Dated review note · evidence requirement retained</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="product" className="border-b border-sand-deep/30 bg-white px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
+              What Scrutexity does
+            </p>
+            <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">A clear review path from source to action.</h2>
+          </div>
+          <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-sand-deep/35 bg-sand-deep/35 md:grid-cols-3">
+            {reviewSteps.map(({ number, title, body, icon: Icon }) => (
+              <li key={title} className="bg-bone p-7">
+                <div className="flex items-center justify-between">
+                  <Icon className="h-5 w-5 text-sage-deep" aria-hidden="true" />
+                  <span className="text-[10px] font-semibold text-mist" style={{ fontFamily: MONO }}>{number}</span>
+                </div>
+                <h3 className="mt-8 font-display text-3xl text-espresso">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-mist">{body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="offers" className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
+                Product offers
+              </p>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Start with the scope you actually need.</h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-7 text-mist lg:justify-self-end">
+              The review is the product. Every scope ends with concrete findings, visible evidence notes, safer framing drafts, and a prioritized next step.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {offers.map((offer) => (
+              <article key={offer.name} className="flex flex-col rounded-lg border border-sand-deep/45 bg-bone p-7">
+                <div className="flex flex-col gap-2 border-b border-sand-deep/30 pb-6 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="font-display text-3xl text-espresso">{offer.name}</h3>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-mist">{offer.description}</p>
+                  </div>
+                  <p className="shrink-0 text-sm font-semibold text-sage-deep">{offer.price}</p>
+                </div>
+                <ul className="mt-6 grid gap-3 text-sm text-bark sm:grid-cols-2">
+                  {offer.includes.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <TrackedLink
+                  href={offer.href}
+                  label={offer.cta}
+                  section="offers"
+                  className="mt-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-md border border-sand-deep bg-white px-4 py-2.5 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep hover:text-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+                >
+                  {offer.cta}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </TrackedLink>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="sample-report" className="border-b border-sand-deep/30 bg-espresso px-5 py-20 text-cream sm:px-8 md:py-24">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-soft" style={{ fontFamily: MONO }}>
+              Sample report
+            </p>
+            <h2 className="mt-4 font-display text-4xl text-cream md:text-5xl">See the finding, evidence, gap, and next move.</h2>
+            <p className="mt-5 text-sm leading-7 text-cream/70">
+              The sample is a transparent fixture built to show the report format. No customer, traction, or outcome is implied.
+            </p>
+            <TrackedLink
+              href="/sample-report"
+              label="View the Sample Report"
+              section="sample-report"
+              className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-cream px-5 py-2.5 text-sm font-semibold text-espresso transition-colors hover:bg-sage-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-soft focus-visible:ring-offset-2 focus-visible:ring-offset-espresso"
+            >
+              View the Sample Report
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedLink>
+          </div>
+
+          <article className="rounded-lg border border-cream/15 bg-cream p-6 text-bark md:p-8">
+            <div className="flex flex-col gap-2 border-b border-sand-deep/40 pb-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sage-deep" style={{ fontFamily: MONO }}>
+                  Sample · illustrative data, not live customer output
+                </p>
+                <h3 className="mt-2 font-display text-3xl text-espresso">Claim Support Record</h3>
+              </div>
+              <span className="text-xs text-mist">Reviewed 2026-08-04</span>
+            </div>
+            <dl className="mt-6 grid gap-5 sm:grid-cols-2">
+              {[
+                ["Executive verdict", "Material claim needs narrower wording or visible support."],
+                ["Exact reviewed claim", "“Resolve 80% of support tickets automatically.”"],
+                ["Visible evidence", "Product page names the feature; no public evaluation method is linked."],
+                ["Support gap", "No test set, sample size, exclusions, or definition of resolved."],
+                ["Business impact", "A buyer cannot reproduce or qualify the headline result."],
+                ["Recommended next step", "Publish the evaluation method or narrow the claim to the tested context."],
+              ].map(([term, value]) => (
+                <div key={term}>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>{term}</dt>
+                  <dd className="mt-2 text-sm leading-6 text-mist">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section id="agencies" className="border-b border-sand-deep/30 bg-white px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>For agencies</p>
+            <h2 className="mt-4 max-w-3xl font-display text-4xl text-espresso md:text-5xl">
+              Add claim QA to every client launch without building an internal audit team.
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-mist">
+              Review websites, campaigns, and case-study claims before launch, then hand the client a clear record of what was checked and what needs approval.
+            </p>
+            <TrackedLink
+              href="/agency"
+              label="Explore Agency Claim QA"
+              section="agencies"
+              className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md bg-sage-deep px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+            >
+              Explore Agency Claim QA
+              <ArrowRight size={15} aria-hidden="true" />
+            </TrackedLink>
+          </div>
+          <div className="rounded-lg border border-sand-deep/40 bg-bone p-7">
+            <Building2 className="h-6 w-6 text-sage-deep" aria-hidden="true" />
+            <ul className="mt-7 divide-y divide-sand-deep/30">
+              {["Website and campaign reviews", "Case-study claim reviews", "Client-ready reports", "Fixed turnaround", "Pilot pricing from $1,500"].map((item) => (
+                <li key={item} className="flex items-center gap-3 py-4 text-sm font-medium text-espresso">
+                  <Check className="h-4 w-4 text-sage-deep" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="methodology" className="border-b border-sand-deep/30 bg-bone px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Methodology</p>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Ground every finding in a source a buyer can inspect.</h2>
+              <ul className="mt-8 grid gap-3 text-sm text-bark sm:grid-cols-2">
+                {["Source-grounded extraction", "Visible-evidence matching", "Support-gap classification", "Safety-language scanning", "Safer framing drafts", "Dated report metadata"].map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <FileCheck2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/methodology" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">
+                Read the methodology
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            </div>
+            <aside className="rounded-lg border border-sand-deep/45 bg-white p-7">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>Boundaries</p>
+              <h3 className="mt-4 font-display text-3xl text-espresso">What the review is, and what it is not.</h3>
+              <p className="mt-5 text-sm leading-7 text-mist">
+                Scrutexity provides evidence-grounded business review. It does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings are based on reviewed public material, supplied transcripts, and visible support.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Pricing</p>
+              <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">Starting prices, stated plainly.</h2>
+            </div>
+            <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold text-sage-deep hover:text-espresso">
+              Compare scopes
+              <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="mt-10 overflow-hidden rounded-lg border border-sand-deep/45 bg-bone">
             {[
-              'Public Claim Records',
-              'Evidence Mapping',
-              'Review Methodology',
-              'Pattern Registry',
-              'Verification Receipts',
-              'Historical Archive',
-            ].map((label) => (
-              <div key={label} className="px-4 flex items-center justify-center">
-                <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-mist" style={{ fontFamily: MONO_STACK }}>
-                  {label}
-                </span>
+              ["Claim Support Review", "$99"],
+              ["Founder’s Audit", "from $750"],
+              ["Agency Claim QA Pilot", "from $1,500"],
+              ["Agent Evidence Pack", "from $2,500"],
+              ["Monitoring", "Later option · contact"],
+            ].map(([name, price]) => (
+              <div key={name} className="flex flex-col gap-1 border-b border-sand-deep/30 px-5 py-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between">
+                <span className="text-sm font-semibold text-espresso">{name}</span>
+                <span className="text-sm text-mist">{price}</span>
               </div>
             ))}
           </div>
-
-          <div className="mt-16 pt-12 border-t border-sand-deep/10 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sage-deep mb-2" style={{ fontFamily: MONO_STACK }}>Archive Status</p>
-              <div className="flex items-center gap-2">
-                <p className="font-display text-2xl text-espresso">Active Standard</p>
-                <Link href="/proof" className="text-[10px] text-sage-deep border-b border-sage-deep/30 hover:border-sage-deep transition-colors ml-1 font-semibold" style={{ fontFamily: MONO_STACK }}>Verify →</Link>
-              </div>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sage-deep mb-2" style={{ fontFamily: MONO_STACK }}>Pattern Registry</p>
-              <p className="font-display text-2xl text-espresso">Public</p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sage-deep mb-2" style={{ fontFamily: MONO_STACK }}>Review Standard</p>
-              <p className="font-display text-2xl text-espresso">v1.2</p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sage-deep mb-2" style={{ fontFamily: MONO_STACK }}>Evidence Sources</p>
-              <p className="font-display text-2xl text-espresso">Public</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* ══ PROCESS FLOW ════════════════════════════════════════════ */}
-      <section className="border-t border-sand-deep/15 bg-bone/50 px-6 py-20">
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-10 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-sage-deep/20 bg-sage-deep/8 px-4 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-sage-deep">
-              <span className="h-1.5 w-1.5 rounded-full bg-sage-deep" />
-              The Pipeline
-            </span>
-            <h2 className="mt-5 font-display text-3xl tracking-tight text-espresso">
-              From URL to risk landscape
-            </h2>
-            <p className="mt-3 text-sm text-mist max-w-md mx-auto">
-              Every scan runs through the same deterministic pipeline — no shortcuts, no black boxes.
-            </p>
-          </div>
-          <ScrollyTimeline />
-        </div>
-      </section>
-
-      {/* ══ POSITION STATEMENT ════════════════════════════════════════ */}
-      <section className="relative px-6 py-24 bg-cream border-t border-sand-deep/15" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span
-                className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
-                style={{ fontFamily: MONO_STACK }}
-              >
-                Institution / Instrument
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
-                The bureau behind the scanner.
-              </h2>
-              <p className="mt-6 text-base text-mist leading-relaxed">
-                AuditGPT finds the claim surface. Scrutexity records what changed, what evidence
-                exists, what distortion appeared, and when the review record was sealed. The scanner
-                creates the first observation. The bureau turns that observation into a dated record format.
-              </p>
-              
-              <div className="mt-10 grid gap-4">
-                {[
-                  'Reviews public pages and public claim language.',
-                  'Maps claims to visible support and proof gaps.',
-                  'Maintains dated receipts and verification references.',
-                ].map((item) => (
-                  <div key={item} className="border border-sand-deep/25 bg-bone p-4 text-sm leading-relaxed text-mist flex items-start gap-4">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full">
-              <OperatingSystemDiagram className="max-w-[520px] mx-auto" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ PROOF INFRASTRUCTURE ═══════════════════════════════════════ */}
-      <section className="px-6 py-24 md:py-32 border-t border-sand-deep/15 bg-bone" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
-        <div className="max-w-5xl mx-auto text-center">
-          <span
-            className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
-            style={{ fontFamily: MONO_STACK }}
-          >
-            Claim Record Transparency
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl text-espresso tracking-[-0.02em] leading-[1.1]">
-            A review record should be boring, dated, and checkable.
-          </h2>
-          <p className="mt-6 text-base text-mist leading-relaxed max-w-2xl mx-auto">
-            The Scrutexity standard is intentionally plain. Each artifact shows the public
-            URL, the observed claim, the visible support, the proof gap, a safer wording option,
-            the review timestamp, and a digest reference when available.
+      <section className="bg-white px-5 py-24 sm:px-8 md:py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          <Bot className="mx-auto h-7 w-7 text-sage-deep" aria-hidden="true" />
+          <h2 className="mt-6 font-display text-4xl text-espresso md:text-6xl">Start with one claim your buyers may question.</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
+            AuditGPT handles the first-pass snapshot. Scrutexity turns the important findings into a prioritized business review.
           </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-20 space-y-16">
-          <HashChainProof />
-          <div className="border-t border-sand-deep/15 pt-16">
-            <SMarkLifecycle />
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+            <TrackedLink
+              href={SNAPSHOT_URL}
+              label="Get a Claim Snapshot"
+              section="final-cta"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+            >
+              Get a Claim Snapshot
+              <ArrowRight size={16} aria-hidden="true" />
+            </TrackedLink>
+            <a
+              href="mailto:nick@scrutexity.com?subject=Scrutexity%20review%20inquiry"
+              className="inline-flex min-h-12 items-center justify-center rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+            >
+              Email Nick
+            </a>
           </div>
         </div>
       </section>
-
-      {/* ══ BOTTOM CTA ════════════════════════════════════════════════ */}
-      <section className="px-6 py-32 md:py-44 border-t border-sand-deep/15 bg-cream" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
-        <div className="max-w-3xl mx-auto text-center">
-          <span
-            className="text-[11px] uppercase tracking-[0.18em] text-sage-deep block mb-5"
-            style={{ fontFamily: MONO_STACK }}
-          >
-            Send Your Page
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] text-espresso tracking-[-0.02em] leading-[1.05]">
-            Run the scanner.{' '}
-            <span className="italic text-sage-deep">Keep the record.</span>
-          </h2>
-          <p className="mt-6 mb-8 text-base text-mist leading-relaxed max-w-xl mx-auto">
-            AuditGPT scans a public website and returns the first-pass finding. Scrutexity keeps
-            the methodology, proof library, and review-record infrastructure behind the artifact.
-          </p>
-
-          {/* What's generated — durable artifacts, not dashboard views */}
-          <div className="mt-12">
-            <span className="mb-3 block text-[10px] uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO_STACK }}>
-              What you receive
-            </span>
-            <div className="flex flex-wrap justify-center gap-2">
-              {['claim_review.pdf', 'risk_map.json', 'rewrite_exhibit.md', 'dated_review_record.pdf'].map((name) => (
-                <span
-                  key={name}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-sand-deep/30 bg-bone/70 px-2.5 py-1 text-[10px] text-bark"
-                  style={{ fontFamily: MONO_STACK }}
-                >
-                  <FileText size={11} className="text-sage-deep" />
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <OwnerBriefPreview onOpenArtifact={setActiveArtifact} />
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-5">
-            <Link
-              href="https://auditgpt.ai/snapshot?source=scrutexity-home"
-              onClick={() =>
-                trackEvent('cta_click', {
-                  cta_label: 'Run AuditGPT Scan — Bottom',
-                  destination: 'https://auditgpt.ai/snapshot?source=scrutexity-home',
-                  section: 'bottom-cta',
-                })
-              }
-              className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
-              style={{ boxShadow: '0 8px 24px rgba(28,24,20,0.10)' }}
-            >
-              Run AuditGPT Scan
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              href="/methodology"
-              onClick={() =>
-                trackEvent('cta_click', {
-                  cta_label: 'View Methodology — Bottom',
-                  destination: '/methodology',
-                  section: 'bottom-cta',
-                })
-              }
-              className="group px-7 py-4 bg-espresso hover:bg-sage-deep text-cream font-sans font-semibold rounded-full transition-all duration-300 text-sm inline-flex items-center gap-2 hover:-translate-y-0.5"
-            >
-              View Methodology
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-      <ArtifactPreviewModal artifact={activeArtifact} onClose={() => setActiveArtifact(null)} />
     </div>
-  );
-}
-
-function EvidenceSpine() {
-  return (
-    <div className="pointer-events-none fixed left-4 top-24 bottom-10 z-40 hidden w-px lg:block">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sage-deep/25 to-transparent" />
-      <motion.div
-        className="absolute left-1/2 h-20 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-sage-deep to-transparent"
-        animate={{ top: ['0%', '82%', '0%'] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full border border-sage-deep bg-cream shadow-[0_0_24px_rgba(94,122,90,0.55)]"
-        animate={{ top: ['2%', '84%', '2%'] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  );
-}
-
-function OwnerBriefPreview({ onOpenArtifact }: { onOpenArtifact: (artifact: ArtifactPreview) => void }) {
-  const artifact = {
-    title: 'Owner Brief',
-    meta: 'Generated from AuditGPT findings',
-    status: 'Claim risk, visibility gap, and guardrail path ready',
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.65, ease: EASE }}
-      role="button"
-      tabIndex={0}
-      data-testid="owner-brief-preview"
-      onClick={() => onOpenArtifact(artifact)}
-      onKeyDown={(event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          onOpenArtifact(artifact);
-        }
-      }}
-      className="mx-auto mt-10 max-w-2xl cursor-pointer overflow-hidden rounded-3xl border border-sand-deep/35 bg-bone text-left shadow-[0_25px_70px_-52px_rgba(28,24,20,0.55)] transition-all duration-300 hover:-translate-y-1 hover:border-sage-deep/35"
-    >
-      <div className="flex items-center justify-between border-b border-sand-deep/25 px-5 py-4">
-        <div>
-          <p className="font-display text-xl text-espresso">Owner Brief</p>
-          <p className="text-xs text-mist">Generated from AuditGPT findings</p>
-        </div>
-        <span className="rounded-full border border-sage/30 bg-sage/10 px-3 py-1 text-[9px] uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO_STACK }}>
-          Ready
-        </span>
-      </div>
-      <div className="grid gap-3 p-5 sm:grid-cols-3">
-        {['Claim risk', 'Visibility gap', 'Guardrail path'].map((item, index) => (
-          <div key={item} className="rounded-2xl border border-sand-deep/25 bg-cream p-4">
-            <p className="text-[9px] uppercase tracking-[0.13em] text-mist" style={{ fontFamily: MONO_STACK }}>
-              0{index + 1}
-            </p>
-            <p className="mt-2 text-sm font-semibold text-espresso">{item}</p>
-            <motion.div className="mt-4 h-1.5 rounded-full bg-sand-deep/35">
-              <motion.div
-                className="h-full rounded-full bg-sage-deep"
-                initial={{ width: '18%' }}
-                whileInView={{ width: `${58 + index * 12}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: EASE, delay: index * 0.12 }}
-              />
-            </motion.div>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-function ArtifactPreviewModal({
-  artifact,
-  onClose,
-}: {
-  artifact: ArtifactPreview | null;
-  onClose: () => void;
-}) {
-  if (!artifact) {
-    return null;
-  }
-
-  return (
-    <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-espresso/72 px-4 py-8 backdrop-blur-sm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        role="dialog"
-        aria-modal="true"
-        aria-label={`${artifact.title} preview`}
-        className="relative max-h-[86vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-sand-deep/45 bg-cream shadow-[0_40px_120px_-40px_rgba(0,0,0,0.55)]"
-        initial={{ opacity: 0, y: 18, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.35, ease: EASE }}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close artifact preview"
-          className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-sand-deep/40 bg-bone text-espresso transition-colors hover:bg-sand"
-        >
-          <X size={16} />
-        </button>
-
-        <div className="border-b border-sand-deep/30 bg-bone px-6 py-5">
-          <span
-            className="text-[10px] uppercase tracking-[0.16em] text-sage-deep"
-            style={{ fontFamily: MONO_STACK }}
-          >
-            Scrutexity artifact preview
-          </span>
-          <h3 className="mt-2 font-display text-3xl text-espresso">{artifact.title}</h3>
-          <p className="mt-1 text-sm text-mist">{artifact.meta}</p>
-        </div>
-
-        <div className="grid gap-6 p-6 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-2xl border border-sand-deep/30 bg-espresso p-5 text-cream">
-            <div className="mb-6 flex items-center justify-between">
-              <span
-                className="text-[9px] uppercase tracking-[0.14em] text-cream/55"
-                style={{ fontFamily: MONO_STACK }}
-              >
-                Status
-              </span>
-              <span className="h-2 w-2 rounded-full bg-sage-soft" />
-            </div>
-            <p className="font-display text-2xl leading-tight text-cream">{artifact.status}</p>
-            <div className="mt-7 space-y-3">
-              {['Evidence attached', 'Buyer-facing language cleaned', 'Next action assigned'].map((row, index) => (
-                <motion.div
-                  key={row}
-                  className="flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/[0.045] p-3"
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.35, ease: EASE, delay: 0.1 + index * 0.08 }}
-                >
-                  <CheckCircle2 size={14} className="text-sage-soft" />
-                  <span className="text-sm text-cream/72">{row}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-sand-deep/30 bg-bone p-5">
-            <div className="mb-5 flex items-center justify-between">
-              <p className="font-display text-xl text-espresso">Report extract</p>
-              <FileText size={16} className="text-sage-deep" />
-            </div>
-            <div className="space-y-4">
-              {[
-                ['Claim', '“Best-in-class AI support” requires proof or safer framing.'],
-                ['Evidence', 'Attach review data, transcript receipts, and operator notes.'],
-                ['Action', 'Rewrite hero claim, add proof block, route guardrail fix.'],
-              ].map(([label, value], index) => (
-                <motion.div
-                  key={label}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: EASE, delay: 0.16 + index * 0.08 }}
-                  className="rounded-xl border border-sand-deep/25 bg-cream p-4"
-                >
-                  <p
-                    className="text-[9px] uppercase tracking-[0.14em] text-sage-deep"
-                    style={{ fontFamily: MONO_STACK }}
-                  >
-                    {label}
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-bark">{value}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
   );
 }

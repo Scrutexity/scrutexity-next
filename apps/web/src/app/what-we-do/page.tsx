@@ -1,64 +1,56 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight, Check, X } from 'lucide-react';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, Check, X } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: 'What Scrutexity Does and Does Not Do',
-  description: 'A plain-language boundary for Scrutexity missed-demand recovery, data access, and clinical escalation.',
-  alternates: { canonical: '/what-we-do' },
+  title: "What Scrutexity Does | Evidence-Grounded Business Review",
+  description: "A plain-language explanation of Scrutexity’s public claim, visible evidence, and customer-facing AI output review services and boundaries.",
+  alternates: { canonical: "/what-we-do" },
 };
 
 const rows = [
-  ['Identify missed calls, abandoned forms, stalled messages, and unrebooked inquiries.', 'Replace your practice-management system or electronic medical record.'],
-  ['Send staff-approved scheduling follow-up and document the outcome.', 'Diagnose, recommend treatment, answer clinical questions, or make medical decisions.'],
-  ['Escalate clinical language to the clinic team for human review.', 'Allow an AI system to continue when a conversation requires clinical judgment.'],
-  ['Use the minimum access needed and execute a BAA before patient-adjacent workflows activate.', 'Sell patient data, use clinic conversations to train public models, or require broad account access.'],
-  ['Provide an exportable record of source, conversation, booking, and deposit status.', 'Claim recovered revenue without a record the clinic can verify.'],
+  ["Review material claims on public pages.", "Decide whether a claim is legal, compliant, or approved."],
+  ["Review supplied customer-facing agent transcripts.", "Access private systems or customer data without an agreed scope."],
+  ["Map claims to support a buyer can see or inspect.", "Treat hidden assertions as public evidence."],
+  ["Classify support gaps and trust friction.", "Provide legal, clinical, regulatory, or underwriting opinions."],
+  ["Draft narrower language and prioritize next actions.", "Certify a business or guarantee outcomes."],
 ];
 
 export default function WhatWeDoPage() {
   return (
-    <div className="min-h-screen bg-cream px-5 py-20 sm:px-8">
-      <main className="mx-auto max-w-5xl">
-        <header className="mx-auto max-w-3xl text-center">
-          <p className="section-kicker">Operating boundary</p>
-          <h1 className="mt-4 font-display text-4xl leading-tight text-espresso sm:text-5xl md:text-6xl">
-            What we do. What we do not do.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-mist">
-            Scrutexity helps clinics follow up on missed demand. It does not practice medicine, replace licensed staff, or ask you to trust an uncheckable result.
-          </p>
+    <div className="min-h-screen bg-cream px-5 pb-20 pt-28 text-bark sm:px-8 md:pb-28 md:pt-40">
+      <main className="mx-auto max-w-6xl">
+        <header className="max-w-4xl">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep">Operating boundary</p>
+          <h1 className="mt-5 font-display text-5xl leading-tight text-espresso md:text-6xl">Evidence-grounded review, with the limits stated plainly.</h1>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-mist">Scrutexity reviews what a business says, what visible evidence supports it, where trust breaks, and what to fix first. AuditGPT powers the first-pass extraction and review workflow.</p>
         </header>
 
-        <section className="mt-14 overflow-hidden rounded-[1.75rem] border border-[#dfd0bf] bg-cream shadow-sm">
-          <div className="grid grid-cols-2 border-b border-[#dfd0bf] bg-[#f3eadf]">
-            <h2 className="px-5 py-4 text-sm font-bold uppercase tracking-[0.14em] text-[#4c5948] sm:px-8">What we do</h2>
-            <h2 className="border-l border-[#dfd0bf] px-5 py-4 text-sm font-bold uppercase tracking-[0.14em] text-[#7c4435] sm:px-8">What we do not do</h2>
+        <section className="mt-12 overflow-hidden rounded-lg border border-sand-deep/45 bg-white">
+          <div className="grid grid-cols-2 border-b border-sand-deep/35 bg-bone">
+            <h2 className="px-5 py-4 text-sm font-semibold text-sage-deep sm:px-7">What we do</h2>
+            <h2 className="border-l border-sand-deep/35 px-5 py-4 text-sm font-semibold text-clay-deep sm:px-7">What we do not do</h2>
           </div>
           {rows.map(([does, doesNot]) => (
-            <div key={does} className="grid grid-cols-2 border-b border-[#eadfd2] last:border-b-0">
-              <div className="flex gap-3 px-5 py-6 text-sm leading-6 text-[#4f4942] sm:px-8">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#6b8576]" />
+            <div key={does} className="grid grid-cols-2 border-b border-sand-deep/30 last:border-b-0">
+              <div className="flex gap-3 px-5 py-6 text-sm leading-6 text-mist sm:px-7">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
                 <p>{does}</p>
               </div>
-              <div className="flex gap-3 border-l border-[#eadfd2] px-5 py-6 text-sm leading-6 text-[#4f4942] sm:px-8">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-[#a45f49]" />
+              <div className="flex gap-3 border-l border-sand-deep/30 px-5 py-6 text-sm leading-6 text-mist sm:px-7">
+                <X className="mt-0.5 h-4 w-4 shrink-0 text-clay-deep" aria-hidden="true" />
                 <p>{doesNot}</p>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="mt-10 rounded-[1.75rem] border border-[#dfd0bf] bg-[#f3eadf] p-8 text-center sm:p-10">
-          <p className="font-display text-2xl text-espresso">The simple test: can your team verify every claimed recovery?</p>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-mist">
-            The owner brief ties each result to its inquiry source, staff-approved conversation, booking status, and deposit status. Illustrative materials are labeled until named pilot evidence is available.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="/proof" className="btn-ghost btn-md">See the illustrative brief</Link>
-            <Link href="/pilot" className="clay-cta px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2 transition-all btn-md inline-flex items-center gap-2">
-              Get Your Free Audit <ArrowRight className="h-4 w-4" />
-            </Link>
+        <section className="mt-10 rounded-lg border border-sand-deep/45 bg-bone p-8 text-center sm:p-10">
+          <h2 className="font-display text-3xl text-espresso">The simple test: can a buyer inspect the support behind the claim?</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-mist">When the answer is unclear, the review records the exact wording, visible support, remaining gap, safer framing draft, and next action.</p>
+          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/sample-report" className="inline-flex min-h-11 items-center justify-center rounded-md border border-sand-deep bg-white px-5 py-2.5 text-sm font-semibold text-espresso">View a Sample Report</Link>
+            <Link href="/contact?intent=claim-support-review&source=what-we-do" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-espresso px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">Get a Claim Snapshot <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
           </div>
         </section>
       </main>
