@@ -136,13 +136,18 @@ export default function PartnerOsPage() {
             <div className="rounded-2xl border border-sand-deep/30 bg-white/70 p-6 md:p-8 shadow-[0_24px_80px_-60px_rgba(28,24,20,0.45)]">
               <div className="flex items-start justify-between gap-4 border-b border-sand-deep/15 pb-5">
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-sage-deep font-semibold" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
-                    Claim Intelligence Receipt
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-sage-deep font-semibold" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                      Claim Audit Receipt
+                    </p>
+                    <span className="text-[9px] font-mono text-mist/60 bg-bone/70 border border-sand-deep/30 px-2 py-0.5 rounded">
+                      SHA-256 RECORD
+                    </span>
+                  </div>
                   <p className="mt-1 text-lg font-display text-espresso">[Your Agency Name]</p>
                 </div>
-                <div className="text-right text-[10px] text-mist" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
-                  Review date: 06/28/2026
+                <div className="text-right text-[10px] text-mist font-mono" style={{ fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
+                  Review date: 08/04/2026
                 </div>
               </div>
 

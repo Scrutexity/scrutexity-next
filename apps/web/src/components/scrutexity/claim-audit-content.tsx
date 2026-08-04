@@ -579,7 +579,7 @@ function ClaimAuditContentInner() {
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
                       </Link>
                       <Link
-                        href="/pilot-application"
+                        href="/partners"
                         className="text-xs font-semibold text-ink/75 hover:text-sage-deep transition-colors"
                       >
                         Ask about agency reviews

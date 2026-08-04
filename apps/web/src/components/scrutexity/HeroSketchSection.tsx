@@ -65,7 +65,7 @@ export function HeroSketchSection() {
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="/leak-audit"
+              href="/claim-audit"
               className="group text-sm font-sans font-semibold text-ink hover:text-sage-deep transition-colors duration-300 inline-flex items-center gap-1.5"
             >
               Run a free leak scan
