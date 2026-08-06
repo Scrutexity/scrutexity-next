@@ -1,12 +1,15 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { trackEvent } from "@/utils/analytics";
 import { ClaimFindingCard } from "@/components/scrutexity/motion/claim-finding-card";
 import { ExhibitA } from "@/components/scrutexity/motion/exhibit-a";
 import { DatedRecordTimeline } from "@/components/scrutexity/motion/dated-record-timeline";
 import { DifferentiationCompare } from "@/components/scrutexity/motion/differentiation-compare";
-import { ScanReviewRecordPipeline } from "@/components/scrutexity/motion/scan-review-record";
+import { ScrollyTimeline } from "@/components/scrutexity/motion/scrolly-timeline";
+import { HashChainProof } from "@/components/scrutexity/motion/hash-chain-proof";
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 const SNAPSHOT_URL = "/snapshot";
 function IndexRule({ index, label }: { index: string; label: string }) {
@@ -19,6 +22,7 @@ function IndexRule({ index, label }: { index: string; label: string }) {
   );
 }
 export default function UmbrellaHomepage() {
+  const [scanning, setScanning] = useState(false);
   return (
     <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
       <section className="relative border-b border-sand-deep/25 bg-bone">
@@ -77,23 +81,22 @@ export default function UmbrellaHomepage() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="border border-sand-deep bg-bone px-2.5 py-1 text-[10px] tracking-wide text-mist" style={{ fontFamily: MONO }}>PUBLIC PAGES ONLY</span>
-                <span className="border border-amber-badge/25 bg-amber-bg px-2.5 py-1 text-[10px] font-semibold tracking-wide text-amber-badge" style={{ fontFamily: MONO }}>NOT LEGAL ADVICE</span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-teal-deep/20 bg-teal-deep/10 px-3.5 py-1 text-[10px] font-medium tracking-wide text-teal-deep" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-teal-deep" />PUBLIC PAGES ONLY</span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-amber-badge/25 bg-amber-bg px-3.5 py-1 text-[10px] font-semibold tracking-wide text-amber-badge" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-amber-badge" />NOT LEGAL ADVICE</span>
               </div>
             </div>
             <div className="px-6 py-7 md:px-8 md:py-8">
-              <form action={SNAPSHOT_URL} className="space-y-3">
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <div className="relative flex-1 border-b border-sand-deep bg-cream focus-within:border-teal-deep">
-                    <input type="url" name="url" required placeholder="https://yourbrand.com/landing-page" className="w-full bg-transparent px-4 py-4 text-[14px] text-espresso placeholder:text-mist/60 focus:outline-none" style={{ fontFamily: MONO }} />
-                  </div>
-                  <button type="submit" className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 bg-teal-deep px-8 text-[13px] font-semibold tracking-[0.02em] text-cream transition-colors hover:bg-teal-deep/90">Scan page <ArrowRight size={14} aria-hidden="true" /></button>
+              <form action={SNAPSHOT_URL} onSubmit={() => setScanning(true)} className="space-y-3">
+                <div className="relative flex w-full max-w-2xl items-center rounded-full border border-sand-deep bg-bone p-1.5 shadow-sm transition-colors hover:border-sand-deep focus-within:border-teal-deep focus-within:shadow-[0_0_0_3px_rgba(94,143,116,0.12)]">
+                  <input type="url" name="url" required placeholder="https://yourbrand.com/landing-page" className="w-full rounded-full bg-transparent py-3 pl-6 pr-4 text-[14px] text-espresso placeholder:text-mist/60 focus:outline-none" style={{ fontFamily: MONO }} />
+                  <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-3.5 text-[13px] font-semibold tracking-[0.02em] text-cream shadow-sm transition-colors hover:bg-teal-deep/90">Scan page <ArrowRight size={14} aria-hidden="true" /></motion.button>
                 </div>
                 <div className="flex flex-wrap justify-between gap-2 px-1 text-[11px] text-mist" style={{ fontFamily: MONO }}><span><span className="text-teal-deep font-semibold">e.g.</span> https://yourbrand.com/landing-page</span><span>Encrypted · Delivered by email in 3 min · Dated record</span></div>
               </form>
               <div className="mt-7 border border-sand-deep/60 bg-cream px-4 py-4">
                 <div className="flex items-center justify-between"><span className="text-[10px] font-semibold tracking-[0.12em] text-mist uppercase" style={{ fontFamily: MONO }}>Sample finding preview</span><span className="text-[10px] font-bold tracking-wide text-amber-badge" style={{ fontFamily: MONO }}>[FLAGGED]</span></div>
                 <p className="mt-2 text-[13px] leading-6" style={{ fontFamily: MONO }}><span className="font-bold text-amber-badge">“Reverses aging at cellular level”</span><span className="text-mist"> → </span><span className="text-bark">FTC pattern match:</span> <span className="text-mist">Unsubstantiated biological mechanism claim.</span></p>
+                <div className="mt-4"><HashChainProof isScanning={scanning} /></div>
               </div>
             </div>
           </div>
@@ -131,7 +134,7 @@ export default function UmbrellaHomepage() {
             <div><IndexRule index="05" label="Process" /><h2 className="mt-4 font-display text-[2.1rem] leading-[0.95] tracking-[-0.03em] text-espresso sm:text-[2.6rem]">Three steps. Dated.</h2></div>
             <p className="max-w-[38ch] text-[13px] leading-6 text-mist" style={{ fontFamily: MONO }}>Scan → review → record. Every finding is hash-chained and verifiable at /verify.</p>
           </div>
-          <div className="mt-10 border border-sand-deep bg-cream"><ScanReviewRecordPipeline /></div>
+          <ScrollyTimeline />
         </div>
       </section>
       <section className="border-b border-sand-deep/25 bg-cream px-5 py-14 sm:px-8 md:py-20">
@@ -160,10 +163,10 @@ export default function UmbrellaHomepage() {
           <IndexRule index="07" label="Trust & boundaries" />
           <h2 className="mt-4 font-display text-[2rem] leading-[0.95] tracking-[-0.03em] text-espresso sm:text-[2.4rem]">Evidence first. Clear boundaries.</h2>
           <div className="mt-10 grid border border-sand-deep bg-cream sm:grid-cols-2 lg:grid-cols-4">
-            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="border border-teal-deep/15 bg-teal-deep/10 px-2 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}>Public pages only</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Public scope</h3><p className="mt-2 text-[13px] leading-6 text-mist">We analyze the public information you provide.</p></div>
-            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="border border-teal-deep/15 bg-teal-deep/10 px-2 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}>Source-linked</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Evidence linked</h3><p className="mt-2 text-[13px] leading-6 text-mist">Findings tie to observable language and sources where available.</p></div>
-            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="border border-teal-deep/15 bg-teal-deep/10 px-2 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}>Human-readable</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Actionable output</h3><p className="mt-2 text-[13px] leading-6 text-mist">Claim, gap, and what to clarify — not a black-box score.</p></div>
-            <div className="p-6 lg:p-7"><span className="border border-teal-deep/15 bg-teal-deep/10 px-2 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}>Dated trail</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">No legal theater</h3><p className="mt-2 text-[13px] leading-6 text-mist">Intelligence software — not a regulator or law firm.</p></div>
+            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="inline-flex items-center gap-2 rounded-full border border-teal-deep/15 bg-teal-deep/10 px-3.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-teal-deep" />Public pages only</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Public scope</h3><p className="mt-2 text-[13px] leading-6 text-mist">We analyze the public information you provide.</p></div>
+            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="inline-flex items-center gap-2 rounded-full border border-teal-deep/15 bg-teal-deep/10 px-3.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-teal-deep" />Source-linked</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Evidence linked</h3><p className="mt-2 text-[13px] leading-6 text-mist">Findings tie to observable language and sources where available.</p></div>
+            <div className="border-b border-sand-deep p-6 sm:border-b-0 sm:border-r lg:p-7"><span className="inline-flex items-center gap-2 rounded-full border border-teal-deep/15 bg-teal-deep/10 px-3.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-teal-deep" />Human-readable</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">Actionable output</h3><p className="mt-2 text-[13px] leading-6 text-mist">Claim, gap, and what to clarify — not a black-box score.</p></div>
+            <div className="p-6 lg:p-7"><span className="inline-flex items-center gap-2 rounded-full border border-teal-deep/15 bg-teal-deep/10 px-3.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-teal-deep uppercase" style={{ fontFamily: MONO }}><span className="h-1.5 w-1.5 rounded-full bg-teal-deep" />Dated trail</span><h3 className="mt-4 font-display text-[1.15rem] leading-none tracking-[-0.01em] text-espresso">No legal theater</h3><p className="mt-2 text-[13px] leading-6 text-mist">Intelligence software — not a regulator or law firm.</p></div>
           </div>
         </div>
       </section>
