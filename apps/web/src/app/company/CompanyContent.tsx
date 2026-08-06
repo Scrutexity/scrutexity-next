@@ -31,7 +31,7 @@ export default function CompanyContent() {
     <div className="min-h-screen bg-cream text-espresso font-sans">
       {/* Hero */}
       <section className="relative overflow-hidden px-5 pb-16 pt-28 sm:px-8 lg:pb-24 lg:pt-36">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,#f7f2ea_0%,#efe6d7_35%,#e8dfcf_70%,#f5efe6_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,var(--color-cream)_0%,var(--color-cream-deep)_35%,var(--color-sand)_70%,var(--color-cream)_100%)]" />
         <div className="absolute inset-0 luxury-noise opacity-[0.06]" />
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="section-kicker mb-4">Our Origin</p>
@@ -72,13 +72,13 @@ export default function CompanyContent() {
 
                 {/* Visual anchor */}
                 <div className="md:w-1/2 w-full">
-                  <div className="aspect-[4/3] rounded-[1.75rem] overflow-hidden border border-sand-deep bg-[#f3eadf] flex items-center justify-center">
+                  <div className="aspect-[4/3] rounded-[1.75rem] overflow-hidden border border-sand-deep bg-[var(--color-cream-deep)] flex items-center justify-center">
                     <div className="text-center px-8">
                       <p className="text-6xl font-display text-clay mb-3">40%</p>
                       <p className="text-sm text-mist leading-relaxed">
                         of after-hours leads book with a faster competitor before your front desk clocks in Monday morning.
                       </p>
-                      <p className="text-[11px] text-[#9e8e7e] mt-4 italic">
+                      <p className="text-[11px] text-[var(--color-sand-deep)] mt-4 italic">
                         Based on audited clinic data. Results vary by market.
                       </p>
                     </div>
@@ -91,15 +91,15 @@ export default function CompanyContent() {
 
         {/* The Manifesto */}
         <section className="mb-24">
-          <div className="rounded-[1.75rem] border border-[#3d3731]/30 bg-[#1e1b17] py-20 px-5 sm:px-8">
+          <div className="rounded-[1.75rem] border border-[var(--color-muted)]/30 bg-[var(--color-ink)] py-20 px-5 sm:px-8">
             <div className="mx-auto max-w-5xl">
               <Reveal>
                 <div className="mb-14">
-                  <p className="section-kicker mb-3 text-[#9e8e7e]">What We Believe</p>
-                  <h2 className="font-display text-3xl text-[#e1d4c5] tracking-tight md:text-4xl">
+                  <p className="section-kicker mb-3 text-[var(--color-sand-deep)]">What We Believe</p>
+                  <h2 className="font-display text-3xl text-[var(--color-sand-deep)] tracking-tight md:text-4xl">
                     The Scrutexity Manifesto
                   </h2>
-                  <p className="mt-3 text-[#9e8e7e]">Three non-negotiable rules of our engineering team.</p>
+                  <p className="mt-3 text-[var(--color-sand-deep)]">Three non-negotiable rules of our engineering team.</p>
                 </div>
               </Reveal>
 
@@ -108,15 +108,15 @@ export default function CompanyContent() {
                   const Icon = tenet.icon;
                   return (
                     <ScrollReveal key={tenet.title} delay={idx * 0.08}>
-                      <div className="rounded-[1.75rem] border border-[#3d3731]/50 bg-[#2a2621] p-8 h-full transition duration-300 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.22)]">
+                      <div className="rounded-[1.75rem] border border-[var(--color-muted)]/50 bg-[var(--color-ink)] p-8 h-full transition duration-300 hover:-translate-y-1 hover:border-clay/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.22)]">
                         <span className="font-mono text-lg font-bold text-clay mb-4 block">
                           {tenet.number}.
                         </span>
                         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-clay/10">
                           <Icon className="h-5 w-5 text-clay" />
                         </div>
-                        <h3 className="font-display text-xl text-[#e1d4c5] mb-3">{tenet.title}</h3>
-                        <p className="text-[14px] leading-7 text-[#9e8e7e]">{tenet.body}</p>
+                        <h3 className="font-display text-xl text-[var(--color-sand-deep)] mb-3">{tenet.title}</h3>
+                        <p className="text-[14px] leading-7 text-[var(--color-sand-deep)]">{tenet.body}</p>
                       </div>
                     </ScrollReveal>
                   );
@@ -130,8 +130,8 @@ export default function CompanyContent() {
         <section className="mx-auto max-w-4xl">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              <div className="w-48 h-48 rounded-full border-4 border-[#fffaf2] shadow-[0_14px_40px_-14px_rgba(85,62,41,0.15)] overflow-hidden shrink-0 bg-[#f3eadf] flex items-center justify-center">
-                <span className="text-[#9e8e7e] font-mono text-xs">Photo</span>
+              <div className="w-48 h-48 rounded-full border-4 border-[var(--color-paper-light)] shadow-[0_14px_40px_-14px_rgba(85,62,41,0.15)] overflow-hidden shrink-0 bg-[var(--color-cream-deep)] flex items-center justify-center">
+                <span className="text-[var(--color-sand-deep)] font-mono text-xs">Photo</span>
               </div>
 
               <div>
@@ -146,7 +146,7 @@ export default function CompanyContent() {
                 <div className="mt-6">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-clay hover:text-[#a36b5d] transition-colors"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-clay hover:text-[var(--color-amber-badge)] transition-colors"
                   >
                     Get in touch <ArrowRight className="h-4 w-4" />
                   </Link>

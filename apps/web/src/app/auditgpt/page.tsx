@@ -24,7 +24,7 @@ export default function AuditGPTBridgePage() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/snapshot"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-8 py-3 text-sm font-semibold text-cream transition-colors hover:bg-clay-deep"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bureau-sage px-8 py-3 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
           >
             Run Your Free Snapshot
             <ArrowRight size={16} aria-hidden="true" />

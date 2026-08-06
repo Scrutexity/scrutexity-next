@@ -305,7 +305,7 @@ export default function NYMedSpaClaimAuditPage() {
             {CLAIM_CATEGORIES.map((cat, i) => (
               <motion.div key={cat.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, ease: EASE, delay: i * 0.07 }}
                 className="rounded-2xl border border-sand-deep/30 bg-bone p-6 hover:border-sage-deep/40 transition-colors">
-                <span className={`inline-block px-2.5 py-1 rounded-md text-[9px] font-mono uppercase tracking-[0.14em] font-bold border mb-4 ${cat.risk === 'High' ? 'bg-clay/10 text-clay border-clay/20' : 'bg-[#D4AF37]/10 text-[#8A6A1E] border-[#D4AF37]/25'}`}>{cat.risk} risk</span>
+                <span className={`inline-block px-2.5 py-1 rounded-md text-[9px] font-mono uppercase tracking-[0.14em] font-bold border mb-4 ${cat.risk === 'High' ? 'bg-clay/10 text-clay border-clay/20' : 'bg-[var(--color-amber-badge)]/10 text-[var(--color-amber-badge)] border-[var(--color-amber-badge)]/25'}`}>{cat.risk} risk</span>
                 <h3 className="font-display text-lg text-espresso mb-2 leading-snug">{cat.label}</h3>
                 <p className="text-xs text-mist leading-relaxed">{cat.detail}</p>
               </motion.div>

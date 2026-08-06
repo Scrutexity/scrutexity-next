@@ -15,7 +15,7 @@ export default function PrivacyPage() {
           <div className="mx-auto w-16 h-16 bg-clay/10 rounded-3xl flex items-center justify-center mb-6">
             <Shield className="w-8 h-8 text-clay" />
           </div>
-          <h1 className="text-5xl font-serif text-espresso">Privacy Policy</h1>
+          <h1 className="text-5xl font-display text-espresso">Privacy Policy</h1>
           <p className="mt-4 text-lg text-espresso/70">Last updated: June 2026</p>
         </div>
 

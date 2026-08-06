@@ -29,36 +29,36 @@ const binderSections = [
 
 export default function SealedAuditTrailPage() {
   return (
-    <div className="min-h-screen bg-[#F8F4F0] text-[#1C1C1C]">
+    <div className="min-h-screen bg-[var(--color-paper-light)] text-[var(--color-ink)]">
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <header className="grid gap-8 border-b border-[#1C1C1C]/15 pb-8 lg:grid-cols-[1fr_390px] lg:items-end">
+        <header className="grid gap-8 border-b border-[var(--color-ink)]/15 pb-8 lg:grid-cols-[1fr_390px] lg:items-end">
           <div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#B86F4F]">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-amber-badge)]">
               Proof Binder / Sealed Audit Trail
             </p>
             <h1 className="mt-4 max-w-5xl font-display text-5xl leading-none tracking-normal md:text-7xl">
               The retention product is the record they cannot afford to lose.
             </h1>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-[#1C1C1C]/68">
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--color-ink)]/68">
               Scrutexity becomes defensible infrastructure when every claim, fix, approval, screenshot, and export is preserved as operational memory. The UI can be copied. The history cannot.
             </p>
           </div>
-          <div className="rounded-lg border border-[#1C1C1C]/15 bg-white/35 p-4">
-            <div className="flex items-center gap-2 text-[#B86F4F]">
+          <div className="rounded-lg border border-[var(--color-ink)]/15 bg-paper-light/35 p-4">
+            <div className="flex items-center gap-2 text-[var(--color-amber-badge)]">
               <Fingerprint size={18} />
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em]">
                 Digest sample
               </p>
             </div>
-            <p className="mt-4 break-all font-mono text-xs leading-6 text-[#1C1C1C]/64">
+            <p className="mt-4 break-all font-mono text-xs leading-6 text-[var(--color-ink)]/64">
               sha256:8f7c34b1b7a2:claim-record:matrix-v4.2:2026-07
             </p>
           </div>
         </header>
 
         <section className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-lg border border-[#1C1C1C]/15 bg-[#1C1C1C] p-5 text-[#F8F4F0]">
-            <div className="flex items-center gap-2 text-[#D7A18A]">
+          <div className="rounded-lg border border-[var(--color-ink)]/15 bg-[var(--color-ink)] p-5 text-[var(--color-paper-light)]">
+            <div className="flex items-center gap-2 text-[var(--color-sand-deep)]">
               <Archive size={18} />
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em]">
                 Every important action logs
@@ -66,15 +66,15 @@ export default function SealedAuditTrailPage() {
             </div>
             <div className="mt-5 grid grid-cols-2 gap-3">
               {loggedEvents.map((event) => (
-                <div key={event} className="rounded-md border border-[#F8F4F0]/15 bg-[#F8F4F0]/5 p-3">
-                  <p className="font-mono text-[11px] leading-5 text-[#F8F4F0]/72">{event}</p>
+                <div key={event} className="rounded-md border border-[var(--color-paper-light)]/15 bg-[var(--color-paper-light)]/5 p-3">
+                  <p className="font-mono text-[11px] leading-5 text-[var(--color-paper-light)]/72">{event}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-lg border border-[#1C1C1C]/15 bg-white/35 p-5">
-            <div className="flex items-center gap-2 text-[#B86F4F]">
+          <div className="rounded-lg border border-[var(--color-ink)]/15 bg-paper-light/35 p-5">
+            <div className="flex items-center gap-2 text-[var(--color-amber-badge)]">
               <FileLock2 size={18} />
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em]">
                 Monthly Scrutexity Proof Binder
@@ -82,32 +82,32 @@ export default function SealedAuditTrailPage() {
             </div>
             <div className="mt-5 space-y-3">
               {binderSections.map(([label, body]) => (
-                <div key={label} className="rounded-md border border-[#1C1C1C]/12 bg-[#F8F4F0] p-4">
-                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[#1C1C1C]">{label}</p>
-                  <p className="mt-2 text-xs leading-6 text-[#1C1C1C]/62">{body}</p>
+                <div key={label} className="rounded-md border border-[var(--color-ink)]/12 bg-[var(--color-paper-light)] p-4">
+                  <p className="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-ink)]">{label}</p>
+                  <p className="mt-2 text-xs leading-6 text-[var(--color-ink)]/62">{body}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="mt-8 rounded-lg border border-[#B86F4F]/30 bg-[#B86F4F]/10 p-5">
+        <section className="mt-8 rounded-lg border border-[var(--color-amber-badge)]/30 bg-[var(--color-amber-badge)]/10 p-5">
           <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <div className="flex items-center gap-2 text-[#B86F4F]">
+              <div className="flex items-center gap-2 text-[var(--color-amber-badge)]">
                 <History size={18} />
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em]">
                   Switching-cost thesis
                 </p>
               </div>
               <h2 className="mt-3 font-display text-3xl tracking-normal">A record that compounds — the longer it runs, the more it&apos;s worth keeping.</h2>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-[#1C1C1C]/68">
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--color-ink)]/68">
                 A clinic can replace a report. It cannot easily replace the chronology of what it claimed, what supported it, who approved the change, and how the surface evolved. That retained evidence is the real product moat — and the reason a maintained record outlasts a one-time scan.
               </p>
             </div>
             <Link
               href="/proof/telemetry-alpha"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#1C1C1C] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[#F8F4F0] transition-colors hover:bg-[#B86F4F]"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[var(--color-ink)] px-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-paper-light)] transition-colors hover:bg-[var(--color-amber-badge)]"
             >
               View telemetry alpha
               <ArrowRight size={15} />
@@ -115,7 +115,7 @@ export default function SealedAuditTrailPage() {
           </div>
         </section>
 
-        <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[#1C1C1C]/15 pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-[#1C1C1C]/50">
+        <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--color-ink)]/15 pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--color-ink)]/50">
           <span className="inline-flex items-center gap-2"><ShieldCheck size={13} /> Structural verification only</span>
           <span>No autonomous clinical advice</span>
           <span>Export built for counsel, insurers, operators, and diligence teams</span>

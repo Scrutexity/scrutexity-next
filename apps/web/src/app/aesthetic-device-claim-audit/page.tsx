@@ -15,7 +15,7 @@ const RISK_MATRIX = [
   {
     tier: 'green',
     label: 'Lower-risk starting point',
-    color: '#2F5D4A',
+    color: 'var(--color-sage-deep)',
     bg: 'rgba(94,122,90,0.08)',
     border: 'rgba(94,122,90,0.30)',
     dot: 'bg-sage-deep',
@@ -27,10 +27,10 @@ const RISK_MATRIX = [
   {
     tier: 'yellow',
     label: 'Requires careful claim framing',
-    color: '#8A6A1E',
+    color: 'var(--color-amber-badge)',
     bg: 'rgba(212,175,55,0.08)',
     border: 'rgba(212,175,55,0.30)',
-    dot: 'bg-[#D4AF37]',
+    dot: 'bg-[var(--color-amber-badge)]',
     categories: [
       { name: 'PEMF mats', note: 'Some cleared indications exist. Claims must be restricted to cleared uses; wellness and anti-aging positioning requires careful framing.' },
       { name: 'Body-contouring-adjacent devices', note: 'Fat-reduction claims must cite specific cleared device, specific indication, and avoid weight-loss or permanence framing.' },
@@ -41,7 +41,7 @@ const RISK_MATRIX = [
   {
     tier: 'red',
     label: 'High-risk — review required before any public claim',
-    color: '#8A533B',
+    color: 'var(--color-amber-badge)',
     bg: 'rgba(183,137,107,0.10)',
     border: 'rgba(183,137,107,0.35)',
     dot: 'bg-clay',

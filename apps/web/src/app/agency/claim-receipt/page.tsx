@@ -132,7 +132,7 @@ function DemoReceipt() {
             <p className="text-[9px] font-mono text-mist/60 mt-0.5">AuditGPT by Scrutexity · Agency Demo</p>
           </div>
         </div>
-        <span className="px-2.5 py-1 bg-[#D4AF37]/12 text-[#8A6A1E] border border-[#D4AF37]/30 text-[9px] font-mono uppercase tracking-wider rounded-md">
+        <span className="px-2.5 py-1 bg-[var(--color-amber-badge)]/12 text-[var(--color-amber-badge)] border border-[var(--color-amber-badge)]/30 text-[9px] font-mono uppercase tracking-wider rounded-md">
           Pending Client Review
         </span>
       </div>
