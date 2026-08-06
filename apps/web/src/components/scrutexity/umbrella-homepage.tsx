@@ -87,9 +87,17 @@ export default function UmbrellaHomepage() {
             </div>
             <div className="px-6 py-7 md:px-8 md:py-8">
               <form action={SNAPSHOT_URL} onSubmit={() => setScanning(true)} className="space-y-3">
-                <div className="relative flex w-full max-w-2xl items-center rounded-full border border-sand-deep bg-bone p-1.5 shadow-sm transition-colors hover:border-sand-deep focus-within:border-teal-deep focus-within:shadow-[0_0_0_3px_rgba(94,143,116,0.12)]">
-                  <input type="url" name="url" required placeholder="https://yourbrand.com/landing-page" className="w-full rounded-full bg-transparent py-3 pl-6 pr-4 text-[14px] text-espresso placeholder:text-mist/60 focus:outline-none" style={{ fontFamily: MONO }} />
-                  <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-3.5 text-[13px] font-semibold tracking-[0.02em] text-cream shadow-sm transition-colors hover:bg-teal-deep/90">Scan page <ArrowRight size={14} aria-hidden="true" /></motion.button>
+                <div className="relative flex w-full max-w-2xl items-center overflow-hidden rounded-full border border-sand-deep bg-bone p-1.5 shadow-sm transition-colors hover:border-sand-deep focus-within:border-teal-deep">
+                  {scanning && (
+                    <motion.div
+                      className="pointer-events-none absolute inset-y-0 z-0 w-1/2 bg-gradient-to-r from-transparent via-teal-deep/10 to-transparent"
+                      animate={{ left: ["-50%", "150%"] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                      aria-hidden="true"
+                    />
+                  )}
+                  <input type="url" name="url" required placeholder="https://yourbrand.com/landing-page" disabled={scanning} className="relative z-10 w-full rounded-full bg-transparent py-3 pl-6 pr-4 text-[14px] text-espresso placeholder:text-mist/60 focus:outline-none" style={{ fontFamily: MONO }} />
+                  <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} disabled={scanning} className="relative z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-3.5 text-[13px] font-semibold tracking-[0.02em] text-cream shadow-sm transition-colors hover:bg-teal-deep/90 disabled:opacity-80">{scanning ? "Scanning…" : "Scan page"}{!scanning && <ArrowRight size={14} aria-hidden="true" />}</motion.button>
                 </div>
                 <div className="flex flex-wrap justify-between gap-2 px-1 text-[11px] text-mist" style={{ fontFamily: MONO }}><span><span className="text-teal-deep font-semibold">e.g.</span> https://yourbrand.com/landing-page</span><span>Encrypted · Delivered by email in 3 min · Dated record</span></div>
               </form>

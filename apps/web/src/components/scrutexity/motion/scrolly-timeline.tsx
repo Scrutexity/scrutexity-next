@@ -6,48 +6,51 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const steps = [
   {
     num: "01",
-    title: "Point-in-Time Observation",
+    title: "Observation",
     desc: "Capture public web copy and render trees precisely as seen by raw client queries.",
     tag: "DOM Capture",
   },
   {
     num: "02",
-    title: "Pattern Vector Match",
+    title: "Pattern match",
     desc: "Compare claim structures against active regulatory enforcement patterns and AI claim distortions.",
     tag: "FTC / FDA Guidance",
   },
   {
     num: "03",
-    title: "Hash-Chained Record",
-    desc: "Produce a timestamped, version-tracked receipt preserved for dispute defense and audit trails.",
+    title: "Record",
+    desc: "Timestamped, version-tracked, hash-chained — preserved for dispute defense and audit trails.",
     tag: "Cryptographic Evidence",
   },
 ];
 
+/**
+ * ScrollyTimeline — ledger-stamped 3-step reveal.
+ * Methodical, not bouncy: fixed cubic-bezier ease, gentle stagger,
+ * left-rule ledger cards (bureau/ledger aesthetic).
+ */
 export function ScrollyTimeline() {
   return (
     <div className="relative mt-12">
-      <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="relative z-10 grid grid-cols-1 gap-8 md:grid-cols-3">
         {steps.map((step, idx) => (
           <motion.div
             key={step.num}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.4, delay: idx * 0.15, ease: EASE }}
-            whileHover={{ y: -4 }}
-            className="flex flex-col justify-between rounded-[2rem] border border-sand-deep bg-bone p-6 shadow-sm transition-all duration-200 hover:shadow-md"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.45, delay: idx * 0.15, ease: EASE }}
+            whileHover={{ y: -3 }}
+            className="flex flex-col gap-3 border-l border-sand-deep bg-cream p-6"
           >
-            <div>
-              <div className="mb-4 flex items-center justify-between">
-                <span className="font-mono text-2xl font-semibold text-mist/30">{step.num}</span>
-                <span className="rounded-full border border-sand-deep bg-cream px-3 py-1 text-[11px] font-medium text-mist">
-                  {step.tag}
-                </span>
-              </div>
-              <h3 className="mb-2 font-display text-base font-semibold text-espresso">{step.title}</h3>
-              <p className="text-xs leading-relaxed text-mist">{step.desc}</p>
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[11px] font-medium tracking-[0.14em] text-mist/40">{step.num}</span>
+              <span className="rounded-full border border-sand-deep bg-bone px-3 py-1 text-[10px] font-medium tracking-wide text-mist uppercase">
+                {step.tag}
+              </span>
             </div>
+            <h3 className="font-display text-lg font-semibold tracking-[-0.01em] text-teal-deep">{step.title}</h3>
+            <p className="text-[13px] leading-relaxed text-mist">{step.desc}</p>
           </motion.div>
         ))}
       </div>

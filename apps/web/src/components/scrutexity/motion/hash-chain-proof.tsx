@@ -1,5 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
+import { HashShuffle } from "@/components/scrutexity/motion/hash-shuffle";
 
 /**
  * HashChainProof — live proof-receipt tick for the scan flow.
@@ -35,14 +36,13 @@ export function HashChainProof({
       <div className="mt-3 space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="text-mist/60">SHA-256 DIGEST:</span>
-          <motion.span
-            key={hash ?? "empty"}
-            initial={{ opacity: 0.4 }}
-            animate={{ opacity: 1 }}
-            className="max-w-[220px] truncate font-medium text-espresso md:max-w-[300px]"
-          >
-            {hash ?? "— awaiting live scan record"}
-          </motion.span>
+          {hash ? (
+            <HashShuffle finalHash={hash} durationMs={800} />
+          ) : (
+            <span className="max-w-[220px] truncate font-medium text-espresso md:max-w-[300px]">
+              — awaiting live scan record
+            </span>
+          )}
         </div>
 
         <AnimatePresence>
