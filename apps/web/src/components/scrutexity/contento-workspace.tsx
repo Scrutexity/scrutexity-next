@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Lock, Check } from 'lucide-react';
 import { HashSeal } from './os';
 
-const SERIF = "var(--font-instrument-serif), Georgia, serif";
+const SERIF = "var(--font-satoshi), system-ui, sans-serif";
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, Menlo, Monaco, monospace';
 const EASE = [0.16, 1, 0.3, 1] as const;
 

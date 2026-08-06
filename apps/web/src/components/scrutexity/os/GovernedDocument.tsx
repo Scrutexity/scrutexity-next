@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-const SERIF = 'var(--font-instrument-serif), Georgia, serif';
+const SERIF = 'var(--font-satoshi), system-ui, sans-serif';
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, Menlo, Monaco, monospace';
 
 /**

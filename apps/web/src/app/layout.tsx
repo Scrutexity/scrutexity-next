@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Geist, JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -9,18 +10,10 @@ import Footer from "@/components/sections/footer";
 import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
 import { themeInitScript } from "@/components/theme-toggle";
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+const satoshi = localFont({
+  src: "./fonts/Satoshi-Variable.woff2",
   display: "swap",
-  variable: "--font-instrument-serif",
-});
-
-const geistSans = Geist({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-geist-sans",
+  variable: "--font-satoshi",
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -155,7 +148,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
       </head>
       <body
-        className={`${instrumentSerif.variable} ${geistSans.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
+        className={`${satoshi.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
       >
         <SmoothScrollProvider>
           <SiteNav />

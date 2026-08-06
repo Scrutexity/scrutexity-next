@@ -302,7 +302,7 @@ export function AtmosphericRiskMap() {
                   
                   <p 
                     className="mt-1 text-espresso text-[13px] leading-snug"
-                    style={{ fontFamily: 'var(--font-instrument-serif), Georgia, serif' }}
+                    style={{ fontFamily: 'var(--font-satoshi), system-ui, sans-serif' }}
                   >
                     {hoveredNode.triggerInfo.desc}
                   </p>

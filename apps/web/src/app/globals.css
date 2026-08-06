@@ -20,35 +20,42 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-bone: #FFFBF3;
-  --color-cream: #F8F3EA;
-  --color-cream-deep: #EFE6D7;
-  --color-beige: #F0E8D8;
-  --color-sand: #E6DCC6;
-  --color-sand-deep: #D9CCB0;
-  --color-clay: #B7896B;
-  --color-clay-deep: #8A533B;
-  --color-bark: #5C4633;
-  --color-espresso: #1C1814;
-  --color-sage: #8FA98A;
-  --color-sage-deep: #5E7A5A;
-  --color-sage-soft: #C7D4C2;
-  --color-teal-deep: #0F766E;
-  --color-charcoal-soft: #1C2421;
-  --color-amber-badge: #B45309;
-  --color-amber-bg: #FEF3C7;
-  --color-ink: #1C2421;
-  --color-mist: #6B6259;
-  --color-scrutexity-ivory: #FAF9F6;
-  --color-scrutexity-charcoal: #1C2421;
-  --color-scrutexity-terracotta: #E2725B;
-  --color-scrutexity-sage: #0F766E;
-  --color-scrutexity-surface: #FFFFFF;
-  --color-scrutexity-border: #E5E5E5;
+  --color-paper: #F5F7F6;
+  --color-ink: #132A24;
+  --color-muted: #879F98;
+  --color-realta: #78A184;
+  --color-realta-deep: #4E7A63;
+  --color-realta-secondary: #274F44;
 
-  --font-display: var(--font-instrument-serif), serif;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-geist: var(--font-geist-sans), system-ui, sans-serif;
+  /* Warm earth tokens remapped to the Realta institutional system (8/2026) */
+  --color-bone: #FFFFFF;
+  --color-cream: #F5F7F6;
+  --color-cream-deep: #E9EFEC;
+  --color-beige: #EDF2EF;
+  --color-sand: #DDE5E1;
+  --color-sand-deep: #CBD6D1;
+  --color-clay: #78A184;
+  --color-clay-deep: #4E7A63;
+  --color-bark: #274F44;
+  --color-espresso: #132A24;
+  --color-sage: #9DB8A6;
+  --color-sage-deep: #78A184;
+  --color-sage-soft: #DCE8E0;
+  --color-teal-deep: #5E8F74;
+  --color-charcoal-soft: #1E3A32;
+  --color-amber-badge: #A16207;
+  --color-amber-bg: #F5EFDC;
+  --color-mist: #879F98;
+  --color-scrutexity-ivory: #F5F7F6;
+  --color-scrutexity-charcoal: #132A24;
+  --color-scrutexity-terracotta: #78A184;
+  --color-scrutexity-sage: #5E8F74;
+  --color-scrutexity-surface: #FFFFFF;
+  --color-scrutexity-border: #CBD6D1;
+
+  --font-display: var(--font-satoshi), system-ui, sans-serif;
+  --font-sans: var(--font-satoshi), system-ui, sans-serif;
+  --font-geist: var(--font-satoshi), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --spacing-nav-offset: 100px;
@@ -67,7 +74,7 @@
 body {
   background-color: var(--color-cream);
   color: var(--color-bark);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-satoshi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -92,7 +99,7 @@ html {
 
 /* ── Font Helpers ── */
 .font-display {
-  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-family: var(--font-satoshi), system-ui, sans-serif;
   letter-spacing: -0.02em;
   font-feature-settings: 'ss01' on, 'ss02' on;
 }

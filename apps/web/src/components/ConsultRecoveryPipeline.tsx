@@ -184,7 +184,7 @@ export default function ConsultRecoveryPipeline() {
         .crp-cols { position: relative; display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: clamp(14px,2.2vw,30px); padding: clamp(20px,3vw,34px); }
         .col-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
         .col-name { font-family: var(--font-display,'Instrument Serif',Georgia,serif); font-size: 23px; line-height: 1.05; letter-spacing: -0.01em; color: #221f1b; }
-        .col-name small { display: block; font-family: var(--font-geist-sans,'Geist',system-ui,sans-serif); font-size: 12px; letter-spacing: 0.02em; color: #857a6e; margin-top: 3px; }
+        .col-name small { display: block; font-family: var(--font-satoshi,'Satoshi',system-ui,sans-serif); font-size: 12px; letter-spacing: 0.02em; color: #857a6e; margin-top: 3px; }
         .src-tag { flex: none; font-family: var(--font-mono,'JetBrains Mono',monospace); font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6259; background: #f4ecdf; border: 1px solid #e1d4c5; padding: 6px 11px; border-radius: 100px; text-align: center; line-height: 1.3; }
         .col-rule { height: 1px; background: #e1d4c5; margin: 16px 0 18px; }
         .consult { position: relative; border: 1px solid #e1d4c5; border-radius: 16px; background: #fffaf2; padding: 15px 16px; margin-bottom: 12px; opacity: 0; transform: translateY(12px); transition: opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1), box-shadow .4s, border-color .4s; }
@@ -196,9 +196,9 @@ export default function ConsultRecoveryPipeline() {
         .pill.missed { color: #6b1d2f; background: rgba(107,29,47,0.09); }
         .pill.routed { color: #3b6d44; background: rgba(127,143,120,0.16); }
         .consult .ln2 { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 9px; }
-        .consult .pat { font-family: var(--font-geist-sans,'Geist',system-ui,sans-serif); font-size: 13px; letter-spacing: -0.01em; color: #6b6259; }
+        .consult .pat { font-family: var(--font-satoshi,'Satoshi',system-ui,sans-serif); font-size: 13px; letter-spacing: -0.01em; color: #6b6259; }
         .consult .pat b { color: #221f1b; font-weight: 600; }
-        .consult .proc { font-family: var(--font-geist-sans,'Geist',system-ui,sans-serif); font-size: 12px; color: #857a6e; }
+        .consult .proc { font-family: var(--font-satoshi,'Satoshi',system-ui,sans-serif); font-size: 12px; color: #857a6e; }
         .consult .proc.ok { color: #3b6d44; font-weight: 600; }
         .consult.focus { border-color: #b9825f; box-shadow: 0 0 0 3px rgba(185,130,95,0.12), 0 22px 70px rgba(85,62,41,0.08); }
         .consult.flip { border-color: rgba(127,143,120,0.5); background: linear-gradient(180deg,rgba(127,143,120,0.1),rgba(255,250,242,0.5)); }
@@ -206,7 +206,7 @@ export default function ConsultRecoveryPipeline() {
         .consult.scanning .scan { opacity: 1; }
         .consult .scan::after { content: ''; position: absolute; top: 0; bottom: 0; width: 40%; left: -40%; background: linear-gradient(100deg,transparent,rgba(185,130,95,0.28),transparent); animation: crp-sweep 1s cubic-bezier(.22,1,.36,1); }
         @keyframes crp-sweep { to { left: 110%; } }
-        .col-foot { margin-top: 6px; padding-top: 16px; border-top: 1px solid #e1d4c5; display: flex; align-items: center; gap: 9px; font-family: var(--font-geist-sans,'Geist',system-ui,sans-serif); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
+        .col-foot { margin-top: 6px; padding-top: 16px; border-top: 1px solid #e1d4c5; display: flex; align-items: center; gap: 9px; font-family: var(--font-satoshi,'Satoshi',system-ui,sans-serif); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
         .col-foot .d { width: 8px; height: 8px; border-radius: 50%; }
         .col-foot.warn { color: #9b6a51; } .col-foot.warn .d { background: #b9825f; }
         .col-foot.ok { color: #3b6d44; } .col-foot.ok .d { background: #7f8f78; animation: crp-pulse 2s ease-in-out infinite; }
@@ -241,7 +241,7 @@ export default function ConsultRecoveryPipeline() {
         .trail-stat b { color: #9b6a51; font-weight: 600; }
         .trail-sep { width: 4px; height: 4px; border-radius: 50%; background: #d8b17a; }
         .trail-demo { margin-left: auto; font-family: var(--font-mono,'JetBrains Mono',monospace); font-size: 11px; letter-spacing: 0.04em; color: #857a6e; }
-        .crp-fine { max-width: 1180px; margin: 14px auto 0; padding: 0 6px; font-family: var(--font-geist-sans,'Geist',system-ui,sans-serif); font-size: 11.5px; line-height: 1.5; color: #857a6e; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+        .crp-fine { max-width: 1180px; margin: 14px auto 0; padding: 0 6px; font-family: var(--font-satoshi,'Satoshi',system-ui,sans-serif); font-size: 11.5px; line-height: 1.5; color: #857a6e; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
         .replay { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono,'JetBrains Mono',monospace); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #9b6a51; background: none; border: none; cursor: pointer; padding: 0; }
         .replay :global(svg) { transition: transform .5s cubic-bezier(.22,1,.36,1); } .replay:hover :global(svg) { transform: rotate(-180deg); }
         @media (max-width: 900px) { .crp-cols { grid-template-columns: 1fr; gap: 22px; } .wires { display: none; } }

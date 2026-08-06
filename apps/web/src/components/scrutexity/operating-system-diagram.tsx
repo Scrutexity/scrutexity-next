@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from 'framer-motion';
  */
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const SERIF = 'var(--font-instrument-serif), Georgia, serif';
+const SERIF = 'var(--font-satoshi), system-ui, sans-serif';
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, Menlo, Monaco, monospace';
 
 type Variant = 'source' | 'default' | 'core' | 'proof' | 'trust';
