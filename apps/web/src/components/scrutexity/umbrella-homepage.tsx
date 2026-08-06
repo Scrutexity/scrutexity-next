@@ -33,17 +33,17 @@ export default function UmbrellaHomepage() {
           <div className="grid gap-10 py-14 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:py-20 lg:gap-16 lg:py-24">
             <div className="relative">
               <div className="absolute -left-6 top-1 hidden h-[84%] w-px bg-sand-deep/60 lg:block" aria-hidden />
-              <p className="text-[11px] font-medium tracking-[0.14em] text-mist uppercase" style={{ fontFamily: MONO }}>Scrutexity — Forensic intelligence for public claims</p>
+              <p className="text-[11px] font-medium tracking-[0.14em] text-mist uppercase" style={{ fontFamily: MONO }}>Scrutexity — Claim intelligence for agencies &amp; regulated businesses</p>
               <h1 className="mt-6 font-display text-[2.6rem] leading-[0.98] tracking-[-0.03em] text-espresso sm:text-[3.5rem] lg:text-[4.6rem]">
-                Timestamped<span className="font-display italic font-normal text-clay"> evidence</span><br/>infrastructure<br/><span className="text-[0.72em] font-normal tracking-[-0.02em] text-mist">for public marketing claims.</span>
+                Keep your clients&rsquo;<br/>claims <span className="font-display italic font-normal text-clay">defensible.</span>
               </h1>
               <div className="mt-8 max-w-[44ch] border-l border-clay/30 pl-5">
-                <p className="text-[15px] leading-7 text-bark">Scrutexity monitors public web copy, flags FTC/FDA pattern mismatches and AI claim distortions, and generates a dated, hash-chained audit record.</p>
-                <p className="mt-3 text-[13px] leading-6 text-mist">Built for high-risk sectors — wellness / med-spa, GLP-1, aesthetic devices — deal teams, General Counsel, and growth leaders.</p>
+                <p className="text-[15px] leading-7 text-bark">Scrutexity reviews your clients&rsquo; public marketing claims and AI outputs, flags what lacks buyer-visible support, and gives you evidence notes plus safer replacement wording.</p>
+                <p className="mt-3 text-[13px] leading-6 text-mist">Built for agencies that serve med spas, wellness clinics, telehealth, and other regulated businesses — every review ends in a dated, hash-chained record.</p>
               </div>
               <div className="mt-9 flex flex-wrap items-center gap-5">
-                <Link href="#scanner" onClick={() => trackEvent("cta_click", { cta_label: "Run Free Scanner", section: "hero" })} className="inline-flex min-h-[44px] items-center gap-2 bg-espresso px-7 py-3 text-[13px] font-semibold tracking-[0.02em] text-cream transition-colors hover:bg-clay-deep">Scan public URL <ArrowRight size={14} aria-hidden="true" /></Link>
-                <Link href="/methodology" className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-[0.02em] text-espresso underline decoration-sand-deep underline-offset-4 decoration-1 hover:decoration-clay">View methodology <ArrowUpRight size={14} aria-hidden="true" /></Link>
+                <Link href={SNAPSHOT_URL} onClick={() => trackEvent("cta_click", { cta_label: "Run Free Claim Snapshot", section: "hero" })} className="inline-flex min-h-[44px] items-center gap-2 bg-espresso px-7 py-3 text-[13px] font-semibold tracking-[0.02em] text-cream transition-colors hover:bg-clay-deep">Run a free claim snapshot <ArrowRight size={14} aria-hidden="true" /></Link>
+                <Link href="/sample-report" className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-[0.02em] text-espresso underline decoration-sand-deep underline-offset-4 decoration-1 hover:decoration-clay">See a sample agency report <ArrowUpRight size={14} aria-hidden="true" /></Link>
               </div>
               <div className="mt-10 flex items-center gap-3 border-t border-sand-deep/25 pt-4">
                 <span className="h-1.5 w-1.5 rounded-full bg-sage" aria-hidden />
