@@ -12,6 +12,7 @@ const links = [
   { name: 'Sample Report', href: '/sample-report' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Enterprise', href: '/enterprise' },
+  { name: 'New York', href: '/nyc' },
 ];
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 export function SiteNav() {

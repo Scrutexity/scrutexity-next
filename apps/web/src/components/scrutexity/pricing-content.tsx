@@ -79,6 +79,21 @@ export default function PricingContent() {
               <p className="mt-4 text-base leading-7 text-mist max-w-md">
                 For organizations that already know they need ongoing monitoring of claim drift, evidence changes, and AI narrative shifts.
               </p>
+              <ul className="mt-5 space-y-2.5 text-sm leading-6 text-mist">
+                {[
+                  'Claim drift — new or changed public claims vs. your last dated record',
+                  'AI narrative drift — what answer systems say about you, unprompted',
+                  'Evidence changes — sources added, removed, or weakened',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 bg-clay" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm leading-6 text-mist max-w-md">
+                Each month you receive one dated update with a diff vs. the prior record — a renew-or-reassess decision on paper, not a dashboard.
+              </p>
             </div>
             <div className="w-full md:w-auto shrink-0">
               <Link href="/contact" className="flex min-h-12 w-full md:w-auto items-center justify-center rounded-md border border-sand-deep bg-bone px-8 py-3 text-sm font-semibold text-espresso transition-colors hover:border-clay">
