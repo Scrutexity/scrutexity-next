@@ -11,6 +11,7 @@ import { DifferentiationCompare } from "@/components/scrutexity/motion/different
 import { ScrollyTimeline } from "@/components/scrutexity/motion/scrolly-timeline";
 import { HashChainProof } from "@/components/scrutexity/motion/hash-chain-proof";
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
+const EASE = [0.16, 1, 0.3, 1] as const;
 const SNAPSHOT_URL = "/snapshot";
 function IndexRule({ index, label }: { index: string; label: string }) {
   return (
@@ -25,7 +26,7 @@ export default function UmbrellaHomepage() {
   const [scanning, setScanning] = useState(false);
   return (
     <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
-      <section className="relative border-b border-sand-deep/25 bg-bone">
+      <section className="relative border-b border-sand-deep/25 bg-gradient-to-b from-cream-deep/60 via-cream to-cream">
         <div className="border-b border-sand-deep/20 bg-cream/50">
           <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-3 sm:px-8">
             <span className="text-[10px] tracking-[0.16em] text-mist uppercase" style={{ fontFamily: MONO }}>01 — Claim Intelligence Standard</span>
@@ -35,7 +36,12 @@ export default function UmbrellaHomepage() {
         </div>
         <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
           <div className="grid gap-10 py-14 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:py-20 lg:gap-16 lg:py-24">
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: EASE }}
+            >
               <div className="absolute -left-6 top-1 hidden h-[84%] w-px bg-sand-deep/60 lg:block" aria-hidden />
               <p className="text-[11px] font-medium tracking-[0.14em] text-mist uppercase" style={{ fontFamily: MONO }}>Scrutexity — Claim intelligence for agencies &amp; regulated businesses</p>
               <h1 className="mt-6 font-display text-[2.6rem] leading-[0.98] tracking-[-0.03em] text-espresso sm:text-[3.5rem] lg:text-[4.6rem]">
@@ -53,8 +59,13 @@ export default function UmbrellaHomepage() {
                 <span className="h-1.5 w-1.5 rounded-full bg-sage" aria-hidden />
                 <span className="text-[11px] tracking-[0.08em] text-mist" style={{ fontFamily: MONO }}>Not a law firm · Not legal advice · Evidence first, always dated</span>
               </div>
-            </div>
-            <div className="relative lg:pl-4">
+            </motion.div>
+            <motion.div
+              className="relative lg:pl-4"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+            >
               <div className="relative border border-sand-deep bg-cream p-3">
                 <div className="absolute -top-px left-6 right-6 h-px bg-clay/40" aria-hidden />
                 <div className="flex items-center justify-between border-b border-sand-deep/30 px-3 py-2.5">
@@ -65,7 +76,7 @@ export default function UmbrellaHomepage() {
                 <div className="mt-3 flex items-center justify-between px-1 text-[10px] tracking-[0.08em] text-mist/70" style={{ fontFamily: MONO }}><span>capture 2026-08-05 · hash-chained</span><span className="hidden sm:inline">scrutexity.com/verify</span></div>
               </div>
               <div className="absolute -bottom-1 left-4 right-4 h-px bg-espresso/5" aria-hidden />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -43,14 +43,14 @@ export function SiteNav() {
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
             <div className="flex items-center gap-5">
               {links.map((l) => (
-                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`text-[12px] font-medium tracking-[0.08em] uppercase transition-colors ${isActive(l.href) ? 'text-espresso underline decoration-clay underline-offset-8 decoration-1' : 'text-mist hover:text-espresso'}`} style={{ fontFamily: MONO }}>{l.name}</Link>
+                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`text-[13px] font-medium transition-colors ${isActive(l.href) ? 'text-espresso underline decoration-clay underline-offset-8 decoration-1' : 'text-mist hover:text-espresso'}`}>{l.name}</Link>
               ))}
             </div>
             <span aria-hidden className="h-4 w-px bg-sand-deep/60" />
             <ThemeToggle />
             <div className="flex items-center gap-3">
-              <Link href="mailto:hello@scrutexity.com" className="px-4 py-2 text-[12px] font-semibold tracking-[0.08em] uppercase text-espresso transition-colors hover:text-clay" style={{ fontFamily: MONO }}>Contact</Link>
-              <Link href="/snapshot" className="bg-espresso px-5 py-2.5 rounded-full text-[12px] font-semibold tracking-[0.08em] uppercase text-cream transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>Run free snapshot</Link>
+              <Link href="mailto:hello@scrutexity.com" className="px-4 py-2 text-[13px] font-semibold text-espresso transition-colors hover:text-clay">Contact</Link>
+              <Link href="/snapshot" className="bg-espresso px-5 py-2.5 rounded-full text-[13px] font-semibold text-cream transition-colors hover:bg-clay-deep">Run free snapshot</Link>
             </div>
           </nav>
           <div className="flex items-center gap-2 xl:hidden">
@@ -70,7 +70,7 @@ export function SiteNav() {
               </nav>
             </div>
             <div className="mt-8 space-y-3">
-              <Link href="/snapshot" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center bg-espresso px-6 text-[13px] font-semibold tracking-[0.02em] text-cream rounded-full" style={{ fontFamily: MONO }}>Run free snapshot</Link>
+              <Link href="/snapshot" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center rounded-full bg-espresso px-6 text-[13px] font-semibold tracking-[0.02em] text-cream">Run free snapshot</Link>
               <Link href="mailto:hello@scrutexity.com" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center border border-ink/10 bg-bone px-6 text-[13px] font-semibold text-espresso rounded-full">Contact</Link>
             </div>
             <p className="mt-8 text-center text-[10px] tracking-[0.12em] text-mist uppercase" style={{ fontFamily: MONO }}>Not a law firm · Not legal advice · Evidence first</p>
