@@ -1,230 +1,259 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, ChevronUp, Check, Shield } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
+import { Kicker, MONO } from "@/components/scrutexity/intel-kit";
+import { MouseSpotlight } from "@/components/scrutexity/motion/mouse-spotlight";
 
-const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 const SNAPSHOT_URL = "/snapshot";
 
-export default function PricingContent() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+function TierChip({ label }: { label: string }) {
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-full border border-amber-badge/25 bg-amber-bg px-3 py-1 text-[10px] font-semibold tracking-[0.1em] text-amber-badge uppercase"
+      style={{ fontFamily: MONO }}
+    >
+      <span className="h-1.5 w-1.5 rounded-full bg-amber-badge" aria-hidden />
+      {label}
+    </span>
+  );
+}
 
+export default function PricingContent() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
-      {/* Header */}
-      <section className="border-b border-sand-deep bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
-        <div className="mx-auto max-w-5xl text-center">
-          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-bureau-sage block mb-3" style={{ fontFamily: MONO }}>
-            PRICING // CONNECTED BUYER PATH
-          </span>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-tight">
-            Clear, step-by-step intelligence options.
+      <section className="border-b border-sand-deep/30 bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
+        <div className="mx-auto max-w-6xl">
+          <Kicker>Pricing</Kicker>
+          <h1 className="mt-6 max-w-3xl font-display text-[2.5rem] leading-[1.07] text-ink sm:text-5xl lg:text-6xl">
+            The intelligence funnel.
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-muted">
-            Start with a free snapshot, upgrade to a comprehensive audit, then choose your ongoing monitoring level.
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-ink/80">
+            Five tiers, one escalation: from a free point-in-time preview to ongoing,
+            hash-chained monitoring. Automated tiers below the line; bespoke forensic
+            infrastructure above it.
           </p>
         </div>
       </section>
 
-      {/* Connected Path Flow */}
-      <section className="bg-paper px-5 py-16 sm:px-8 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          {/* Step 1 & Step 2 */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {/* Step 1: Free Snapshot */}
-            <div className="bg-paper-light border border-sand-deep p-8 shadow-xs relative flex flex-col justify-between">
-              <div>
-                <div className="flex justify-between items-center text-[10px] font-mono text-muted mb-2" style={{ fontFamily: MONO }}>
-                  <span>STEP 01 // TRIAGE</span>
-                  <span className="text-bureau-sage font-semibold">FREE ENTRY</span>
+      {/* ── Automated tiers: Triage + Verification ── */}
+      <section className="bg-paper px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex items-center justify-between">
+            <Kicker>Automated intelligence</Kicker>
+            <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+              Self-serve · Immediate
+            </span>
+          </div>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {/* Triage — Free Snapshot */}
+            <article className="relative flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper-light p-8">
+              <div className="flex-1">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-display text-2xl text-ink">Free Snapshot</h3>
+                  <TierChip label="3 flags" />
                 </div>
-                <h3 className="font-display text-2xl text-ink">Free Snapshot</h3>
-                <p className="mt-2 text-3xl font-medium text-ink">$0</p>
-                <p className="mt-3 text-xs leading-relaxed text-muted">
-                  Automated 3-point point-in-time public copy preview. Delivered in 3 minutes via email.
+                <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+                  Tier 1 — Triage
                 </p>
-                <ul className="mt-6 space-y-2 text-xs text-muted font-mono" style={{ fontFamily: MONO }}>
-                  <li>+ 3 key claim flags</li>
-                  <li>+ Evidence gap indication</li>
-                  <li>+ Confidential PDF preview</li>
+                <p className="mt-3 text-3xl font-medium text-ink">$0</p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Automated point-in-time exposure preview. The low-friction entry.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm text-muted">
+                  <li className="flex gap-2"><span className="text-clay">•</span> 3 high-level flags</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Identify key claims</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> No sources linked</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Delivered by email</li>
                 </ul>
               </div>
               <Link
                 href={SNAPSHOT_URL}
-                className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-paper border border-sand-deep py-3 px-6 text-xs font-semibold text-ink hover:border-ink transition-colors font-mono"
-                style={{ fontFamily: MONO }}
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-bureau-sage px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
               >
-                Run Free Snapshot <ArrowRight size={14} />
+                Run Your Free Snapshot <ArrowRight size={16} aria-hidden="true" />
               </Link>
-            </div>
+            </article>
 
-            {/* Step 2: Comprehensive Audit */}
-            <div className="bg-paper-light border-2 border-bureau-sage p-8 shadow-xs relative flex flex-col justify-between">
-              <div className="absolute -top-3 right-6 bg-bureau-sage text-paper-light px-3 py-0.5 text-[10px] font-mono uppercase font-semibold" style={{ fontFamily: MONO }}>
-                RECOMMENDED ENTRY AUDIT
+            {/* Verification — Claim Support Review */}
+            <MouseSpotlight className="rounded-[2rem]">
+            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-bureau-sage/40 bg-paper-light p-8 shadow-md">
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-bureau-sage px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-light" style={{ fontFamily: MONO }}>
+                First paid record
               </div>
-              <div>
-                <div className="flex justify-between items-center text-[10px] font-mono text-muted mb-2" style={{ fontFamily: MONO }}>
-                  <span>STEP 02 // COMPREHENSIVE AUDIT</span>
-                  <span className="text-bureau-sage font-semibold">ONE-TIME</span>
+              <div className="flex-1">
+                <div className="flex items-center justify-between gap-3 pt-4">
+                  <h3 className="font-display text-2xl text-ink">Claim Support Review</h3>
+                  <TierChip label="1 exhibit" />
                 </div>
-                <h3 className="font-display text-2xl text-ink">Claim Support Audit</h3>
-                <p className="mt-2 text-3xl font-medium text-ink">$497 <span className="text-xs text-muted font-normal">one-time</span></p>
-                <p className="mt-3 text-xs leading-relaxed text-muted">
-                  Full multi-surface audit report detailing exact claims, evidence gaps, FTC/FDA vector matches, and counsel-ready safer rewrites.
+                <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+                  Tier 2 — Verification
                 </p>
-                <ul className="mt-6 space-y-2 text-xs text-muted font-mono" style={{ fontFamily: MONO }}>
-                  <li>+ Up to 50 public claims analyzed</li>
-                  <li>+ Complete evidence gap mapping</li>
-                  <li>+ Counsel-ready replacement matrix</li>
-                  <li>+ Stamped SHA-256 review record</li>
+                <p className="mt-3 text-3xl font-medium text-ink">$99</p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  The first paid receipt. Establishes a formal, dated review trail.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm text-muted font-medium">
+                  <li className="flex gap-2"><span className="text-clay">✓</span> 1 deep-dive Exhibit A</li>
+                  <li className="flex gap-2"><span className="text-clay">✓</span> Exact claim captured</li>
+                  <li className="flex gap-2"><span className="text-clay">✓</span> Visible evidence found</li>
+                  <li className="flex gap-2"><span className="text-clay">✓</span> Evidence gap mapped</li>
+                  <li className="flex gap-2"><span className="text-clay">✓</span> Safer rewrite provided</li>
+                  <li className="flex gap-2"><span className="text-clay">✓</span> Dated review record</li>
                 </ul>
               </div>
               <Link
                 href="/checkout"
-                className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-ink text-paper-light py-3 px-6 text-xs font-semibold hover:bg-clay-deep transition-colors font-mono"
-                style={{ fontFamily: MONO }}
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
               >
-                Order $497 Audit <ArrowRight size={14} />
+                Get the Detailed Review <ArrowRight size={16} aria-hidden="true" />
               </Link>
-            </div>
+            </article>
+            </MouseSpotlight>
           </div>
+        </div>
+      </section>
 
-          {/* Branch Header */}
-          <div className="text-center my-8">
-            <span className="text-[11px] font-mono uppercase tracking-[0.14em] text-muted border-t border-b border-sand-deep/60 py-2 px-4 inline-block" style={{ fontFamily: MONO }}>
-              STEP 03 // SELECT YOUR CONTINUOUS MONITORING BRANCH
+      {/* ── The threshold ── */}
+      <section className="border-y border-sand-deep/30 bg-paper-light px-5 py-10 sm:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div className="flex items-center justify-center gap-4">
+            <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+              Automated
+            </span>
+            <span className="h-px w-16 bg-sand-deep" aria-hidden />
+            <ArrowDown size={14} className="text-clay" aria-hidden="true" />
+            <span className="h-px w-16 bg-sand-deep" aria-hidden />
+            <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+              Bespoke
             </span>
           </div>
+          <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-6 text-muted">
+            Below the line: self-serve software. Above it: scoped forensic infrastructure,
+            priced by the size of the public footprint and the depth of the review.
+          </p>
+        </div>
+      </section>
 
-          {/* Branch Options: Watch vs Guardian */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Branch A: Watch */}
-            <div className="bg-paper-light border border-sand-deep p-7 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] font-mono text-muted mb-2 uppercase" style={{ fontFamily: MONO }}>
-                  BRANCH A // RECURRING
-                </div>
-                <h3 className="font-display text-xl text-ink">Scrutexity Watch</h3>
-                <p className="mt-2 text-2xl font-medium text-ink">$297 <span className="text-xs text-muted font-normal">/ mo</span></p>
-                <p className="mt-3 text-xs text-muted leading-relaxed">
-                  Monitor key public surfaces for language changes, link removals, and claim drift.
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="mt-6 w-full inline-flex items-center justify-center bg-paper border border-sand-deep py-2.5 px-4 text-xs font-mono font-semibold text-ink hover:border-ink"
-                style={{ fontFamily: MONO }}
-              >
-                Select Watch ($297/mo)
-              </Link>
-            </div>
-
-            {/* Branch B: Guardian */}
-            <div className="bg-paper-light border border-sand-deep p-7 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] font-mono text-muted mb-2 uppercase" style={{ fontFamily: MONO }}>
-                  BRANCH B // FULL RECORD
-                </div>
-                <h3 className="font-display text-xl text-ink">Scrutexity Guardian</h3>
-                <p className="mt-2 text-2xl font-medium text-ink">$1,497 <span className="text-xs text-muted font-normal">/ mo</span></p>
-                <p className="mt-3 text-xs text-muted leading-relaxed">
-                  Maintain complete hash-chained claim record, monthly evidence diffs, and AI distortion watch.
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="mt-6 w-full inline-flex items-center justify-center bg-paper border border-sand-deep py-2.5 px-4 text-xs font-mono font-semibold text-ink hover:border-ink"
-                style={{ fontFamily: MONO }}
-              >
-                Select Guardian ($1,497/mo)
-              </Link>
-            </div>
-
-            {/* Enterprise */}
-            <div className="bg-paper-light border border-sand-deep p-7 shadow-xs flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] font-mono text-muted mb-2 uppercase" style={{ fontFamily: MONO }}>
-                  ENTERPRISE // MULTI-BRAND
-                </div>
-                <h3 className="font-display text-xl text-ink">Portfolio Surveillance</h3>
-                <p className="mt-2 text-2xl font-medium text-ink">Custom</p>
-                <p className="mt-3 text-xs text-muted leading-relaxed">
-                  Dedicated diligence and portfolio-wide monitoring for PE firms, M&amp;A, and multi-location platforms.
-                </p>
-              </div>
-              <Link
-                href="/enterprise"
-                className="mt-6 w-full inline-flex items-center justify-center bg-ink text-paper-light py-2.5 px-4 text-xs font-mono font-semibold hover:bg-clay-deep"
-                style={{ fontFamily: MONO }}
-              >
-                Request Enterprise Quote
-              </Link>
-            </div>
+      {/* ── Consultative tiers: Diagnostic + Diligence + Watch ── */}
+      <section className="bg-paper-light px-5 py-20 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex items-center justify-between">
+            <Kicker>Bespoke forensic infrastructure</Kicker>
+            <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+              Scoped · Counsel &amp; diligence teams
+            </span>
           </div>
-
-          {/* Expandable Detailed Feature Comparison Drawer */}
-          <div className="mt-12 border border-sand-deep bg-paper-light">
-            <button
-              type="button"
-              onClick={() => setDrawerOpen(!drawerOpen)}
-              className="w-full p-6 flex justify-between items-center text-left hover:bg-paper transition-colors"
-            >
-              <span className="text-xs font-mono uppercase tracking-[0.14em] text-ink font-semibold" style={{ fontFamily: MONO }}>
-                Detailed Feature &amp; Scope Comparison Matrix
-              </span>
-              <span className="flex items-center gap-2 text-xs font-mono text-muted" style={{ fontFamily: MONO }}>
-                {drawerOpen ? "COLLAPSE MATRIX" : "EXPAND MATRIX"}
-                {drawerOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              </span>
-            </button>
-
-            {drawerOpen && (
-              <div className="p-6 border-t border-sand-deep overflow-x-auto">
-                <table className="w-full text-left text-xs font-mono" style={{ fontFamily: MONO }}>
-                  <thead>
-                    <tr className="border-b border-sand-deep text-muted">
-                      <th className="pb-3 pr-4 font-normal">FEATURE / SCOPE</th>
-                      <th className="pb-3 px-4 font-normal">SNAPSHOT ($0)</th>
-                      <th className="pb-3 px-4 font-normal">AUDIT ($497)</th>
-                      <th className="pb-3 px-4 font-normal">WATCH ($297/MO)</th>
-                      <th className="pb-3 pl-4 font-normal">GUARDIAN ($1,497/MO)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-sand-deep/40 text-ink">
-                    <tr>
-                      <td className="py-3 pr-4">Public Claim Analysis Scope</td>
-                      <td className="py-3 px-4">3 Claims</td>
-                      <td className="py-3 px-4">50 Claims</td>
-                      <td className="py-3 px-4">Limited Surfaces</td>
-                      <td className="py-3 pl-4">Full Footprint</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 pr-4">FTC / FDA Regulatory Vector Map</td>
-                      <td className="py-3 px-4">High Level</td>
-                      <td className="py-3 px-4">Detailed</td>
-                      <td className="py-3 px-4">Continuous</td>
-                      <td className="py-3 pl-4">Continuous + AI</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 pr-4">Counsel-Ready Replacement Matrix</td>
-                      <td className="py-3 px-4">—</td>
-                      <td className="py-3 px-4">Included</td>
-                      <td className="py-3 px-4">Included</td>
-                      <td className="py-3 pl-4">Included + Priority</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 pr-4">Hash-Chained Ledger Record</td>
-                      <td className="py-3 px-4">—</td>
-                      <td className="py-3 px-4">Included</td>
-                      <td className="py-3 px-4">Monthly Diffs</td>
-                      <td className="py-3 pl-4">Realtime + S-Mark</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {/* Assessment — Exposure Diagnostic */}
+            <article className="flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper p-8">
+              <div className="flex-1">
+                <h3 className="font-display text-2xl text-ink">Exposure Diagnostic</h3>
+                <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+                  Tier 3 — Assessment
+                </p>
+                <p className="mt-3 text-3xl font-medium text-ink">Custom quote</p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Bespoke forensic assessment for specific operational risks.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm text-muted">
+                  <li className="flex gap-2"><span className="text-clay">•</span> Targeted public-footprint review</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> FTC / FDA pattern map</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Exposure brief</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Counsel-ready output</li>
+                </ul>
               </div>
-            )}
+              <Link
+                href="/claim-exposure-diagnostic"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-sand-deep bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-bureau-sage"
+              >
+                Request a Diagnostic
+              </Link>
+            </article>
+
+            {/* Deep Diligence — PE/M&A */}
+            <article className="flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper p-8">
+              <div className="flex-1">
+                <h3 className="font-display text-2xl text-ink">PE / M&amp;A Diligence</h3>
+                <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+                  Tier 4 — Deep Diligence
+                </p>
+                <p className="mt-3 text-3xl font-medium text-ink">Custom quote</p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Complete regulatory risk analysis for acquisitions and board reviews.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm text-muted">
+                  <li className="flex gap-2"><span className="text-clay">•</span> Claims + AI narrative inventory</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Diligence report</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Risk quantification for valuation</li>
+                  <li className="flex gap-2"><span className="text-clay">•</span> Board-ready brief</li>
+                </ul>
+              </div>
+              <Link
+                href="/diligence"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-sand-deep bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-bureau-sage"
+              >
+                Request Diligence
+              </Link>
+            </article>
+
+            {/* Continuous — Watch */}
+            <MouseSpotlight className="rounded-[2rem]">
+            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-bureau-sage/40 bg-paper p-8 shadow-md">
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-bureau-sage px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-light" style={{ fontFamily: MONO }}>
+                Ongoing
+              </div>
+              <div className="flex-1">
+                <h3 className="font-display text-2xl text-ink">Scrutexity Watch</h3>
+                <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
+                  Tier 5 — Continuous
+                </p>
+                <p className="mt-3 text-3xl font-medium text-ink">$1,500 <span className="text-sm font-normal text-muted">/ month</span></p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  Ongoing monitoring, hash-chained records, and dedicated intelligence.
+                </p>
+                <ul className="mt-6 space-y-2.5 text-sm leading-6 text-muted">
+                  {[
+                    'Claim drift — new or changed public claims vs. your last dated record',
+                    'AI narrative drift — what answer systems say about you, unprompted',
+                    'Evidence changes — sources added, removed, or weakened',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="mt-2.5 h-1 w-1 shrink-0 bg-clay" aria-hidden />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm leading-6 text-muted">
+                  Each month you receive one dated update with a diff vs. the prior record — a renew-or-reassess decision on paper, not a dashboard.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+              >
+                Request Watch Access
+              </Link>
+            </article>
+            </MouseSpotlight>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-paper px-5 py-24 sm:px-8 md:py-28">
+        <div className="mx-auto max-w-4xl text-center">
+          <Kicker>Next step</Kicker>
+          <h2 className="mt-5 font-display text-4xl leading-tight text-ink md:text-5xl">
+            See what&apos;s missing.
+          </h2>
+          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              href={SNAPSHOT_URL}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bureau-sage px-8 py-3 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+            >
+              Run Your Free Snapshot
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>

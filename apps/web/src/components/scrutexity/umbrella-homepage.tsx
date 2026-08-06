@@ -26,21 +26,21 @@ export default function UmbrellaHomepage() {
     <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
       
       {/* ── 1. Hero + Living Claim Receipt ── */}
-      <section className="border-b border-sand-deep bg-paper-light px-5 py-16 sm:px-8 md:py-24">
+      <section className="border-b border-sand-deep bg-gradient-to-b from-bureau-sage/25 via-paper-light to-paper-light px-5 py-16 sm:px-8 md:py-24">
         <div className="mx-auto max-w-6xl grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <IndexLabel num="01" text="Claim Intelligence Standard" />
             
             <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-[1.08] tracking-tight">
-              Timestamped evidence infrastructure for public marketing claims.
+              Keep your clients&rsquo;<br/>claims <span className="text-bureau-sage">defensible.</span>
             </h1>
             
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink/80 max-w-2xl font-normal">
-              Scrutexity monitors public web copy, flags FTC/FDA pattern mismatches and AI claim distortions, and generates a dated, hash-chained audit record.
+              Scrutexity reviews your clients&rsquo; public marketing claims and AI outputs, flags what lacks buyer-visible support, and gives you evidence notes plus safer replacement wording.
             </p>
             
             <p className="mt-4 text-xs leading-relaxed text-muted font-mono" style={{ fontFamily: MONO }}>
-              Designed for high-risk sectors (wellness/med-spa, GLP-1, aesthetic devices), deal teams, General Counsel, and growth leaders.
+              Built for agencies that serve med spas, wellness clinics, telehealth, and other regulated businesses — every review ends in a dated, hash-chained record.
             </p>
             
             <div className="mt-8 flex flex-wrap items-center gap-4">

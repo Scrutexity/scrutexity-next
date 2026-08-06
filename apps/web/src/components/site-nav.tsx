@@ -42,9 +42,9 @@ export function SiteNav() {
             </Link>
           </div>
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
-            <div className="flex items-center gap-5 font-mono text-xs" style={{ fontFamily: MONO }}>
+            <div className="flex items-center gap-5">
               {links.map((l) => (
-                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`transition-colors uppercase tracking-wide ${isActive(l.href) ? 'text-ink font-semibold border-b border-bureau-sage pb-0.5' : 'text-muted hover:text-ink'}`}>{l.name}</Link>
+                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`text-[13px] font-medium transition-colors ${isActive(l.href) ? 'text-ink underline decoration-bureau-sage underline-offset-8 decoration-1' : 'text-muted hover:text-ink'}`}>{l.name}</Link>
               ))}
             </div>
             <span aria-hidden className="h-4 w-px bg-sand-deep" />

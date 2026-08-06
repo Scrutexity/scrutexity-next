@@ -54,9 +54,9 @@
   --color-scrutexity-surface: #FCFCFA;
   --color-scrutexity-border: #D8D2C3;
 
-  --font-display: var(--font-sans), system-ui, sans-serif;
-  --font-sans: var(--font-sans), system-ui, sans-serif;
-  --font-geist: var(--font-sans), system-ui, sans-serif;
+  --font-display: var(--font-satoshi), system-ui, sans-serif;
+  --font-sans: var(--font-satoshi), system-ui, sans-serif;
+  --font-geist: var(--font-satoshi), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --spacing-nav-offset: 100px;
