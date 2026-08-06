@@ -3,9 +3,10 @@ import { ArrowRight, Activity, CheckCircle2 } from 'lucide-react';
 import FreeSnapshotCTA from '@/components/ui/FreeSnapshotCTA';
 
 export const metadata = {
-  title: 'Med Spa Marketing, AI Visibility, and Demand Recovery | Scrutexity',
-  description: 'Scrutexity helps med spas improve claim-safe content, AI and local visibility, missed consult recovery, review signals, and patient-facing trust.',
-  alternates: { canonical: '/medical-wellness/med-spas' }
+  title: 'Med Spa Claim Evidence | Scrutexity',
+  description: 'Scrutexity audits med spa public claims — "permanent," "clinically proven," "FDA cleared" — maps them to visible evidence, and provides a dated record of what was said, what was missing, and what to say next.',
+  alternates: { canonical: '/medical-wellness/med-spas' },
+  robots: { index: false, follow: true },
 };
 
 export default function MedSpasPage() {
@@ -16,7 +17,7 @@ export default function MedSpasPage() {
     },
     {
       q: "Does Scrutexity write treatment content?",
-      a: "Yes. Our Contento service produces governed content based entirely on your reviewed claims, focusing on patient education, safety, and local discovery."
+      a: "Yes. Rewrite support can be scoped after the initial review, focusing on patient education, safety, and local discovery."
     },
     {
       q: "Does Scrutexity provide medical advice?",
@@ -62,7 +63,7 @@ export default function MedSpasPage() {
             <span className="italic text-sage-deep font-sans">without risky treatment claims.</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-mist leading-[1.6]">
-            Scrutexity helps med spas recover missed consult demand, improve AI and local visibility, produce claim-safe content, and strengthen patient-facing trust surfaces.
+            Med spas operate in a high-claim-density environment—&lsquo;permanent,&rsquo; &lsquo;clinically proven,&rsquo; &lsquo;FDA cleared,&rsquo; &lsquo;painless,&rsquo; &lsquo;zero downtime.&rsquo; These claims are scraped by AI answer engines and repeated without context. Scrutexity audits your public claims, maps them to visible evidence, and provides a dated record of what was said, what was missing, and safer language to use next.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link 
@@ -170,20 +171,20 @@ export default function MedSpasPage() {
         {/* Offer */}
         <div className="mt-20 bg-bone border border-sand-deep/30 rounded-3xl p-8 md:p-12 text-center">
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-sage-deep mb-2 block">Offer</span>
-          <h2 className="font-display text-3xl md:text-4xl text-espresso mb-4">Claim Exposure Audit</h2>
-          <p className="font-display text-4xl text-espresso mb-8">$497 <span className="text-lg text-mist italic font-sans">one-time</span></p>
+          <h2 className="font-display text-3xl md:text-4xl text-espresso mb-4">Claim Support Review</h2>
+          <p className="font-display text-4xl text-espresso mb-8">$99 <span className="text-lg text-mist italic font-sans">one public page</span></p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-10 text-left">
-            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Read-only claim surface scan</div>
-            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Patient-facing claim review</div>
+            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Read-only claim review</div>
+            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Patient-facing claim mapping</div>
             <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Drop-in safer rewrites</div>
-            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Prioritized recovery recommendations</div>
-            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> 30-day action plan</div>
+            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Visible-support notes</div>
+            <div className="flex items-center gap-2 text-sm text-bark"><CheckCircle2 size={16} className="text-sage-deep" /> Prioritized next step</div>
           </div>
           <Link 
-            href="/claim-audit?intent=claim-audit&source=med-spa-vertical" 
+            href="/contact?intent=claim-support-review&source=med-spa-vertical" 
             className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-sans font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
           >
-            Get the $497 Audit
+            Start a Claim Review
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>

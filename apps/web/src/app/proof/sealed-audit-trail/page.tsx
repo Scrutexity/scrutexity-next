@@ -100,9 +100,9 @@ export default function SealedAuditTrailPage() {
                   Switching-cost thesis
                 </p>
               </div>
-              <h2 className="mt-3 font-display text-3xl tracking-normal">After 90 days, leaving means losing claim memory.</h2>
+              <h2 className="mt-3 font-display text-3xl tracking-normal">A record that compounds — the longer it runs, the more it&apos;s worth keeping.</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-[#1C1C1C]/68">
-                A clinic can replace a report. It cannot easily replace the chronology of what it claimed, what supported it, who approved the change, and how the surface evolved. That retained evidence is the real product moat.
+                A clinic can replace a report. It cannot easily replace the chronology of what it claimed, what supported it, who approved the change, and how the surface evolved. That retained evidence is the real product moat — and the reason a maintained record outlasts a one-time scan.
               </p>
             </div>
             <Link

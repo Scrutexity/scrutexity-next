@@ -204,8 +204,8 @@ function SwivelCard({ step, index, active }: { step: Step; index: number; active
                   <div className="w-full bg-ink/5 rounded p-2 text-left font-mono text-[8px] leading-tight text-mist/90 border border-sand-deep/15">
                     <div className="text-[7.5px] text-sage-deep font-bold mb-0.5">● CLOSED-LOOP SETTLEMENT</div>
                     <div className="opacity-70">POST /pms/deposits &rarr; <span className="text-sage-deep font-bold">200 OK</span></div>
-                    <div className="opacity-70">deposit: $150.00 &middot; status: verified</div>
-                    <div className="opacity-70">ledger_seal: block_89427_success</div>
+                    <div className="opacity-70">deposit: $150.00 &middot; status: illustrative</div>
+                    <div className="opacity-70">ledger: scoped_by_agreement</div>
                   </div>
                 )}
 

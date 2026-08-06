@@ -86,31 +86,13 @@ const REVIEW_CATEGORIES = [
 
 const PRICING = [
   {
-    name: "Regenerative Medicine Claim Report",
-    price: "$497",
+    name: "Claim Support Review",
+    price: "$99",
     highlight: null,
     detail:
-      "Full claim inventory of your regenerative medicine pages. Every flagged claim — disease-treatment framing, stem cell language, exosome marketing — gets a risk label, evidence map, and safer rewrite.",
-    cta: "Get the $497 Audit",
-    href: "#",
-  },
-  {
-    name: "Claim Cleanup Record",
-    price: "$1,997",
-    highlight: "Best value",
-    detail:
-      "Done-for-you: safer rewrites executed across your regenerative medicine pages. Final Claim Cleanup Record PDF — a structured record of what changed, why, and what public support now backs each claim.",
-    cta: "Book Claim Cleanup Record",
-    href: "/contact?intent=claim-cleanup-record&source=regenerative-medicine",
-  },
-  {
-    name: "Ongoing Monitoring",
-    price: "from $1,497/mo",
-    highlight: "Regulatory alerts",
-    detail:
-      "Monthly re-scan of your regenerative medicine pages and AI answer surfaces. Get alerted when new risk language appears, when FTC enforcement actions occur, and when AI answers begin referencing your site in new ways.",
-    cta: "Start Monitoring",
-    href: "#",
+      "Focused review of one public page. Every flagged claim gets a risk label, evidence map, and safer framing draft.",
+    cta: "Start a Claim Review",
+    href: "/contact?intent=claim-support-review&source=regenerative-medicine",
   },
 ];
 
@@ -197,7 +179,7 @@ export default function RegenerativeMedicineClaimsPage() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-sage-deep" />
             </span>
             <span className="text-[11px] uppercase tracking-[0.2em] text-sage-deep font-semibold">
-              Regenerative Medicine · FTC Enforcement Surface
+              Regenerative Medicine · Claim Review Surface
             </span>
           </motion.div>
 
@@ -207,9 +189,9 @@ export default function RegenerativeMedicineClaimsPage() {
             transition={{ duration: 0.85, ease: EASE, delay: 0.08 }}
             className="font-display text-4xl md:text-6xl lg:text-[4.2rem] text-espresso tracking-[-0.03em] leading-[1.05] max-w-4xl"
           >
-            Regenerative Medicine Claim Compliance.{" "}
+            Regenerative Medicine Claim Review.{" "}
             <span className="italic text-sage-deep">
-              The FTC fined $5.1M. Don&apos;t be next.
+              Claims a buyer can check.
             </span>
           </motion.h1>
 
@@ -219,12 +201,11 @@ export default function RegenerativeMedicineClaimsPage() {
             transition={{ duration: 0.85, ease: EASE, delay: 0.18 }}
             className="mt-6 text-base md:text-lg text-mist leading-[1.65] max-w-2xl"
           >
-            FTC vs. Stem Cell Institute of America set a $5.1 million
-            precedent for false stem cell cure claims. Exosomes, PRP, and
-            stem cell marketing face active enforcement. Treating stem
+            FTC v. Stem Cell Institute of America ended in a $5.1 million
+            judgment over unsupported stem-cell cure claims. Treating stem
             cells as systemic cures classifies them as unapproved
-            biological drugs. Scrutexity audits your regenerative medicine
-            pages before regulators do.
+            biological drugs. Scrutexity reviews your regenerative medicine
+            pages against the support a buyer can actually see.
           </motion.p>
 
           <motion.div
@@ -234,20 +215,20 @@ export default function RegenerativeMedicineClaimsPage() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Link
-              href="#"
+              href="/contact?intent=claim-support-review&source=regenerative-medicine"
               className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]"
             >
-              Run Free Regenerative Medicine Snapshot
+              Start a Claim Review
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
             <Link
-              href="#"
+              href="/contact?intent=claim-support-review&source=regenerative-medicine"
               className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Get the $497 Audit
+              See the sample report
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"
@@ -267,7 +248,7 @@ export default function RegenerativeMedicineClaimsPage() {
         </div>
       </section>
 
-      {/* THE $5.1M WARNING */}
+      {/* THE $5.1M CASE */}
       <section className="px-6 py-20 bg-bone border-b border-sand-deep/15">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
@@ -275,7 +256,7 @@ export default function RegenerativeMedicineClaimsPage() {
               className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4"
               style={{ fontFamily: MONO }}
             >
-              The $5.1M Warning
+              The $5.1M Case
             </p>
             <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
               FTC vs. Stem Cell Institute of America set the precedent.
@@ -473,7 +454,7 @@ export default function RegenerativeMedicineClaimsPage() {
               Pricing
             </p>
             <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
-              Protect your regenerative medicine practice.
+              Review your regenerative medicine claims.
             </h2>
           </div>
           <div className="flex flex-col lg:flex-row gap-5 items-stretch">
@@ -557,25 +538,25 @@ export default function RegenerativeMedicineClaimsPage() {
           <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
             Regenerative medicine marketing reviewed.{" "}
             <span className="italic text-sage-deep">
-              Before the FTC arrives.
+              Before your next launch.
             </span>
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href="#"
+              href="/contact?intent=claim-support-review&source=regenerative-medicine"
               className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Run Free Regenerative Medicine Snapshot{" "}
+              Start a Claim Review{" "}
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"
               />
             </Link>
             <Link
-              href="#"
+              href="/sample-report"
               className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2"
             >
-              Get the $497 Audit{" "}
+              View the sample report{" "}
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5"

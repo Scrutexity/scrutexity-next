@@ -2,36 +2,39 @@ import Image from "next/image";
 
 const columns = [
   {
-    title: "Product",
+    title: "Intelligence",
     links: [
-      ["What we do", "/what-we-do"],
-      ["Sample report", "/sample-report"],
-      ["Pricing", "/pricing"],
-      ["AuditGPT snapshot", "https://auditgpt.ai/snapshot?source=scrutexity-footer"],
+      ["AI & Regulatory Diligence", "/diligence"],
+      ["For Counsel", "/counsel"],
+      ["Enterprise Exposure Assessment", "/enterprise"],
+      ["AI Narrative Integrity", "/ai-narrative-integrity"],
+      ["Scrutexity Watch", "/watch"],
     ],
   },
   {
-    title: "Company",
+    title: "Engage",
     links: [
-      ["Methodology", "/methodology"],
-      ["For agencies", "/agency"],
-      ["Home", "/"],
+      ["Request a Private Assessment", "/private-assessment"],
+      ["Claim Exposure Diagnostic", "/claim-exposure-diagnostic"],
+      ["Pricing", "/pricing"],
+      ["Sample Report", "/sample-report"],
       ["Contact", "/contact"],
     ],
   },
   {
-    title: "Solutions",
+    title: "Evidence",
     links: [
-      ["Agent review", "/contact?intent=agent-evidence-pack"],
-      ["Medical & wellness", "/medical-wellness"],
-      ["Med spas", "/medical-wellness/med-spas"],
-      ["GLP-1 claims", "/glp-1-weight-loss-claim-audit"],
+      ["Methodology", "/methodology"],
+      ["Proof", "/proof"],
+      ["Verify a Record", "/verify"],
+      ["Safety Architecture", "/safety-architecture"],
+      ["About", "/about"],
     ],
   },
   {
     title: "Legal",
     links: [
-      ["Data handling", "/data-handling"],
+      ["Data Handling", "/data-handling"],
       ["Privacy", "/privacy"],
       ["Terms", "/terms"],
       ["Email Nick", "mailto:nick@scrutexity.com?subject=Scrutexity%20inquiry"],
@@ -52,8 +55,15 @@ export default function Footer() {
               height={38}
               className="h-7 w-auto"
             />
-            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/65">
-              Evidence-grounded audits for the claims and AI outputs your buyers rely on. Powered by AuditGPT.
+            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/70">
+              Forensic Intelligence for AI, Claims &amp; Regulatory Risk.
+            </p>
+            <p className="mt-3 max-w-xs text-xs leading-5 text-cream/55">
+              Scrutexity documents the gap between what a company claims, what its evidence
+              supports, and what AI systems and the public say about it.
+            </p>
+            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/45">
+              AuditGPT is the public-claim diagnostic instrument powered by Scrutexity.
             </p>
           </div>
 
@@ -75,7 +85,11 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-cream/10 pt-7">
           <p id="disclaimer" className="max-w-4xl text-xs leading-5 text-cream/55">
-            Scrutexity provides evidence-grounded business review. It does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings are based on reviewed public material, supplied transcripts, and visible support.
+            Scrutexity is an intelligence and evidence company. It is not a law firm and does not
+            provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings
+            are observations drawn from publicly available material and AI answer-system outputs,
+            recorded with their sources and capture dates. Nothing on this site is a legal opinion,
+            a valuation opinion, or a determination of liability or non-compliance.
           </p>
           <p className="mt-5 text-xs text-cream/35">
             &copy; {new Date().getFullYear()} Scrutexity. All rights reserved.

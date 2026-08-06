@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, FileSearch, ScanText, SquarePen, TriangleAlert } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, FileSearch, Layers3, RefreshCw, ScanSearch, SquarePen, TriangleAlert } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Scrutexity Methodology | Evidence-Grounded Business Review",
-  description: "How Scrutexity captures public claims or supplied AI outputs, matches visible evidence, classifies support gaps, and prioritizes safer framing and next actions.",
+  title: "Scrutexity Methodology | AI Narrative Audit Process",
+  description: "How Scrutexity captures AI answer engine outputs, maps them against published evidence, scores gaps by commercial risk, and verifies fixes with a 14-day rerun.",
   alternates: { canonical: "/methodology" },
 };
 
@@ -13,29 +13,29 @@ const MONO =
 
 const steps = [
   {
-    title: "Capture the reviewed surface",
-    body: "Record the public URL or supplied transcript set, the wording in context, and the review date.",
-    icon: ScanText,
+    title: "Capture",
+    body: "Query ChatGPT, Perplexity, and Gemini with buyer-side questions about your product, security, pricing, and compliance. Record the outputs verbatim.",
+    icon: ScanSearch,
   },
   {
-    title: "Extract material claims",
-    body: "Separate testable business promises from ordinary description so each claim can be reviewed on its own terms.",
+    title: "Audit",
+    body: "Map each AI output against your published pages. Separate testable claims from description and verify each against evidence a buyer can inspect.",
     icon: FileSearch,
   },
   {
-    title: "Match visible support",
-    body: "Look for evidence a buyer can inspect on the reviewed surface or through a directly linked source.",
-    icon: Check,
-  },
-  {
-    title: "Classify the gap",
-    body: "Record whether support is present, partial, missing, too narrow for the wording, or dependent on undefined terms.",
+    title: "Gap-Score",
+    body: "Classify every discrepancy: hallucinated, outdated, unsupported, or narrower than claimed. Score each by commercial risk — which gaps are costing deals.",
     icon: TriangleAlert,
   },
   {
-    title: "Draft safer framing",
-    body: "Provide a narrower draft that stays closer to the evidence without pretending to replace owner, counsel, or clinical approval.",
+    title: "Fix",
+    body: "Provide exact safer framing drafts, schema updates, and source remediation steps that close each gap without overpromising.",
     icon: SquarePen,
+  },
+  {
+    title: "Monitor",
+    body: "14 days after fixes go live, re-query the AI models to measure exact shift. Ongoing subscription catches new drift as models are retrained.",
+    icon: RefreshCw,
   },
 ];
 
@@ -45,14 +45,18 @@ export default function MethodologyPage() {
       <section className="border-b border-sand-deep/30 bg-bone px-5 pb-20 pt-28 sm:px-8 md:pb-24 md:pt-40">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Methodology</p>
-          <h1 className="mt-6 font-display text-5xl leading-tight text-espresso md:text-6xl">Every finding should point back to something a buyer can inspect.</h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-mist">The Scrutexity method keeps the reviewed wording, visible support, stated gap, safer framing draft, and next action together in one dated report.</p>
+          <h1 className="mt-6 font-display text-5xl leading-tight text-espresso md:text-6xl">
+            Every finding points back to something a buyer can see and verify.
+          </h1>
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-mist">
+            Scrutexity's five-step process moves from AI output capture to verified narrative alignment — with a measurable delta after every engagement.
+          </p>
         </div>
       </section>
 
       <section className="border-b border-sand-deep/30 bg-white px-5 py-20 sm:px-8 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <ol className="grid gap-px overflow-hidden rounded-lg border border-sand-deep/35 bg-sand-deep/35 lg:grid-cols-5">
+          <ol className="grid gap-px overflow-hidden rounded-xl border border-sand-deep/35 bg-sand-deep/35 lg:grid-cols-5">
             {steps.map(({ title, body, icon: Icon }, index) => (
               <li key={title} className="bg-bone p-6">
                 <div className="flex items-center justify-between">
@@ -70,10 +74,19 @@ export default function MethodologyPage() {
       <section className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Shipped capabilities</p>
-            <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">The report contains the useful parts.</h2>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>What's included in every report</p>
+            <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">The useful parts.</h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-              {["Source-grounded extraction", "Visible-evidence matching", "Support-gap classification", "Safety-language scanning", "Safer framing drafts", "Dated report metadata"].map((item) => (
+              {[
+                "AI answer engine output capture",
+                "Claim-to-evidence mapping",
+                "Gap classification by type",
+                "Commercial risk scoring",
+                "Safer framing drafts",
+                "Recommended next steps",
+                "14-day rerun verification",
+                "Dated report metadata",
+              ].map((item) => (
                 <li key={item} className="flex gap-2 text-sm text-bark">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
                   {item}
@@ -81,10 +94,12 @@ export default function MethodologyPage() {
               ))}
             </ul>
           </div>
-          <aside className="rounded-lg border border-sand-deep/45 bg-white p-7">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>Boundaries</p>
-            <h2 className="mt-4 font-display text-3xl text-espresso">A business review, not a substituted professional opinion.</h2>
-            <p className="mt-5 text-sm leading-7 text-mist">Scrutexity does not provide legal advice, clinical advice, certification, or guaranteed outcomes. It does not determine whether a claim is legal or compliant. Findings describe reviewed public material or supplied transcripts and the support visible within the agreed scope.</p>
+          <aside className="rounded-xl border border-sand-deep/45 bg-white p-7">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>Scope Boundaries</p>
+            <h2 className="mt-4 font-display text-3xl text-espresso">An audit, not a substituted legal opinion.</h2>
+            <p className="mt-5 text-sm leading-7 text-mist">
+              Scrutexity does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings describe reviewed public material, AI engine outputs, and the evidence visible within the agreed scope. Nick Altstein reviews every engagement personally, but the interpretation of legal risk remains the client's and their counsel's responsibility.
+            </p>
           </aside>
         </div>
       </section>
@@ -92,10 +107,16 @@ export default function MethodologyPage() {
       <section className="bg-white px-5 py-20 text-center sm:px-8 md:py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-display text-4xl text-espresso md:text-5xl">See the method in report form.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">The sample uses fictional data and labels every field required to understand the finding and act on it.</p>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
+            The sample report uses illustrative data and labels every field required to understand the finding and act on it.
+          </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">View a Sample Report <ArrowRight size={16} aria-hidden="true" /></Link>
-            <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">Review Pricing <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
+              View Sample Report <ArrowRight size={16} />
+            </Link>
+            <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">
+              Review Pricing <ArrowRight size={16} />
+            </Link>
           </div>
         </div>
       </section>

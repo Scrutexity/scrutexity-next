@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     'Submit a public marketing URL for an AuditGPT Claim Exposure Review. Scrutexity maps public claim language against current enforcement patterns and returns safer replacement language.',
   alternates: { canonical: '/claim-audit' },
+  robots: { index: false, follow: true },
 };
 
 export default function ClaimAuditPage() {

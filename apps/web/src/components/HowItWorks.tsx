@@ -87,7 +87,7 @@ export default function HowItWorks() {
               Lead Reactivation
             </h3>
             <p className="text-[11px] leading-relaxed text-[#6E6E6C]">
-              We deploy automated, HIPAA-conscious text campaigns to re-engage stale inquiries from the past 90 days.
+              We deploy automated, evidence-conscious compliance checks to re-evaluate stale claims from the past 90 days.
             </p>
           </motion.div>
  

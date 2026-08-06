@@ -37,26 +37,26 @@ const offers: Array<{
   },
   {
     key: 'full',
-    name: 'Claim Exposure Review',
-    price: '$497',
+    name: 'Claim Support Review',
+    price: '$99',
     cadence: 'one-time',
-    audience: 'Operators reviewing a public GLP-1, health, or wellness page before the next campaign.',
+    audience: 'Operators reviewing one public page before the next campaign.',
     highlighted: true,
-    badge: 'Founding review',
+    badge: 'Focused review',
     includes: [
       'Public URL claim-language review',
-      'Comparison against source-linked enforcement patterns',
+      'Evidence map with visible support notes',
       'Flagged phrases with page context',
-      'Safer replacement language',
+      'Safer framing drafts',
       'Dated review record',
-      '72-hour turnaround',
+      '48-hour target turnaround',
     ],
   },
   {
     key: 'rescan',
-    name: 'Claim Review Monitoring',
-    price: '$497',
-    cadence: '/ month',
+    name: 'Monitoring Pilot',
+    price: 'By scope',
+    cadence: 'selected customers',
     audience: 'Teams that update landing pages, offers, ads, or FAQs regularly.',
     includes: [
       'Monthly review of selected public pages',
@@ -67,16 +67,16 @@ const offers: Array<{
   },
   {
     key: 'agency',
-    name: 'Agency Claim QA Desk',
-    price: 'from $1,497/mo',
-    cadence: '/ mo (Founding Beta)',
+    name: 'Agency Claim QA',
+    price: 'from $1,500',
+    cadence: 'per engagement',
     audience: 'Agencies shipping sensitive pages, ads, and launch copy for clients.',
     includes: [
-      '10 client claim reviews / month',
+      'Client-site claim reviews',
       'White-label review notes',
       'Safer rewrite blocks',
       'Client-ready approval language',
-      'Priority 24h processing',
+      'Confirmed turnaround',
       'Source-linked pattern references',
     ],
   },
@@ -394,7 +394,7 @@ function ClaimAuditContentInner() {
                   className="text-center text-[10px] uppercase tracking-[0.16em] text-scrutexity-charcoal/40"
                   style={{ fontFamily: MONO_STACK }}
                 >
-                  $497 USD · 72-hour turnaround · free snapshot available
+                  $99 · 48-hour target turnaround · sample report available
                 </p>
               </form>
             )}

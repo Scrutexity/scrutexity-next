@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'For Multi-Location Operators | Scrutexity',
   description: 'A unified missed-demand recovery layer for Boulevard, Mangomint, and Zenoti portfolios with location-level visibility and governance-ready reporting.',
   alternates: { canonical: '/for-multi-location' },
+  robots: { index: false, follow: true },
 };
 
 const realityCards = [

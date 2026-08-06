@@ -5,6 +5,7 @@ import FreeSnapshotCTA from '@/components/ui/FreeSnapshotCTA';
 export const metadata = {
   title: 'Partner with Scrutexity | Governed Marketing Referral Program',
   description: 'Refer clients to Scrutexity for governed marketing, claim audits, and demand recovery. Transparent payouts without treating partners as employees.',
+  robots: { index: false, follow: true },
 };
 
 export default function PartnersPage() {
@@ -25,7 +26,7 @@ export default function PartnersPage() {
     },
     {
       q: "What can partners introduce?",
-      a: "Partners can introduce clients to AuditGPT, Contento, AI Visibility sprints, and Missed Demand Recovery workflows, either as direct referrals or white-label deliverables."
+      a: "Partners can introduce clients to claim reviews, AI visibility, and governed follow-up workflows, either as direct referrals or white-label deliverables."
     },
     {
       q: "Are partners employees?",

@@ -2,22 +2,30 @@ import { MetadataRoute } from "next";
 
 const siteUrl = "https://www.scrutexity.com";
 
+// Priority reflects commercial weight, not just depth. The four intelligence
+// products and the conversion path outrank supporting and legal pages.
+const primaryRoutes = [
+  "/snapshot",
+  "/claim-exposure-diagnostic",
+  "/watch",
+  "/enterprise",
+  "/diligence",
+  "/counsel",
+  "/ai-narrative-integrity",
+  "/private-assessment"
+];
+
 const staticRoutes = [
-  "",
-  // Core product and conversion path
+  // Credibility and conversion path
   "/pricing",
-  "/what-we-do",
-  "/methodology",
   "/sample-report",
+  "/methodology",
+  "/proof",
+  "/verify",
+  "/what-we-do",
   "/contact",
   "/agency",
-
-  // Preserved vertical solutions
-  "/medical-wellness",
-  "/medical-wellness/med-spas",
-  "/aesthetic-device-claim-audit",
-  "/glp-1-weight-loss-claim-audit",
-  "/regenerative-medicine-claims",
+  "/about",
 
   // Company and legal
   "/data-handling",
@@ -26,10 +34,26 @@ const staticRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return staticRoutes.map((route) => ({
-    url: `${siteUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1.0 : 0.8,
-  }));
+  const lastModified = new Date();
+
+  return [
+    {
+      url: siteUrl,
+      lastModified,
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
+    },
+    ...primaryRoutes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
+    ...staticRoutes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ];
 }

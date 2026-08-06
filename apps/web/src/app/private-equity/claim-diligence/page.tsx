@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Med Spa Claim Diligence | Scrutexity",
   description:
     "Claim, AI visibility, reputation, and demand governance diligence for med spa acquisitions, MSOs, lenders, and operating partners.",
+  robots: { index: false, follow: true },
 };
 
 const diligenceScope = [
@@ -23,18 +24,18 @@ const diligenceScope = [
 
 const packages = [
   {
-    name: "Light Target Review",
-    price: "$3k-$7.5k",
-    body: "Single-site or small target scan for claim risk, AI visibility gaps, and obvious diligence blockers.",
+    name: "Scoped diligence engagement",
+    price: "By scope",
+    body: "Single-site or small target claim, visibility, and governance diligence. Scope, timeline, and fee confirmed before work begins.",
   },
   {
-    name: "Platform Diligence Pack",
-    price: "$10k-$25k",
+    name: "Diligence scope review",
+    price: "By scope",
     body: "Multi-location diligence with risk matrix, open-issues log, remediation timeline, and post-close monitoring recommendations.",
   },
   {
-    name: "Portfolio Claim Drift Retainer",
-    price: "$5k-$15k/mo",
+    name: "Post-close monitoring",
+    price: "By scope",
     body: "Ongoing monitoring for acquired or existing portfolio locations, including monthly proof binders and board-ready exceptions.",
   },
 ];

@@ -5,9 +5,22 @@
 ---
 
 ## 0. North Star
-**Premium operational intelligence with clinical credibility.** Serve independent operators, multi-location groups, management teams, strategic partners, and enterprise buyers. Tone: calm, authoritative, ambitious, evidence-led, and anti-hype. The brand may feel intimate on operator pages and technically formidable on platform, partner, security, and enterprise pages.
+**Forensic Intelligence for AI, Claims & Regulatory Risk.** Scrutexity documents the gap between what a company claims, what its evidence supports, and what AI systems and the public say about it. Serve PE/M&A deal teams, General Counsel and outside counsel, enterprise risk and marketing organizations, and multi-location operators. Tone: calm, exact, premium, evidence-led, anti-hype. The company sells **evidence-backed leverage**, not compliance software.
 
-> 🚫 **No dark mode. No cyberpunk. No SaaS blue.** That aesthetic belongs to the separate personal dashboard, not this marketing site.
+> ✅ **Light is the default and canonical brand surface.** Warm earth palette, serif display, generous whitespace.
+>
+> 🌙 **Dark mode is an opt-in viewer preference** (August 2026, founder-approved — this supersedes the previous "no dark mode" rule). Toggled from the navbar, persisted in `localStorage` under `scrutexity-theme`, applied by an inline script before first paint. It does **not** follow the OS: an unset visitor always gets light. Dark is the same brand at night — the warm brown undertone is preserved, never swapped for cool "cyber" tones.
+>
+> 🚫 **Still forbidden: cyberpunk, SaaS blue, neon, sci-fi grids.**
+
+### How dark mode works (read before touching `globals.css`)
+Tailwind v4 compiles `bg-cream` to `background-color: var(--color-cream)`. The dark theme therefore **redeclares the same custom properties** under `html[data-theme="dark"]`, which re-themes every existing page without editing a single component.
+
+Two hard-won constraints:
+1. **The dark block must live at the END of `globals.css`.** Placed immediately after `@theme { … }`, Tailwind absorbs the override and silently drops it from the compiled output — the rules simply never appear in the served CSS.
+2. **Use `html[data-theme="dark"]`, not `:root[data-theme="dark"]`.** The `:root` variant is what triggers the absorption above.
+
+`bg-espresso` serves double duty as a dark *section* (footer) and the primary *button* fill. In dark mode `espresso` inverts to near-white, breaking both. The fix rebinds `--color-cream` locally on `.bg-espresso` — every `text-cream/70`-style opacity variant reads that same variable, so one declaration repairs the whole subtree. Primary CTAs additionally take the clay fill so they keep presence on a near-black page.
 
 ---
 
@@ -78,7 +91,18 @@ CPOM (NY/CA/TX/FL) + FTC. Describe **non-clinical infrastructure**, never revenu
 ## 7. Canonical facts (keep consistent everywhere)
 - **Pricing:** Keep public pricing internally consistent, but do not treat today's tiers as a permanent strategic ceiling. Support pilot, multi-location, partner, platform, and enterprise offers when approved and accurately described.
 - **Offers:** Use the smallest credible commitment that opens the highest-value relationship. A pilot is one acquisition path—not the identity or ceiling of the company.
-- **Active positioning:** Scrutexity is the claim intelligence platform behind AuditGPT and Contento. AuditGPT diagnoses unsupported public claims, AI answer drift, proof gaps, and agent-claim risks; Contento turns approved findings into governed, proof-aware assets.
+- **Active positioning (August 2026):** Scrutexity — *Forensic Intelligence for AI, Claims & Regulatory Risk*. The category it is defining is **Public Claim Intelligence**. The outcome it sells is **evidence-backed leverage**.
+- **Brand hierarchy — use consistently in nav, metadata, footer, page titles, and CTAs:**
+  | Layer | Name | Price |
+  |---|---|---|
+  | Entry product | Claim Exposure Diagnostic | $1,500–$2,500 |
+  | Enterprise expansion | Enterprise Exposure Assessment | $7,500–$25,000+ |
+  | Premium transaction product | AI & Regulatory Diligence | $25,000–$75,000+ (never shown on `/diligence`; say "five-figure range") |
+  | AI intelligence layer | AI Narrative Integrity | scoped |
+  | Recurring layer | Scrutexity Watch | $2,000–$10,000/mo |
+  | Instrument | **AuditGPT** — the public-claim diagnostic instrument *powered by Scrutexity*, never a peer brand and never a top-level nav item | — |
+- **Findings vocabulary (binding):** pattern match · potential exposure · documented inconsistency · evidence gap · requires professional review. **Never** call a finding a *violation* — that determination belongs to a qualified attorney.
+- **Boundary statement required on every commercial page:** not a law firm, not legal advice, not a legal or valuation opinion, not a substitute for professional diligence, no guaranteed regulatory or AI-system outcomes.
 - **Archived positioning:** Missed-demand recovery is retained as strategic inventory and med-spa domain knowledge. Do not use it as the default live company one-liner unless Nick explicitly revives that offer.
 - **Growth posture:** These rules prevent unsupported promises; they do not prohibit category expansion, enterprise positioning, partner packaging, or new product pages when clearly labeled as roadmap, pilot, internal, or founder-approved work.
 
@@ -106,7 +130,7 @@ If the phrase adds clarity to a single artifact, keep it. If it implies a persis
 The Snapshot is a trust artifact, not a SaaS surface. Let the language reflect that.
 
 ## 10. Don't list
-- ❌ Dark section backgrounds / dark mode
+- ❌ Hardcoded hex values or Tailwind built-ins (`bg-white`, `bg-black`) in new work — they do not follow the theme. Use tokens.
 - ❌ Color classes whose token isn't defined in `@theme` (check first)
 - ❌ SaaS blue, pure black, gradients that read "techy"
 - ❌ Emoji/stock as UI

@@ -3,6 +3,7 @@ import { SampleOwnerBriefWidget } from '@/components/SampleOwnerBriefWidget';
 export const metadata = {
   title: 'Sample Owner Brief | Scrutexity',
   description: 'This is what you receive on Day 14: every recovered lead, source, transcript, and deposit on record. Illustrated with modeled data.',
+  robots: { index: false, follow: true },
 };
 
 export default function SampleOwnerBriefPage() {

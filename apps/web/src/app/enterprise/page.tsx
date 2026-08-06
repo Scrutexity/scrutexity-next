@@ -1,147 +1,177 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { ArrowRight, Building2, FileArchive, FileSearch, ShieldAlert } from 'lucide-react';
+import {
+  PageHero,
+  Section,
+  ItemGrid,
+  BoundaryNote,
+  CTABand,
+  RelatedRail,
+  Kicker,
+  MONO,
+} from '@/components/scrutexity/intel-kit';
 
 export const metadata: Metadata = {
-  title: 'For Insurers & Acquirers | Scrutexity',
+  title: 'Enterprise Exposure Assessment | Scrutexity',
   description:
-    'How Scrutexity claim records can support underwriting, diligence, and portfolio surveillance workflows for high-trust public claim surfaces.',
+    'Public-claim intelligence for organizations that cannot afford surprises. See what you claim publicly, what you can support, and how AI represents you.',
   alternates: { canonical: '/enterprise' },
+  robots: { index: false, follow: false },
+  keywords: [
+    'regulatory exposure assessment',
+    'public claim intelligence',
+    'healthcare marketing claim risk',
+    'claim substantiation intelligence',
+    'public claim audit',
+  ],
+  openGraph: {
+    title: 'Enterprise Exposure Assessment | Scrutexity',
+    description:
+      'Public-claim intelligence for organizations that cannot afford surprises.',
+    url: '/enterprise',
+    type: 'website',
+  },
 };
 
-const MONO =
-  'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
-
-const useCases = [
-  {
-    title: 'Underwriting review support',
-    body: 'Public claim records can help teams see what a business says, what support is visible, and where review questions may remain.',
-  },
-  {
-    title: 'Acquisition diligence',
-    body: 'Dated claim receipts give buyers a structured view of public-language risk before post-close marketing expansion.',
-  },
-  {
-    title: 'Portfolio surveillance',
-    body: 'Longitudinal review records can show claim drift, missing proof, and new public surfaces across operating companies.',
-  },
+const audiences = [
+  'Multi-location healthcare groups',
+  'Telehealth organizations',
+  'Enterprise brands',
+  'Regulated companies',
+  'PE-backed operating companies',
+  'Marketing and risk organizations',
 ];
 
-const records: { label: string; category: string }[] = [
-  { label: 'Public URL inventory', category: 'SOURCE' },
-  { label: 'Observed claim text', category: 'SOURCE' },
-  { label: 'Visible proof map', category: 'ANALYSIS' },
-  { label: 'Evidence gap notes', category: 'ANALYSIS' },
-  { label: 'Safer wording options', category: 'REMEDIATION' },
-  { label: 'Open remediation log', category: 'REMEDIATION' },
-  { label: 'Review timestamp', category: 'PROVENANCE' },
-  { label: 'Record digest reference', category: 'PROVENANCE' },
+const included = [
+  'Multi-location review',
+  'Claim inventory',
+  'Evidence mapping',
+  'Pattern analysis',
+  'AI narrative assessment',
+  'Prioritized remediation',
+  'Executive briefing',
+  'Optional monitoring',
 ];
 
 export default function EnterprisePage() {
   return (
-    <div className="min-h-screen bg-cream text-bark">
-      <main className="mx-auto max-w-6xl px-6 pb-24 pt-32">
-        <header className="border-b border-sand-deep/20 pb-14">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>
-            For Insurers &amp; Acquirers
+    <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
+      <PageHero
+        kicker="Enterprise Intelligence"
+        title="Public-claim intelligence for organizations that cannot afford surprises."
+        subtitle="Get a defensible picture of what your organization is saying publicly, what it can support, and how the market and AI systems represent it."
+        body="$7,500–$25,000+ depending on scope."
+        primary={{ label: 'Request a Private Assessment', href: '/private-assessment?intent=enterprise&source=enterprise' }}
+        secondary={{ label: 'View a Sample Diligence File', href: '/sample-report' }}
+      />
+
+      <Section
+        kicker="The problem at scale"
+        title="Claim risk compounds with every location."
+      >
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <div className="space-y-5 text-base leading-7 text-bark">
+            <p>
+              A single organization rarely speaks with one voice. Location pages get written
+              locally. Landing pages outlive the campaigns that produced them. An acquired
+              entity arrives with its own claim history attached.
+            </p>
+            <p>
+              The result is a public claim surface no one has read end to end — including the
+              people accountable for it. When a regulator, a counterparty, or an answer system
+              reads it, they read all of it at once.
+            </p>
+            <p className="border-l-2 border-clay pl-5 text-espresso">
+              An Enterprise Exposure Assessment produces the first complete, dated inventory of
+              what the organization is actually claiming, and what its evidence supports.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-sand-deep/50 bg-bone p-7 sm:p-9">
+            <p
+              className="mb-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-mist"
+              style={{ fontFamily: MONO }}
+            >
+              Typical findings pattern
+            </p>
+            <ul className="space-y-5">
+              {[
+                ['Inherited language', 'Claims that arrived with an acquisition and were never re-reviewed against current evidence.'],
+                ['Local drift', 'Individual locations restating a corporate claim more strongly than the source permits.'],
+                ['Orphaned pages', 'Campaign pages still live and indexed, still making claims the company has since retired.'],
+                ['Evidence decay', 'A study, certification, or dataset that supported a claim is no longer visible or current.'],
+              ].map(([t, b]) => (
+                <li key={t} className="border-t border-sand-deep/40 pt-4 first:border-t-0 first:pt-0">
+                  <p className="text-sm font-semibold text-espresso">{t}</p>
+                  <p className="mt-1.5 text-sm leading-6 text-mist">{b}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-xs leading-5 text-mist">
+              Patterns we look for. Not a claim about any specific organization.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        tone="bone"
+        kicker="Who this is for"
+        title="Organizations with distributed claim surfaces."
+        lede="The assessment is most useful where public language is produced in more than one place, by more than one team."
+      >
+        <ItemGrid items={audiences} />
+      </Section>
+
+      <Section
+        kicker="Primary product"
+        title="Enterprise Exposure Assessment"
+        lede="$7,500–$25,000+ depending on scope. Scope is determined by number of entities, domains, locations, claims, and review depth."
+      >
+        <ItemGrid items={included} />
+
+        <div className="mt-10 rounded-xl border border-clay/40 bg-clay/[0.07] p-8">
+          <Kicker>The deliverable</Kicker>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-espresso">
+            One dated record, plus an executive briefing that puts the priority findings in
+            front of the people who decide what happens next.
           </p>
-          <h1 className="mt-5 max-w-5xl font-display text-5xl leading-[1.04] tracking-[-0.03em] text-espresso md:text-7xl">
-            Claim records for diligence, underwriting, and portfolio review.
-          </h1>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-mist md:text-lg">
-            Scrutexity's AI Visibility Scanner architecture actively indexes and structures
-            public-claim records for businesses where reputation, marketing language, and AI
-            answer surfaces matter. The record is designed to inform institutional review
-            workflows, not to replace counsel, underwriting judgment, or diligence advisors.
+          <p className="mt-5 max-w-3xl text-sm leading-6 text-mist">
+            Remediation is prioritized rather than exhaustive. We identify what to address
+            first, what to escalate to counsel, and what can wait.
           </p>
-        </header>
+        </div>
+      </Section>
 
-        <section className="grid gap-6 border-b border-sand-deep/20 py-14 md:grid-cols-3">
-          {useCases.map((item) => (
-            <article key={item.title} className="border border-sand-deep/25 bg-bone p-6">
-              <Building2 className="h-5 w-5 text-sage-deep" />
-              <h2 className="mt-5 font-display text-2xl text-espresso">{item.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-mist">{item.body}</p>
-            </article>
-          ))}
-        </section>
+      <Section tone="bone" bordered={false}>
+        <BoundaryNote
+          lines={[
+            'Not a legal opinion, and not legal advice.',
+            'Not a determination of liability or non-compliance.',
+            'Not a certification, accreditation, or seal.',
+            'No guarantee of regulatory outcomes.',
+            'No control over AI system behavior or output.',
+            'Findings are observations with sources and dates attached.',
+          ]}
+          note="Remediation language and prioritization are recommendations for review, not instructions. Anything with legal consequence should be reviewed by counsel before publication."
+        />
+      </Section>
 
-        <section className="grid gap-10 border-b border-sand-deep/20 py-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <div className="flex items-center gap-2 text-sage-deep">
-              <FileArchive size={18} />
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ fontFamily: MONO }}>
-                Longitudinal Archive
-              </p>
-            </div>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-espresso">
-              Longitudinal Surveillance &amp; Claim Drift Detection.
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-mist">
-              A one-time scan shows a surface at a moment in time. A Scrutexity archive shows how
-              claim language, visible proof, and unresolved review notes change as a business grows,
-              markets, raises, borrows, or acquires.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {records.map((r) => (
-              <div key={r.label} className="border border-sand-deep/25 bg-bone p-4">
-                <p className="text-[9px] uppercase tracking-[0.14em] text-sage-deep" style={{ fontFamily: MONO }}>
-                  {r.category}
-                </p>
-                <p className="mt-1.5 text-[11px] uppercase tracking-[0.12em] text-bark" style={{ fontFamily: MONO }}>
-                  {r.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+      <CTABand
+        title="See what your organization is actually claiming."
+        body="We start by agreeing the entities, domains, and surfaces in scope, then produce the inventory."
+        primary={{ label: 'Request a Private Assessment', href: '/private-assessment?intent=enterprise&source=enterprise-cta' }}
+        secondary={{ label: 'Start with a Diagnostic', href: '/claim-exposure-diagnostic' }}
+      />
 
-        <section className="grid gap-10 border-b border-sand-deep/20 py-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
-            <div className="flex items-center gap-2 text-sage-deep">
-              <FileSearch size={18} />
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ fontFamily: MONO }}>
-                Review Packet
-              </p>
-            </div>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-espresso">
-              Built to sit beside institutional review materials.
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-mist">
-              Scrutexity records can accompany underwriting memos, diligence folders, portfolio
-              monitoring reports, and agency launch records. The artifact shows observed public
-              language and visible proof gaps; it does not make legal or regulatory determinations.
-            </p>
-            <p className="mt-4 text-sm leading-7 text-mist">
-              Architecture is read-only by design. Scrutexity indexes public web surfaces — it
-              never modifies them, never connects to practice management systems, and introduces
-              zero integration surface into clinical or underwriting environments. Deployment is
-              a DNS change, not a migration.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/methodology" className="inline-flex items-center gap-2 rounded-full bg-sage-deep px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-cream">
-                View methodology
-                <ArrowRight size={13} />
-              </Link>
-              <Link href="/private-equity/claim-diligence" className="inline-flex items-center gap-2 rounded-full border border-sand-deep/40 bg-bone px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-espresso">
-                View diligence page
-                <ArrowRight size={13} />
-              </Link>
-            </div>
-          </div>
-          <div className="border border-sand-deep/25 bg-bone p-6">
-            <ShieldAlert className="h-5 w-5 text-sage-deep" />
-            <h3 className="mt-5 font-display text-2xl text-espresso">Boundary statement</h3>
-            <p className="mt-3 text-sm leading-7 text-mist">
-              Scrutexity outputs are structured public-claim review records. They are not legal
-              opinions, valuation opinions, underwriting decisions, regulatory findings, clinical
-              advice, or financial advice.
-            </p>
-          </div>
-        </section>
-      </main>
+      <RelatedRail
+        links={[
+          { label: 'Claim Exposure Diagnostic', href: '/claim-exposure-diagnostic' },
+          { label: 'AI Narrative Integrity', href: '/ai-narrative-integrity' },
+          { label: 'Scrutexity Watch', href: '/watch' },
+          { label: 'For Counsel', href: '/counsel' },
+          { label: 'Methodology', href: '/methodology' },
+        ]}
+      />
     </div>
   );
 }

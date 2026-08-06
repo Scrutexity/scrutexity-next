@@ -3,12 +3,21 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { trackEvent } from '@/utils/analytics';
 
+// Routes where the sticky CTA would point at the page you are already on —
+// and, worse, sit on top of the form you are trying to fill in.
+const SUPPRESSED_ROUTES = ['/private-assessment', '/contact', '/checkout'];
+
 export function MobileStickyCTA() {
+  const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
   const reducedMotion = useReducedMotion();
+  const suppressed = SUPPRESSED_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +35,7 @@ export function MobileStickyCTA() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !suppressed && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,17 +45,17 @@ export function MobileStickyCTA() {
         >
           <div className="pointer-events-auto">
             <Link
-              href="/contact?intent=claim-support-review&source=scrutexity-mobile-sticky"
+              href="/private-assessment?source=scrutexity-mobile-sticky"
               onClick={() =>
                 trackEvent('cta_click', {
-                  cta_label: 'Get a Claim Snapshot - Mobile Sticky',
-                  destination: '/contact?intent=claim-support-review&source=scrutexity-mobile-sticky',
+                  cta_label: 'Request a Private Assessment - Mobile Sticky',
+                  destination: '/private-assessment?source=scrutexity-mobile-sticky',
                   section: 'mobile-sticky',
                 })
               }
               className="flex min-h-12 items-center gap-2 rounded-md bg-espresso px-6 py-3 font-sans text-sm font-semibold text-cream shadow-[0_12px_28px_rgba(28,24,20,0.24)] transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
             >
-              Get a Claim Snapshot
+              Request a Private Assessment
               <ArrowRight size={16} />
             </Link>
           </div>

@@ -198,7 +198,7 @@ export default function GLP1ClaimTeardownPage() {
               <ArrowRight size={16} />
             </Link>
             <p className="mt-6 text-xs text-mist/60 max-w-lg mx-auto leading-relaxed">
-              For a full audit covering every claim phrase, proof-gap table, AI Answer Reality Receipt, and structured Claim Cleanup Record: <Link href="https://auditgpt.ai/snapshot?source=glp1-teardown&intent=paid" className="text-sage-deep underline underline-offset-2 hover:text-espresso">Get the $497 Claim Exposure Audit</Link>.
+              For a full review covering every claim phrase, proof-gap table, AI Answer Reality Receipt, and structured next-action record: <Link href="/contact?intent=claim-support-review&source=glp1-teardown" className="text-sage-deep underline underline-offset-2 hover:text-espresso">Start a Claim Review</Link>.
             </p>
           </div>
         </div>

@@ -5,8 +5,9 @@ import { ENFORCEMENT_TRACKER, ENFORCEMENT_TRACKER_LAST_REVIEWED } from '@/data/e
 export const metadata: Metadata = {
   title: 'Enforcement Tracker | Scrutexity',
   description:
-    'Live enforcement intelligence feed. FDA and FTC warning letters, cited claim patterns, severity ratings, and per-pattern claim review requests.',
+    'Source-linked enforcement tracker. FDA and FTC warning letters, cited claim patterns, severity ratings, and per-pattern claim review requests.',
   alternates: { canonical: '/tracker' },
+  robots: { index: false, follow: true },
 };
 
 export default function TrackerPage() {

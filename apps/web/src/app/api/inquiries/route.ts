@@ -5,18 +5,32 @@ import { saveInquiry, type InquiryOffer } from '@/lib/inquiries';
 const inquirySchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(254),
-  websiteUrl: z.string().trim().url().max(2048),
+  // Optional: Private Assessment requests may not have a single public URL
+  // (e.g. an undisclosed acquisition target). Legacy callers still send it.
+  websiteUrl: z.string().trim().url().max(2048).optional().default(''),
   offer: z.enum([
     'claim-support-review',
     'founders-audit',
     'agency-claim-qa',
     'agent-evidence-pack',
     'monitoring',
+    'claim-exposure-diagnostic',
+    'enterprise-exposure-assessment',
+    'ai-regulatory-diligence',
+    'counsel-review',
+    'ai-narrative-integrity',
+    'private-assessment',
   ]),
   context: z.string().trim().max(2000).optional().default(''),
   source: z.string().trim().max(100).optional().default('contact'),
   consent: z.literal(true),
   companyWebsite: z.string().max(0).optional().default(''),
+  // Qualification fields — Private Assessment intake only.
+  company: z.string().trim().max(150).optional().default(''),
+  role: z.string().trim().max(150).optional().default(''),
+  companyType: z.string().trim().max(100).optional().default(''),
+  entityCount: z.string().trim().max(50).optional().default(''),
+  evaluating: z.string().trim().max(100).optional().default(''),
 });
 
 async function notifyOwner(record: {
@@ -26,11 +40,18 @@ async function notifyOwner(record: {
   websiteUrl: string;
   offer: InquiryOffer;
   context: string | null;
+  company?: string;
+  role?: string;
+  companyType?: string;
+  entityCount?: string;
+  evaluating?: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.INQUIRY_FROM_EMAIL;
   const owner = process.env.INQUIRY_OWNER_EMAIL ?? 'nick@scrutexity.com';
   if (!apiKey || !from) return false;
+
+  const optional = (label: string, value?: string) => (value ? `${label}: ${value}` : null);
 
   const { Resend } = await import('resend');
   const resend = new Resend(apiKey);
@@ -43,12 +64,19 @@ async function notifyOwner(record: {
       `Inquiry ID: ${record.id}`,
       `Offer: ${record.offer}`,
       `Name: ${record.name}`,
+      optional('Company', record.company),
+      optional('Role', record.role),
       `Email: ${record.email}`,
-      `Website: ${record.websiteUrl}`,
+      record.websiteUrl ? `Website: ${record.websiteUrl}` : null,
+      optional('Company type', record.companyType),
+      optional('Entities / locations', record.entityCount),
+      optional('Evaluating', record.evaluating),
       '',
       'Context:',
       record.context || 'Not provided',
-    ].join('\n'),
+    ]
+      .filter((line) => line !== null)
+      .join('\n'),
   });
   if (result.error) throw new Error('OWNER_NOTIFICATION_FAILED');
   return true;

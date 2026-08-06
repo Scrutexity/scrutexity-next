@@ -73,10 +73,7 @@ const CLAIM_CATEGORIES = [
 ];
 
 const OFFER_STEPS = [
-  { step: 1, name: 'Free NY/NJ Claim Snapshot', price: '$0', highlight: 'Start here', detail: 'Submit your URL. We surface the top 3 claim exposures on your public-facing pages — credential language, FDA terminology, outcome claims, or AI answer distortion.', cta: 'Run Free Snapshot', href: 'https://auditgpt.ai/snapshot?source=ny-nj-landing' },
-  { step: 2, name: 'NY/NJ Claim Exposure Audit', price: '$497', highlight: null, detail: 'Full claim inventory of your homepage and top service pages. Every flagged claim gets: evidence map, risk label, safer rewrite, and proof requirement.', cta: 'Get the $497 Audit', href: 'https://auditgpt.ai/snapshot?source=ny-nj-landing&intent=paid' },
-  { step: 3, name: 'Claim Cleanup Record', price: '$1,997', highlight: 'Best value', detail: 'Done-for-you: safer rewrites executed, proof-gap table delivered, AI Answer Reality Receipt, medical-director visibility check, and a final Claim Cleanup Record PDF — a structured record of what changed and why.', cta: 'Book Claim Cleanup Record', href: '/contact?intent=claim-cleanup-record&source=ny-nj-landing' },
-  { step: 4, name: 'Guardian Monitoring', price: 'from $1,497/mo', highlight: 'Ongoing', detail: 'Monthly AuditGPT pass with risk delta. Claim drift alerts as your marketing team publishes. Ongoing evidence updates.', cta: 'Start Monitoring', href: '/pricing?source=ny-nj-landing#monitoring' },
+  { step: 1, name: 'Claim Support Review', price: '$99', highlight: null, detail: 'Focused review of one public page. Returns the claim wording, visible support, remaining gap, and safer framing drafts for every flagged phrase.', cta: 'Start a Claim Review', href: '/contact?intent=claim-support-review&source=ny-nj-landing' },
 ];
 
 const FAQS = [
@@ -219,12 +216,12 @@ export default function NYMedSpaClaimAuditPage() {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: EASE, delay: 0.28 }} className="mt-8 flex flex-wrap gap-4">
-            <Link href="https://auditgpt.ai/snapshot?source=ny-nj-hero" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-              Run Free NY Claim Snapshot
+            <Link href="/contact?intent=claim-support-review&source=ny-nj-hero" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
+              Start a Claim Review
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link href="https://auditgpt.ai/snapshot?source=ny-nj-hero&intent=paid" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Get the $497 Audit
+            <Link href="/sample-report" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
+              View the sample report
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>

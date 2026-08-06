@@ -45,11 +45,10 @@ const segments = [
 ];
 
 const auditIncludes = [
-  'Missed-inquiry review across calls, forms, and DMs',
-  'Follow-up gap map by hour, channel, and provider',
-  'Claim-risk review of public patient-facing content',
-  '10 safer content and follow-up recommendations',
-  'Prioritized recovery plan with sequencing',
+  'Focused review of one public page',
+  'Claim-by-claim evidence map with visible support notes',
+  'Safer framing drafts for every flagged phrase',
+  'Prioritized next step for your team',
 ];
 
 export default function MedicalWellnessContent() {
@@ -206,7 +205,7 @@ export default function MedicalWellnessContent() {
             <p className="mt-5 text-base text-mist leading-[1.6] max-w-xl">
               The common thread isn&rsquo;t the treatment menu. It&rsquo;s
               that patients reach out, the calendar misses them, and the public
-              marketing is one wrong sentence away from a board review.
+              marketing can carry claims a careful buyer cannot verify.
             </p>
           </motion.div>
 
@@ -316,23 +315,24 @@ export default function MedicalWellnessContent() {
               style={{ fontFamily: MONO_STACK }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-sage-deep" />
-              Medical &amp; Wellness Demand Recovery Audit
+              Medical &amp; Wellness Claim Review
             </span>
 
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
               <div className="max-w-xl">
                 <h3 className="font-display text-3xl md:text-4xl text-ink tracking-[-0.02em] leading-[1.05]">
-                  Claim Exposure Audit.{' '}
-                  <span className="italic text-sage-deep">Delivered in 72 hours.</span>
+                  Claim Support Review.{' '}
+                  <span className="italic text-sage-deep">Focused · 48-hour target.</span>
                 </h3>
                 <p className="mt-4 text-base text-mist leading-[1.6]">
-                  Read-only review of your public claim surface. Includes a claim-risk review, drop-in safer rewrites, and a prioritized recovery plan you can hand to your team.
+                  Read-only review of one public page. Returns the claim wording, visible
+                  support, remaining gap, and safer framing drafts you can hand to your team.
                 </p>
               </div>
               <div className="md:text-right shrink-0">
-                <div className="font-display text-5xl text-ink tabular-nums leading-none">$497</div>
+                <div className="font-display text-5xl text-ink tabular-nums leading-none">$99</div>
                 <div className="text-xs text-mist mt-1" style={{ fontFamily: MONO_STACK }}>
-                  one-time · per location
+                  one public page
                 </div>
               </div>
             </div>
@@ -348,11 +348,11 @@ export default function MedicalWellnessContent() {
 
             <div className="mt-8 flex flex-wrap items-center gap-7">
               <Link
-                href="/claim-audit?intent=recovery"
+                href="/contact?intent=claim-support-review&source=medical-wellness"
                 className="group inline-flex items-center gap-2 rounded-xl bg-sage-deep hover:bg-ink text-cream px-7 py-3.5 text-sm font-semibold transition-all duration-300 shadow-xs cursor-pointer"
                 style={{ boxShadow: '0 8px 24px rgba(94,122,90,0.15)' }}
               >
-                Request Recovery Audit
+                Start a Claim Review
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
@@ -360,13 +360,6 @@ export default function MedicalWellnessContent() {
                 className="group text-sm font-semibold text-ink hover:text-sage-deep transition-colors duration-300 inline-flex items-center gap-1.5"
               >
                 View Pricing
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-              </Link>
-              <Link
-                href="/claim-audit?intent=claim-audit"
-                className="group text-sm font-semibold text-mist hover:text-sage-deep transition-colors duration-300 inline-flex items-center gap-1.5"
-              >
-                Run AuditGPT for patient-facing claims
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>

@@ -34,30 +34,12 @@ const REVIEW_ITEMS = [
 const OFFER_STEPS = [
   {
     step: 1,
-    name: 'Free GLP-1 Claim Snapshot',
-    price: '$0',
+    name: 'Claim Support Review',
+    price: '$99',
     highlight: 'Start here',
-    detail: 'Submit your URL. We surface the top 3 claim exposures on your weight loss or GLP-1 pages — outcome language, medication wording, or AI answer distortion.',
-    cta: 'Run Free Snapshot',
-    href: 'https://auditgpt.ai/snapshot?source=glp1-landing',
-  },
-  {
-    step: 2,
-    name: 'GLP-1 Claim Exposure Audit',
-    price: '$497',
-    highlight: null,
-    detail: 'Full claim inventory of your weight loss pages. Every flagged claim gets a risk label, evidence map, safer rewrite, and proof requirement. AI Answer Reality Receipt included.',
-    cta: 'Get the $497 Audit',
-    href: 'https://auditgpt.ai/snapshot?source=glp1-landing&intent=paid',
-  },
-  {
-    step: 3,
-    name: 'Claim Cleanup Record',
-    price: '$1,997',
-    highlight: 'Best value',
-    detail: 'Done-for-you: safer rewrites executed across your weight loss and GLP-1 pages. Final Claim Cleanup Record PDF — a structured record of what changed, why, and what public support now backs each claim.',
-    cta: 'Book Claim Cleanup Record',
-    href: '/contact?intent=claim-cleanup-record&source=glp1-landing',
+    detail: 'Focused review of one public page. Returns the claim wording, visible support, remaining gap, and safer framing drafts for every flagged phrase.',
+    cta: 'Start a Claim Review',
+    href: '/contact?intent=claim-support-review&source=glp1-landing',
   },
 ];
 
@@ -141,11 +123,11 @@ export default function GLP1ClaimAuditPage() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Link href="https://auditgpt.ai/snapshot?source=glp1-hero" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-              Run Free GLP-1 Claim Snapshot
+              Start a Claim Review
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="https://auditgpt.ai/snapshot?source=glp1-hero&intent=paid" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Get the $497 Claim Exposure Audit
+              Get the $99 Claim Support Review
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="/sample-report" className="group px-7 py-4 bg-transparent hover:bg-bone/70 border border-sand-deep/25 text-espresso/80 hover:text-espresso font-medium rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
@@ -163,7 +145,7 @@ export default function GLP1ClaimAuditPage() {
       <section className="px-6 py-14 bg-bone border-b border-sand-deep/15">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-clay font-semibold" style={{ fontFamily: MONO }}>Example — what the free snapshot surfaces</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-clay font-semibold" style={{ fontFamily: MONO }}>Example — what a claim review surfaces</p>
             <span className="px-2 py-0.5 bg-clay/10 text-clay border border-clay/20 text-[9px] font-mono uppercase tracking-wider rounded">High risk</span>
           </div>
 
@@ -209,13 +191,13 @@ export default function GLP1ClaimAuditPage() {
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-5 border-t border-sand-deep/20">
                 <p className="text-sm text-mist leading-snug">
-                  <span className="font-semibold text-espresso">Free snapshot</span> surfaces 3 findings like this. The $497 audit includes all claims, proof-gap table, AI Answer Reality Receipt, and safer rewrites for every flagged phrase.
+                  <span className="font-semibold text-espresso">A claim review</span> surfaces findings like this: exact wording, visible support, proof gap, and safer framing for every flagged phrase.
                 </p>
                 <Link
                   href="https://auditgpt.ai/snapshot?source=glp1-demo-card&intent=paid"
                   className="shrink-0 group px-5 py-3 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all text-sm inline-flex items-center gap-2"
                 >
-                  Unlock full Claim Exposure Audit — $497
+                  Start with one public page.
                   <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
@@ -236,7 +218,7 @@ export default function GLP1ClaimAuditPage() {
               Every med-spa and wellness clinic adding GLP-1 or medical weight loss services is creating new website pages, landing pages, and ad copy this year — most of it written before anyone checked the claim language against visible support.
             </p>
             <p className="mt-4 text-sm text-mist leading-[1.6]">
-              GLP-1 advertising sits at the intersection of three active enforcement areas: FTC outcome claim rules, FDA medication advertising standards, and emerging compound pharmacy restrictions. That combination means a single poorly worded sentence — "lose up to 30 pounds guaranteed" — creates exposure in multiple directions simultaneously.
+              GLP-1 advertising sits at the intersection of FTC outcome-claim rules, FDA medication advertising standards, and compound pharmacy restrictions. That combination means a single poorly worded sentence — "lose up to 30 pounds guaranteed" — can create claims a careful buyer cannot verify.
             </p>
           </div>
           <div className="space-y-4">
@@ -284,7 +266,7 @@ export default function GLP1ClaimAuditPage() {
       <section className="px-6 py-20 bg-cream border-b border-sand-deep/15">
         <div className="max-w-5xl mx-auto">
           <div className="max-w-2xl mb-12">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4" style={{ fontFamily: MONO }}>What the $497 audit includes</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4" style={{ fontFamily: MONO }}>What a claim review includes</p>
             <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
               Seven claim categories reviewed on every GLP-1 page.
             </h2>
@@ -307,7 +289,7 @@ export default function GLP1ClaimAuditPage() {
           <div className="max-w-2xl mb-12">
             <p className="text-[11px] uppercase tracking-[0.18em] text-sage-deep mb-4" style={{ fontFamily: MONO }}>Offer stack</p>
             <h2 className="font-display text-3xl md:text-4xl text-espresso tracking-[-0.02em] leading-[1.1]">
-              Start free. Graduate through the system.
+              Start with one public page.
             </h2>
           </div>
           <div className="flex flex-col lg:flex-row gap-5 items-stretch">
@@ -349,7 +331,7 @@ export default function GLP1ClaimAuditPage() {
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href="https://auditgpt.ai/snapshot?source=glp1-bottom" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Run Free GLP-1 Claim Snapshot <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+              Start a Claim Review <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="/agency/claim-intelligence-receipt?source=glp1-bottom" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
               Agency Claim Intelligence Receipt <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />

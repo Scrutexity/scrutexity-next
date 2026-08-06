@@ -11,11 +11,10 @@ const nextConfig: NextConfig = {
       },
       // Keep legacy product entry points on the canonical Scrutexity intake.
       // Sending these routes back to auditgpt.ai creates a cross-project loop.
-      {
-        source: '/snapshot',
-        destination: '/contact?intent=claim-support-review&source=scrutexity-snapshot',
-        permanent: false,
-      },
+      // The /snapshot route is now the active front door.
+      // Claim Intelligence Standard — /standards is referenced in crawl audits
+      // and by name on the site; route it to the methodology page that hosts it.
+      { source: '/standards', destination: '/methodology', permanent: true },
       // Batch 3a — Internal / Test routes
       { source: '/dashboard-test', destination: '/claim-audit', permanent: true },
       { source: '/radar', destination: '/claim-audit', permanent: true },
@@ -24,7 +23,6 @@ const nextConfig: NextConfig = {
       { source: '/proof/telemetry-alpha', destination: '/proof', permanent: true },
       // Batch 3b — P0 Banned name slugs & cross-brand redirects
       { source: '/agency/claim-intelligence-receipt', destination: '/agency/claim-receipt', permanent: true },
-      { source: '/auditgpt', destination: '/contact?intent=claim-support-review&source=scrutexity-auditgpt', permanent: true },
       // Sub-batch 3c-1 — Legacy /about/* routes
       { source: '/about/clinical-demand-governance', destination: '/methodology', permanent: true },
       { source: '/about/clinical-demand-governance/ai-ingress-protocols', destination: '/methodology', permanent: true },
@@ -106,13 +104,30 @@ const nextConfig: NextConfig = {
       { source: '/sample-snapshot', destination: '/sample-report', permanent: true },
       { source: '/platform', destination: '/', permanent: true },
       { source: '/demo', destination: '/', permanent: true },
-      { source: '/pilot', destination: '/', permanent: true },
+      // Legacy pilot route — agency pilot is the active equivalent.
+      { source: '/pilot', destination: '/agency', permanent: true },
       { source: '/radar-pilot', destination: '/', permanent: true },
       { source: '/radar-pilot/:path*', destination: '/', permanent: true },
       { source: '/roi', destination: '/', permanent: true },
       { source: '/flow', destination: '/', permanent: true },
-      { source: '/diagnostic', destination: '/', permanent: true },
+      { source: '/diagnostic', destination: '/claim-exposure-diagnostic', permanent: true },
       { source: '/architecture-visual', destination: '/', permanent: true },
+      // ── August 2026 repositioning ──────────────────────────────────────
+      // Forensic Intelligence for AI, Claims & Regulatory Risk. Legacy
+      // positioning routes fold into the new product ladder. Every old URL
+      // keeps resolving; none are dropped.
+      { source: '/scan', destination: '/snapshot', permanent: true },
+      { source: '/for-investors', destination: '/diligence', permanent: true },
+      { source: '/private-equity/claim-diligence', destination: '/diligence', permanent: true },
+      { source: '/private-equity/report', destination: '/diligence', permanent: true },
+      { source: '/ai-visibility', destination: '/ai-narrative-integrity', permanent: true },
+      { source: '/monitoring', destination: '/watch', permanent: true },
+      { source: '/exposure-assessment', destination: '/enterprise', permanent: true },
+      { source: '/for-counsel', destination: '/counsel', permanent: true },
+      { source: '/general-counsel', destination: '/counsel', permanent: true },
+      { source: '/request-assessment', destination: '/private-assessment', permanent: true },
+      { source: '/assessment', destination: '/private-assessment', permanent: true },
+      { source: '/sample-diligence-file', destination: '/sample-report', permanent: true },
       { source: '/intelligence/ftc-pixel-compliance', destination: '/tracker', permanent: true },
       { source: '/intelligence/morpheus8-consult-conversion', destination: '/', permanent: true },
       { source: '/insights/what-is-governed-marketing-demand-recovery', destination: '/', permanent: true },

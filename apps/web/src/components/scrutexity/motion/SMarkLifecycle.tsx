@@ -1,100 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { INSTITUTIONAL_SPRING } from "@/lib/motion";
-import { ShieldCheck, AlertCircle, Clock } from "lucide-react";
-
-type Status = "unverified" | "active" | "expired";
+import React from "react";
+import { ShieldCheck, RefreshCw, FileWarning } from "lucide-react";
 
 export function SMarkLifecycle() {
-  const [status, setStatus] = useState<Status>("active");
-
-  const statusConfig = {
-    unverified: {
-      label: "NO REVIEW RECORD",
-      icon: Clock,
-      color: "text-mist",
-      bg: "bg-bone/80",
-      border: "border-sand-deep/30",
-      ttl: "N/A",
-    },
-    active: {
-      label: "REVIEW RECORD ACTIVE",
-      icon: ShieldCheck,
-      color: "text-sage-deep",
-      bg: "bg-sage/12",
-      border: "border-sage-deep/40",
-      ttl: "89 days remaining",
-    },
-    expired: {
-      label: "RECORD EXPIRED (STALE COPY)",
-      icon: AlertCircle,
-      color: "text-clay",
-      bg: "bg-clay/10",
-      border: "border-clay/30",
-      ttl: "0 days (Review required)",
-    },
-  };
-
-  const CurrentIcon = statusConfig[status].icon;
-
   return (
     <div className="rounded-3xl border border-sand-deep/40 bg-cream-deep/95 p-6 md:p-8 max-w-md shadow-md backdrop-blur-md">
-      <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-mist font-semibold mb-4">
-        S-MARK LIFECYCLE STATE PREVIEW
+      <div className="flex items-center justify-between border-b border-sand-deep/20 pb-4 mb-5 font-mono text-[10px] tracking-[0.18em] uppercase text-mist">
+        <span>RECORD_LIFECYCLE // REVIEW_STATE</span>
+        <div className="flex items-center gap-1.5 text-sage-deep">
+          <ShieldCheck size={12} />
+          RECORD ACTIVE
+        </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={status}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={INSTITUTIONAL_SPRING}
-          className={`flex items-center justify-between gap-3 rounded-2xl border p-4 font-mono text-xs ${statusConfig[status].bg} ${statusConfig[status].border}`}
-        >
-          <div className="flex items-center gap-2.5">
-            <CurrentIcon size={16} className={statusConfig[status].color} />
-            <span className={`font-bold ${statusConfig[status].color}`}>
-              {statusConfig[status].label}
-            </span>
+      <div className="rounded-2xl border border-sage-deep/40 bg-sage/12 p-4">
+        <div className="flex items-center gap-3">
+          <ShieldCheck className="text-sage-deep shrink-0" size={18} />
+          <div>
+            <div className="text-[10px] uppercase tracking-widest font-semibold text-sage-deep">
+              Dated review record
+            </div>
+            <div className="mt-1 font-mono text-xs text-espresso">
+              Reviewed 06/26/2026 · claims, support, and rewrites on file
+            </div>
           </div>
-          <span className="text-[10px] text-espresso/70 font-sans">{statusConfig[status].ttl}</span>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      </div>
 
-      <div className="mt-6 flex flex-wrap gap-2 font-mono text-xs">
-        <button
-          onClick={() => setStatus("active")}
-          className={`px-3 py-1.5 rounded-xl border transition-all text-[11px] font-medium ${
-            status === "active"
-              ? "border-sage-deep bg-sage-deep text-cream shadow-sm"
-              : "border-sand-deep/40 bg-bone text-espresso hover:border-sand-deep"
-          }`}
-        >
-          Set Active
-        </button>
-        <button
-          onClick={() => setStatus("expired")}
-          className={`px-3 py-1.5 rounded-xl border transition-all text-[11px] font-medium ${
-            status === "expired"
-              ? "border-clay bg-clay text-cream shadow-sm"
-              : "border-sand-deep/40 bg-bone text-espresso hover:border-sand-deep"
-          }`}
-        >
-          Simulate Expiration
-        </button>
-        <button
-          onClick={() => setStatus("unverified")}
-          className={`px-3 py-1.5 rounded-xl border transition-all text-[11px] font-medium ${
-            status === "unverified"
-              ? "border-espresso bg-espresso text-cream shadow-sm"
-              : "border-sand-deep/40 bg-bone text-espresso hover:border-sand-deep"
-          }`}
-        >
-          Reset State
-        </button>
+      <div className="mt-4 space-y-3">
+        <div className="flex items-start gap-3 rounded-2xl border border-sand-deep/25 bg-bone/70 p-3.5">
+          <RefreshCw className="text-espresso/60 shrink-0 mt-0.5" size={15} />
+          <p className="text-xs text-espresso/75 font-sans leading-relaxed">
+            A re-review is triggered by change, not a clock: published page edits, new
+            evidence, or an enforcement update that affects a mapped claim.
+          </p>
+        </div>
+        <div className="flex items-start gap-3 rounded-2xl border border-sand-deep/25 bg-bone/70 p-3.5">
+          <FileWarning className="text-espresso/60 shrink-0 mt-0.5" size={15} />
+          <p className="text-xs text-espresso/75 font-sans leading-relaxed">
+            The record keeps the dated chronology: what was claimed, what supported it,
+            who approved the change, and how the surface evolved.
+          </p>
+        </div>
       </div>
     </div>
   );

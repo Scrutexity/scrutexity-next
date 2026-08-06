@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     'Apply for one of 5 Scrutexity Partner OS founding beta spots for agencies serving med spas, wellness clinics, aesthetic practices, and high-trust local healthcare clients.',
   alternates: { canonical: '/partner-os' },
+  robots: { index: false, follow: true },
 };
 
 const betaTerms = [
@@ -25,10 +26,10 @@ const betaTerms = [
 
 const sequence = [
   'Free sample finding for client page',
-  '$497 Claim Exposure Audit',
+  'Claim Support Review — $99',
   'Claim Audit Receipt — client approval record',
-  '$1,997 Claim Cleanup Record',
-  'From $1,497/month Guardian Monitoring',
+  'Founder’s Audit — from $750',
+  'Agency Claim QA — from $1,500',
   'Partner OS relationship',
 ];
 

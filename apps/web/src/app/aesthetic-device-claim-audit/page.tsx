@@ -187,12 +187,12 @@ export default function AestheticDeviceClaimAuditPage() {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, ease: EASE, delay: 0.28 }} className="mt-8 flex flex-wrap gap-4">
-            <Link href="https://auditgpt.ai/snapshot?source=device-claim-hero" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
-              Run Free Device Claim Snapshot
+            <Link href="/contact?intent=claim-support-review&source=device-page" className="group px-7 py-4 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2 shadow-[0_12px_32px_-12px_rgba(94,122,90,0.55)]">
+              Start a Claim Review
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link href="/contact?intent=device-evidence-pack&source=device-hero" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
-              Request Device Evidence Pack
+            <Link href="/sample-report" className="group px-7 py-4 bg-bone hover:bg-cream border border-sand-deep/45 text-espresso font-semibold rounded-xl transition-all duration-300 text-sm inline-flex items-center gap-2">
+              View the sample report
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -323,11 +323,11 @@ export default function AestheticDeviceClaimAuditPage() {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <Link href="/contact?intent=device-evidence-pack&source=evidence-pack-section" className="group px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
-              Request Device Evidence Pack <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            <Link href="/contact?intent=claim-support-review&source=device-page" className="group px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
+              Start a Claim Review <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <Link href="https://auditgpt.ai/snapshot?source=device-evidence-pack" className="group px-6 py-3.5 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
-              Run Free Device Snapshot First
+            <Link href="/sample-report" className="group px-6 py-3.5 bg-bone hover:bg-cream border border-sand-deep/40 text-espresso font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
+              View the sample report
             </Link>
           </div>
         </div>
@@ -357,17 +357,18 @@ export default function AestheticDeviceClaimAuditPage() {
       <section className="px-6 py-16 bg-bone border-b border-sand-deep/15">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 rounded-2xl border border-sage-deep/25 bg-sage/5 p-7 md:p-9">
           <div className="max-w-xl">
-            <p className="text-[10px] font-mono uppercase tracking-[0.18em] text-sage-deep mb-2">Claim Cleanup Record handoff</p>
+            <p className="text-[10px] font-mono uppercase tracking-[0.18em] text-sage-deep mb-2">Claim Support Review handoff</p>
             <h3 className="font-display text-xl md:text-2xl text-espresso leading-snug">
-              Device Evidence Pack surfaced risky language. The Claim Cleanup Record fixes it.
+              Evidence gaps surfaced. Safer framing drafted.
             </h3>
             <p className="mt-3 text-sm text-mist leading-relaxed">
-              A structured record showing what device claims were changed, why they were changed, what support now backs each claim, and which claims still require caution. $1,997 one-time.
+              A focused review records what each device claim says, what visible support exists,
+              and what safer framing looks like. $99 · one public page.
             </p>
           </div>
           <div className="flex flex-col gap-3 shrink-0">
-            <Link href="/contact?intent=claim-cleanup-record&source=device-page" className="group px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
-              Book Claim Cleanup Record <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+            <Link href="/contact?intent=claim-support-review&source=device-page" className="group px-6 py-3.5 bg-sage-deep hover:bg-espresso text-cream font-semibold rounded-xl text-sm inline-flex items-center gap-2 transition-all">
+              Start a Claim Review <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link href="/agency/claim-intelligence-receipt?source=device-page" className="group px-6 py-3 text-sm text-espresso hover:text-sage-deep transition-colors inline-flex items-center gap-1.5">
               Agency Claim Intelligence Receipt <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />

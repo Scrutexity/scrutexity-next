@@ -1,11 +1,20 @@
 import crypto from 'crypto';
 
 export type InquiryOffer =
+  // Legacy offers — retained so historical records and the existing
+  // contact form continue to resolve.
   | 'claim-support-review'
   | 'founders-audit'
   | 'agency-claim-qa'
   | 'agent-evidence-pack'
-  | 'monitoring';
+  | 'monitoring'
+  // Current engagement ladder.
+  | 'claim-exposure-diagnostic'
+  | 'enterprise-exposure-assessment'
+  | 'ai-regulatory-diligence'
+  | 'counsel-review'
+  | 'ai-narrative-integrity'
+  | 'private-assessment';
 
 export interface InquiryRecord {
   id: string;
@@ -20,6 +29,13 @@ export interface InquiryRecord {
   createdAt: string;
   paidAt?: string;
   stripeSessionId?: string;
+  /* Qualification fields captured by the Private Assessment intake.
+     Optional so legacy records and the existing contact form stay valid. */
+  company?: string;
+  role?: string;
+  companyType?: string;
+  entityCount?: string;
+  evaluating?: string;
 }
 
 const RECORD_TTL_SECONDS = 90 * 24 * 60 * 60;
