@@ -12,7 +12,6 @@ const links = [
   { name: 'Sample Report', href: '/sample-report' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Enterprise', href: '/enterprise' },
-  { name: 'New York', href: '/nyc' },
 ];
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 export function SiteNav() {
@@ -37,10 +36,8 @@ export function SiteNav() {
       <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${scrolled || isOpen ? 'border-ink/10 bg-cream py-4 shadow-[0_1px_0_rgba(28,24,20,0.06)]' : 'border-transparent bg-cream/80 backdrop-blur-[12px] py-6'}`}>
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-5 sm:px-8">
           <div className="flex items-center gap-6">
-            <Link href="/" className="flex shrink-0 items-center gap-3">
+            <Link href="/" className="flex shrink-0 items-center">
               <Image src="/logo-wordmark-black.png" alt="Scrutexity" width={160} height={32} priority className="h-[22px] lg:h-[26px] w-auto dark-invert" />
-              <span className="hidden h-4 w-px bg-sand-deep 2xl:block" aria-hidden />
-              <span className="hidden text-[10px] tracking-[0.14em] text-mist uppercase 2xl:inline" style={{ fontFamily: MONO }}>Claim Intelligence — EST 2024</span>
             </Link>
           </div>
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
