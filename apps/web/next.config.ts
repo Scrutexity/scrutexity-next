@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
       // Claim Intelligence Standard — /standards is referenced in crawl audits
       // and by name on the site; route it to the methodology page that hosts it.
       { source: '/standards', destination: '/methodology', permanent: true },
+      // NYC enforcement page removed (2026-08); fold into methodology.
+      { source: '/nyc', destination: '/methodology', permanent: true },
       // Benchmarks page retired with the positioning consolidation (e48bc025);
       // keep any external links landing on methodology instead of a 404.
       { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
