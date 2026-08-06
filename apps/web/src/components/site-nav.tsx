@@ -73,8 +73,8 @@ export function SiteNav() {
               </nav>
             </div>
             <div className="mt-8 space-y-3">
-              <Link href="/snapshot" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center bg-espresso px-6 text-[13px] font-semibold tracking-[0.02em] text-cream" style={{ fontFamily: MONO }}>Run free snapshot</Link>
-              <Link href="mailto:hello@scrutexity.com" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center border border-ink/10 bg-bone px-6 text-[13px] font-semibold text-espresso">Contact</Link>
+              <Link href="/snapshot" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center bg-espresso px-6 text-[13px] font-semibold tracking-[0.02em] text-cream rounded-full" style={{ fontFamily: MONO }}>Run free snapshot</Link>
+              <Link href="mailto:hello@scrutexity.com" onClick={() => setIsOpen(false)} className="flex min-h-12 w-full items-center justify-center border border-ink/10 bg-bone px-6 text-[13px] font-semibold text-espresso rounded-full">Contact</Link>
             </div>
             <p className="mt-8 text-center text-[10px] tracking-[0.12em] text-mist uppercase" style={{ fontFamily: MONO }}>Not a law firm · Not legal advice · Evidence first</p>
           </motion.div>
