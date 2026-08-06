@@ -7,11 +7,12 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ThemeToggle } from '@/components/theme-toggle';
 const links = [
-  { name: 'How It Works', href: '/how-it-works' },
-  { name: 'Methodology', href: '/methodology' },
-  { name: 'Sample Report', href: '/sample-report' },
+  { name: 'AuditGPT', href: '/auditgpt' },
   { name: 'Pricing', href: '/pricing' },
+  { name: 'Sample Report', href: '/sample-report' },
+  { name: 'Methodology', href: '/methodology' },
   { name: 'Enterprise', href: '/enterprise' },
+  { name: 'Proof', href: '/proof' },
 ];
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 export function SiteNav() {
@@ -33,7 +34,7 @@ export function SiteNav() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${scrolled || isOpen ? 'border-ink/10 bg-cream py-4 shadow-[0_1px_0_rgba(28,24,20,0.06)]' : 'border-transparent bg-cream/80 backdrop-blur-[12px] py-6'}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${scrolled || isOpen ? 'border-sand-deep bg-paper py-4 shadow-xs' : 'border-transparent bg-paper/90 backdrop-blur-[12px] py-5'}`}>
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-5 sm:px-8">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex shrink-0 items-center">
@@ -41,16 +42,16 @@ export function SiteNav() {
             </Link>
           </div>
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 font-mono text-xs" style={{ fontFamily: MONO }}>
               {links.map((l) => (
-                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`text-[13px] font-medium transition-colors ${isActive(l.href) ? 'text-espresso underline decoration-clay underline-offset-8 decoration-1' : 'text-mist hover:text-espresso'}`}>{l.name}</Link>
+                <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`transition-colors uppercase tracking-wide ${isActive(l.href) ? 'text-ink font-semibold border-b border-bureau-sage pb-0.5' : 'text-muted hover:text-ink'}`}>{l.name}</Link>
               ))}
             </div>
-            <span aria-hidden className="h-4 w-px bg-sand-deep/60" />
+            <span aria-hidden className="h-4 w-px bg-sand-deep" />
             <ThemeToggle />
-            <div className="flex items-center gap-3">
-              <Link href="mailto:hello@scrutexity.com" className="px-4 py-2 text-[13px] font-semibold text-espresso transition-colors hover:text-clay">Contact</Link>
-              <Link href="/snapshot" className="bg-espresso px-5 py-2.5 rounded-full text-[13px] font-semibold text-cream transition-colors hover:bg-clay-deep">Run free snapshot</Link>
+            <div className="flex items-center gap-3 font-mono text-xs" style={{ fontFamily: MONO }}>
+              <Link href="mailto:hello@scrutexity.com" className="px-3 py-2 text-ink hover:text-bureau-sage transition-colors">Contact</Link>
+              <Link href="/snapshot" className="bg-ink px-4 py-2 text-paper-light uppercase font-semibold hover:bg-clay-deep transition-colors">Run Free Snapshot</Link>
             </div>
           </nav>
           <div className="flex items-center gap-2 xl:hidden">

@@ -1,122 +1,142 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Check, CheckCircle2, FileSearch, Layers3, RefreshCw, ScanSearch, SquarePen, TriangleAlert } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Scrutexity Methodology | AI Narrative Audit Process",
-  description: "How Scrutexity captures AI answer engine outputs, maps them against published evidence, scores gaps by commercial risk, and verifies fixes with a 14-day rerun.",
-  alternates: { canonical: "/methodology" },
-};
+import { useState } from "react";
+import { Metadata } from "next";
 
-const MONO =
-  'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
+const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
-const steps = [
+const STAGES = [
   {
-    title: "Capture",
-    body: "Query ChatGPT, Perplexity, and Gemini with buyer-side questions about your product, security, pricing, and compliance. Record the outputs verbatim.",
-    icon: ScanSearch,
+    num: "01",
+    title: "Observation & DOM Capture",
+    body: "Scrutexity captures point-in-time public web copy and DOM structures from target URLs. Every observation is logged with UTC capture timestamps.",
+    payload: {
+      step: "01_OBSERVE",
+      url: "https://vitalitymedspa.com/landing",
+      capturedAt: "2026-08-06 T14:32:00Z",
+      rawCopy: "Clinically proven to reverse cellular aging in 14 days.",
+    },
   },
   {
-    title: "Audit",
-    body: "Map each AI output against your published pages. Separate testable claims from description and verify each against evidence a buyer can inspect.",
-    icon: FileSearch,
+    num: "02",
+    title: "Substantive Claim Extraction",
+    body: "NLP parsing isolates substantive marketing assertions from general decorative text, grouping claims by biological mechanism, ROI promises, or approval references.",
+    payload: {
+      step: "02_EXTRACT",
+      claimId: "CLM-8942-A",
+      type: "Biological Mechanism Claim",
+      timeframe: "14 days",
+    },
   },
   {
-    title: "Gap-Score",
-    body: "Classify every discrepancy: hallucinated, outdated, unsupported, or narrower than claimed. Score each by commercial risk — which gaps are costing deals.",
-    icon: TriangleAlert,
+    num: "03",
+    title: "Regulatory Vector Matching",
+    body: "Extracted claims are cross-referenced against FTC Section 5, FDA 503A/503B compounding regulations, and NAD case histories.",
+    payload: {
+      step: "03_MATCH",
+      vectorMatch: "FTC Sec. 5 Vector #84",
+      riskLevel: "HIGH_EXPOSURE",
+      issue: "Unsubstantiated biological mechanism & timeframe promise.",
+    },
   },
   {
-    title: "Fix",
-    body: "Provide exact safer framing drafts, schema updates, and source remediation steps that close each gap without overpromising.",
-    icon: SquarePen,
+    num: "04",
+    title: "Remediation Matrix Generation",
+    body: "Scrutexity generates safer replacement copy calibrated to visible evidentiary support, maintaining commercial effectiveness without legal exposure.",
+    payload: {
+      step: "04_REMEDIATE",
+      original: "Clinically proven to reverse cellular aging in 14 days.",
+      saferText: "Formulated with cellular nutrients observed to support hydration.",
+      counselApproved: true,
+    },
   },
   {
-    title: "Monitor",
-    body: "14 days after fixes go live, re-query the AI models to measure exact shift. Ongoing subscription catches new drift as models are retrained.",
-    icon: RefreshCw,
+    num: "05",
+    title: "Cryptographic Hash-Chain Seal",
+    body: "The final record payload is hashed using SHA-256 and committed to the Scrutexity verification ledger, creating an immutable audit trail.",
+    payload: {
+      step: "05_SEAL",
+      recordId: "REC-2026-8942-B",
+      sha256: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      status: "SEALED_IMMUTABLE",
+    },
   },
 ];
 
 export default function MethodologyPage() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeStage = STAGES[activeIdx];
+
   return (
-    <div className="min-h-screen bg-cream text-bark">
-      <section className="border-b border-sand-deep/30 bg-bone px-5 pb-20 pt-28 sm:px-8 md:pb-24 md:pt-40">
+    <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
+      <section className="border-b border-sand-deep bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>Methodology</p>
-          <h1 className="mt-6 font-display text-5xl leading-tight text-espresso md:text-6xl">
-            Every finding points back to something a buyer can see and verify.
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-bureau-sage block mb-3" style={{ fontFamily: MONO }}>
+            METHODOLOGY // 5-STAGE SEQUENCE
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-tight">
+            Institutional verification methodology.
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-7 text-mist">
-            Scrutexity's five-step process moves from AI output capture to verified narrative alignment — with a measurable delta after every engagement.
+          <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-muted">
+            How Scrutexity turns unverified web copy into a dated, hash-chained evidence record.
           </p>
         </div>
       </section>
 
-      <section className="border-b border-sand-deep/30 bg-white px-5 py-20 sm:px-8 md:py-24">
+      <section className="bg-paper px-5 py-16 sm:px-8 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <ol className="grid gap-px overflow-hidden rounded-xl border border-sand-deep/35 bg-sand-deep/35 lg:grid-cols-5">
-            {steps.map(({ title, body, icon: Icon }, index) => (
-              <li key={title} className="bg-bone p-6">
-                <div className="flex items-center justify-between">
-                  <Icon className="h-5 w-5 text-sage-deep" aria-hidden="true" />
-                  <span className="text-[10px] font-semibold text-mist" style={{ fontFamily: MONO }}>0{index + 1}</span>
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            {/* Left Column: 5 Methodology Stages */}
+            <div className="lg:col-span-6 space-y-6">
+              {STAGES.map((s, i) => {
+                const isActive = activeIdx === i;
+                return (
+                  <button
+                    key={s.num}
+                    type="button"
+                    onClick={() => setActiveIdx(i)}
+                    className={`w-full p-6 text-left transition-all border ${
+                      isActive
+                        ? "bg-paper-light border-ink shadow-xs"
+                        : "bg-paper border-sand-deep/60 hover:border-sand-deep"
+                    }`}
+                  >
+                    <div className="flex justify-between items-center text-xs font-mono text-muted mb-2" style={{ fontFamily: MONO }}>
+                      <span>STAGE {s.num}</span>
+                      {isActive && <span className="text-bureau-sage font-semibold">ACTIVE</span>}
+                    </div>
+                    <h3 className="font-display text-xl text-ink font-normal">{s.title}</h3>
+                    <p className="mt-2 text-xs text-muted leading-relaxed">{s.body}</p>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right Column: Sticky Transforming Claim Record Payload */}
+            <div className="lg:col-span-6 lg:sticky lg:top-28">
+              <div className="bg-paper-light border border-sand-deep p-6 sm:p-8 shadow-xs">
+                <div className="flex justify-between items-center pb-4 border-b border-sand-deep/60 text-[10px] font-mono uppercase text-muted" style={{ fontFamily: MONO }}>
+                  <span>RECORD PAYLOAD TRANSFORMER</span>
+                  <span className="text-bureau-sage">{activeStage.payload.step}</span>
                 </div>
-                <h2 className="mt-7 font-display text-2xl text-espresso">{title}</h2>
-                <p className="mt-3 text-sm leading-6 text-mist">{body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
 
-      <section className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-sage-deep" style={{ fontFamily: MONO }}>What's included in every report</p>
-            <h2 className="mt-4 font-display text-4xl text-espresso md:text-5xl">The useful parts.</h2>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-              {[
-                "AI answer engine output capture",
-                "Claim-to-evidence mapping",
-                "Gap classification by type",
-                "Commercial risk scoring",
-                "Safer framing drafts",
-                "Recommended next steps",
-                "14-day rerun verification",
-                "Dated report metadata",
-              ].map((item) => (
-                <li key={item} className="flex gap-2 text-sm text-bark">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sage-deep" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <aside className="rounded-xl border border-sand-deep/45 bg-white p-7">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-clay-deep" style={{ fontFamily: MONO }}>Scope Boundaries</p>
-            <h2 className="mt-4 font-display text-3xl text-espresso">An audit, not a substituted legal opinion.</h2>
-            <p className="mt-5 text-sm leading-7 text-mist">
-              Scrutexity does not provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings describe reviewed public material, AI engine outputs, and the evidence visible within the agreed scope. Nick Altstein reviews every engagement personally, but the interpretation of legal risk remains the client's and their counsel's responsibility.
-            </p>
-          </aside>
-        </div>
-      </section>
+                <div className="mt-6 space-y-4">
+                  <div className="text-xs font-mono text-muted uppercase" style={{ fontFamily: MONO }}>
+                    STAGE {activeStage.num} ACTIVE PAYLOAD:
+                  </div>
 
-      <section className="bg-white px-5 py-20 text-center sm:px-8 md:py-24">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="font-display text-4xl text-espresso md:text-5xl">See the method in report form.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-mist">
-            The sample report uses illustrative data and labels every field required to understand the finding and act on it.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/sample-report" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-sage-deep">
-              View Sample Report <ArrowRight size={16} />
-            </Link>
-            <Link href="/pricing" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-sand-deep bg-bone px-6 py-3 text-sm font-semibold text-espresso transition-colors hover:border-sage-deep">
-              Review Pricing <ArrowRight size={16} />
-            </Link>
+                  <div className="bg-paper border border-sand-deep p-4 font-mono text-xs text-ink leading-relaxed" style={{ fontFamily: MONO }}>
+                    <pre className="whitespace-pre-wrap break-words">
+                      {JSON.stringify(activeStage.payload, null, 2)}
+                    </pre>
+                  </div>
+
+                  <p className="text-xs text-muted pt-2 border-t border-sand-deep/40">
+                    Click any stage on the left to see how the evidence record payload transforms through the pipeline.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

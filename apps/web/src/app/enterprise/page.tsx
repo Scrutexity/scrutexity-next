@@ -1,177 +1,188 @@
-import type { Metadata } from 'next';
-import {
-  PageHero,
-  Section,
-  ItemGrid,
-  BoundaryNote,
-  CTABand,
-  RelatedRail,
-  Kicker,
-  MONO,
-} from '@/components/scrutexity/intel-kit';
+"use client";
 
-export const metadata: Metadata = {
-  title: 'Enterprise Exposure Assessment | Scrutexity',
-  description:
-    'Public-claim intelligence for organizations that cannot afford surprises. See what you claim publicly, what you can support, and how AI represents you.',
-  alternates: { canonical: '/enterprise' },
-  robots: { index: false, follow: false },
-  keywords: [
-    'regulatory exposure assessment',
-    'public claim intelligence',
-    'healthcare marketing claim risk',
-    'claim substantiation intelligence',
-    'public claim audit',
-  ],
-  openGraph: {
-    title: 'Enterprise Exposure Assessment | Scrutexity',
-    description:
-      'Public-claim intelligence for organizations that cannot afford surprises.',
-    url: '/enterprise',
-    type: 'website',
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight, ChevronRight, ShieldAlert, CheckCircle } from "lucide-react";
+
+const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
+
+const PORTFOLIO = [
+  {
+    id: "brand-a",
+    name: "Brand A — Aesthetics Platform (12 Locations)",
+    claims: 84,
+    changed: 3,
+    missing: 6,
+    status: "Current",
+    diff: {
+      url: "https://brand-a.com/treatments/laser",
+      oldText: '"FDA-Approved Laser Rejuvenation Protocol"',
+      newText: '"FDA-Cleared Laser Device Technology"',
+      reason: "Corrected unapproved treatment level approval language.",
+    },
   },
-};
-
-const audiences = [
-  'Multi-location healthcare groups',
-  'Telehealth organizations',
-  'Enterprise brands',
-  'Regulated companies',
-  'PE-backed operating companies',
-  'Marketing and risk organizations',
-];
-
-const included = [
-  'Multi-location review',
-  'Claim inventory',
-  'Evidence mapping',
-  'Pattern analysis',
-  'AI narrative assessment',
-  'Prioritized remediation',
-  'Executive briefing',
-  'Optional monitoring',
+  {
+    id: "brand-b",
+    name: "Brand B — Telehealth Wellness (5 States)",
+    claims: 47,
+    changed: 0,
+    missing: 2,
+    status: "Current",
+    diff: {
+      url: "https://brand-b.com/glp1",
+      oldText: '"Guaranteed 20% weight loss in 30 days"',
+      newText: '"Patients observed average weight loss in clinical trials"',
+      reason: "Removed absolute timeframe and outcome guarantee.",
+    },
+  },
+  {
+    id: "brand-c",
+    name: "Brand C — Longevity Clinic Network (28 Locations)",
+    claims: 109,
+    changed: 11,
+    missing: 9,
+    status: "Review Due",
+    diff: {
+      url: "https://brand-c.com/peptides",
+      oldText: '"FDA-Approved Peptide Anti-Aging Therapy"',
+      newText: '"Custom Compounded Peptide Therapy (FDA 503A Compliant)"',
+      reason: "Fixed compounding approval status misrepresentation.",
+    },
+  },
 ];
 
 export default function EnterprisePage() {
-  return (
-    <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
-      <PageHero
-        kicker="Enterprise Intelligence"
-        title="Public-claim intelligence for organizations that cannot afford surprises."
-        subtitle="Get a defensible picture of what your organization is saying publicly, what it can support, and how the market and AI systems represent it."
-        body="$7,500–$25,000+ depending on scope."
-        primary={{ label: 'Request a Private Assessment', href: '/private-assessment?intent=enterprise&source=enterprise' }}
-        secondary={{ label: 'View a Sample Diligence File', href: '/sample-report' }}
-      />
+  const [selectedBrandId, setSelectedBrandId] = useState("brand-c");
+  const selectedBrand = PORTFOLIO.find((b) => b.id === selectedBrandId) || PORTFOLIO[2];
 
-      <Section
-        kicker="The problem at scale"
-        title="Claim risk compounds with every location."
-      >
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <div className="space-y-5 text-base leading-7 text-bark">
-            <p>
-              A single organization rarely speaks with one voice. Location pages get written
-              locally. Landing pages outlive the campaigns that produced them. An acquired
-              entity arrives with its own claim history attached.
-            </p>
-            <p>
-              The result is a public claim surface no one has read end to end — including the
-              people accountable for it. When a regulator, a counterparty, or an answer system
-              reads it, they read all of it at once.
-            </p>
-            <p className="border-l-2 border-clay pl-5 text-espresso">
-              An Enterprise Exposure Assessment produces the first complete, dated inventory of
-              what the organization is actually claiming, and what its evidence supports.
-            </p>
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
+      {/* Hero */}
+      <section className="border-b border-sand-deep bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
+        <div className="mx-auto max-w-5xl text-center">
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-bureau-sage block mb-3" style={{ fontFamily: MONO }}>
+            ENTERPRISE INTELLIGENCE // PORTFOLIO SURVEILLANCE
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-tight">
+            Portfolio claim surveillance for multi-location brands &amp; PE.
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed text-muted">
+            Inspect public claim surfaces, language drift, and evidentiary gaps across dozens of operating brands in one unified dashboard.
+          </p>
+        </div>
+      </section>
+
+      {/* Portfolio Surveillance Table Visual */}
+      <section className="bg-paper px-5 py-16 sm:px-8 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-bureau-sage block mb-2" style={{ fontFamily: MONO }}>
+              Interactive Surveillance Visual
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl text-ink font-normal">
+              Click any brand row to inspect its latest language-diff receipt.
+            </h2>
           </div>
 
-          <div className="rounded-xl border border-sand-deep/50 bg-bone p-7 sm:p-9">
-            <p
-              className="mb-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-mist"
+          <div className="bg-paper-light border border-sand-deep p-6 sm:p-8 shadow-xs">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-mono" style={{ fontFamily: MONO }}>
+                <thead>
+                  <tr className="border-b border-sand-deep text-muted">
+                    <th className="pb-3 pr-4 font-normal">OPERATING COMPANY</th>
+                    <th className="pb-3 px-4 font-normal">CLAIMS</th>
+                    <th className="pb-3 px-4 font-normal">CHANGED</th>
+                    <th className="pb-3 px-4 font-normal">MISSING PROOF</th>
+                    <th className="pb-3 pl-4 font-normal">RECORD STATUS</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sand-deep/40 text-ink">
+                  {PORTFOLIO.map((brand) => {
+                    const isSelected = selectedBrandId === brand.id;
+                    return (
+                      <tr
+                        key={brand.id}
+                        onClick={() => setSelectedBrandId(brand.id)}
+                        className={`cursor-pointer transition-colors ${
+                          isSelected ? "bg-paper font-semibold" : "hover:bg-paper/60"
+                        }`}
+                      >
+                        <td className="py-4 pr-4 flex items-center gap-2">
+                          <ChevronRight size={14} className={isSelected ? "text-bureau-sage" : "text-muted"} />
+                          <span>{brand.name}</span>
+                        </td>
+                        <td className="py-4 px-4">{brand.claims}</td>
+                        <td className="py-4 px-4">{brand.changed}</td>
+                        <td className="py-4 px-4 text-review-amber">{brand.missing}</td>
+                        <td className="py-4 pl-4">
+                          <span
+                            className={`px-2.5 py-0.5 border text-[10px] uppercase font-semibold ${
+                              brand.status === "Review Due"
+                                ? "border-exposure-red/30 bg-exposure-red/10 text-exposure-red"
+                                : "border-bureau-sage/30 bg-paper text-bureau-sage"
+                            }`}
+                          >
+                            {brand.status}
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Language-Diff Inspection Panel */}
+            <div className="mt-8 pt-6 border-t border-sand-deep">
+              <div className="flex justify-between items-center text-[10px] font-mono uppercase text-muted mb-3" style={{ fontFamily: MONO }}>
+                <span>LANGUAGE-DIFF RECEIPT // {selectedBrand.name}</span>
+                <span className="text-bureau-sage">SRC: {selectedBrand.diff.url}</span>
+              </div>
+
+              <div className="bg-paper border border-sand-deep p-5 space-y-3 font-mono text-xs" style={{ fontFamily: MONO }}>
+                <div>
+                  <span className="text-[10px] text-muted block uppercase">Previous Public Copy:</span>
+                  <p className="line-through text-muted bg-paper-light p-2.5 border border-sand-deep/40 mt-1">
+                    {selectedBrand.diff.oldText}
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-[10px] text-bureau-sage block uppercase">Remediated Language:</span>
+                  <p className="text-ink font-semibold bg-paper-light p-2.5 border border-bureau-sage/40 mt-1">
+                    {selectedBrand.diff.newText}
+                  </p>
+                </div>
+
+                <div className="pt-2 text-muted text-[11px]">
+                  <span className="text-ink font-semibold">Remediation Rationale:</span> {selectedBrand.diff.reason}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-sand-deep bg-paper-light px-5 py-20 sm:px-8 text-center">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="font-display text-3xl sm:text-4xl text-ink font-normal">
+            Request an Enterprise Exposure Assessment
+          </h2>
+          <p className="mt-3 text-sm text-muted">
+            Custom quote ($7,500 – $25,000+) based on portfolio size, locations, and review depth.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/private-assessment?intent=enterprise&source=enterprise"
+              className="inline-flex items-center gap-2 bg-ink text-paper-light px-8 py-3.5 text-xs font-mono font-semibold tracking-wider uppercase hover:bg-clay-deep"
               style={{ fontFamily: MONO }}
             >
-              Typical findings pattern
-            </p>
-            <ul className="space-y-5">
-              {[
-                ['Inherited language', 'Claims that arrived with an acquisition and were never re-reviewed against current evidence.'],
-                ['Local drift', 'Individual locations restating a corporate claim more strongly than the source permits.'],
-                ['Orphaned pages', 'Campaign pages still live and indexed, still making claims the company has since retired.'],
-                ['Evidence decay', 'A study, certification, or dataset that supported a claim is no longer visible or current.'],
-              ].map(([t, b]) => (
-                <li key={t} className="border-t border-sand-deep/40 pt-4 first:border-t-0 first:pt-0">
-                  <p className="text-sm font-semibold text-espresso">{t}</p>
-                  <p className="mt-1.5 text-sm leading-6 text-mist">{b}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-xs leading-5 text-mist">
-              Patterns we look for. Not a claim about any specific organization.
-            </p>
+              Request Private Assessment <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
-      </Section>
-
-      <Section
-        tone="bone"
-        kicker="Who this is for"
-        title="Organizations with distributed claim surfaces."
-        lede="The assessment is most useful where public language is produced in more than one place, by more than one team."
-      >
-        <ItemGrid items={audiences} />
-      </Section>
-
-      <Section
-        kicker="Primary product"
-        title="Enterprise Exposure Assessment"
-        lede="$7,500–$25,000+ depending on scope. Scope is determined by number of entities, domains, locations, claims, and review depth."
-      >
-        <ItemGrid items={included} />
-
-        <div className="mt-10 rounded-xl border border-clay/40 bg-clay/[0.07] p-8">
-          <Kicker>The deliverable</Kicker>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-espresso">
-            One dated record, plus an executive briefing that puts the priority findings in
-            front of the people who decide what happens next.
-          </p>
-          <p className="mt-5 max-w-3xl text-sm leading-6 text-mist">
-            Remediation is prioritized rather than exhaustive. We identify what to address
-            first, what to escalate to counsel, and what can wait.
-          </p>
-        </div>
-      </Section>
-
-      <Section tone="bone" bordered={false}>
-        <BoundaryNote
-          lines={[
-            'Not a legal opinion, and not legal advice.',
-            'Not a determination of liability or non-compliance.',
-            'Not a certification, accreditation, or seal.',
-            'No guarantee of regulatory outcomes.',
-            'No control over AI system behavior or output.',
-            'Findings are observations with sources and dates attached.',
-          ]}
-          note="Remediation language and prioritization are recommendations for review, not instructions. Anything with legal consequence should be reviewed by counsel before publication."
-        />
-      </Section>
-
-      <CTABand
-        title="See what your organization is actually claiming."
-        body="We start by agreeing the entities, domains, and surfaces in scope, then produce the inventory."
-        primary={{ label: 'Request a Private Assessment', href: '/private-assessment?intent=enterprise&source=enterprise-cta' }}
-        secondary={{ label: 'Start with a Diagnostic', href: '/claim-exposure-diagnostic' }}
-      />
-
-      <RelatedRail
-        links={[
-          { label: 'Claim Exposure Diagnostic', href: '/claim-exposure-diagnostic' },
-          { label: 'AI Narrative Integrity', href: '/ai-narrative-integrity' },
-          { label: 'Scrutexity Watch', href: '/watch' },
-          { label: 'For Counsel', href: '/counsel' },
-          { label: 'Methodology', href: '/methodology' },
-        ]}
-      />
+      </section>
     </div>
   );
 }
