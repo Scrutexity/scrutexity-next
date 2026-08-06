@@ -33,12 +33,16 @@
   --color-sage: #8FA98A;
   --color-sage-deep: #5E7A5A;
   --color-sage-soft: #C7D4C2;
-  --color-ink: #1C1814;
+  --color-teal-deep: #0F766E;
+  --color-charcoal-soft: #1C2421;
+  --color-amber-badge: #B45309;
+  --color-amber-bg: #FEF3C7;
+  --color-ink: #1C2421;
   --color-mist: #6B6259;
   --color-scrutexity-ivory: #FAF9F6;
-  --color-scrutexity-charcoal: #1A1A1A;
+  --color-scrutexity-charcoal: #1C2421;
   --color-scrutexity-terracotta: #E2725B;
-  --color-scrutexity-sage: #6F8772;
+  --color-scrutexity-sage: #0F766E;
   --color-scrutexity-surface: #FFFFFF;
   --color-scrutexity-border: #E5E5E5;
 
@@ -61,8 +65,8 @@
 
 /* ── Global Body Styling ── */
 body {
-  background-color: #F8F3EA;
-  color: #5C4633;
+  background-color: var(--color-cream);
+  color: var(--color-bark);
   font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -76,9 +80,9 @@ body {
 }
 
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: #F8F3EA; }
-::-webkit-scrollbar-thumb { background: #D9CCB0; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #B7896B; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-sand-deep); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-clay); }
 
 html {
   scroll-behavior: smooth;
@@ -95,7 +99,7 @@ html {
 
 /* ── Glassmorphism – paper-glass ── */
 .paper-glass {
-  background: rgba(248, 243, 234, 0.72);
+  background: color-mix(in srgb, var(--color-cream) 72%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(230, 220, 198, 0.60);
@@ -215,10 +219,10 @@ html {
   transform: translateY(-1px);
 }
 .btn-ghost {
-  border: 1px solid #D9CCB0;
+  border: 1px solid var(--color-sand-deep);
   padding: 12px 24px;
   border-radius: 9999px;
-  color: #5C4633;
+  color: var(--color-bark);
   font-weight: 600;
   font-size: 14px;
   display: inline-flex;
@@ -233,17 +237,17 @@ html {
 .btn-arrow { transition: transform 0.3s ease; }
 .group:hover .btn-arrow { transform: translateX(4px); }
 /* Undefined Tailwind tokens used by unconverted subpages */
-.bg-ivory { background-color: #F8F3EA; }
-.bg-terracotta { background-color: #B7896B; }
-.text-terracotta { color: #B7896B; }
-.border-terracotta { border-color: #B7896B; }
+.bg-ivory { background-color: var(--color-cream); }
+.bg-terracotta { background-color: var(--color-clay); }
+.text-terracotta { color: var(--color-clay); }
+.border-terracotta { border-color: var(--color-clay); }
 
 /* ── Sketch system styles (mosey-style) ── */
 .sketch-card {
   border-radius: 1rem;
-  border: 1px solid rgba(217, 204, 176, 0.5);
-  background: #F8F3EA;
-  box-shadow: 0 4px 20px rgba(28, 24, 20, 0.04);
+  border: 1px solid var(--color-sand-deep);
+  background: var(--color-bone);
+  box-shadow: var(--shadow-card);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .sketch-card:hover {
@@ -273,3 +277,111 @@ html {
   .clay-cta, .sage-cta { transition: none; }
   .clay-cta:hover, .sage-cta:hover { transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DARK THEME — opt-in via <html data-theme="dark">
+   ────────────────────────────────────────────────────────────────────────
+   Light is the default and remains the canonical brand surface. Dark is a
+   viewer preference, not a second brand. Because Tailwind v4 compiles
+   `bg-cream` to `var(--color-cream)`, redeclaring the same custom properties
+   under a higher-specificity selector re-themes every existing page without
+   touching a single component.
+
+   Hue discipline: the warm earth palette is preserved, not swapped for a
+   cool "cyber" one. Backgrounds keep a brown undertone so the dark theme
+   reads as the same company at night — institutional, not sci-fi.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html[data-theme="dark"] {
+  --color-bone: #16130F;        /* card surface (raised) */
+  --color-cream: #100E0B;       /* primary bg */
+  --color-cream-deep: #1C1813;  /* deeper warm band */
+  --color-beige: #16130F;       /* secondary bg */
+  --color-sand: #241F18;        /* deeper sections */
+  --color-sand-deep: #332C22;   /* borders */
+  --color-clay: #C89A78;        /* accent — lifted for contrast on dark */
+  --color-clay-deep: #DDB08A;   /* hover/active (brighter, not darker) */
+  --color-bark: #C4BBAE;        /* body text */
+  --color-espresso: #F2EDE4;    /* headings / primary ink — inverted */
+  --color-ink: #F2EDE4;
+  --color-mist: #9A9187;        /* muted body text */
+  --color-sage: #8FA98A;
+  --color-sage-deep: #A3C09D;   /* verify accent — lifted for contrast */
+  --color-sage-soft: #6F8A6A;
+  --color-scrutexity-ivory: #100E0B;
+  --color-scrutexity-charcoal: #F2EDE4;
+  --color-scrutexity-surface: #16130F;
+  --color-scrutexity-border: #332C22;
+
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.40), 0 14px 36px -16px rgba(0,0,0,0.60);
+  --shadow-float: 0 30px 70px -22px rgba(0,0,0,0.75);
+  --shadow-soft-float: 0 20px 40px -15px rgba(0,0,0,0.45);
+}
+
+/* Legacy escape hatches.
+   Some pages predate the token system and hardcode Tailwind's built-in
+   `bg-white` (never flips) or use `bg-espresso` as a *background* while
+   `espresso` inverts to near-white in dark mode. Both would break contrast.
+   These two rules repair every such page globally. */
+html[data-theme="dark"] .bg-white { background-color: var(--color-bone); }
+html[data-theme="dark"] .bg-black { background-color: #080705; }
+
+/* `bg-espresso` is used two ways: as a dark *section* (footer, exhibit bands)
+   and as the primary *button* fill. In dark mode `espresso` inverts to
+   near-white, so both break. Rather than chase every `text-cream`,
+   `text-cream/70`, and `text-cream/45` descendant, rebind --color-cream
+   locally — every Tailwind opacity variant reads that same variable, so one
+   declaration repairs the whole subtree. */
+html[data-theme="dark"] .bg-espresso {
+  background-color: #080705;
+  --color-cream: #F2EDE4;
+  --color-sage-soft: #A3C09D;
+}
+
+/* Primary CTAs take the accent fill instead — a near-black button on a
+   near-black page has no presence. Dark ink on clay holds AA contrast. */
+html[data-theme="dark"] a.bg-espresso,
+html[data-theme="dark"] button.bg-espresso {
+  background-color: var(--color-clay);
+  --color-cream: #14110D;
+}
+html[data-theme="dark"] a.bg-espresso:hover,
+html[data-theme="dark"] button.bg-espresso:hover {
+  background-color: var(--color-clay-deep);
+}
+
+/* Inverted contrast panel — deliberately dark in BOTH themes.
+   Use for editorial "exhibit" bands that must stay dark for emphasis. */
+.panel-contrast {
+  background-color: #16130F;
+  color: #F2EDE4;
+}
+html[data-theme="dark"] .panel-contrast {
+  background-color: #080705;
+  border-color: rgba(242, 237, 228, 0.10);
+}
+
+/* The wordmark ships as black artwork — invert it on dark surfaces */
+html[data-theme="dark"] .dark-invert { filter: invert(1) brightness(1.6) contrast(0.92); }
+
+/* Prevent transition flash while the theme swaps */
+.theme-switching, .theme-switching * {
+  transition: none !important;
+}
+/* — 2027 Editorial Dossier — patch to add to end of globals.css — */
+.hairline-x { border-top: 1px solid var(--color-sand-deep); border-bottom: 1px solid var(--color-sand-deep); }
+.hairline-y { border-left: 1px solid var(--color-sand-deep); border-right: 1px solid var(--color-sand-deep); }
+.editorial-rule { height: 1px; background: var(--color-sand-deep); }
+.editorial-rule-clay { height: 1px; background: var(--color-clay); opacity: 0.35; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+/* — Million Dollar Typography & Motion — append to globals.css — */
+.font-display { font-variant-ligatures: common-ligatures; font-feature-settings: 'ss01' on, 'liga' on; text-wrap: balance; }
+.font-sans { letter-spacing: -0.01em; text-rendering: optimizeLegibility; }
+h1.font-display, h2.font-display { letter-spacing: -0.03em; line-height: 0.95; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+/* luxury ease for any motion */
+.motion-lux { transition-timing-function: cubic-bezier(0.22,1,0.36,1); }
