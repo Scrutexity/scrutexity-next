@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import PricingContent from '@/components/scrutexity/pricing-content';
 
 export const metadata: Metadata = {
-  title: 'Pricing | Scrutexity Engagements',
+  title: 'Claim Review Pricing | Scrutexity',
   description:
-    'Free Snapshot, Claim Support Review, Claim Exposure Diagnostic, and Scrutexity Watch.',
+    'The intelligence funnel: Free Snapshot ($0), Claim Support Review ($99), Exposure Diagnostic and PE/M&A Diligence (custom quote), and Scrutexity Watch ($1,500/mo).',
   alternates: { canonical: '/pricing' },
   keywords: [
     'regulatory exposure assessment',
