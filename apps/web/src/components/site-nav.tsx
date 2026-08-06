@@ -38,13 +38,13 @@ export function SiteNav() {
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-5 sm:px-8">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex shrink-0 items-center gap-3">
-              <Image src="/logo-wordmark-black.png" alt="Scrutexity" width={160} height={32} priority className="h-[28px] lg:h-[32px] w-auto dark-invert" />
-              <span className="hidden h-4 w-px bg-sand-deep lg:block" aria-hidden />
-              <span className="hidden text-[10px] tracking-[0.14em] text-mist uppercase lg:inline" style={{ fontFamily: MONO }}>Claim Intelligence — EST 2024</span>
+              <Image src="/logo-wordmark-black.png" alt="Scrutexity" width={160} height={32} priority className="h-[22px] lg:h-[26px] w-auto dark-invert" />
+              <span className="hidden h-4 w-px bg-sand-deep 2xl:block" aria-hidden />
+              <span className="hidden text-[10px] tracking-[0.14em] text-mist uppercase 2xl:inline" style={{ fontFamily: MONO }}>Claim Intelligence — EST 2024</span>
             </Link>
           </div>
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
-            <div className="flex items-center gap-7">
+            <div className="flex items-center gap-5">
               {links.map((l) => (
                 <Link key={l.name} href={l.href} aria-current={isActive(l.href) ? 'page' : undefined} className={`text-[12px] font-medium tracking-[0.08em] uppercase transition-colors ${isActive(l.href) ? 'text-espresso underline decoration-clay underline-offset-8 decoration-1' : 'text-mist hover:text-espresso'}`} style={{ fontFamily: MONO }}>{l.name}</Link>
               ))}
@@ -53,7 +53,7 @@ export function SiteNav() {
             <ThemeToggle />
             <div className="flex items-center gap-3">
               <Link href="mailto:hello@scrutexity.com" className="px-4 py-2 text-[12px] font-semibold tracking-[0.08em] uppercase text-espresso transition-colors hover:text-clay" style={{ fontFamily: MONO }}>Contact</Link>
-              <Link href="/snapshot" className="bg-espresso px-6 py-3 rounded-full text-[12px] font-semibold tracking-[0.08em] uppercase text-cream transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>Run free snapshot</Link>
+              <Link href="/snapshot" className="bg-espresso px-5 py-2.5 rounded-full text-[12px] font-semibold tracking-[0.08em] uppercase text-cream transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>Run free snapshot</Link>
             </div>
           </nav>
           <div className="flex items-center gap-2 xl:hidden">
