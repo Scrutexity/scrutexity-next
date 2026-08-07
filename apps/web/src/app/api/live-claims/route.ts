@@ -1,13 +1,24 @@
 import { NextResponse } from 'next/server';
 import Database from 'better-sqlite3';
 import path from 'path';
+import { existsSync } from 'fs';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
+  const dbPath = path.join(process.cwd(), 'telemetry.db');
+  let db: Database.Database | null = null;
   try {
-    const dbPath = path.join(process.cwd(), 'telemetry.db');
-    const db = new Database(dbPath);
+    // Local sqlite telemetry is a dev-only store; on serverless (Vercel) the
+    // filesystem is read-only, so this file is absent. Report honestly instead
+    // of a generic 500.
+    if (!existsSync(dbPath)) {
+      return NextResponse.json(
+        { error: 'local telemetry database not present in this runtime', data: [] },
+        { status: 503 }
+      );
+    }
+    db = new Database(dbPath, { readonly: true });
 
     // Query the 30 most recent claim risks joined with scans metadata
     const claims = db.prepare(`
