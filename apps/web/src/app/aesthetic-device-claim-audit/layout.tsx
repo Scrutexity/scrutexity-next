@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Aesthetic Device Claim Audit | Scrutexity",
+  title: "Aesthetic Device Claim Audit | AuditGPT by Scrutexity",
   description:
-    "Review the claims on your aesthetic device pages against what the clearance and evidence actually support, with safer wording and a dated record.",
+    "Before your clinic sells or promotes an aesthetic device, know what you can safely claim about it. AuditGPT reviews device pages, supplier claims, FDA-status language, evidence gaps, and AI answer risk for red light, hair-growth, PEMF, body-contouring, RF microneedling, and aesthetic-device offers.",
   alternates: { canonical: "/aesthetic-device-claim-audit" },
 };
 

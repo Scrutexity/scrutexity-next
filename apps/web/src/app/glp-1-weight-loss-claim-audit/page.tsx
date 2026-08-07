@@ -84,8 +84,6 @@ function FAQ({ q, a }: { q: string; a: string }) {
 export default function GLP1ClaimAuditPage() {
   return (
     <div className="min-h-screen bg-cream text-bark font-sans selection:bg-clay/20">
-      <title>GLP-1 & Medical Weight Loss Claim Audit | AuditGPT by Scrutexity</title>
-      <meta name="description" content="AuditGPT reviews public-facing GLP-1 and medical weight loss claims — medication language, outcome promises, testimonial framing, FDA wording, and AI answer surfaces — so clinics can see what is supported, what is overstated, and what should be rewritten." />
 
       {/* HERO */}
       <section className="relative px-6 pt-32 pb-20 md:pt-44 md:pb-28 bg-cream-deep border-b border-sand-deep/20 overflow-hidden">

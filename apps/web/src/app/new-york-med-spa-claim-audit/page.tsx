@@ -193,8 +193,6 @@ export default function NYMedSpaClaimAuditPage() {
 
   return (
     <div className="min-h-screen bg-cream text-bark font-sans selection:bg-clay/20">
-      <title>New York & New Jersey Med Spa Claim Audit | AuditGPT by Scrutexity</title>
-      <meta name="description" content="Public records and enforcement materials show that websites, brochures, treatment claims, provider credentials, and safety records can become part of the review surface for NY and NJ med spas. AuditGPT reviews your public claims and gives safer rewrite options." />
 
       {/* HERO */}
       <section className="relative px-6 pt-32 pb-20 md:pt-44 md:pb-28 bg-cream-deep border-b border-sand-deep/20 overflow-hidden">

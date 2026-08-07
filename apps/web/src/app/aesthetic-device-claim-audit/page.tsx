@@ -165,8 +165,6 @@ export default function AestheticDeviceClaimAuditPage() {
 
   return (
     <div className="min-h-screen bg-cream text-bark font-sans selection:bg-clay/20">
-      <title>Aesthetic Device Claim Audit | AuditGPT by Scrutexity</title>
-      <meta name="description" content="Before your clinic sells or promotes an aesthetic device, know what you can safely claim about it. AuditGPT reviews device pages, supplier claims, FDA-status language, evidence gaps, and AI answer risk for red light, hair-growth, PEMF, body-contouring, RF microneedling, and aesthetic-device offers." />
 
       {/* HERO */}
       <section className="relative px-6 pt-32 pb-20 md:pt-44 md:pb-28 bg-cream-deep border-b border-sand-deep/20 overflow-hidden">
