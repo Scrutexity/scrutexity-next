@@ -48,8 +48,9 @@ export async function POST(request: Request) {
         scannedUrl: `https://${domain.hostname}`
       };
 
-      // Randomly inject a HIGH severity claim drift for demonstration purposes 30% of the time
-      const triggerDrift = Math.random() > 0.7;
+      // ONLY inject mock drift for internal/demo domains to protect real customer data.
+      const isInternalDemo = domain.hostname.includes("example.com") || domain.hostname.includes("acmeaesthetics.com");
+      const triggerDrift = isInternalDemo && Math.random() > 0.7;
       const severity = triggerDrift ? "HIGH" : "LOW";
 
       // Insert Scan
