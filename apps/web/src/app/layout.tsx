@@ -8,6 +8,7 @@ import { SiteNav } from "@/components/site-nav";
 import Footer from "@/components/sections/footer";
 import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
 import { themeInitScript } from "@/components/theme-toggle";
+import PaperNoise from "@/components/ui/PaperNoise";
 
 // globals.css resolves --font-display / --font-sans to --font-geist. Before
 // this, that variable was never defined and every heading silently fell back
@@ -153,8 +154,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={`${geist.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-paper text-ink antialiased overflow-x-hidden selection:bg-bureau-sage/20 selection:text-ink`}
       >
         <SmoothScrollProvider>
+          <PaperNoise />
           <SiteNav />
-          <main className="pt-nav-offset">
+          <main className="relative z-10 pt-nav-offset">
             {children}
           </main>
           <Footer />
