@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { JetBrains_Mono, Inter_Tight } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -10,10 +9,10 @@ import Footer from "@/components/sections/footer";
 import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
 import { themeInitScript } from "@/components/theme-toggle";
 
-const satoshi = localFont({
-  src: "./fonts/Satoshi-Variable.woff2",
+const interTight = Inter_Tight({
+  subsets: ["latin"],
   display: "swap",
-  variable: "--font-satoshi",
+  variable: "--font-inter-tight",
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -138,7 +137,7 @@ const jsonLdData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="light" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
       <head>
         {/* Applies the stored theme before first paint to prevent a flash */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
@@ -146,9 +145,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
+        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${satoshi.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-cream text-bark antialiased overflow-x-hidden selection:bg-sage/20 selection:text-espresso`}
+        className={`${interTight.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-paper text-ink antialiased overflow-x-hidden selection:bg-bureau-sage/20 selection:text-ink`}
       >
         <SmoothScrollProvider>
           <SiteNav />

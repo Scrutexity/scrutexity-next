@@ -20,62 +20,94 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-paper: #F6F4EE;
-  --color-paper-light: #FCFCFA;
-  --color-ink: #161916;
-  --color-muted: #62685F;
-  --color-bureau-sage: #66796D;
-  --color-review-amber: #A87932;
-  --color-exposure-red: #994D45;
+  /* Realta Fintech System */
+  --color-realta-bg: #f5f7f6;
+  --color-realta-surface: #ffffff;
+  --color-realta-surface-muted: #eef5f1;
+  --color-realta-text-primary: #132a24;
+  --color-realta-text-secondary: #4b615a;
+  --color-realta-text-muted: #879f98;
+  --color-realta-brand-primary: #78A184;
+  --color-realta-brand-secondary: #274f44;
+  --color-realta-accent-success: #2aa168;
+  --color-realta-dark-surface: #132a24;
+  --color-realta-dark-bg: #0b1713;
 
-  /* Theme mappings for Archival Evidence Bureau System */
-  --color-bone: #FCFCFA;
-  --color-cream: #F6F4EE;
-  --color-cream-deep: #EBE8DF;
-  --color-beige: #EFECE3;
-  --color-sand: #E5E1D5;
-  --color-sand-deep: #D8D2C3;
-  --color-clay: #66796D;
-  --color-clay-deep: #4E5E54;
-  --color-bark: #161916;
-  --color-espresso: #161916;
-  --color-sage: #66796D;
-  --color-sage-deep: #4E5E54;
-  --color-sage-soft: #E2E8E4;
-  --color-teal-deep: #66796D;
-  --color-charcoal-soft: #161916;
-  --color-amber-badge: #A87932;
-  --color-amber-bg: #FAF4E8;
-  --color-mist: #62685F;
-  --color-scrutexity-ivory: #F6F4EE;
-  --color-scrutexity-charcoal: #161916;
-  --color-scrutexity-terracotta: #66796D;
-  --color-scrutexity-sage: #66796D;
-  --color-scrutexity-surface: #FCFCFA;
-  --color-scrutexity-border: #D8D2C3;
+  /* Overrides for existing components to adopt Realta automatically */
+  --color-paper: var(--color-realta-bg);
+  --color-paper-light: var(--color-realta-surface);
+  --color-ink: var(--color-realta-text-primary);
+  --color-muted: var(--color-realta-text-muted);
+  --color-bureau-sage: var(--color-realta-brand-primary);
+  --color-review-amber: #F5A623; 
+  --color-exposure-red: #FF4D4D; 
 
-  --font-display: var(--font-satoshi), system-ui, sans-serif;
-  --font-sans: var(--font-satoshi), system-ui, sans-serif;
-  --font-geist: var(--font-satoshi), system-ui, sans-serif;
+  /* Legacy mappings */
+  --color-bone: var(--color-realta-surface);
+  --color-cream: var(--color-realta-bg);
+  --color-cream-deep: var(--color-realta-surface-muted);
+  --color-beige: var(--color-realta-surface-muted);
+  --color-sand: var(--color-realta-surface-muted);
+  --color-sand-deep: #dde8e3;
+  --color-clay: var(--color-realta-brand-primary);
+  --color-clay-deep: var(--color-realta-brand-secondary);
+  --color-bark: var(--color-realta-text-primary);
+  --color-espresso: var(--color-realta-text-primary);
+  --color-sage: var(--color-realta-brand-primary);
+  --color-sage-deep: var(--color-realta-brand-secondary);
+  --color-sage-soft: var(--color-realta-surface-muted);
+  --color-mist: var(--color-realta-text-muted);
+
+  --font-display: 'Satoshi', system-ui, sans-serif;
+  --font-sans: 'Satoshi', system-ui, sans-serif;
+  --font-geist: 'Satoshi', system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --spacing-nav-offset: 100px;
+  
+  /* Realta Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 12px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 80px;
+  --spacing-xxl: 160px;
+
+  /* Realta Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
 
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-card: 0 1px 2px rgba(28,24,20,0.04), 0 14px 36px -16px rgba(28,24,20,0.12);
-  --shadow-float: 0 30px 70px -22px rgba(28,24,20,0.30);
-  --shadow-cta-clay: 0 12px 30px -10px rgba(183,137,107,0.50);
-  --shadow-cta-sage: 0 12px 30px -10px rgba(143,169,138,0.50);
-  --shadow-soft-float: 0 20px 40px -15px rgba(26,26,26,0.05);
-  --shadow-ambient-glow: 0 0 40px -10px rgba(226,114,91,0.12);
+  --shadow-card: 0 1px 2px rgba(19, 42, 36, 0.04), 0 14px 36px -16px rgba(19, 42, 36, 0.12);
+  --shadow-float: 0 30px 70px -22px rgba(19, 42, 36, 0.20);
+  
+  --animate-blur-fade-up: blurFadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes blurFadeUp {
+    from { opacity: 0; filter: blur(16px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0px); transform: translateY(0); }
+  }
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
 }
 
 /* ── Global Body Styling ── */
 body {
-  background-color: var(--color-cream);
-  color: var(--color-bark);
-  font-family: var(--font-satoshi), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-realta-bg);
+  color: var(--color-realta-text-primary);
+  font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -83,14 +115,14 @@ body {
 }
 
 ::selection {
-  background: rgba(143, 169, 138, 0.20);
-  color: #1C1814;
+  background: rgba(120, 161, 132, 0.20);
+  color: var(--color-realta-text-primary);
 }
 
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: var(--color-cream); }
-::-webkit-scrollbar-thumb { background: var(--color-sand-deep); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-clay); }
+::-webkit-scrollbar-track { background: var(--color-realta-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-realta-text-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-realta-brand-primary); }
 
 html {
   scroll-behavior: smooth;
