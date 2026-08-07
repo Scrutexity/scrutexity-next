@@ -153,16 +153,24 @@ export function GlassCard({
   children,
   className = '',
   hover = true,
+  isLight = false,
 }: {
   children: ReactNode;
   className?: string;
   hover?: boolean;
+  isLight?: boolean;
 }) {
   return (
     <div
-      className={`rounded-[1.75rem] border border-white/10 bg-white/[0.07] backdrop-blur-md ${
+      className={`rounded-[1.75rem] backdrop-blur-md transition-all duration-300 ${
+        isLight
+          ? 'border border-black/5 bg-white shadow-[0_10px_30px_-10px_rgba(20,20,45,0.05)] text-[#14142d]'
+          : 'border border-white/10 bg-white/[0.07] text-[#ebedfa]'
+      } ${
         hover
-          ? 'transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.10] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]'
+          ? isLight
+            ? 'hover:-translate-y-1 hover:border-black/10 hover:shadow-[0_25px_60px_-15px_rgba(20,20,45,0.12)]'
+            : 'hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.10] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]'
           : ''
       } ${className}`}
     >

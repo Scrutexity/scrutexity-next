@@ -15,37 +15,79 @@ const NAV_LINKS = [
   { name: 'Contact', href: '/contact' },
 ];
 
-export function MakroNav() {
+export function MakroNav({
+  heroOption = '2',
+  setHeroOption,
+  isLight = true,
+}: {
+  heroOption?: '1' | '2' | '3';
+  setHeroOption?: (v: '1' | '2' | '3') => void;
+  isLight?: boolean;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#14142d]/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-4 sm:px-8">
+    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      isLight
+        ? 'border-b border-black/5 bg-[#f4f6fa]/80 backdrop-blur-md text-[#14142d]'
+        : 'border-b border-white/10 bg-[#14142d]/80 backdrop-blur-md text-[#ebedfa]'
+    }`}>
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-3 sm:px-8">
         <a href="#top" className="flex items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#d9ff5c] text-[#14142d]">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2v20M12 2l-7 7M12 2l7 7" />
             </svg>
           </span>
-          <span className="text-[15px] font-semibold tracking-tight text-[#ebedfa]">
+          <span className={`text-[15px] font-semibold tracking-tight ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
             Scrutexity
           </span>
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.name}
-              href={l.href}
-              className="text-[13px] font-medium text-[#9391b8] transition-colors hover:text-[#ebedfa]"
-            >
-              {l.name}
-            </a>
-          ))}
-        </nav>
+        {/* Center Navigation Links & Hero options: 1 | 2 | 3 Toggle */}
+        <div className="hidden items-center gap-6 md:flex">
+          <nav aria-label="Primary" className="flex items-center gap-6">
+            {NAV_LINKS.map((l) => (
+              <a
+                key={l.name}
+                href={l.href}
+                className={`text-[13px] font-medium transition-colors ${
+                  isLight ? 'text-[#5a6072] hover:text-[#14142d]' : 'text-[#9391b8] hover:text-[#ebedfa]'
+                }`}
+              >
+                {l.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Hero options pill toggle */}
+          {setHeroOption && (
+            <div className={`flex items-center gap-2 rounded-full border px-3 py-1 text-[12px] font-medium ${
+              isLight ? 'border-black/10 bg-white/80 text-[#5a6072]' : 'border-white/15 bg-white/10 text-[#9391b8]'
+            }`}>
+              <span>Hero options:</span>
+              <div className="flex items-center gap-1 rounded-full bg-[#35363b] p-0.5 text-white">
+                {(['1', '2', '3'] as const).map((opt) => (
+                  <button
+                    key={opt}
+                    type="button"
+                    onClick={() => setHeroOption(opt)}
+                    className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-semibold transition-all ${
+                      heroOption === opt
+                        ? 'bg-[#d9ff5c] text-[#14142d]'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="hidden md:block">
-          <CTAButton href="/snapshot" className="px-5 py-2.5 text-[13px]">
+          <CTAButton href="/snapshot" variant={isLight ? 'ghost' : 'lime'} className="px-5 py-2 text-[13px]">
             Get started
           </CTAButton>
         </div>
@@ -54,7 +96,9 @@ export function MakroNav() {
           type="button"
           aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-[#ebedfa] md:hidden"
+          className={`flex h-9 w-9 items-center justify-center rounded-lg border md:hidden ${
+            isLight ? 'border-black/10 text-[#14142d]' : 'border-white/10 text-[#ebedfa]'
+          }`}
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -95,13 +139,21 @@ export function MakroNav() {
 
 /* ---------------------------------- Hero --------------------------------- */
 
-export function MakroHero() {
+export function MakroHero({
+  heroOption = '2',
+  isLight = true,
+}: {
+  heroOption?: '1' | '2' | '3';
+  isLight?: boolean;
+}) {
   return (
     <section id="top" className="relative overflow-hidden px-5 pb-20 pt-36 sm:px-8 sm:pt-44">
       {/* ambient glows */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-[#33335e]/40 blur-[140px]"
+        className={`pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full blur-[140px] ${
+          isLight ? 'bg-blue-100/60' : 'bg-[#33335e]/40'
+        }`}
       />
       <div
         aria-hidden
@@ -110,22 +162,28 @@ export function MakroHero() {
 
       <div className="relative mx-auto flex max-w-[1200px] flex-col items-center text-center">
         <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9391b8]">
+          <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] shadow-xs ${
+            isLight ? 'border-black/10 bg-white text-[#5a6072]' : 'border-white/10 bg-white/[0.06] text-[#9391b8]'
+          }`}>
             <span className="h-1.5 w-1.5 rounded-full bg-[#d9ff5c]" />
             Public Claim Intelligence
           </span>
         </Reveal>
 
         <Reveal delay={0.08}>
-          <h1 className="mt-6 max-w-[820px] text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-[#ebedfa] sm:text-6xl lg:text-7xl">
-            Know what&rsquo;s claimed.
+          <h1 className={`mt-6 max-w-[820px] text-[40px] font-bold leading-[1.05] tracking-[-0.03em] sm:text-6xl lg:text-7xl ${
+            isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+          }`}>
+            Know your claims.
             <br />
-            <span className="text-[#9391b8]">See what&rsquo;s proven.</span>
+            <span className={isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}>Audit with AI.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={0.16}>
-          <p className="mt-6 max-w-[560px] text-base leading-relaxed text-[#9391b8] sm:text-lg">
+          <p className={`mt-6 max-w-[560px] text-base leading-relaxed sm:text-lg ${
+            isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+          }`}>
             Scrutexity documents the gap between what a company claims, what
             its evidence supports, and what AI systems say about it — in one
             clean, dated record.
@@ -134,9 +192,8 @@ export function MakroHero() {
 
         <Reveal delay={0.24}>
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-            <CTAButton href="/snapshot" className="px-8 py-3.5 text-[15px]">
-              Get your free snapshot
-              <ArrowRight size={16} />
+            <CTAButton href="/snapshot" variant="lime" className="px-7 py-3 text-[15px]">
+              Get started
             </CTAButton>
             <CTAButton href="#showcase" variant="ghost" className="px-8 py-3.5 text-[15px]">
               See how it works

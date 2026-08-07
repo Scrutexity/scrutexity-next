@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   MakroNav,
   MakroHero,
@@ -16,20 +17,18 @@ import { MakroBlog } from './blog';
 import { MakroFinalCTA, MakroFooter } from './closing';
 
 /**
- * MakroRedesign — literal-palette clone of makro.framer.website/home-alt
- * (Makro: Responsive AI Website Template) with ORIGINAL Scrutexity copy.
+ * MakroRedesign — Responsive AI Website Template with Hero Option & Light/Dark Theme Toggles.
  *
- * 14 sections in source order:
- *   1 Nav → 2 Hero → 3 TrustedBy → 4 CaseStudy → 5 FeatureTabs → 6 Showcase
- *   → 7 Clarity → 8 Pricing → 9 Enterprise → 10 Testimonials → 11 FAQ
- *   → 12 Blog → 13 FinalCTA → 14 Footer
- *
- * Palette (literal Makro tokens, founder-approved override of DESIGN_SYSTEM.md,
- * scoped to this route only):
- *   bg #14142d · panels #33335e/#242426 · text #ebedfa · muted #9391b8
- *   lime #d9ff5c · periwinkle #c0adff · ice #b8deff · blush #e0c5b6
+ * Hero options:
+ *   1 → Dark mode (Midnight #14142d, Lime #d9ff5c accents)
+ *   2 → Light mode (Clean Ice #f4f6fa, Dark Charcoal text #14142d)
+ *   3 → Hybrid mode (Light top with dark contrast cards)
  */
 export default function MakroRedesign() {
+  const [heroOption, setHeroOption] = useState<'1' | '2' | '3'>('2');
+
+  const isLight = heroOption === '2';
+
   return (
     <div
       id="redesign-root"
@@ -37,11 +36,15 @@ export default function MakroRedesign() {
         fontFamily:
           'var(--font-redesign), var(--font-geist), ui-sans-serif, system-ui, sans-serif',
       }}
-      className="min-h-screen overflow-x-hidden bg-[#14142d] text-[#ebedfa] selection:bg-[#d9ff5c]/30 selection:text-[#14142d]"
+      className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
+        isLight
+          ? 'bg-[#f4f6fa] text-[#14142d] selection:bg-[#d9ff5c] selection:text-[#14142d]'
+          : 'bg-[#14142d] text-[#ebedfa] selection:bg-[#d9ff5c]/30 selection:text-[#14142d]'
+      }`}
     >
-      <MakroNav />
+      <MakroNav heroOption={heroOption} setHeroOption={setHeroOption} isLight={isLight} />
       <main>
-        <MakroHero />
+        <MakroHero heroOption={heroOption} isLight={isLight} />
         <MakroTrustedBy />
         <MakroCaseStudy />
         <MakroFeatureTabs />
