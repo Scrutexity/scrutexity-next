@@ -1,68 +1,60 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   WARM EARTH PALETTE — Scrutexity Marketing Site
+   MAKRO FRAMER PALETTE — Scrutexity Design System
    ────────────────────────────────────────────────────────────────────────
-   bone    #FFFBF3  — card surface (lightest, warmer than cream)
-   cream   #F8F3EA  — primary bg
-   cream-deep #EFE6D7 — deeper warm band (rhythm between sections)
-   beige   #F0E8D8  — secondary bg
-   sand    #E6DCC6  — deeper sections
-   sand-deep #D9CCB0 — borders, deepest sections
-   clay    #B7896B  — terracotta accent, CTAs, links
-   clay-deep #8A533B — hover/active CTA
-   bark    #5C4633  — mid brown
-   espresso #1C1814 — headings, primary text
-   sage    #8FA98A  — trust/compliance accent
-   sage-deep #5E7A5A — hover/active sage
-   sage-soft #C7D4C2 — sage tinted backgrounds
-   mist    #6B6259  — muted body text
+   bg          #14142d — primary dark background
+   panels      #242426 / #33335e — raised surface & card panels
+   text        #ebedfa — primary light text
+   muted       #9391b8 — secondary muted text
+   lime        #d9ff5c — electric primary accent / action
+   periwinkle  #c0adff — secondary accent / highlight
+   ice         #b8deff — tertiary accent / info
+   blush       #e0c5b6 — warm accent highlight
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-bone: #FFFBF3;
-  --color-cream: #F8F3EA;
-  --color-cream-deep: #EFE6D7;
-  --color-beige: #F0E8D8;
-  --color-sand: #E6DCC6;
-  --color-sand-deep: #D9CCB0;
-  --color-clay: #B7896B;
-  --color-clay-deep: #8A533B;
-  --color-bark: #5C4633;
-  --color-espresso: #1C1814;
-  --color-sage: #8FA98A;
-  --color-sage-deep: #5E7A5A;
-  --color-sage-soft: #C7D4C2;
-  --color-ink: #1C1814;
-  --color-mist: #6B6259;
-  --color-scrutexity-ivory: #FAF9F6;
-  --color-scrutexity-charcoal: #1A1A1A;
-  --color-scrutexity-terracotta: #E2725B;
-  --color-scrutexity-sage: #6F8772;
-  --color-scrutexity-surface: #FFFFFF;
-  --color-scrutexity-border: #E5E5E5;
+  --color-paper: #14142d;
+  --color-paper-light: #242426;
+  --color-ink: #ebedfa;
+  --color-muted: #9391b8;
+  --color-hairline: #33335e;
+  --color-accent: #d9ff5c;
+  --color-accent-bright: #e4ff85;
+  --color-on-accent: #14142d;
+  --color-bureau-sage: #d9ff5c;
+  --color-review-amber: #c0adff;
+  --color-exposure-red: #ff4d4d;
 
-  --font-display: var(--font-instrument-serif), serif;
+  --color-bone: #242426;
+  --color-cream: #14142d;
+  --color-cream-deep: #1a1a36;
+  --color-beige: #242426;
+  --color-sand: #33335e;
+  --color-sand-deep: #3d3d6b;
+  --color-clay: #d9ff5c;
+  --color-clay-deep: #c0adff;
+  --color-bark: #9391b8;
+  --color-espresso: #ebedfa;
+  --color-sage: #d9ff5c;
+  --color-sage-deep: #d9ff5c;
+  --color-sage-soft: #c0adff;
+  --color-mist: #9391b8;
+
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-geist: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --spacing-nav-offset: 100px;
-
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-card: 0 1px 2px rgba(28,24,20,0.04), 0 14px 36px -16px rgba(28,24,20,0.12);
-  --shadow-float: 0 30px 70px -22px rgba(28,24,20,0.30);
-  --shadow-cta-clay: 0 12px 30px -10px rgba(183,137,107,0.50);
-  --shadow-cta-sage: 0 12px 30px -10px rgba(143,169,138,0.50);
-  --shadow-soft-float: 0 20px 40px -15px rgba(26,26,26,0.05);
-  --shadow-ambient-glow: 0 0 40px -10px rgba(226,114,91,0.12);
 }
 
 /* ── Global Body Styling ── */
 body {
-  background-color: #F8F3EA;
-  color: #5C4633;
+  background-color: #14142d;
+  color: #ebedfa;
   font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,14 +63,14 @@ body {
 }
 
 ::selection {
-  background: rgba(143, 169, 138, 0.20);
-  color: #1C1814;
+  background: rgba(217, 255, 92, 0.30);
+  color: #14142d;
 }
 
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: #F8F3EA; }
-::-webkit-scrollbar-thumb { background: #D9CCB0; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #B7896B; }
+::-webkit-scrollbar-track { background: #14142d; }
+::-webkit-scrollbar-thumb { background: #33335e; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #d9ff5c; }
 
 html {
   scroll-behavior: smooth;
