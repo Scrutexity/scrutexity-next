@@ -9,6 +9,7 @@ import { EngineContainer } from "@/components/scrutexity/funnel/EngineContainer"
 import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-timeline";
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
 import { ForensicBriefsGrid } from "@/components/scrutexity/ForensicBriefsGrid";
+import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { motion } from "framer-motion";
 
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
@@ -126,6 +127,9 @@ export default function UmbrellaHomepage() {
 
         </div>
       </section>
+
+      {/* Counsel Advisory Component */}
+      <CounselAdvisory />
 
       {/* ── 3. Three Outcomes (Re-themed for Dark) ── */}
       <section className="border-b border-sand-deep/20 bg-paper-light/30 px-5 py-24 sm:px-8 md:py-32">
