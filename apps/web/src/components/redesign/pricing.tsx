@@ -54,19 +54,23 @@ const TIERS = [
   },
 ];
 
-export function MakroPricing() {
+export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
   const [annual, setAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
+    <section id="pricing" className="border-t border-black/5 px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <div className="mx-auto max-w-[640px] text-center">
             <Kicker>Pricing</Kicker>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#ebedfa] sm:text-5xl">
+            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
+              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+            }`}>
               Evidence for costly decisions, priced plainly.
             </h2>
-            <p className="mt-4 text-[15px] text-[#9391b8]">
+            <p className={`mt-4 text-[15px] ${
+              isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+            }`}>
               Start free. Upgrade when you need depth. Watch when exposure is
               continuous.
             </p>
@@ -103,8 +107,9 @@ export function MakroPricing() {
             <Reveal key={t.name} delay={i * 0.08} className="h-full">
               <GlassCard
                 hover={false}
+                isLight={isLight}
                 className={`relative flex h-full flex-col p-7 ${
-                  t.highlight ? 'border-[#d9ff5c]/40 bg-[#d9ff5c]/[0.06]' : ''
+                  t.highlight ? 'border-[#d9ff5c] bg-[#d9ff5c]/[0.08]' : ''
                 }`}
               >
                 {t.highlight && (
@@ -113,23 +118,23 @@ export function MakroPricing() {
                   </span>
                 )}
 
-                <h3 className="text-[17px] font-semibold text-[#ebedfa]">{t.name}</h3>
-                <p className="mt-1 text-[12.5px] text-[#9391b8]">{t.tagline}</p>
+                <h3 className={`text-[17px] font-semibold ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>{t.name}</h3>
+                <p className={`mt-1 text-[12.5px] ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>{t.tagline}</p>
 
                 <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="text-5xl font-bold tracking-tight text-[#ebedfa]">
+                  <span className={`text-5xl font-bold tracking-tight ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
                     ${annual ? t.annual : t.monthly}
                   </span>
-                  <span className="text-[13px] text-[#9391b8]">
+                  <span className={`text-[13px] ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
                     /mo{annual ? ' · billed annually' : ''}
                   </span>
                 </div>
 
                 <ul className="mt-6 flex-1 space-y-2.5">
                   {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-[13px] text-[#ebedfa]">
-                      <Check size={15} className="mt-0.5 shrink-0 text-[#d9ff5c]" />
-                      <span className={f.endsWith(':') ? 'font-semibold text-[#9391b8]' : ''}>
+                    <li key={f} className={`flex items-start gap-2.5 text-[13px] ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                      <Check size={15} className="mt-0.5 shrink-0 text-[#5E7A5A]" />
+                      <span className={f.endsWith(':') ? `font-semibold ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}` : ''}>
                         {f}
                       </span>
                     </li>

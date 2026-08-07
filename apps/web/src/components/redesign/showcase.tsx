@@ -48,9 +48,11 @@ function Module({
   );
 }
 
-export function MakroShowcase() {
+export function MakroShowcase({ isLight = true }: { isLight?: boolean }) {
   return (
-    <section id="showcase" className="px-5 py-20 sm:px-8">
+    <section id="showcase" className={`transition-colors duration-500 px-5 py-24 sm:px-8 ${
+      isLight ? 'bg-[#14142d] text-[#ebedfa] border-y border-white/10' : 'bg-[#14142d] text-[#ebedfa]'
+    }`}>
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <div className="max-w-[680px]">

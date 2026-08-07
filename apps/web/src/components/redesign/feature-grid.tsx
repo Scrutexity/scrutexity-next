@@ -26,14 +26,16 @@ const FEATURES = [
   },
 ];
 
-export function MakroFeatureTabs() {
+export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
   return (
     <section id="features" className="px-5 py-20 sm:px-8">
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <div className="max-w-[640px]">
             <Kicker>Features</Kicker>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#ebedfa] sm:text-5xl">
+            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
+              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+            }`}>
               The claim evidence workflow, end to end.
             </h2>
           </div>
@@ -42,14 +44,18 @@ export function MakroFeatureTabs() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f, i) => (
             <Reveal key={f.name} delay={i * 0.07} className="h-full">
-              <GlassCard className="flex h-full flex-col p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d9ff5c]/15 text-[#d9ff5c]">
+              <GlassCard isLight={isLight} className="flex h-full flex-col p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#d9ff5c] text-[#14142d] font-bold shadow-xs">
                   <f.icon size={19} />
                 </span>
-                <h3 className="mt-5 text-[15px] font-semibold text-[#ebedfa]">
+                <h3 className={`mt-5 text-[15px] font-semibold ${
+                  isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                }`}>
                   {f.name}
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#9391b8]">
+                <p className={`mt-2 text-[13px] leading-relaxed ${
+                  isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+                }`}>
                   {f.desc}
                 </p>
               </GlassCard>
