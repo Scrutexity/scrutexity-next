@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShieldCheck, LayoutDashboard, History, Globe, Bell, Settings, FileText, ChevronRight } from "lucide-react";
+import { ShieldCheck, LayoutDashboard, ChevronRight } from "lucide-react";
 
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 
+// Only routes that exist. /dashboard/scans, /dashboard/domains,
+// /dashboard/alerts and /dashboard/settings were all listed here but none were
+// ever built, so every signed-in user hit a 404 on four of five nav items.
+// Restore each entry as its page ships.
 const NAV_ITEMS = [
   { name: "Watch Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Scans & Exhibits", href: "/dashboard/scans", icon: FileText },
-  { name: "Monitored Domains", href: "/dashboard/domains", icon: Globe },
-  { name: "Alerts & Drift", href: "/dashboard/alerts", icon: Bell },
-  { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {

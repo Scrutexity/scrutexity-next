@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-// Non-canonical support page: preserved, not indexed, not in nav/sitemap.
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  title: "Safety Architecture | Scrutexity",
+  description:
+    "How Scrutexity constrains its review process: public pages only, source-linked findings, human-reviewable records, and explicit limits on what the system will assert.",
+  alternates: { canonical: "/safety-architecture" },
 };
 
-export default function ArchivedRouteLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children;
 }

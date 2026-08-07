@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-// Archived-from-acquisition route: preserved source, not indexed, not in nav/sitemap.
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  title: "GLP-1 & Medical Weight Loss Claim Audit | Scrutexity",
+  description:
+    "GLP-1 and medical weight loss marketing carries a high claim risk surface. See which statements your evidence supports, and which need rewording.",
+  alternates: { canonical: "/glp-1-weight-loss-claim-audit" },
 };
 
-export default function ArchivedRouteLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children;
 }

@@ -103,7 +103,7 @@ export default function PricingContent() {
                 </ul>
               </div>
               <Link
-                href="/checkout"
+                href="/snapshot"
                 className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
               >
                 Get the Detailed Review <ArrowRight size={16} aria-hidden="true" />

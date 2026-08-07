@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-// Archived-from-acquisition route: preserved source, not indexed, not in nav/sitemap.
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  title: "New York & New Jersey Med Spa Claim Audit | Scrutexity",
+  description:
+    "A claim review for New York and New Jersey med spas: which public treatment claims your evidence does not support, safer replacement wording, and a dated review record.",
+  alternates: { canonical: "/new-york-med-spa-claim-audit" },
 };
 
-export default function ArchivedRouteLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children;
 }

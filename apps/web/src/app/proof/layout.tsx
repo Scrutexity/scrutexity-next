@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 
-// Proof-library route: trust infrastructure, not an acquisition surface. Not indexed.
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
+  title: "Proof & Verification | Scrutexity",
+  description:
+    "Every Scrutexity review ends in a dated, hash-chained record. See the artifacts a review produces and verify any record independently.",
+  alternates: { canonical: "/proof" },
 };
 
-export default function ProofLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return children;
 }

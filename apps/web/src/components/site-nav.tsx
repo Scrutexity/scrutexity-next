@@ -13,6 +13,9 @@ const links = [
   { name: 'Methodology', href: '/methodology' },
   { name: 'Enterprise', href: '/enterprise' },
   { name: 'Proof', href: '/proof' },
+  // Independent third-party verification of a record is the hardest thing here
+  // for a competitor to copy, and it was reachable only from the footer.
+  { name: 'Verify', href: '/verify' },
 ];
 const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 export function SiteNav() {

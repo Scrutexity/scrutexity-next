@@ -22,6 +22,13 @@ const nextConfig: NextConfig = {
       { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
       // Batch 3a — Internal / Test routes
       { source: '/dashboard-test', destination: '/claim-audit', permanent: true },
+      // /checkout was linked from the pricing page and the old snapshot result
+      // page but never existed, so both paid CTAs returned 404. Purchase now
+      // happens inside the funnel (EngineContainer -> PartialState ->
+      // EmbeddedCheckout), which requires a scan, so both point at intake.
+      { source: '/checkout', destination: '/snapshot', permanent: false },
+      // The old static result page reported fabricated findings.
+      { source: '/snapshot/result', destination: '/snapshot', permanent: true },
       { source: '/radar', destination: '/claim-audit', permanent: true },
       { source: '/contento', destination: '/contact', permanent: true },
       { source: '/techweek', destination: '/what-we-do', permanent: true },

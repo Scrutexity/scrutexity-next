@@ -28,7 +28,23 @@ const columns = [
       ["Proof", "/proof"],
       ["Verify a Record", "/verify"],
       ["Safety Architecture", "/safety-architecture"],
+      ["Sealed Audit Trail", "/proof/sealed-audit-trail"],
+      ["Sample Owner Brief", "/sample-owner-brief"],
+      ["How It Works", "/how-it-works"],
       ["About", "/about"],
+    ],
+  },
+  {
+    // These vertical pages carry the site's deepest long-form content but had
+    // zero inbound links, so neither crawlers nor readers could reach them.
+    title: "Industries",
+    links: [
+      ["Med Spas", "/medical-wellness/med-spas"],
+      ["GLP-1 & Weight Loss", "/glp-1-weight-loss-claim-audit"],
+      ["Aesthetic Devices", "/aesthetic-device-claim-audit"],
+      ["Regenerative Medicine", "/regenerative-medicine-claims"],
+      ["New York & New Jersey", "/new-york-med-spa-claim-audit"],
+      ["Agencies", "/use-cases/agency-white-label-audits"],
     ],
   },
   {
@@ -46,7 +62,7 @@ export default function Footer() {
   return (
     <footer className="bg-espresso px-5 py-14 text-cream sm:px-8 lg:py-18">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.3fr_repeat(4,1fr)]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_repeat(5,1fr)]">
           <div>
             <Image
               src="/logo-wordmark-green.png"
