@@ -28,25 +28,49 @@ export default function SnapshotClient() {
     isScanning: boolean;
     scanId: string | null;
     isDemo: boolean;
+    synthetic: boolean;
     error: string | null;
-  }>({ isScanning: false, scanId: null, isDemo: false, error: null });
+  }>({ isScanning: false, scanId: null, isDemo: false, synthetic: false, error: null });
 
   const handleScan = async (url: string, industry: string) => {
-    setScanState({ isScanning: true, scanId: null, isDemo: false, error: null });
+    setScanState({ isScanning: true, scanId: null, isDemo: false, synthetic: false, error: null });
     try {
       const res = await fetch("/api/funnel/scan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ targetUrl: url }),
       });
-      if (!res.ok) throw new Error("Scan failed");
-      const { scanId, scanToken, isDemo } = await res.json();
+
+      // A failed scan must surface as a failure. The server's message
+      // distinguishes an unusable URL from analysis being unavailable, and
+      // neither is allowed to degrade into synthetic findings.
+      if (!res.ok) {
+        const detail = await res.json().catch(() => ({}));
+        setScanState({
+          isScanning: false,
+          scanId: null,
+          isDemo: false,
+          synthetic: false,
+          error:
+            detail.error ??
+            "We could not complete a review of that page. Nothing was analysed.",
+        });
+        return;
+      }
+
+      const { scanId, scanToken, isDemo, synthetic } = await res.json();
       // Store the token for demo scans too. /api/funnel/result/[scanId]
       // requires a bearer token unconditionally, so skipping this for demos
       // made every demo scan 401 and render nothing. The token is scoped to
       // this scanId, so storing it grants no extra access.
       if (scanToken) sessionStorage.setItem("scrutexity_scan_token", scanToken);
-      setScanState({ isScanning: false, scanId, isDemo, error: null });
+      setScanState({
+        isScanning: false,
+        scanId,
+        isDemo,
+        synthetic: Boolean(synthetic),
+        error: null,
+      });
       trackEvent("snapshot_scan_complete", { url, industry });
     } catch (error) {
       console.error("Snapshot scan failed:", error);
@@ -54,6 +78,7 @@ export default function SnapshotClient() {
         isScanning: false,
         scanId: null,
         isDemo: false,
+        synthetic: false,
         error: "We could not reach that page. Check the URL and try again.",
       });
     }
@@ -93,6 +118,18 @@ export default function SnapshotClient() {
               className="mt-4 text-sm text-exposure-red"
             >
               {scanState.error}
+            </p>
+          )}
+
+          {scanState.synthetic && (
+            <p className="mt-4 rounded-md border border-review-amber/40 bg-review-amber/10 px-4 py-3 text-sm text-ink">
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-review-amber">
+                Synthetic demo
+              </span>
+              <span className="mt-1 block text-ink-soft">
+                This is an illustrative walkthrough, not analysis of a real
+                page. Enter your own URL to run a live review.
+              </span>
             </p>
           )}
 
