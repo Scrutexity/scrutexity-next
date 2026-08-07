@@ -76,7 +76,7 @@ function CheckoutForm({ onSuccess, clientSecret, scanId }: { onSuccess: () => vo
         className={`w-full h-11 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
           isSuccess 
             ? "bg-paper border border-bureau-sage text-bureau-sage" 
-            : "bg-bureau-sage text-[#070708] hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] disabled:opacity-50"
+            : "bg-accent text-paper hover:bg-accent-bright active:scale-[0.98] transition-[background-color,transform] duration-300 disabled:opacity-50"
         }`}
       >
         {isProcessing ? "Processing..." : isSuccess ? (
@@ -125,7 +125,9 @@ export function EmbeddedCheckout({ onSuccess, scanId }: EmbeddedCheckoutProps) {
   const appearance = {
     theme: "night" as const,
     variables: {
-      colorPrimary: "#00E5FF", // bureau-sage
+      // Stripe's appearance API needs a literal hex, so this mirrors the
+      // light-theme --color-accent token rather than reading it.
+      colorPrimary: "#3F6B5C",
       colorBackground: "#0A0A0B", // paper-light
       colorText: "#FCFCFA", // ink
       colorDanger: "#FF4D4D", // exposure-red

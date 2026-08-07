@@ -31,7 +31,9 @@ export function CounselAdvisory() {
         className="bg-paper-light text-ink rounded-[2rem] p-10 sm:p-16 lg:p-24 overflow-hidden relative shadow-2xl border border-border-deep"
       >
         {/* Decorative background gradient */}
-        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[500px] h-[500px] bg-bureau-sage/10 rounded-full mix-blend-screen filter blur-[120px] opacity-40 animate-float pointer-events-none" />
+        {/* mix-blend-screen was inherited from the dark palette; on a light
+            panel it erases the tint entirely. Removed so the accent reads. */}
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[500px] h-[500px] bg-bureau-sage/10 rounded-full filter blur-[120px] opacity-40 animate-float pointer-events-none" />
         
         <div className="relative z-10 grid gap-16 lg:grid-cols-12 items-center">
           
@@ -40,7 +42,7 @@ export function CounselAdvisory() {
               variants={blurFadeUp}
               className="text-4xl sm:text-5xl lg:text-[64px] font-light leading-[1.1] tracking-[-0.02em]"
             >
-              "The days of manual claim review are over. Institutional capital requires cryptographic certainty."
+              The days of manual claim review are over. Institutional capital requires cryptographic certainty.
             </motion.h2>
             
             <motion.div variants={revealUp} className="space-y-6 text-muted text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
@@ -57,7 +59,7 @@ export function CounselAdvisory() {
             variants={revealUp} 
             className="lg:col-span-4 lg:border-l lg:border-border-deep lg:pl-12 flex flex-col gap-6"
           >
-            <div className="w-16 h-16 rounded-full bg-border-deep text-ink flex items-center justify-center font-bold text-2xl border border-bureau-sage/30 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+            <div className="w-16 h-16 rounded-full bg-border-deep text-ink flex items-center justify-center font-bold text-2xl border border-bureau-sage/30">
               <span className="text-bureau-sage text-sm font-mono tracking-widest">STND</span>
             </div>
             <div>
