@@ -8,6 +8,9 @@ export const dynamic = "force-dynamic";
 
 const MAX_BYTES = 2_000_000;
 const FETCH_TIMEOUT_MS = 8_000;
+/** Below this, a fetch has told us nothing useful and must fail explicitly
+ *  rather than report an empty result as a clean one. */
+const MIN_READABLE_CHARS = 1_200;
 
 /**
  * Instant claim surface preview.
@@ -150,11 +153,19 @@ export async function POST(request: Request) {
 
   const { text, title } = extractVisibleText(html);
 
-  if (text.length < 200) {
+  // A thin response must not be reported as a clean result. Many marketing
+  // sites render their copy with JavaScript, so a server-side fetch returns a
+  // near-empty shell. Saying "no high-scrutiny phrasing found" in that case
+  // would be a fabricated reassurance: we did not find nothing, we read
+  // almost nothing. The threshold is deliberately well above the length of a
+  // typical shell so this fails loudly rather than passing quietly.
+  if (text.length < MIN_READABLE_CHARS) {
     return NextResponse.json(
       {
         error:
-          "That page returned too little readable text to review. It may render its content with JavaScript.",
+          "We could only read a fraction of that page, so we cannot report on it. Sites that render their copy with JavaScript need the full review, which loads the page in a browser.",
+        charsAnalysed: text.length,
+        reason: "insufficient_text",
       },
       { status: 422 }
     );
