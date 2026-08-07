@@ -25,7 +25,10 @@ const mockDB = new Map<string, ScanRecord>();
 
 export async function saveScanRecord(record: ScanRecord) {
   const persisted = await saveScanRecordSupabase(record);
-  if (!persisted) mockDB.set(record.id, record);
+  if (!persisted) {
+    console.warn(`[WARN] Supabase write failed for scan ${record.id}, falling back to in-memory mockDB`);
+    mockDB.set(record.id, record);
+  }
 }
 
 export async function getScanRecord(id: string): Promise<ScanRecord | null> {
