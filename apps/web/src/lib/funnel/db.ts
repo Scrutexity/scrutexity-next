@@ -1,4 +1,9 @@
 import { FullExhibitPackage, AuthLevel } from "@/components/scrutexity/funnel/types";
+import {
+  saveScanRecordSupabase,
+  getScanRecordSupabase,
+  updateScanAuthLevelSupabase,
+} from "./supabase-db";
 
 export interface ScanRecord {
   id: string;
@@ -13,19 +18,26 @@ export interface ScanRecord {
   purchasedAt?: Date;
 }
 
-// In-memory mock database for the vertical slice.
-// In production, this is a Postgres table (scans) with a JSONB column (full_package).
+// In-memory fallback for the demo slice (no Supabase env configured yet).
+// In production (env present), all three functions persist to the `scans`
+// table in Supabase via supabase-db.ts — no serverless-incompatible storage.
 const mockDB = new Map<string, ScanRecord>();
 
 export async function saveScanRecord(record: ScanRecord) {
-  mockDB.set(record.id, record);
+  const persisted = await saveScanRecordSupabase(record);
+  if (!persisted) mockDB.set(record.id, record);
 }
 
 export async function getScanRecord(id: string): Promise<ScanRecord | null> {
+  const persisted = await getScanRecordSupabase(id);
+  if (persisted) return persisted;
   return mockDB.get(id) || null;
 }
 
 export async function updateScanAuthLevel(id: string, authLevel: AuthLevel, email?: string) {
+  const persisted = await updateScanAuthLevelSupabase(id, authLevel, email);
+  if (persisted) return;
+
   const record = mockDB.get(id);
   if (!record) throw new Error("Scan record not found");
   
