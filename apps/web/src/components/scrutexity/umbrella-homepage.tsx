@@ -66,31 +66,34 @@ export default function UmbrellaHomepage() {
       
       {/* ── 1 & 2. Hero + Engine Section ── */}
       <section className="relative overflow-hidden border-b border-sand-deep/20 pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 sm:px-8">
-        {/* Background glow effects */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-bureau-sage/10 blur-[120px] rounded-full pointer-events-none" />
-        
         <div className="mx-auto max-w-5xl relative z-10 flex flex-col items-center text-center">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-sand-deep/40 bg-paper-light/50 backdrop-blur-sm mb-8">
-            <ShieldCheck size={14} className="text-bureau-sage" />
-            <span className="text-[10px] font-mono uppercase tracking-widest text-muted" style={{ fontFamily: MONO }}>
-              Claim Evidence Intelligence
-            </span>
-          </div>
-
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.05] tracking-tight">
-            Forensic intelligence for <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-ink via-ink to-muted">public marketing claims.</span>
+          <IndexLabel num="01" text="Claim Intelligence Standard" />
+          
+          <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-[1.08] tracking-tight max-w-3xl">
+            Keep your clients&rsquo;<br/>claims <span className="text-bureau-sage">defensible.</span>
           </h1>
           
-          <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl font-light leading-relaxed">
-            Scrutexity monitors web copy, flags FTC/FDA pattern mismatches and AI distortions, and produces dated, immutable audit records.
+          <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink/80 max-w-2xl font-normal">
+            Scrutexity reviews your clients&rsquo; public marketing claims and AI outputs, flags what lacks buyer-visible support, and gives you evidence notes plus safer replacement wording.
           </p>
           
-          <div className="mt-8 flex items-center justify-center gap-6 text-[10px] font-mono text-muted uppercase tracking-widest" style={{ fontFamily: MONO }}>
-            <span>No Code Required</span>
-            <span className="h-1 w-1 rounded-full bg-sand-deep" />
-            <span>Confidential Default</span>
+          <p className="mt-4 text-xs leading-relaxed text-muted font-mono" style={{ fontFamily: MONO }}>
+            Built for agencies that serve med spas, wellness clinics, telehealth, and other regulated businesses — every review ends in a dated, hash-chained record.
+          </p>
+          
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link href={SNAPSHOT_URL} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-bureau-sage px-7 py-3 text-xs font-semibold uppercase tracking-wider text-paper-light transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>
+              Run Your Free Snapshot <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+            <Link href="/sample-report" className="inline-flex items-center gap-1 text-xs font-mono text-ink underline decoration-sand-deep underline-offset-4 hover:decoration-bureau-sage" style={{ fontFamily: MONO }}>
+              Inspect Sample Report <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+          
+          <div className="mt-8 pt-4 border-t border-sand-deep/60 flex items-center justify-center gap-3 text-[10px] font-mono text-muted" style={{ fontFamily: MONO }}>
+            <span className="h-1.5 w-1.5 rounded-full bg-bureau-sage" aria-hidden />
+            <span>PUBLIC PAGES ONLY &middot; SOURCE-LINKED &middot; NOT LEGAL ADVICE</span>
           </div>
 
           {/* Live Demo Engine */}
