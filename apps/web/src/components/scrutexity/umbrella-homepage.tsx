@@ -126,7 +126,7 @@ export default function UmbrellaHomepage() {
               className="font-display mx-auto mt-6 max-w-[16ch] text-[2.75rem] font-medium leading-[0.98] text-ink sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
             >
               See what your site is{" "}
-              <span className="text-accent">actually claiming</span>.
+              <span className="text-accent-text">actually claiming</span>.
             </motion.h1>
 
             <motion.p
@@ -147,11 +147,30 @@ export default function UmbrellaHomepage() {
             <InstantPreview />
           </motion.div>
 
+          {/* Boundary notice, promoted out of footer small print. For a
+              regulated buyer the stated limits are part of the credibility. */}
+          <motion.aside
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
+            className="boundary-note mx-auto mt-8 max-w-4xl px-7 py-5"
+          >
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent-text">
+              Scope of this instrument
+            </p>
+            <p className="mt-3 max-w-[78ch] text-sm leading-relaxed text-ink-soft">
+              Designed as an operating risk screen over public pages. It reports
+              observed language and the evidence visible alongside it. It is not
+              a determination of accuracy or compliance, and not a substitute
+              for counsel.
+            </p>
+          </motion.aside>
+
           <motion.div
             initial={reduce ? false : { opacity: 0 }}
             animate={reduce ? undefined : { opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
           >
             <Link
               href={SNAPSHOT_URL}
@@ -202,7 +221,7 @@ export default function UmbrellaHomepage() {
       {/* ═══ 3. What a review returns — asymmetric definition list ═════════
           Sticky heading left, content right. Replaces the three equal cards. */}
       <section className="border-b border-hairline">
-        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20 lg:py-32">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-32 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-24 lg:py-44">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Eyebrow>The deliverable</Eyebrow>
             <h2 className="font-display mt-5 text-3xl font-medium text-ink sm:text-4xl">
@@ -210,23 +229,27 @@ export default function UmbrellaHomepage() {
             </h2>
           </div>
 
+          {/* Set as an index rather than a card row: rigid left-justified
+              grid, hairline rules, term and definition on a shared baseline.
+              A table of contents reads as authored; three equal cards read as
+              a template. */}
           <motion.dl
             variants={reduce ? undefined : stagger}
             initial={reduce ? false : "hidden"}
             whileInView={reduce ? undefined : "show"}
             viewport={{ once: true, amount: 0.25 }}
-            className="grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline"
+            className="border-t border-hairline"
           >
             {outcomes.map((item) => (
               <motion.div
                 key={item.term}
                 variants={reduce ? undefined : riseIn}
-                className="group bg-paper p-8 transition-colors duration-300 hover:bg-paper-light sm:p-10"
+                className="grid grid-cols-1 gap-x-10 gap-y-3 border-b border-hairline py-10 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] lg:py-12"
               >
-                <dt className="font-display text-xl font-medium text-ink sm:text-2xl">
+                <dt className="font-display text-xl font-medium tracking-tight text-accent-text sm:text-2xl">
                   {item.term}
                 </dt>
-                <dd className="mt-3 max-w-[56ch] text-base leading-relaxed text-muted">
+                <dd className="max-w-[62ch] text-base leading-relaxed text-ink-soft sm:text-lg">
                   {item.copy}
                 </dd>
               </motion.div>
@@ -241,7 +264,7 @@ export default function UmbrellaHomepage() {
           ClaimDriftTimeline renders its own heading, so this section
           contributes only the scroll-linked rule. Adding a heading here would
           stack two headings, which is what shipped previously. */}
-      <section ref={evidenceRef} className="relative border-b border-hairline py-24 lg:py-32">
+      <section ref={evidenceRef} className="relative border-b border-hairline py-32 lg:py-44">
         <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
           <div className="h-px w-full bg-hairline">
             <motion.div
@@ -256,12 +279,12 @@ export default function UmbrellaHomepage() {
       </section>
 
       {/* ═══ 5. Artifacts — component owns its own heading ════════════════ */}
-      <section className="border-b border-hairline bg-paper-light py-24 lg:py-32">
+      <section className="border-b border-hairline bg-paper-light py-32 lg:py-44">
         <ProofArtifactShelf />
       </section>
 
       {/* ═══ 6. Closing — full-bleed band, distinct from the hero ═════════ */}
-      <section id="snapshot" className="px-5 py-28 sm:px-8 lg:py-36">
+      <section id="snapshot" className="px-5 py-36 sm:px-8 lg:py-48">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 20 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -278,7 +301,7 @@ export default function UmbrellaHomepage() {
             onClick={() =>
               trackEvent("cta_click", { cta_label: PRIMARY_CTA, section: "final-cta" })
             }
-            className="group inline-flex min-h-12 shrink-0 items-center gap-2 self-start rounded-full bg-accent px-8 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98] lg:self-auto"
+            className="group inline-flex min-h-12 shrink-0 items-center gap-2 self-start rounded-full bg-accent px-8 text-sm font-semibold text-on-accent transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98] lg:self-auto"
           >
             {PRIMARY_CTA}
             <ArrowRight size={15} aria-hidden className="btn-arrow" />

@@ -110,7 +110,7 @@ export function InstantPreview() {
       ref={shellRef}
       onPointerMove={handlePointer}
       onPointerLeave={resetPointer}
-      className="relative isolate overflow-hidden rounded-[28px] border border-hairline bg-paper-light"
+      className="relative isolate overflow-hidden rounded-[3px] border border-accent/40 bg-paper-light"
     >
       {/* Depth layer 1: drifting grid */}
       <motion.div
@@ -146,12 +146,12 @@ export function InstantPreview() {
               onChange={(e) => setUrl(e.target.value)}
               placeholder="yourclinic.com"
               autoComplete="url"
-              className="min-h-14 flex-1 rounded-full border border-hairline bg-paper px-6 text-lg text-ink outline-none transition-colors placeholder:text-muted/70 focus-visible:border-accent"
+              className="min-h-14 flex-1 rounded-full border border-hairline bg-paper px-7 font-mono text-base tracking-tight text-ink outline-none transition-colors placeholder:font-sans placeholder:tracking-normal placeholder:text-muted/60 focus-visible:border-accent"
             />
             <button
               type="submit"
               disabled={state.status === "loading"}
-              className="group inline-flex min-h-14 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98] disabled:opacity-60"
+              className="group inline-flex min-h-14 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-8 text-base font-semibold text-on-accent transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98] disabled:opacity-60"
             >
               {state.status === "loading" ? "Reading your page…" : "Show me"}
               {state.status !== "loading" && (
@@ -200,7 +200,7 @@ function PreviewResult({ data, reduce }: { data: Preview; reduce: boolean }) {
   const count = data.findings.length;
 
   return (
-    <div className="rounded-2xl border border-hairline bg-paper">
+    <div className="exhibit-frame bg-paper">
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline px-6 py-4">
         <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
           {data.host}
@@ -216,14 +216,14 @@ function PreviewResult({ data, reduce }: { data: Preview; reduce: boolean }) {
             <>No high-scrutiny phrasing found on this page.</>
           ) : (
             <>
-              <span className="tnum text-accent">{count}</span>{" "}
+              <span className="tnum text-accent-text">{count}</span>{" "}
               {count === 1 ? "phrase" : "phrases"} a reviewer would look at.
             </>
           )}
         </p>
 
         {count > 0 && (
-          <ul className="mt-8 space-y-px overflow-hidden rounded-xl border border-hairline bg-hairline">
+          <ul className="mt-10 space-y-px overflow-hidden border border-hairline bg-hairline">
             {data.findings.map((f, i) => (
               <motion.li
                 key={`${f.match}-${i}`}

@@ -75,7 +75,7 @@ export default function AboutPage() {
               className="rounded-xl border border-hairline bg-raised p-8 shadow-[var(--shadow-card)]"
             >
               <div className="flex items-center gap-5">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-paper font-display text-2xl font-bold">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-on-accent font-display text-2xl font-bold">
                   NA
                 </div>
                 <div>
@@ -89,7 +89,7 @@ export default function AboutPage() {
                 &ldquo;Every audit is reviewed by me personally. When a buyer runs an AI search about your company before a sales call, the answer they get is either helping you close or quietly costing you the deal. We find out which.&rdquo;
               </p>
               <div className="mt-8 flex items-center gap-3 font-mono text-xs text-muted border-t border-hairline pt-6">
-                <UserCheck className="h-4 w-4 text-accent" />
+                <UserCheck className="h-4 w-4 text-accent-text" />
                 Direct founder review on every engagement
               </div>
             </motion.div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
               <motion.div variants={riseIn} className="pt-4">
                 <Link
                   href="/contact?intent=narrative-alignment-audit&source=about"
-                  className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
+                  className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-on-accent transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
                 >
                   Get Your Diagnostic
                   <ArrowRight size={15} aria-hidden className="btn-arrow" />
@@ -148,21 +148,21 @@ export default function AboutPage() {
             className="grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-3"
           >
             <motion.div variants={riseIn} className="bg-paper-light p-8 transition-colors duration-300 hover:bg-paper sm:p-10">
-              <Zap className="h-6 w-6 text-accent mb-6" />
+              <Zap className="h-6 w-6 text-accent-text mb-6" />
               <h3 className="font-display text-xl font-medium text-ink sm:text-2xl">Automated + Human</h3>
               <p className="mt-4 text-base leading-relaxed text-muted">
                 Automated tooling handles data capture and scoring. Nick Altstein reviews every finding and provides the strategic interpretation.
               </p>
             </motion.div>
             <motion.div variants={riseIn} className="bg-paper-light p-8 transition-colors duration-300 hover:bg-paper sm:p-10">
-              <RefreshCw className="h-6 w-6 text-accent mb-6" />
+              <RefreshCw className="h-6 w-6 text-accent-text mb-6" />
               <h3 className="font-display text-xl font-medium text-ink sm:text-2xl">14-Day Rerun</h3>
               <p className="mt-4 text-base leading-relaxed text-muted">
                 Every audit includes a 14-day rerun after your fixes go live. We re-query the AI models and verify the narrative gap is closed.
               </p>
             </motion.div>
             <motion.div variants={riseIn} className="bg-paper-light p-8 transition-colors duration-300 hover:bg-paper sm:p-10">
-              <CheckCircle2 className="h-6 w-6 text-accent mb-6" />
+              <CheckCircle2 className="h-6 w-6 text-accent-text mb-6" />
               <h3 className="font-display text-xl font-medium text-ink sm:text-2xl">Continuous Monitoring</h3>
               <p className="mt-4 text-base leading-relaxed text-muted">
                 AI narratives drift over time as models are retrained. Our Watch tier catches new discrepancies before they become deal-killers.
@@ -191,7 +191,7 @@ export default function AboutPage() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
             <Link
               href="/snapshot"
-              className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-accent px-8 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
+              className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-accent px-8 text-sm font-semibold text-on-accent transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
             >
               Run free snapshot
               <ArrowRight size={15} aria-hidden className="btn-arrow" />

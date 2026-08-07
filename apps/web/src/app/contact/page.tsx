@@ -111,7 +111,7 @@ export default async function ContactPage({
                 "Your desired decision date",
               ].map((item, index) => (
                 <li key={item} className="grid grid-cols-[28px_1fr] gap-3 py-4 text-sm leading-6 text-ink-soft">
-                  <span className="font-mono font-semibold text-accent">{index + 1}</span>
+                  <span className="font-mono font-semibold text-accent-text">{index + 1}</span>
                   {item}
                 </li>
               ))}
@@ -120,11 +120,11 @@ export default async function ContactPage({
           <div className="mt-8 shrink-0 md:mt-0 md:max-w-xs">
             <p className="text-sm leading-6 text-ink-soft">Prefer email? The form is the reliable intake path, with email available as a fallback.</p>
             <div className="mt-6 flex flex-col items-start gap-4">
-              <a href={`mailto:nick@scrutexity.com?subject=${encodeURIComponent(subject)}`} className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-accent-bright">
+              <a href={`mailto:nick@scrutexity.com?subject=${encodeURIComponent(subject)}`} className="inline-flex items-center gap-2 text-sm font-semibold text-accent-text transition-colors hover:text-accent-bright">
                 <Mail size={15} aria-hidden="true" />
                 Email Nick
               </a>
-              <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition-colors hover:text-accent-bright">
+              <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold text-accent-text transition-colors hover:text-accent-bright">
                 Review pricing
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>

@@ -69,7 +69,7 @@ export default function HowItWorksPage() {
               key={step.num} 
               className="p-8 md:p-12 rounded-xl border border-hairline bg-raised flex flex-col md:flex-row gap-8 items-start shadow-[var(--shadow-card)]"
             >
-              <span className="text-4xl font-display text-accent shrink-0">
+              <span className="text-4xl font-display text-accent-text shrink-0">
                 {step.num}
               </span>
               <div>
@@ -95,7 +95,7 @@ export default function HowItWorksPage() {
           <div className="mt-10 flex justify-center">
             <Link
               href="/snapshot"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-bright"
             >
               Run Your Free Snapshot
               <ArrowRight size={16} aria-hidden="true" />

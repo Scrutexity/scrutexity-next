@@ -3,8 +3,9 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    SCRUTEXITY — INSTITUTIONAL EVIDENCE SYSTEM
    ────────────────────────────────────────────────────────────────────────
-   Light is the canonical brand surface. Dark is a supported viewer
-   preference, applied via the header toggle and remembered per visitor.
+   Light is the canonical brand surface, matching the Makro reference
+   (verified live, not from the DNA doc, which had the canvas inverted). A
+   dark variant is derived from the same palette for the header toggle.
 
    Both themes are defined by redeclaring the same `--color-*` custom
    properties. Tailwind v4 compiles `bg-paper` to `var(--color-paper)`, so
@@ -13,31 +14,42 @@
    further down reads tokens only — no hardcoded hex — which is what keeps
    legacy subpages readable in both themes.
 
-   Accent discipline: one accent, `--color-accent`. It descends from the
-   original brand sage (#8FA98A) rather than replacing it, desaturated and
-   deepened so it reads as an institutional signal rather than a neon.
+   Accent discipline: lime `--color-accent` is the signature and is rationed
+   to one primary CTA plus key highlight figures. It is a fill, not running
+   text: `--color-on-accent` is what sits on top of it, `--color-accent-text`
+   is what emphasis type uses (they differ in the light variant, where lime
+   cannot hold contrast as text).
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Surfaces (light, canonical) ──
-     Off-white, never pure #FFFFFF as the page field: a warm paper tone is
-     what separates an evidence document from a default Tailwind page. */
-  --color-paper: #F7F6F3;
-  --color-paper-light: #FFFFFF;
+  /* ── Surfaces (light canvas, canonical) ──
+     Verified against makro.framer.website/home-alt: body background is
+     rgb(255,255,255), with #ebeff5 as the secondary band and translucent
+     white panels stacked over it. The design-DNA doc listed #14142d as the
+     dominant background; on the live page that value is the ink. */
+  --color-paper: #FFFFFF;
+  --color-paper-light: #EBEFF5;
   --color-raised: #FFFFFF;
-  --color-hairline: #E3E1DB;
+  --color-hairline: #DEE3ED;
 
   /* ── Ink ── */
-  --color-ink: #14161A;
-  --color-ink-soft: #35393F;
-  --color-muted: #5E626B;
+  --color-ink: #242426;
+  --color-ink-soft: #33335E;
+  --color-muted: #6E6E8A;
 
-  /* ── Single accent + semantic signals ──
-     Deep enough to hold WCAG AA as both text and button fill on paper. */
-  --color-accent: #3F6B5C;
-  --color-accent-bright: #2F5749;
-  --color-exposure-red: #B23A32;
-  --color-review-amber: #8A6415;
+  /* ── Accent ──
+     Lime is the signature and is deliberately rationed: one primary CTA and
+     key highlight figures. It is a FILL, never running text, because a light
+     lime cannot hold contrast as text on a light surface.
+     --color-on-accent is what sits on top of it, and is the reason buttons
+     no longer hardcode text-paper. */
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #E7FF95;
+  --color-on-accent: #14142D;
+  --color-accent-text: #33335E;
+  --color-highlight: #5B3FC4;
+  --color-exposure-red: #A93B32;
+  --color-review-amber: #7A5C18;
 
   /* ── Legacy token mappings ──
      Older pages reference the warm-earth names directly. Pointing them at
@@ -67,62 +79,73 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ── Space + shape ──
-     One radius scale, applied everywhere. Shape Consistency Lock. */
+     Makro is a glass-card system: softly rounded panels, pill controls.
+     One scale, applied everywhere. */
   --spacing-nav-offset: 100px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 999px;
 
   /* ── Motion ── */
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
-  /* Shadows are tinted to the paper hue, never pure black on light. */
-  --shadow-card: 0 1px 2px rgb(20 22 26 / 0.04), 0 14px 36px -16px rgb(20 22 26 / 0.12);
-  --shadow-float: 0 30px 70px -22px rgb(20 22 26 / 0.20);
+  --shadow-card: 0 1px 2px rgb(20 20 45 / 0.05), 0 18px 44px -18px rgb(20 20 45 / 0.16);
+  --shadow-float: 0 30px 70px -22px rgb(20 20 45 / 0.22);
 }
 
 /* ═══ LIGHT THEME ═══════════════════════════════════════════════════════ */
+/* Light variant, derived from the same Makro palette rather than invented.
+   The navy becomes the ink, the light gray-blue becomes the field, and lime
+   stays a fill only: as text on a pale surface it cannot hold AA, so
+   --color-accent-text carries emphasis type instead. */
 html[data-theme="light"] {
-  --color-paper: #F7F6F3;
-  --color-paper-light: #FFFFFF;
+  --color-paper: #FFFFFF;
+  --color-paper-light: #EBEFF5;
   --color-raised: #FFFFFF;
-  --color-hairline: #E3E1DB;
+  --color-hairline: #DEE3ED;
 
-  --color-ink: #14161A;
-  --color-ink-soft: #35393F;
-  --color-muted: #5E626B;
+  --color-ink: #242426;
+  --color-ink-soft: #33335E;
+  --color-muted: #6E6E8A;
 
-  /* Deepened so the same accent holds WCAG AA against a light surface. */
-  --color-accent: #3F6B5C;
-  --color-accent-bright: #2F5749;
-  --color-exposure-red: #B23A32;
-  --color-review-amber: #8A6415;
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #C8F53F;
+  --color-on-accent: #14142D;
+  --color-accent-text: #33335E;
+  --color-highlight: #5B3FC4;
+  --color-exposure-red: #A93B32;
+  --color-review-amber: #7A5C18;
 
-  --shadow-card: 0 1px 2px rgb(20 22 26 / 0.04), 0 14px 36px -16px rgb(20 22 26 / 0.12);
-  --shadow-float: 0 30px 70px -22px rgb(20 22 26 / 0.20);
+  --shadow-card: 0 1px 2px rgb(20 20 45 / 0.05), 0 14px 36px -16px rgb(20 20 45 / 0.14);
+  --shadow-float: 0 30px 70px -22px rgb(20 20 45 / 0.22);
 }
 
-/* ═══ DARK THEME (explicit) ═════════════════════════════════════════════
-   Declared explicitly rather than relying on the @theme defaults so the
-   toggle is symmetrical and neither direction depends on cascade order. */
+/* ═══ DARK THEME (canonical) ════════════════════════════════════════════
+   Canonical Makro canvas. Declared explicitly so neither direction of the
+   toggle depends on cascade order. */
 html[data-theme="dark"] {
-  --color-paper: #0A0A0B;
-  --color-paper-light: #101113;
-  --color-raised: #16181B;
-  --color-hairline: #22252A;
+  --color-paper: #14142D;
+  --color-paper-light: #1B1B3A;
+  --color-raised: #33335E;
+  --color-hairline: #2E2E58;
 
-  --color-ink: #F4F3EF;
-  --color-ink-soft: #C9C8C3;
-  --color-muted: #8B8D93;
+  --color-ink: #EBEDFA;
+  --color-ink-soft: #C6C8E4;
+  --color-muted: #9391B8;
 
-  --color-accent: #6E9C8C;
-  --color-accent-bright: #97BFAF;
-  --color-exposure-red: #E5645C;
-  --color-review-amber: #D9A441;
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #E7FF95;
+  --color-on-accent: #14142D;
+  /* On the navy canvas lime is legible as type, so emphasis text can use the
+     accent directly. The light variant cannot, hence the separate token. */
+  --color-accent-text: #D9FF5C;
+  --color-highlight: #C0ADFF;
+  --color-exposure-red: #FF8F86;
+  --color-review-amber: #F0C36A;
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.40), 0 14px 36px -16px rgb(0 0 0 / 0.60);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.40), 0 18px 44px -18px rgb(0 0 0 / 0.65);
   --shadow-float: 0 30px 70px -22px rgb(0 0 0 / 0.75);
 }
 
@@ -160,17 +183,22 @@ html {
   border-radius: 2px;
 }
 
-/* ── Type helpers ── */
+/* ── Type helpers ──
+   Measured off the Makro reference: display type is 88px at weight 400 with
+   -3.52px tracking (-0.04em). The restraint is the point. A heavier weight
+   reads as a generic SaaS hero; the tight tracking at a light weight is what
+   makes the scale feel intentional. */
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  letter-spacing: -0.04em;
   font-variant-ligatures: common-ligatures;
   text-wrap: balance;
 }
 
 h1.font-display,
 h2.font-display {
-  line-height: 1.02;
+  line-height: 0.98;
 }
 
 /* Tabular figures keep evidence numbers from shifting as they animate. */
@@ -213,7 +241,7 @@ h2.font-display {
    tokens, so they no longer ship warm-earth hex onto a dark page. */
 .govbtn, .clay-cta, .sage-cta {
   background: var(--color-accent);
-  color: var(--color-paper);
+  color: var(--color-on-accent);
   padding: 12px 24px;
   border-radius: var(--radius-full);
   font-weight: 600;
@@ -226,6 +254,7 @@ h2.font-display {
 
 .govbtn:hover, .clay-cta:hover, .sage-cta:hover {
   background: var(--color-accent-bright);
+  color: var(--color-on-accent);
   transform: translateY(-1px);
 }
 
@@ -283,12 +312,29 @@ h2.font-display {
   flex-shrink: 0;
 }
 
+/* Data containers are framed, not floated. A 1px accent rule on ivory reads
+   as an engineered document; a soft drop shadow reads as a web card. */
 .sketch-card {
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-hairline);
   background: var(--color-raised);
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.3s var(--ease-lux), box-shadow 0.3s var(--ease-lux);
+  transition: border-color 0.3s var(--ease-lux);
+}
+
+/* Framed exhibit: the deliberate teal-ruled container for evidence blocks. */
+.exhibit-frame {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  background: var(--color-raised);
+  border-radius: var(--radius-xl);
+}
+
+/* Boundary notice. The legal scope is promoted to a visible feature rather
+   than buried in footer small print, because for a regulated buyer the limits
+   are part of the credibility, not a disclaimer to hide. */
+.boundary-note {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  border-radius: var(--radius-xl);
 }
 
 .sketch-card:hover {
@@ -353,7 +399,7 @@ html[data-theme="dark"] .bg-espresso {
 html[data-theme="dark"] a.bg-espresso,
 html[data-theme="dark"] button.bg-espresso {
   background-color: var(--color-accent);
-  --color-cream: var(--color-paper);
+  --color-cream: var(--color-on-accent);
 }
 
 /* Deliberately dark in BOTH themes — for evidence bands that must stay dark. */

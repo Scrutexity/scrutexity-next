@@ -61,15 +61,15 @@ export default function PricingContent() {
                   Automated point-in-time exposure preview. The low-friction entry.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-accent">•</span> 3 high-level flags</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Identify key claims</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> No sources linked</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Delivered by email</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> 3 high-level flags</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Identify key claims</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> No sources linked</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Delivered by email</li>
                 </ul>
               </div>
               <Link
                 href={SNAPSHOT_URL}
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-bright"
               >
                 Run Your Free Snapshot <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -78,7 +78,7 @@ export default function PricingContent() {
             {/* Verification — Claim Support Review */}
             <MouseSpotlight className="rounded-[2rem]">
             <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-accent/40 bg-paper-light p-8 shadow-md">
-              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper" style={{ fontFamily: MONO }}>
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-on-accent" style={{ fontFamily: MONO }}>
                 First paid record
               </div>
               <div className="flex-1">
@@ -94,17 +94,17 @@ export default function PricingContent() {
                   The first paid receipt. Establishes a formal, dated review trail.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted font-medium">
-                  <li className="flex gap-2"><span className="text-accent">✓</span> 1 deep-dive Exhibit A</li>
-                  <li className="flex gap-2"><span className="text-accent">✓</span> Exact claim captured</li>
-                  <li className="flex gap-2"><span className="text-accent">✓</span> Visible evidence found</li>
-                  <li className="flex gap-2"><span className="text-accent">✓</span> Evidence gap mapped</li>
-                  <li className="flex gap-2"><span className="text-accent">✓</span> Safer rewrite provided</li>
-                  <li className="flex gap-2"><span className="text-accent">✓</span> Dated review record</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> 1 deep-dive Exhibit A</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> Exact claim captured</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> Visible evidence found</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> Evidence gap mapped</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> Safer rewrite provided</li>
+                  <li className="flex gap-2"><span className="text-accent-text">✓</span> Dated review record</li>
                 </ul>
               </div>
               <Link
                 href="/snapshot"
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright hover:text-on-accent"
               >
                 Get the Detailed Review <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -122,7 +122,7 @@ export default function PricingContent() {
               Automated
             </span>
             <span className="h-px w-16 bg-hairline" aria-hidden />
-            <ArrowDown size={14} className="text-accent" aria-hidden="true" />
+            <ArrowDown size={14} className="text-accent-text" aria-hidden="true" />
             <span className="h-px w-16 bg-hairline" aria-hidden />
             <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
               Bespoke
@@ -157,10 +157,10 @@ export default function PricingContent() {
                   Bespoke forensic assessment for specific operational risks.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-accent">•</span> Targeted public-footprint review</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> FTC / FDA pattern map</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Exposure brief</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Counsel-ready output</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Targeted public-footprint review</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> FTC / FDA pattern map</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Exposure brief</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Counsel-ready output</li>
                 </ul>
               </div>
               <Link
@@ -183,10 +183,10 @@ export default function PricingContent() {
                   Complete regulatory risk analysis for acquisitions and board reviews.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-accent">•</span> Claims + AI narrative inventory</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Diligence report</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Risk quantification for valuation</li>
-                  <li className="flex gap-2"><span className="text-accent">•</span> Board-ready brief</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Claims + AI narrative inventory</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Diligence report</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Risk quantification for valuation</li>
+                  <li className="flex gap-2"><span className="text-accent-text">•</span> Board-ready brief</li>
                 </ul>
               </div>
               <Link
@@ -200,7 +200,7 @@ export default function PricingContent() {
             {/* Continuous — Watch */}
             <MouseSpotlight className="rounded-[2rem]">
             <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-accent/40 bg-paper p-8 shadow-md">
-              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper" style={{ fontFamily: MONO }}>
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-on-accent" style={{ fontFamily: MONO }}>
                 Ongoing
               </div>
               <div className="flex-1">
@@ -230,7 +230,7 @@ export default function PricingContent() {
               </div>
               <Link
                 href="/contact"
-                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright hover:text-on-accent"
               >
                 Request Watch Access
               </Link>
@@ -249,7 +249,7 @@ export default function PricingContent() {
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href={SNAPSHOT_URL}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-bright"
             >
               Run Your Free Snapshot
               <ArrowRight size={16} aria-hidden="true" />

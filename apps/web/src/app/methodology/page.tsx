@@ -28,7 +28,7 @@ export default function MethodologyPage() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
         <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-4xl mx-auto relative z-10 text-center">
           <motion.div variants={riseIn} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-hairline bg-paper-light/50 backdrop-blur-sm mb-6">
-            <ShieldCheck size={14} className="text-accent" />
+            <ShieldCheck size={14} className="text-accent-text" />
             <span className="text-[10px] font-mono uppercase tracking-widest text-muted" style={{ fontFamily: MONO }}>
               Forensic Intelligence
             </span>
@@ -48,7 +48,7 @@ export default function MethodologyPage() {
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-hairline" />
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>1. Scope of Operation</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>1. Scope of Operation</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
           
@@ -86,7 +86,7 @@ export default function MethodologyPage() {
         {/* ── 2. THE PATTERN LIBRARY ── */}
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>2. The Pattern Library</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>2. The Pattern Library</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
           
@@ -97,17 +97,17 @@ export default function MethodologyPage() {
 
             <motion.div variants={stagger} className="grid sm:grid-cols-3 gap-4 mb-8">
               <motion.div variants={riseIn} className="border border-hairline p-5 rounded-xl bg-paper">
-                <Scale className="text-accent mb-3" size={20} />
+                <Scale className="text-accent-text mb-3" size={20} />
                 <h4 className="text-sm font-semibold text-ink mb-2">FTC Section 5 Precedents</h4>
                 <p className="text-xs text-muted leading-relaxed">We codify patterns of deception and unfairness derived from published consent decrees, specifically focusing on absolute outcome guarantees and implied endorsements.</p>
               </motion.div>
               <motion.div variants={riseIn} className="border border-hairline p-5 rounded-xl bg-paper">
-                <Activity className="text-accent mb-3" size={20} />
+                <Activity className="text-accent-text mb-3" size={20} />
                 <h4 className="text-sm font-semibold text-ink mb-2">FDA Enforcement Actions</h4>
                 <p className="text-xs text-muted leading-relaxed">We maintain a structural mapping of warning letters and Untitled Letters, prioritizing off-label promotion markers and unapproved indications.</p>
               </motion.div>
               <motion.div variants={riseIn} className="border border-hairline p-5 rounded-xl bg-paper">
-                <FileCheck2 className="text-accent mb-3" size={20} />
+                <FileCheck2 className="text-accent-text mb-3" size={20} />
                 <h4 className="text-sm font-semibold text-ink mb-2">Industry Guidelines</h4>
                 <p className="text-xs text-muted leading-relaxed">Where applicable, the library incorporates established self-regulatory frameworks (e.g., NAD decisions) to map structural compliance boundaries.</p>
               </motion.div>
@@ -124,7 +124,7 @@ export default function MethodologyPage() {
         {/* ── 3. CLAIM EVALUATION MECHANICS ── */}
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>3. Claim Evaluation Mechanics</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>3. Claim Evaluation Mechanics</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
 
@@ -143,7 +143,7 @@ export default function MethodologyPage() {
         {/* ── 4. HUMAN IN THE LOOP ── */}
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>4. The Human-in-the-Loop Principle</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>4. The Human-in-the-Loop Principle</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
 
@@ -163,7 +163,7 @@ export default function MethodologyPage() {
         {/* ── 5. EVIDENCE & PROVENANCE ── */}
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>5. Evidence & Provenance</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>5. Evidence & Provenance</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
           
@@ -199,7 +199,7 @@ export default function MethodologyPage() {
         {/* ── 6. LIMITATIONS ── */}
         <motion.section variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
           <motion.div variants={riseIn} className="flex items-center gap-3 mb-8">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent" style={{ fontFamily: MONO }}>6. System Limitations and Boundaries</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-text" style={{ fontFamily: MONO }}>6. System Limitations and Boundaries</span>
             <div className="h-px flex-1 bg-hairline" />
           </motion.div>
           
@@ -223,7 +223,7 @@ export default function MethodologyPage() {
 
 function CheckCircleIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-text">
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>
@@ -272,7 +272,7 @@ function ListItem({ title, text }: { title: string, text: string }) {
 function Step({ number, title, text }: { number: string, title: string, text: string }) {
   return (
     <motion.div variants={riseIn} className="flex gap-4 p-4 border border-hairline rounded-xl bg-paper">
-      <div className="text-xs font-mono text-accent pt-1" style={{ fontFamily: MONO }}>{number}</div>
+      <div className="text-xs font-mono text-accent-text pt-1" style={{ fontFamily: MONO }}>{number}</div>
       <div>
         <h4 className="text-sm font-semibold text-ink mb-1">{title}</h4>
         <p className="text-sm text-muted leading-relaxed">{text}</p>
