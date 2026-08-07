@@ -14,10 +14,18 @@ if (process.env.POSTGRES_URL) {
 let sqliteDb: any = null;
 function getSqliteDb() {
   if (!sqliteDb) {
-    const Database = require('better-sqlite3');
-    const dbPath = path.join(process.cwd(), 'telemetry.db');
-    sqliteDb = new Database(dbPath);
-    sqliteDb.exec(`
+    try {
+      const fs = require('fs');
+      const dbPath = path.join(process.cwd(), 'telemetry.db');
+      
+      if (process.env.VERCEL && !fs.existsSync(dbPath)) {
+        console.warn("Serverless environment detected without telemetry.db. Operating entitlements in stub mode.");
+        return null; // Return null instead of crashing
+      }
+      
+      const Database = require('better-sqlite3');
+      sqliteDb = new Database(dbPath);
+      sqliteDb.exec(`
       CREATE TABLE IF NOT EXISTS unlocked_audits (
         id TEXT PRIMARY KEY,
         public_id TEXT NOT NULL,
@@ -113,6 +121,10 @@ export async function unlockAudit(params: UnlockAuditParams) {
     ]);
   } else {
     const db = getSqliteDb();
+    if (!db) {
+      console.warn("Skipping sqlite execution on serverless (unlockAudit)");
+      return;
+    }
     const id = require('crypto').randomUUID();
     const stmt = db.prepare(`
       INSERT INTO unlocked_audits (
@@ -163,6 +175,10 @@ export async function getAuditEntitlement(publicId: string): Promise<{
     row = res.rows[0];
   } else {
     const db = getSqliteDb();
+    if (!db) {
+      console.warn("Skipping sqlite execution on serverless (getAuditEntitlement)");
+      return { unlocked: false, entitlement: 'snapshot' };
+    }
     const stmt = db.prepare("SELECT entitlement, status FROM unlocked_audits WHERE public_id = ? AND status = 'paid' LIMIT 1");
     row = stmt.get(publicId);
   }

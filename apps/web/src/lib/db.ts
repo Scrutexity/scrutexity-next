@@ -1,9 +1,30 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import { existsSync } from 'fs';
 
 // ── Database Path ──
 const dbPath = path.join(process.cwd(), 'telemetry.db');
-const db = new Database(dbPath);
+let db: any;
+try {
+  if (process.env.VERCEL && !existsSync(dbPath)) {
+    console.warn("Serverless environment detected without telemetry.db. Operating in stub mode.");
+    db = new Proxy({}, { 
+      get: () => () => new Proxy({}, { 
+        get: (target, prop) => {
+          if (prop === 'all') return () => [];
+          if (prop === 'get') return () => null;
+          if (prop === 'run') return () => {};
+          return () => {};
+        }
+      }) 
+    });
+  } else {
+    db = new Database(dbPath);
+  }
+} catch (error) {
+  console.warn("Failed to initialize local sqlite database. Operating in stub mode.", error);
+  db = new Proxy({}, { get: () => () => ({ all: ()=>[], get: ()=>null, run: ()=>{} }) });
+}
 
 // ── TypeScript Contracts ──
 
