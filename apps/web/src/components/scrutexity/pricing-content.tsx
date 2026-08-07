@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Kicker, MONO } from "@/components/scrutexity/intel-kit";
 import { MouseSpotlight } from "@/components/scrutexity/motion/mouse-spotlight";
+import { ActionPill } from "@/components/ui/ActionPill";
+import { TiltCard } from "@/components/redesign/reactive";
 
 const SNAPSHOT_URL = "/snapshot";
 
@@ -47,7 +49,7 @@ export default function PricingContent() {
           </div>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {/* Triage — Free Snapshot */}
-            <article className="relative flex flex-col rounded-[2rem] border border-hairline/50 bg-paper-light p-8">
+            <article className="relative flex flex-col rounded-[20px] border border-hairline bg-raised p-8">
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="font-display text-2xl text-ink">Free Snapshot</h3>
@@ -56,7 +58,8 @@ export default function PricingContent() {
                 <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
                   Tier 1 — Triage
                 </p>
-                <p className="mt-3 text-3xl font-medium text-ink">$0</p>
+                <p className="mt-6 font-display text-5xl font-normal tracking-tight text-ink sm:text-6xl">$0<span className="text-2xl text-muted">/mo</span></p>
+                <p className="mt-1 text-xs text-muted">per review</p>
                 <p className="mt-3 text-sm leading-6 text-muted">
                   Automated point-in-time exposure preview. The low-friction entry.
                 </p>
@@ -67,17 +70,14 @@ export default function PricingContent() {
                   <li className="flex gap-2"><span className="text-accent-text">•</span> Delivered by email</li>
                 </ul>
               </div>
-              <Link
-                href={SNAPSHOT_URL}
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-on-accent transition-colors hover:bg-accent-bright"
-              >
-                Run Your Free Snapshot <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+              <ActionPill href={SNAPSHOT_URL} variant="secondary" block className="mt-8">
+                Try it free
+              </ActionPill>
             </article>
 
             {/* Verification — Claim Support Review */}
             <MouseSpotlight className="rounded-[2rem]">
-            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-accent/40 bg-paper-light p-8 shadow-md">
+            <article className="relative flex h-full flex-col overflow-hidden rounded-[20px] border border-hairline bg-raised p-8 shadow-[var(--shadow-card)]">
               <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-on-accent" style={{ fontFamily: MONO }}>
                 First paid record
               </div>
@@ -89,7 +89,8 @@ export default function PricingContent() {
                 <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
                   Tier 2 — Verification
                 </p>
-                <p className="mt-3 text-3xl font-medium text-ink">$99</p>
+                <p className="mt-6 font-display text-5xl font-normal tracking-tight text-ink sm:text-6xl">$99<span className="text-2xl text-muted">/mo</span></p>
+                <p className="mt-1 text-xs text-muted">per review</p>
                 <p className="mt-3 text-sm leading-6 text-muted">
                   The first paid receipt. Establishes a formal, dated review trail.
                 </p>
@@ -102,12 +103,9 @@ export default function PricingContent() {
                   <li className="flex gap-2"><span className="text-accent-text">✓</span> Dated review record</li>
                 </ul>
               </div>
-              <Link
-                href="/snapshot"
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright hover:text-on-accent"
-              >
-                Get the Detailed Review <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+              <ActionPill href="/snapshot" block className="mt-8">
+                Get the detailed review
+              </ActionPill>
             </article>
             </MouseSpotlight>
           </div>
