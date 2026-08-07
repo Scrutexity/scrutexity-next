@@ -43,6 +43,11 @@ function getSqliteDb() {
       CREATE INDEX IF NOT EXISTS unlocked_audits_public_id_idx ON unlocked_audits(public_id);
       CREATE INDEX IF NOT EXISTS unlocked_audits_email_idx ON unlocked_audits(email);
     `);
+    } catch (error) {
+      console.error('Failed to initialize sqlite entitlements:', error);
+      sqliteDb = null;
+      return null;
+    }
   }
   return sqliteDb;
 }

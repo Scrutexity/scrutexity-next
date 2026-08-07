@@ -5,25 +5,25 @@ import { existsSync } from 'fs';
 // ── Database Path ──
 const dbPath = path.join(process.cwd(), 'telemetry.db');
 let db: any;
+// Plain-object stubs (not nested proxies) so every sqlite API shape used by
+// this module — prepare/get/all/run/exec/transaction — degrades safely on
+// serverless, where no writable telemetry.db exists.
+const stubStmt = { get: () => null, all: () => [], run: () => {} };
+const stubDb = {
+  prepare: () => stubStmt,
+  exec: () => {},
+  transaction: () => () => {},
+};
 try {
   if (process.env.VERCEL && !existsSync(dbPath)) {
     console.warn("Serverless environment detected without telemetry.db. Operating in stub mode.");
-    db = new Proxy({}, { 
-      get: () => () => new Proxy({}, { 
-        get: (target, prop) => {
-          if (prop === 'all') return () => [];
-          if (prop === 'get') return () => null;
-          if (prop === 'run') return () => {};
-          return () => {};
-        }
-      }) 
-    });
+    db = stubDb;
   } else {
     db = new Database(dbPath);
   }
 } catch (error) {
   console.warn("Failed to initialize local sqlite database. Operating in stub mode.", error);
-  db = new Proxy({}, { get: () => () => ({ all: ()=>[], get: ()=>null, run: ()=>{} }) });
+  db = stubDb;
 }
 
 // ── TypeScript Contracts ──
@@ -116,9 +116,9 @@ db.exec(`
 
 // ── Telemetry ──
 const stmt = db.prepare('SELECT COUNT(*) as count FROM telemetry');
-const row = stmt.get() as { count: number };
+const row = stmt.get() as { count: number } | null;
 
-if (row.count === 0) {
+if (row && row.count === 0) {
   const insert = db.prepare(`
     INSERT INTO telemetry (
       claimHealthScore, unsupportedLanguageCount, proofArtifactsCount,
