@@ -125,7 +125,7 @@ export function LivingClaimReceipt() {
         </div>
         {step >= 5 ? (
           <div className="text-right">
-            <span className="text-bureau-sage">HASH:</span> sha256:e3b0c44298...
+            <span className="text-bureau-sage">HASH:</span> — awaiting live scan record
           </div>
         ) : (
           <div>HASHING...</div>

@@ -8,7 +8,6 @@ import { LiveDemoEngine } from "@/components/scrutexity/motion/live-demo-engine"
 import { EngineContainer } from "@/components/scrutexity/funnel/EngineContainer";
 import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-timeline";
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
-import { ForensicBriefsGrid } from "@/components/scrutexity/ForensicBriefsGrid";
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { motion } from "framer-motion";
 
@@ -115,15 +114,13 @@ export default function UmbrellaHomepage() {
                     <Lock size={12} className="text-muted" />
                   </div>
                   <p className="text-xs text-muted font-mono leading-relaxed truncate" style={{ fontFamily: MONO }}>
-                    SHA256: e3b0c44298fc1c149afbf4c8996fb...
+                    SHA256: — awaiting live scan record
                   </p>
                 </div>
               </motion.div>
             )}
           </div>
 
-          {/* Forensic Briefs Grid */}
-          <ForensicBriefsGrid />
 
         </div>
       </section>

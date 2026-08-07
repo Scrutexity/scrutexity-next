@@ -50,9 +50,9 @@ const DOCUMENTS = [
     tag: "HASH-CHAINED RECORD",
     icon: Hash,
     fields: [
-      { label: "Ledger SHA-256 Digest", val: "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
-      { label: "Capture Date", val: "2026-08-06 T14:32:00Z" },
-      { label: "Verification Seal", val: "S-MARK VALIDATED // IMMUTABLE RECORD" },
+      { label: "Ledger SHA-256 Digest", val: "— awaiting live scan record" },
+      { label: "Capture Date", val: "2026-08-06 T14:00Z" },
+      { label: "Verification Seal", val: "Reserved until first sealed record" },
     ],
   },
 ];
