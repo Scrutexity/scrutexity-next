@@ -1,44 +1,55 @@
 import { NextResponse } from 'next/server';
-import Database from 'better-sqlite3';
-import path from 'path';
-import { existsSync } from 'fs';
+import { createClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const dbPath = path.join(process.cwd(), 'telemetry.db');
-  let db: Database.Database | null = null;
   try {
-    // Local sqlite telemetry is a dev-only store; on serverless (Vercel) the
-    // filesystem is read-only, so this file is absent. Report honestly instead
-    // of a generic 500.
-    if (!existsSync(dbPath)) {
-      return NextResponse.json(
-        { error: 'local telemetry database not present in this runtime', data: [] },
-        { status: 503 }
-      );
-    }
-    db = new Database(dbPath, { readonly: true });
+    const supabase = await createClient();
 
     // Query the 30 most recent claim risks joined with scans metadata
-    const claims = db.prepare(`
-      SELECT cr.*, s.scanned_url, s.scanned_at
-      FROM claim_risks cr
-      JOIN scans s ON cr.scan_id = s.scan_id
-      ORDER BY cr.id DESC
-      LIMIT 30
-    `).all();
+    const { data: claims, error } = await supabase
+      .from('claim_risks')
+      .select(`
+        id,
+        scan_id,
+        claim_text,
+        severity_score,
+        regulatory_triggers,
+        visible_citation,
+        drift_detected,
+        drift_context,
+        safer_wording,
+        scans (
+          target_url,
+          created_at
+        )
+      `)
+      .order('id', { ascending: false })
+      .limit(30);
 
-    db.close();
+    if (error) {
+      console.error('Failed to query live claims from Supabase:', error);
+      return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
+    }
 
-    // Deserialize regulatory triggers JSON array
+    if (!claims) {
+      return NextResponse.json([]);
+    }
+
+    // Normalize and deserialize as before
     const normalized = claims.map((row: any) => {
       let triggers: string[] = [];
-      try {
-        triggers = JSON.parse(row.regulatory_triggers);
-      } catch {
-        triggers = [row.regulatory_triggers];
+      if (Array.isArray(row.regulatory_triggers)) {
+        triggers = row.regulatory_triggers;
+      } else if (typeof row.regulatory_triggers === 'string') {
+        try {
+          triggers = JSON.parse(row.regulatory_triggers);
+        } catch {
+          triggers = [row.regulatory_triggers];
+        }
       }
+
       return {
         id: row.id,
         scanId: row.scan_id,
@@ -49,14 +60,14 @@ export async function GET() {
         driftDetected: Boolean(row.drift_detected),
         driftContext: row.drift_context,
         saferWording: row.safer_wording,
-        scannedUrl: row.scanned_url,
-        scannedAt: row.scanned_at,
+        scannedUrl: row.scans?.target_url,
+        scannedAt: row.scans?.created_at,
       };
     });
 
     return NextResponse.json(normalized);
   } catch (error) {
-    console.error('Failed to query live claims:', error);
+    console.error('Unexpected error querying live claims:', error);
     return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
   }
 }
