@@ -1,100 +1,96 @@
-# Public Route Governance — scrutexity.com
+# Public route governance
 
-> Maintained: 2026-08-04 (public-integrity + route-governance pass)
-> Principle: the sitemap contains ONLY intentional indexable customer-facing pages.
-> Every 200 route is deliberate: INDEX, NOINDEX, REDIRECT, INTERNAL/PROTECTED, REMOVE/410, or API/UTILITY.
-> Canonical offers (single source of truth): Claim Support Review $99 · Founder's Audit from $750 ·
-> Agency Claim QA from $1,500 · Agent Evidence Pack from $2,500 · Monitoring pilots (selected customers only).
+Last reviewed: 2026-08-04
 
-## INDEX — canonical customer-facing (in sitemap)
+Scrutexity is the public company. AuditGPT is an internal review-engine brand, not a standalone public application. Only routes marked `INDEX` belong in navigation or the XML sitemap.
 
-| Route | Purpose | Treatment | Nav | Sitemap | Reason |
-|---|---|---|---|---|---|
-| `/` | Home — claim/positioning, offers, sample, methodology links | INDEX | ✅ | ✅ | Primary acquisition |
-| `/pricing` | Canonical pricing ladder | INDEX | ✅ | ✅ | Money page |
-| `/what-we-do` | Operating boundary | INDEX | ✅ | ✅ | Education |
-| `/methodology` | Published method v1.0 | INDEX | ✅ | ✅ | Trust + education |
-| `/sample-report` | Sample claim report (labeled fixture) | INDEX | ✅ | ✅ | Conversion proof |
-| `/contact` | Intake / scoping | INDEX | ✅ | ✅ | Conversion |
-| `/agency` | Agency Claim QA pilot | INDEX | ✅ | ✅ | Priority segment |
-| `/data-handling` | Data integrity policy | INDEX | ✅ | ✅ | Trust/legal |
-| `/terms` | Terms of service | INDEX | ✅ | ✅ | Legal |
-| `/privacy` | Privacy policy | INDEX | ✅ | ✅ | Legal |
+## Customer-facing routes
 
-## NOINDEX — preserved source, accessible, not indexed, not in sitemap
+| Route | Purpose | Treatment | Canonical destination | Navigation | Sitemap | Reason |
+|---|---|---|---|---|---|---|
+| `/` | Company overview and primary review entry | INDEX | `/` | Yes | Yes | Primary public surface |
+| `/pricing` | Canonical public offers | INDEX | `/pricing` | Yes | Yes | Single pricing source of truth |
+| `/what-we-do` | Service overview | INDEX | `/what-we-do` | Footer | Yes | Intentional product explanation |
+| `/methodology` | Current review method | INDEX | `/methodology` | Yes | Yes | Public method and boundaries |
+| `/methodology/v1` | Versioned method record | INDEX | `/methodology/v1` | From methodology | Yes | Stable citation target |
+| `/sample-report` | Clearly labeled fictional report fixture | INDEX | `/sample-report` | Yes | Yes | Demonstrates paid output without implying customers |
+| `/contact` | Canonical inquiry flow | INDEX | `/contact` | Yes | Yes | Conversion route |
+| `/agency` | Active Agency Claim QA audience page | INDEX | `/agency` | Yes | Yes | Canonical active agency offer |
+| `/about` | Founder and company identity | INDEX | `/about` | Yes | Yes | Public credibility page |
+| `/data-handling` | Data handling policy | INDEX | `/data-handling` | Footer | Yes | Customer policy |
+| `/terms` | Terms | INDEX | `/terms` | Footer | Yes | Legal document |
+| `/privacy` | Privacy policy | INDEX | `/privacy` | Footer | Yes | Legal document |
+| `/checkout/success` | Post-checkout status | NOINDEX | `/checkout/success` | No | No | Transactional state, not acquisition content |
 
-| Route | Purpose | Treatment | Enforced via | Reason |
-|---|---|---|---|---|
-| `/medical-wellness` | Medical & wellness vertical page | NOINDEX (archive-from-acquisition) | page metadata | Legacy vertical offers; delivery uncertain; prices aligned to canonical |
-| `/medical-wellness/med-spas` | Med-spa vertical | NOINDEX (archive) | page metadata | Same |
-| `/aesthetic-device-claim-audit` | Device claim audit vertical | NOINDEX (archive) | layout | Same |
-| `/glp-1-weight-loss-claim-audit` | GLP-1 vertical | NOINDEX (archive) | layout | Same |
-| `/regenerative-medicine-claims` | Regenerative vertical | NOINDEX (archive) | layout | Same |
-| `/new-york-med-spa-claim-audit` | NY/NJ vertical | NOINDEX (archive) | layout | Same |
-| `/insights/glp-1-claim-audit` | GLP-1 teardown | NOINDEX | layout | Non-canonical content |
-| `/proof` | Proof library (fixtures) | NOINDEX | layout | Trust infra; fixtures |
-| `/proof/sealed-audit-trail` | Verify path | NOINDEX | parent layout | Utility |
-| `/verify` | Badge standards | NOINDEX | page metadata | Trust infra |
-| `/claim-audit` | AuditGPT intake | NOINDEX | layout + page metadata | Utility intake |
-| `/claim-audit/[publicId]` | Archetype review records | NOINDEX | parent layout | Fictional fixtures — must not index as real |
-| `/sample-owner-brief` | Sample owner brief (fixture) | NOINDEX | page metadata | Fictional fixture |
-| `/partners` | Referral program | NOINDEX | page metadata | Non-canonical |
-| `/partner-os` | Partner OS founding beta | NOINDEX | page metadata | Non-canonical |
-| `/tracker` | Source-linked enforcement tracker | NOINDEX | page metadata | Reference data, static feed |
-| `/company` | Company story | NOINDEX | page metadata | Non-canonical |
-| `/enterprise` | Insurers & acquirers | NOINDEX | page metadata | Strategic inventory |
-| `/for-multi-location` | Multi-location operators | NOINDEX | page metadata | Strategic inventory |
-| `/ai-visibility` | AI visibility | NOINDEX | layout | Non-canonical |
-| `/agent-audit` | Agent audit receipt | NOINDEX | page metadata | Utility |
-| `/safety-architecture` | Safety architecture | NOINDEX | layout | Non-canonical |
-| `/use-cases/agency-white-label-audits` | Agency white-label use case | NOINDEX | layout | Non-canonical |
-| `/private-equity/claim-diligence` | PE/M&A diligence (prices removed) | NOINDEX | page metadata | Strategic inventory; not marketed publicly |
+## Retired and consolidated page routes
 
-## REDIRECT — legacy consolidation (next.config.ts redirects)
+| Route | Purpose | Treatment | Canonical destination | Navigation | Sitemap | Reason |
+|---|---|---|---|---|---|---|
+| `/aesthetic-device-claim-audit` | Legacy device vertical | REDIRECT | `/pricing` | No | No | Delivery is not an active standalone vertical |
+| `/glp-1-weight-loss-claim-audit` | Legacy GLP-1 vertical | REDIRECT | `/pricing` | No | No | Retires fear-framed copy and legacy pricing |
+| `/insights/glp-1-claim-audit` | Legacy GLP-1 teardown | REDIRECT | `/methodology` | No | No | Unsupported sample claims are not published |
+| `/medical-wellness` | Legacy wellness workflow page | REDIRECT | `/pricing` | No | No | Archived from acquisition; fictional telemetry removed from source |
+| `/medical-wellness/med-spas` | Legacy med-spa vertical | REDIRECT | `/pricing` | No | No | Not sold as a distinct current offer |
+| `/new-york-med-spa-claim-audit` | Legacy regional vertical | REDIRECT | `/pricing` | No | No | Retires enforcement-led copy and historical prices |
+| `/regenerative-medicine-claims` | Legacy regenerative vertical | REDIRECT | `/pricing` | No | No | Not sold as a distinct current offer |
+| `/private-equity/claim-diligence` | Strategic PE inventory | REDIRECT | `/pricing` | No | No | No verified active diligence offer |
+| `/private-equity/report` | Legacy PE sample | REDIRECT | `/sample-report` | No | No | Consolidates fictional examples into labeled sample |
+| `/benchmarks` | Former benchmark collection root | REDIRECT | `/methodology` | No | No | No public benchmark dataset exists |
+| `/benchmarks/state-of-medspa-claims` | Former internal planning memo | REDIRECT | `/methodology` | No | No | Source removed; unsupported percentages archived privately |
+| `/proof` | Legacy proof library | REDIRECT | `/sample-report` | No | No | Avoids fictional artifacts presented as live proof |
+| `/proof/sealed-audit-trail` | Legacy sealed-record demo | REDIRECT | `/sample-report` | No | No | No live production receipt is asserted |
+| `/verify` | Legacy archetype badge registry | REDIRECT | `/sample-report` | No | No | Records are fixtures, not verified companies |
+| `/verify-receipt` | Legacy receipt verifier | REDIRECT | `/methodology` | No | No | Not an active customer-facing verification product |
+| `/claim-audit` | Legacy intake | REDIRECT | `/sample-report` | No | No | Replaced by canonical contact flow |
+| `/claim-audit/[publicId]` | Fictional archetype report fixtures | REDIRECT | `/sample-report` | No | No | Prevents fixtures appearing as customer records |
+| `/snapshot/[publicId]` | Legacy snapshot alias | REDIRECT | `/sample-report` | No | No | Removes chained fixture route |
+| `/claim-receipt` | Legacy receipt demo | REDIRECT | `/sample-report` | No | No | Consolidates samples |
+| `/sample-owner-brief` | Legacy illustrative brief | REDIRECT | `/sample-report` | No | No | One clearly labeled sample destination |
+| `/agency/claim-receipt` | Legacy agency receipt | REDIRECT | `/agency` | No | No | Agency offer is canonical |
+| `/agent-audit` | Legacy self-serve agent audit | REDIRECT | `/pricing` | No | No | Agent Evidence Pack is the current offer |
+| `/ai-visibility` | Legacy AI visibility product | REDIRECT | `/what-we-do` | No | No | Not a standalone current offer |
+| `/company` | Old company page | REDIRECT | `/about` | No | No | Canonical identity route |
+| `/enterprise` | Legacy enterprise page | REDIRECT | `/pricing` | No | No | No separate enterprise ladder |
+| `/for-multi-location` | Legacy multi-location page | REDIRECT | `/pricing` | No | No | No separate current package |
+| `/partner-os` | Legacy partner product | REDIRECT | `/agency` | No | No | Agency QA is the active partner path |
+| `/partners` | Legacy partner page | REDIRECT | `/agency` | No | No | Consolidated agency path |
+| `/safety-architecture` | Legacy architecture page | REDIRECT | `/methodology` | No | No | Methodology owns public boundaries |
+| `/tracker` | Legacy enforcement tracker | REDIRECT | `/methodology` | No | No | No maintained public dataset |
+| `/use-cases/agency-white-label-audits` | Legacy agency use case | REDIRECT | `/agency` | No | No | Consolidated agency route |
 
-| Route | → | Type | Reason |
-|---|---|---|---|
-| `/pilot` | `/agency` | 301 | Legacy pilot → agency pilot equivalent |
-| `/snapshot` | `/contact?intent=claim-support-review&source=scrutexity-snapshot` | 307 | Legacy snapshot entry → canonical intake |
-| `/radar` | `/claim-audit` | 301 | Intake renamed |
-| `/radar-pilot` | `/` | 301 | Legacy |
-| `/auditgpt` | `/contact?...` | 301 | Cross-brand consolidation |
-| `/partners/agency-console` | `/partners` | 301 | Legacy |
-| `/agency/claim-intelligence-receipt` | `/agency/claim-receipt` | 301 | Legacy |
-| `/compliance`, `/certified-agency-program`, `/dscsa-compliance`, `/iv-therapy-compliance`, `/baa` | constraint-safe equivalents | 301 | Names asserted compliance/certification |
-| ~50 further legacy `/about/*`, `/versus/*`, `/modules/*`, `/intelligence/*`, compare/recovery slugs | canonical equivalents | 301 | Preserve inbound links, prevent 404s |
+## Redirect-only aliases
 
-## REMOVE / 410
+The following routes have no active page component and are intentionally governed by `next.config.ts`: `/snapshot`, `/pilot`, `/auditgpt`, `/contento`, `/radar`, `/dashboard-test`, `/techweek`, `/agency/claim-intelligence-receipt`, `/about/*` legacy routes, `/versus/*`, `/claim-intelligence`, `/audit`, `/ai-readiness-index`, `/governance`, `/infrastructure-brief`, `/intelligence`, `/intelligence/*` legacy routes, `/personal-brand-audit`, `/partners/agency-console`, `/remediation`, `/roadmap`, `/security`, `/security-brief`, `/terms-of-pilot`, `/thesis`, `/trust`, `/compliance`, `/certified-agency-program`, `/dscsa-compliance`, `/iv-therapy-compliance`, `/baa`, legacy revenue-recovery routes, `/sample-snapshot`, `/platform`, `/demo`, `/radar-pilot/*`, `/roi`, `/flow`, `/diagnostic`, `/architecture-visual`, `/case-studies`, `/for-pe`, `/private-equity`, `/comparison/zenoti`, `/zenoti-alternative-without-migration`, `/modules/*`, and `/mri`.
 
-| Route | Treatment | Reason |
-|---|---|---|
-| `/benchmarks/state-of-medspa-claims` | Removed this pass (route deleted) | Public internal strategy memo + unsupported percentages; source preserved in `docs/benchmarks-state-of-medspa-claims-INTERNAL.md` |
-| `/methodology/v1` | 404 after deploy (not in local repo) | Duplicate route that existed only in the prior deployment |
+`/pilot` permanently redirects in one hop to `/agency`. `/snapshot` permanently redirects to the canonical Claim Support Review inquiry. `auditgpt.ai` must redirect externally to `https://www.scrutexity.com/` without routing back to an AuditGPT product surface.
 
-## INTERNAL / PROTECTED — not public marketing (no index, no nav, no sitemap)
+## API and utility routes
+
+All routes below are `API/UTILITY`, absent from navigation and sitemap, and disallowed under `/api/` in `robots.txt`:
 
 | Route | Purpose | Treatment |
 |---|---|---|
-| `/self-audit` | Self-audit tool (untracked user work) | INTERNAL — untouched this pass, not indexed |
-| `/private-equity/report` | Diligence report surface | INTERNAL/PROTECTED — not linked publicly |
-| `/checkout/success` | Post-payment landing | UTILITY — not linked from nav/sitemap |
-| `/verify-receipt` | Post-verify receipt | UTILITY |
-| `/claim-receipt` | Post-audit receipt | UTILITY |
-| `/agency/claim-receipt` | Agency receipt | UTILITY |
-| `/snapshot/[publicId]` | Snapshot receipt | UTILITY (robots disallows `/snapshot`) |
+| `/api/auditgpt/scan` | Internal scan handler | API/UTILITY |
+| `/api/auditgpt/transcript` | Internal transcript handler | API/UTILITY |
+| `/api/claim-audit` | Legacy audit intake | API/UTILITY |
+| `/api/claim-receipt` | Receipt generation | API/UTILITY |
+| `/api/create-checkout-session` | Checkout session creation | API/UTILITY |
+| `/api/ingest/cms` | CMS ingestion | API/UTILITY |
+| `/api/inquiries` | Inquiry persistence and notification | API/UTILITY |
+| `/api/leak-report` | Legacy report endpoint | API/UTILITY |
+| `/api/ledger` | Internal record endpoint | API/UTILITY |
+| `/api/live-claims` | Claim-data endpoint | API/UTILITY |
+| `/api/partner-os-application` | Legacy partner application | API/UTILITY |
+| `/api/pilot-application` | Legacy pilot application | API/UTILITY |
+| `/api/pilot` | Legacy pilot handler | API/UTILITY |
+| `/api/remediation/proposals` | Internal proposal endpoint | API/UTILITY |
+| `/api/report-request` | Report request endpoint | API/UTILITY |
+| `/api/snapshot` | Legacy snapshot endpoint | API/UTILITY |
+| `/api/vanta/evidence` | Evidence integration endpoint | API/UTILITY |
+| `/api/verify/[hash]` | Record verification endpoint | API/UTILITY |
+| `/api/webhooks/stripe` | Stripe webhook | API/UTILITY |
+| `/api/webhooks/twilio` | Twilio webhook | API/UTILITY |
 
-## API / UTILITY (robots disallowed)
+## Sitemap rule
 
-- `/api/*` (all API routes) — robots disallow `/api/`
-- `robots.ts`: `Disallow: /api/, /snapshot, /admin, /private, /internal`
-
-## AuditGPT domain
-
-- `auditgpt.ai` → 301/redirect to `https://www.scrutexity.com` — intended (AuditGPT = internal review-engine brand; Scrutexity = public company).
-- Canonical host: `https://www.scrutexity.com` (non-www `scrutexity.com` → www redirect in next.config).
-- No standalone AuditGPT application is marketed; footer "AuditGPT snapshot" link resolves through the redirect chain to the canonical intake.
-
-## Re-publish gates
-
-- Any archived route may return to INDEX only with: canonical pricing, no fabricated telemetry, no fear-based copy, evidence-labeled fixtures, and a documented dataset for any statistics.
-- New routes must be classified in this table before deployment.
+The sitemap is an allowlist, not a reflection of every route that returns HTTP 200. Only the twelve `INDEX` routes above are emitted. Redirects, transaction pages, fixture routes, public utilities, and APIs remain excluded.

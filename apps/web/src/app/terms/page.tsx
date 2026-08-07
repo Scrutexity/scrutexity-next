@@ -30,7 +30,7 @@ export default function TermsPage() {
           <p>Subscription fees are billed monthly in advance. Fees are based on the selected plan, account access, and message volume — not on patient volume, procedure pricing, or clinical outcomes.</p>
 
           <h2>4. Compliance</h2>
-          <p>A Business Associate Agreement (BAA) is executed prior to activation of any module that processes Protected Health Information. Scrutexity architects for HIPAA compliance and FTC marketing law adherence.</p>
+          <p>Do not submit protected health information or other regulated personal data through the public intake form. Any engagement requiring additional data-handling terms must be separately scoped and documented before data is provided.</p>
 
           <h2>5. Limitation of Liability</h2>
           <p>Scrutexity&apos;s liability is limited to the fees paid for the specific module giving rise to the claim. We are not liable for consequential damages, lost revenue, or business interruption.</p>

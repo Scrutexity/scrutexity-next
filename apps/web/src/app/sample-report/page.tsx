@@ -1,18 +1,15 @@
 import type { Metadata } from 'next';
 import SampleReportContent from '@/components/scrutexity/sample-report-content';
 
+const title = 'Sample Claim Audit Report | Scrutexity';
+const description = 'A clearly labeled Scrutexity sample showing the exact claim, visible evidence, support gap, business impact, safer framing draft, and recommended next step.';
+
 export const metadata: Metadata = {
-  title: 'Sample Diligence File | Scrutexity',
-  description:
-    'See the intelligence before you buy it. An illustrative exhibit tracing one finding from claim to evidence, pattern match, AI distortion, and action.',
+  title,
+  description,
   alternates: { canonical: '/sample-report' },
-  keywords: ['AI due diligence', 'public claim audit', 'claim substantiation intelligence'],
-  openGraph: {
-    title: 'Sample Diligence File | Scrutexity',
-    description: 'See the intelligence before you buy it.',
-    url: '/sample-report',
-    type: 'website',
-  },
+  openGraph: { title, description, type: 'article', url: 'https://www.scrutexity.com/sample-report', images: ['/api/og?title=Sample%20Claim%20Support%20Report&eyebrow=Illustrative%20report'] },
+  twitter: { card: 'summary_large_image', title, description, images: ['/api/og?title=Sample%20Claim%20Support%20Report&eyebrow=Illustrative%20report'] },
 };
 
 export default function SampleReportPage() {

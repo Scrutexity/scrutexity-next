@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Verify Audit Receipt | Scrutexity',
   description: 'Cryptographically verify a Scrutexity Agent Audit JSON receipt to prove compliance.',
   alternates: { canonical: '/verify-receipt' },
+  robots: { index: false, follow: false },
 };
 
 export default function VerifyReceiptPage() {

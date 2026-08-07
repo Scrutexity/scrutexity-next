@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CheckCircle2, Clock3 } from 'lucide-react';
-import { markInquiryPaid } from '@/lib/inquiries';
+import { verifyClaimSupportSession } from '@/lib/claim-support-payment';
 
 export const metadata: Metadata = {
   title: 'Payment received | Scrutexity',
@@ -21,10 +21,10 @@ export default async function CheckoutSuccessPage({
     try {
       const { Stripe } = await import('stripe');
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
-      paid = session.payment_status === 'paid' && session.metadata?.product === 'claim_support_review';
-      if (paid && session.metadata?.inquiryId) {
-        await markInquiryPaid(session.metadata.inquiryId, session.id);
+      const priceId = process.env.STRIPE_CLAIM_SUPPORT_REVIEW_PRICE_ID;
+      if (priceId) {
+        const session = await stripe.checkout.sessions.retrieve(sessionId);
+        paid = (await verifyClaimSupportSession(stripe, session, priceId)).valid;
       }
     } catch (error) {
       console.error('[CheckoutSuccess] Verification failed:', error instanceof Error ? error.message : 'unknown');

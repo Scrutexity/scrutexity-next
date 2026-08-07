@@ -18,7 +18,7 @@ export async function generateMetadata(
     title: `AuditGPT Claim Audit Report · ${audit.companyType} | Scrutexity`,
     description: `Public Claim Audit Report. ${audit.claimsReviewed} claims reviewed against the four-question framework. Primary risk theme: ${audit.primaryRiskTheme}. Audited on ${audit.auditDate}.`,
     alternates: { canonical: `/claim-audit/${audit.publicId}` },
-    robots: { index: true, follow: true },
+    robots: { index: false, follow: false },
   };
 }
 
@@ -44,4 +44,3 @@ export default async function ClaimAuditPublicPage({
 
   return <ClaimAuditPublicContent audit={audit} unlocked={isUnlocked} />;
 }
-

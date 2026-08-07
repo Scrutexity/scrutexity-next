@@ -1,24 +1,15 @@
 import { Metadata } from 'next';
 import PricingContent from '@/components/scrutexity/pricing-content';
 
+const title = 'Buyer Narrative Alignment Sprint Pricing | Scrutexity';
+const description = 'The Buyer Narrative Alignment Sprint is a $1,500 fixed-fee, founder-reviewed analysis of claims, visible support, and buyer-narrative gaps.';
+
 export const metadata: Metadata = {
-  title: 'Claim Review Pricing | Scrutexity',
-  description:
-    'The intelligence funnel: Free Snapshot ($0), Claim Support Review ($99), Exposure Diagnostic and PE/M&A Diligence (custom quote), and Scrutexity Watch ($1,500/mo).',
+  title,
+  description,
   alternates: { canonical: '/pricing' },
-  keywords: [
-    'regulatory exposure assessment',
-    'AI due diligence',
-    'public claim audit',
-    'AI narrative integrity',
-  ],
-  openGraph: {
-    title: 'Pricing | Scrutexity Engagements',
-    description:
-      'Four levels of intelligence. Scope is determined by entities, domains, locations, claims, and review depth.',
-    url: '/pricing',
-    type: 'website',
-  },
+  openGraph: { title, description, type: 'website', url: 'https://www.scrutexity.com/pricing', images: ['/api/og?title=Buyer%20Narrative%20Alignment%20Sprint&eyebrow=Scrutexity'] },
+  twitter: { card: 'summary_large_image', title, description, images: ['/api/og?title=Buyer%20Narrative%20Alignment%20Sprint&eyebrow=Scrutexity'] },
 };
 
 export default function PricingPage() {

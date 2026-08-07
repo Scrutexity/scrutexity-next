@@ -9,32 +9,54 @@ const nextConfig: NextConfig = {
         destination: 'https://www.scrutexity.com/:path*',
         permanent: true,
       },
+      // Consolidate retired fear-framed and legacy offer pages before outreach.
+      { source: '/partner-os', destination: '/agency', permanent: true },
+      { source: '/agency/claim-receipt', destination: '/agency', permanent: true },
+      { source: '/new-york-med-spa-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/glp-1-weight-loss-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/medical-wellness', destination: '/pricing', permanent: true },
+      { source: '/medical-wellness/med-spas', destination: '/pricing', permanent: true },
+      { source: '/aesthetic-device-claim-audit', destination: '/pricing', permanent: true },
+      { source: '/regenerative-medicine-claims', destination: '/pricing', permanent: true },
+      { source: '/insights/glp-1-claim-audit', destination: '/methodology', permanent: true },
+      { source: '/benchmarks', destination: '/methodology', permanent: true },
+      { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
+      { source: '/private-equity/claim-diligence', destination: '/pricing', permanent: true },
+      { source: '/private-equity/report', destination: '/sample-report', permanent: true },
+      { source: '/tracker', destination: '/methodology', permanent: true },
+      { source: '/claim-audit', destination: '/sample-report', permanent: true },
+      { source: '/safety-architecture', destination: '/methodology', permanent: true },
+      { source: '/agent-audit', destination: '/pricing', permanent: true },
+      { source: '/enterprise', destination: '/pricing', permanent: true },
+      { source: '/for-multi-location', destination: '/pricing', permanent: true },
+      { source: '/company', destination: '/about', permanent: true },
+      { source: '/partners', destination: '/agency', permanent: true },
+      { source: '/use-cases/agency-white-label-audits', destination: '/agency', permanent: true },
+      { source: '/proof', destination: '/sample-report', permanent: true },
+      { source: '/proof/sealed-audit-trail', destination: '/sample-report', permanent: true },
+      { source: '/verify', destination: '/sample-report', permanent: true },
+      { source: '/verify-receipt', destination: '/methodology', permanent: true },
+      { source: '/claim-audit/:publicId', destination: '/sample-report', permanent: true },
+      { source: '/snapshot/:publicId', destination: '/sample-report', permanent: true },
+      { source: '/sample-owner-brief', destination: '/sample-report', permanent: true },
+      { source: '/claim-receipt', destination: '/sample-report', permanent: true },
+      { source: '/ai-visibility', destination: '/what-we-do', permanent: true },
       // Keep legacy product entry points on the canonical Scrutexity intake.
       // Sending these routes back to auditgpt.ai creates a cross-project loop.
-      // The /snapshot route is now the active front door.
-      // Claim Intelligence Standard — /standards is referenced in crawl audits
-      // and by name on the site; route it to the methodology page that hosts it.
-      { source: '/standards', destination: '/methodology', permanent: true },
-      // NYC enforcement page removed (2026-08); fold into methodology.
-      { source: '/nyc', destination: '/methodology', permanent: true },
-      // Benchmarks page retired with the positioning consolidation (e48bc025);
-      // keep any external links landing on methodology instead of a 404.
-      { source: '/benchmarks/state-of-medspa-claims', destination: '/methodology', permanent: true },
+      {
+        source: '/snapshot',
+        destination: '/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-snapshot',
+        permanent: true,
+      },
       // Batch 3a — Internal / Test routes
       { source: '/dashboard-test', destination: '/claim-audit', permanent: true },
-      // /checkout was linked from the pricing page and the old snapshot result
-      // page but never existed, so both paid CTAs returned 404. Purchase now
-      // happens inside the funnel (EngineContainer -> PartialState ->
-      // EmbeddedCheckout), which requires a scan, so both point at intake.
-      { source: '/checkout', destination: '/snapshot', permanent: false },
-      // The old static result page reported fabricated findings.
-      { source: '/snapshot/result', destination: '/snapshot', permanent: true },
       { source: '/radar', destination: '/claim-audit', permanent: true },
       { source: '/contento', destination: '/contact', permanent: true },
       { source: '/techweek', destination: '/what-we-do', permanent: true },
       { source: '/proof/telemetry-alpha', destination: '/proof', permanent: true },
       // Batch 3b — P0 Banned name slugs & cross-brand redirects
-      { source: '/agency/claim-intelligence-receipt', destination: '/agency/claim-receipt', permanent: true },
+      { source: '/agency/claim-intelligence-receipt', destination: '/agency', permanent: true },
+      { source: '/auditgpt', destination: '/pricing', permanent: true },
       // Sub-batch 3c-1 — Legacy /about/* routes
       { source: '/about/clinical-demand-governance', destination: '/methodology', permanent: true },
       { source: '/about/clinical-demand-governance/ai-ingress-protocols', destination: '/methodology', permanent: true },
@@ -83,12 +105,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/dscsa-compliance',
-        destination: '/medical-wellness',
+        destination: '/methodology',
         permanent: true,
       },
       {
         source: '/iv-therapy-compliance',
-        destination: '/medical-wellness',
+        destination: '/methodology',
         permanent: true,
       },
       {
@@ -116,30 +138,13 @@ const nextConfig: NextConfig = {
       { source: '/sample-snapshot', destination: '/sample-report', permanent: true },
       { source: '/platform', destination: '/', permanent: true },
       { source: '/demo', destination: '/', permanent: true },
-      // Legacy pilot route — agency pilot is the active equivalent.
       { source: '/pilot', destination: '/agency', permanent: true },
       { source: '/radar-pilot', destination: '/', permanent: true },
       { source: '/radar-pilot/:path*', destination: '/', permanent: true },
       { source: '/roi', destination: '/', permanent: true },
       { source: '/flow', destination: '/', permanent: true },
-      { source: '/diagnostic', destination: '/claim-exposure-diagnostic', permanent: true },
+      { source: '/diagnostic', destination: '/', permanent: true },
       { source: '/architecture-visual', destination: '/', permanent: true },
-      // ── August 2026 repositioning ──────────────────────────────────────
-      // Forensic Intelligence for AI, Claims & Regulatory Risk. Legacy
-      // positioning routes fold into the new product ladder. Every old URL
-      // keeps resolving; none are dropped.
-      { source: '/scan', destination: '/snapshot', permanent: true },
-      { source: '/for-investors', destination: '/diligence', permanent: true },
-      { source: '/private-equity/claim-diligence', destination: '/diligence', permanent: true },
-      { source: '/private-equity/report', destination: '/diligence', permanent: true },
-      { source: '/ai-visibility', destination: '/ai-narrative-integrity', permanent: true },
-      { source: '/monitoring', destination: '/watch', permanent: true },
-      { source: '/exposure-assessment', destination: '/enterprise', permanent: true },
-      { source: '/for-counsel', destination: '/counsel', permanent: true },
-      { source: '/general-counsel', destination: '/counsel', permanent: true },
-      { source: '/request-assessment', destination: '/private-assessment', permanent: true },
-      { source: '/assessment', destination: '/private-assessment', permanent: true },
-      { source: '/sample-diligence-file', destination: '/sample-report', permanent: true },
       { source: '/intelligence/ftc-pixel-compliance', destination: '/tracker', permanent: true },
       { source: '/intelligence/morpheus8-consult-conversion', destination: '/', permanent: true },
       { source: '/insights/what-is-governed-marketing-demand-recovery', destination: '/', permanent: true },
