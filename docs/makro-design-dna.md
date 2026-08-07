@@ -19,9 +19,15 @@
 
 ## 1. Palette (literal Makro tokens)
 
+> CORRECTED 2026-08-07 against the live page. The canvas is the painted
+> `#ebeff5` (hero section background), with `#ffffff` as the panel stacked on
+> top. `#14142d` is the ink, not the background. Verified by sampling what is
+> painted behind the hero rather than reading `document.body`, which computes
+> to white but is never visible.
+
 | Role | Hex | Usage |
 |---|---|---|
-| Ink navy | `#14142d` | Page background (29 refs — dominant) |
+| Ink navy | `#14142d` | PRIMARY TEXT (ink). Corrected: this is not the background. |
 | Panel navy | `#33335e` | Card surfaces, panels (22 refs) |
 | Near-black | `#1a1a1a` | Dark bands |
 | Panel deep | `#242426` / `#35363b` / `#4d4f57` | Secondary fills (token-resolved) |

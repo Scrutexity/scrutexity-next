@@ -11,6 +11,7 @@ import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-t
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { InstantPreview } from "@/components/scrutexity/motion/instant-preview";
+import { Reveal } from "@/components/redesign/motion-kit";
 
 const SNAPSHOT_URL = "/snapshot";
 /** One label per intent. Matches the header CTA in site-nav verbatim so the
@@ -273,14 +274,16 @@ export default function UmbrellaHomepage() {
             />
           </div>
         </div>
-        <div className="mt-16">
+        <Reveal className="mt-16" y={32}>
           <ClaimDriftTimeline />
-        </div>
+        </Reveal>
       </section>
 
       {/* ═══ 5. Artifacts — component owns its own heading ════════════════ */}
       <section className="border-b border-hairline bg-paper-light py-32 lg:py-44">
-        <ProofArtifactShelf />
+        <Reveal y={32}>
+          <ProofArtifactShelf />
+        </Reveal>
       </section>
 
       {/* ═══ 6. Closing — full-bleed band, distinct from the hero ═════════ */}
