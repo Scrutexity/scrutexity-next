@@ -4,9 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/smooth-scroll-provider";
-import { SiteNav } from "@/components/site-nav";
-import Footer from "@/components/sections/footer";
-import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
+import RouteShell from "@/components/route-shell";
 import { themeInitScript } from "@/components/theme-toggle";
 
 // globals.css resolves --font-display / --font-sans to --font-geist. Before
@@ -115,12 +113,6 @@ const jsonLdData = {
           },
           {
             "@type": "Offer",
-            name: "Claim Exposure Diagnostic",
-            description: "A focused, dated intelligence review that answers whether there is enough exposure to justify a deeper assessment.",
-            priceSpecification: { "@type": "PriceSpecification", price: "1500", priceCurrency: "USD" }
-          },
-          {
-            "@type": "Offer",
             name: "Scrutexity Watch",
             description: "Ongoing monitoring of claim drift, evidence changes, and AI narrative shifts.",
             priceSpecification: { "@type": "PriceSpecification", price: "1500", priceCurrency: "USD", unitCode: "MON" }
@@ -153,13 +145,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={`${geist.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-paper text-ink antialiased overflow-x-hidden selection:bg-bureau-sage/20 selection:text-ink`}
       >
         <SmoothScrollProvider>
-          <SiteNav />
-          <main className="pt-nav-offset">
-            {children}
-          </main>
-          <Footer />
+          <RouteShell>{children}</RouteShell>
         </SmoothScrollProvider>
-        <MobileStickyCTA />
         <Analytics />
         <GoogleAnalytics gaId="G-XGF7WH36MG" />
       </body>
