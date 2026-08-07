@@ -20,119 +20,82 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* Realta Fintech System */
-  --color-realta-bg: #f5f7f6;
-  --color-realta-surface: #ffffff;
-  --color-realta-surface-muted: #eef5f1;
-  --color-realta-text-primary: #132a24;
-  --color-realta-text-secondary: #4b615a;
-  --color-realta-text-muted: #879f98;
-  --color-realta-brand-primary: #78A184;
-  --color-realta-brand-secondary: #274f44;
-  --color-realta-accent-success: #2aa168;
-  --color-realta-dark-surface: #132a24;
-  --color-realta-dark-bg: #0b1713;
+  /* Scrutexity Technical-Luxury Forensic System */
+  --color-paper: #070708;
+  --color-paper-light: #0A0A0B;
+  --color-ink: #FCFCFA;
+  --color-muted: #8A8F98;
+  --color-border-deep: #202428;
 
-  /* Overrides for existing components to adopt Realta automatically */
-  --color-paper: var(--color-realta-bg);
-  --color-paper-light: var(--color-realta-surface);
-  --color-ink: var(--color-realta-text-primary);
-  --color-muted: var(--color-realta-text-muted);
-  --color-bureau-sage: var(--color-realta-brand-primary);
-  --color-review-amber: #F5A623;
+  --color-bureau-sage: #00E5FF;
   --color-exposure-red: #FF4D4D;
+  --color-review-amber: #F5A623;
 
-  /* Legacy mappings */
-  --color-bone: var(--color-realta-surface);
-  --color-cream: var(--color-realta-bg);
-  --color-cream-deep: var(--color-realta-surface-muted);
-  --color-beige: var(--color-realta-surface-muted);
-  --color-sand: var(--color-realta-surface-muted);
-  --color-sand-deep: #dde8e3;
-  --color-clay: var(--color-realta-brand-primary);
-  --color-clay-deep: var(--color-realta-brand-secondary);
-  --color-bark: var(--color-realta-text-primary);
-  --color-espresso: var(--color-realta-text-primary);
-  --color-sage: var(--color-realta-brand-primary);
-  --color-sage-deep: var(--color-realta-brand-secondary);
-  --color-sage-soft: var(--color-realta-surface-muted);
-  --color-mist: var(--color-realta-text-muted);
+  /* Legacy mappings (so old components don't break, mapped to dark theme) */
+  --color-bone: #0A0A0B;
+  --color-cream: #070708;
+  --color-cream-deep: #0A0A0B;
+  --color-beige: #0A0A0B;
+  --color-sand: #121418;
+  --color-sand-deep: #202428;
+  --color-clay: #00E5FF;
+  --color-clay-deep: #00B8CC;
+  --color-bark: #8A8F98;
+  --color-espresso: #FCFCFA;
+  --color-sage: #00E5FF;
+  --color-sage-deep: #00B8CC;
+  --color-sage-soft: #202428;
+  --color-mist: #8A8F98;
 
-  --font-display: 'Satoshi', system-ui, sans-serif;
-  --font-sans: 'Satoshi', system-ui, sans-serif;
-  --font-geist: 'Satoshi', system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Typography */
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-geist: 'Geist', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
+  /* Spacing & Radii */
   --spacing-nav-offset: 100px;
-
-  /* Realta Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 12px;
   --spacing-md: 24px;
   --spacing-lg: 40px;
   --spacing-xl: 80px;
   --spacing-xxl: 160px;
-
-  /* Realta Radii */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
   --radius-full: 999px;
 
+  /* Motion & Shadows */
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-card: 0 1px 2px rgba(19, 42, 36, 0.04), 0 14px 36px -16px rgba(19, 42, 36, 0.12);
-  --shadow-float: 0 30px 70px -22px rgba(19, 42, 36, 0.20);
-
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.40), 0 14px 36px -16px rgba(0, 0, 0, 0.60);
+  --shadow-float: 0 30px 70px -22px rgba(0, 0, 0, 0.75);
+  
   --animate-blur-fade-up: blurFadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   --animate-reveal-up: revealUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   --animate-float: float 6s ease-in-out infinite;
 
   @keyframes blurFadeUp {
-    from {
-      opacity: 0;
-      filter: blur(16px);
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      filter: blur(0px);
-      transform: translateY(0);
-    }
+    from { opacity: 0; filter: blur(16px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0px); transform: translateY(0); }
   }
-
   @keyframes revealUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes float {
-
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-12px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
 }
 
 /* ── Global Body Styling ── */
 body {
-  background-color: var(--color-realta-bg);
-  color: var(--color-realta-text-primary);
-  font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -140,26 +103,14 @@ body {
 }
 
 ::selection {
-  background: rgba(120, 161, 132, 0.20);
-  color: var(--color-realta-text-primary);
+  background: rgba(0, 229, 255, 0.20);
+  color: var(--color-ink);
 }
 
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-realta-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-realta-text-muted);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-realta-brand-primary);
-}
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: var(--color-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-bureau-sage); }
 
 html {
   scroll-behavior: smooth;
@@ -169,7 +120,7 @@ html {
 
 /* ── Font Helpers ── */
 .font-display {
-  font-family: var(--font-satoshi), system-ui, sans-serif;
+  font-family: var(--font-display);
   letter-spacing: -0.02em;
   font-feature-settings: 'ss01' on, 'ss02' on;
 }
@@ -401,119 +352,6 @@ html {
   .sage-cta:hover {
     transform: none;
   }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   DARK THEME — opt-in via <html data-theme="dark">
-   ────────────────────────────────────────────────────────────────────────
-   Light is the default and remains the canonical brand surface. Dark is a
-   viewer preference, not a second brand. Because Tailwind v4 compiles
-   `bg-cream` to `var(--color-cream)`, redeclaring the same custom properties
-   under a higher-specificity selector re-themes every existing page without
-   touching a single component.
-
-   Hue discipline: the warm earth palette is preserved, not swapped for a
-   cool "cyber" one. Backgrounds keep a brown undertone so the dark theme
-   reads as the same company at night — institutional, not sci-fi.
-   ═══════════════════════════════════════════════════════════════════════ */
-
-html[data-theme="dark"] {
-  --color-bone: #16130F;
-  /* card surface (raised) */
-  --color-cream: #100E0B;
-  /* primary bg */
-  --color-cream-deep: #1C1813;
-  /* deeper warm band */
-  --color-beige: #16130F;
-  /* secondary bg */
-  --color-sand: #241F18;
-  /* deeper sections */
-  --color-sand-deep: #332C22;
-  /* borders */
-  --color-clay: #C89A78;
-  /* accent — lifted for contrast on dark */
-  --color-clay-deep: #DDB08A;
-  /* hover/active (brighter, not darker) */
-  --color-bark: #C4BBAE;
-  /* body text */
-  --color-espresso: #F2EDE4;
-  /* headings / primary ink — inverted */
-  --color-ink: #F2EDE4;
-  --color-mist: #9A9187;
-  /* muted body text */
-  --color-sage: #8FA98A;
-  --color-sage-deep: #A3C09D;
-  /* verify accent — lifted for contrast */
-  --color-sage-soft: #6F8A6A;
-  --color-scrutexity-ivory: #100E0B;
-  --color-scrutexity-charcoal: #F2EDE4;
-  --color-scrutexity-surface: #16130F;
-  --color-scrutexity-border: #332C22;
-
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.40), 0 14px 36px -16px rgba(0, 0, 0, 0.60);
-  --shadow-float: 0 30px 70px -22px rgba(0, 0, 0, 0.75);
-  --shadow-soft-float: 0 20px 40px -15px rgba(0, 0, 0, 0.45);
-}
-
-/* Legacy escape hatches.
-   Some pages predate the token system and hardcode Tailwind's built-in
-   `bg-white` (never flips) or use `bg-espresso` as a *background* while
-   `espresso` inverts to near-white in dark mode. Both would break contrast.
-   These two rules repair every such page globally. */
-html[data-theme="dark"] .bg-white {
-  background-color: var(--color-bone);
-}
-
-html[data-theme="dark"] .bg-black {
-  background-color: #080705;
-}
-
-/* `bg-espresso` is used two ways: as a dark *section* (footer, exhibit bands)
-   and as the primary *button* fill. In dark mode `espresso` inverts to
-   near-white, so both break. Rather than chase every `text-cream`,
-   `text-cream/70`, and `text-cream/45` descendant, rebind --color-cream
-   locally — every Tailwind opacity variant reads that same variable, so one
-   declaration repairs the whole subtree. */
-html[data-theme="dark"] .bg-espresso {
-  background-color: #080705;
-  --color-cream: #F2EDE4;
-  --color-sage-soft: #A3C09D;
-}
-
-/* Primary CTAs take the accent fill instead — a near-black button on a
-   near-black page has no presence. Dark ink on clay holds AA contrast. */
-html[data-theme="dark"] a.bg-espresso,
-html[data-theme="dark"] button.bg-espresso {
-  background-color: var(--color-clay);
-  --color-cream: #14110D;
-}
-
-html[data-theme="dark"] a.bg-espresso:hover,
-html[data-theme="dark"] button.bg-espresso:hover {
-  background-color: var(--color-clay-deep);
-}
-
-/* Inverted contrast panel — deliberately dark in BOTH themes.
-   Use for editorial "exhibit" bands that must stay dark for emphasis. */
-.panel-contrast {
-  background-color: #16130F;
-  color: #F2EDE4;
-}
-
-html[data-theme="dark"] .panel-contrast {
-  background-color: #080705;
-  border-color: rgba(242, 237, 228, 0.10);
-}
-
-/* The wordmark ships as black artwork — invert it on dark surfaces */
-html[data-theme="dark"] .dark-invert {
-  filter: invert(1) brightness(1.6) contrast(0.92);
-}
-
-/* Prevent transition flash while the theme swaps */
-.theme-switching,
-.theme-switching * {
-  transition: none !important;
 }
 
 /* — 2027 Editorial Dossier — patch to add to end of globals.css — */
