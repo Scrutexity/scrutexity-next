@@ -65,7 +65,8 @@ export default function UmbrellaHomepage() {
     <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans selection:bg-bureau-sage/30">
       
       {/* ── 1 & 2. Hero + Engine Section ── */}
-      <section className="relative overflow-hidden border-b border-sand-deep/20 pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 sm:px-8">
+      <section className="relative overflow-hidden border-b border-border-deep/50 pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 sm:px-8">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-bureau-sage/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="mx-auto max-w-5xl relative z-10 flex flex-col items-center text-center">
           
           <IndexLabel num="01" text="Claim Intelligence Standard" />
