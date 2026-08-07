@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter_Tight } from "next/font/google";
+import { JetBrains_Mono, Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -9,10 +9,13 @@ import Footer from "@/components/sections/footer";
 import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
 import { themeInitScript } from "@/components/theme-toggle";
 
-const interTight = Inter_Tight({
+// globals.css resolves --font-display / --font-sans to --font-geist. Before
+// this, that variable was never defined and every heading silently fell back
+// to system-ui.
+const geist = Geist({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter-tight",
+  variable: "--font-geist",
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -137,7 +140,7 @@ const jsonLdData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" data-theme="light" suppressHydrationWarning>
       <head>
         {/* Applies the stored theme before first paint to prevent a flash */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
@@ -145,10 +148,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }} />
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet" />
       </head>
       <body
-        className={`${interTight.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-paper text-ink antialiased overflow-x-hidden selection:bg-bureau-sage/20 selection:text-ink`}
+        className={`${geist.variable} ${jetBrainsMono.variable} font-sans tracking-[-0.01em] [font-variant-ligatures:common-ligatures] bg-paper text-ink antialiased overflow-x-hidden selection:bg-bureau-sage/20 selection:text-ink`}
       >
         <SmoothScrollProvider>
           <SiteNav />

@@ -15,7 +15,7 @@ const DOCUMENTS = [
     icon: FileText,
     fields: [
       { label: "Observed Text", val: "Clinically proven to reverse cellular aging in 14 days." },
-      { label: "Evidentiary Support", val: "SUPPORT INCOMPLETE — No trial registration cited." },
+      { label: "Evidentiary Support", val: "SUPPORT INCOMPLETE. No trial registration cited." },
       { label: "Safer Wording", val: "Formulated with cellular nutrients observed to support hydration." },
     ],
   },
@@ -50,7 +50,7 @@ const DOCUMENTS = [
     tag: "HASH-CHAINED RECORD",
     icon: Hash,
     fields: [
-      { label: "Ledger SHA-256 Digest", val: "— awaiting live scan record" },
+      { label: "Ledger SHA-256 Digest", val: "Awaiting live scan record" },
       { label: "Capture Date", val: "2026-08-06 T14:00Z" },
       { label: "Verification Seal", val: "Reserved until first sealed record" },
     ],

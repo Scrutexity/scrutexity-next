@@ -1,58 +1,78 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, ShieldCheck, Lock } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { trackEvent } from "@/utils/analytics";
 import { LiveDemoEngine } from "@/components/scrutexity/motion/live-demo-engine";
 import { EngineContainer } from "@/components/scrutexity/funnel/EngineContainer";
 import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-timeline";
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
-import { motion } from "framer-motion";
 
-const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
 const SNAPSHOT_URL = "/snapshot";
+/** One label per intent. Matches the header CTA in site-nav verbatim so the
+ *  page never offers two different words for the same action. */
+const PRIMARY_CTA = "Run free snapshot";
 
-function IndexLabel({ num, text }: { num: string; text: string }) {
+/** Luxury ease. Slow out, no bounce: confident rather than springy. */
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+/* ────────────────────────────────────────────────────────────────────────
+   Motion primitives
+   Every variant below exists to stage hierarchy: the reader should meet the
+   message, then the proof, in that order, rather than all at once.
+   ──────────────────────────────────────────────────────────────────────── */
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+
+const riseIn = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
+
+/** Eyebrow above a section heading. Used at most twice on the page. */
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-center gap-3 text-[10px] font-mono tracking-[0.14em] uppercase text-muted" style={{ fontFamily: MONO }}>
-      <span className="text-bureau-sage">{num}</span>
-      <span className="h-px w-6 bg-sand-deep/40" aria-hidden />
-      <span>{text}</span>
-    </div>
+    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+      {children}
+    </p>
   );
 }
 
 export default function UmbrellaHomepage() {
-  const [scanState, setScanState] = useState<{ 
-    isScanning: boolean; 
+  const reduce = useReducedMotion();
+  const [scanState, setScanState] = useState<{
+    isScanning: boolean;
     scanId: string | null;
     isDemo: boolean;
-  }>({
-    isScanning: false,
-    scanId: null,
-    isDemo: false
+  }>({ isScanning: false, scanId: null, isDemo: false });
+
+  /* Scroll-linked rule in the evidence section. Motivated: it reports how far
+     through the evidence sequence the reader is, which a static divider cannot.
+     Driven by useScroll, never a scroll event listener. */
+  const evidenceRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: evidenceRef,
+    offset: ["start end", "end start"],
   });
+  const ruleScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   const handleScan = async (url: string, industry: string) => {
     setScanState({ isScanning: true, scanId: null, isDemo: false });
-    
     try {
-      const res = await fetch('/api/funnel/scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ targetUrl: url })
+      const res = await fetch("/api/funnel/scan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ targetUrl: url }),
       });
-      
       if (!res.ok) throw new Error("Failed to scan");
-      
       const { scanId, scanToken, isDemo } = await res.json();
-      
-      if (!isDemo) {
-        sessionStorage.setItem("scrutexity_scan_token", scanToken);
-      }
-      
+      if (!isDemo) sessionStorage.setItem("scrutexity_scan_token", scanToken);
       setScanState({ isScanning: false, scanId, isDemo });
       trackEvent("demo_scan_complete", { url, industry });
     } catch (error) {
@@ -61,164 +81,191 @@ export default function UmbrellaHomepage() {
     }
   };
 
+  const outcomes = [
+    {
+      term: "Exposure",
+      copy: "The claims your public pages make that your evidence does not currently support.",
+    },
+    {
+      term: "Wording",
+      copy: "Replacement language that keeps the commercial point and drops the regulatory risk.",
+    },
+    {
+      term: "Record",
+      copy: "A dated, hash-chained record of what the page said and when it changed.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans selection:bg-bureau-sage/30">
-      
-      {/* ── 1 & 2. Hero + Engine Section ── */}
-      <section className="relative overflow-hidden border-b border-sand-deep/20 pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 sm:px-8">
-        <div className="mx-auto max-w-5xl relative z-10 flex flex-col items-center text-center">
-          
-          <IndexLabel num="01" text="Claim Intelligence Standard" />
-          
-          <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-[1.08] tracking-tight max-w-3xl">
-            Keep your clients&rsquo;<br/>claims <span className="text-bureau-sage">defensible.</span>
-          </h1>
-          
-          <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink/80 max-w-2xl font-normal">
-            Scrutexity reviews your clients&rsquo; public marketing claims and AI outputs, flags what lacks buyer-visible support, and gives you evidence notes plus safer replacement wording.
-          </p>
-          
-          <p className="mt-4 text-xs leading-relaxed text-muted font-mono" style={{ fontFamily: MONO }}>
-            Built for agencies that serve med spas, wellness clinics, telehealth, and other regulated businesses — every review ends in a dated, hash-chained record.
-          </p>
-          
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link href={SNAPSHOT_URL} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-bureau-sage px-7 py-3 text-xs font-semibold uppercase tracking-wider text-paper-light transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>
-              Run Your Free Snapshot <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-            <Link href="/sample-report" className="inline-flex items-center gap-1 text-xs font-mono text-ink underline decoration-sand-deep underline-offset-4 hover:decoration-bureau-sage" style={{ fontFamily: MONO }}>
-              Inspect Sample Report <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-          
-          <div className="mt-8 pt-4 border-t border-sand-deep/60 flex items-center justify-center gap-3 text-[10px] font-mono text-muted" style={{ fontFamily: MONO }}>
-            <span className="h-1.5 w-1.5 rounded-full bg-bureau-sage" aria-hidden />
-            <span>PUBLIC PAGES ONLY &middot; SOURCE-LINKED &middot; NOT LEGAL ADVICE</span>
-          </div>
+    <div className="overflow-x-hidden bg-paper text-ink font-sans">
+      {/* ═══ 1. Hero — asymmetric split ═══════════════════════════════════
+          Message left, live product right. The right column is the real scan
+          engine, not a mock: the strongest available proof is the thing
+          itself working. */}
+      <section className="relative border-b border-hairline">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-5 pt-20 pb-20 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16 lg:pt-24 lg:pb-28">
+          <motion.div
+            variants={reduce ? undefined : stagger}
+            initial={reduce ? false : "hidden"}
+            animate={reduce ? undefined : "show"}
+          >
+            <motion.div variants={reduce ? undefined : riseIn}>
+              <Eyebrow>Claim evidence intelligence</Eyebrow>
+            </motion.div>
 
-          {/* Live Demo Engine */}
-          <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
-          
-          {/* Result Preview (Triggered by Engine) */}
-          <div className="w-full mt-4 min-h-[400px]">
-            {scanState.scanId ? (
-              <EngineContainer scanId={scanState.scanId} isDemo={scanState.isDemo} />
-            ) : (
-              /* Floating Exhibit Preview (Default State) */
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="mt-16 inline-flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity"
+            <motion.h1
+              variants={reduce ? undefined : riseIn}
+              className="font-display mt-5 max-w-[15ch] text-4xl font-medium text-ink sm:text-5xl lg:text-6xl"
+            >
+              Keep your clients&rsquo; claims{" "}
+              <span className="text-accent">defensible</span>.
+            </motion.h1>
+
+            <motion.p
+              variants={reduce ? undefined : riseIn}
+              className="mt-6 max-w-[52ch] text-base leading-relaxed text-ink-soft sm:text-lg"
+            >
+              We review public marketing claims and AI answers, flag what the
+              evidence does not support, and return safer wording.
+            </motion.p>
+
+            <motion.div
+              variants={reduce ? undefined : riseIn}
+              className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4"
+            >
+              <Link
+                href={SNAPSHOT_URL}
+                onClick={() =>
+                  trackEvent("cta_click", { cta_label: PRIMARY_CTA, section: "hero" })
+                }
+                className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
               >
-                <div className="bg-paper-light border border-sand-deep/40 p-4 rounded-xl shadow-2xl backdrop-blur-sm text-left max-w-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono text-bureau-sage bg-bureau-sage/10 px-2 py-0.5 rounded" style={{ fontFamily: MONO }}>Exhibit A Preview</span>
-                    <Lock size={12} className="text-muted" />
-                  </div>
-                  <p className="text-xs text-muted font-mono leading-relaxed truncate" style={{ fontFamily: MONO }}>
-                    SHA256: — awaiting live scan record
-                  </p>
-                </div>
-              </motion.div>
+                {PRIMARY_CTA}
+                <ArrowRight size={15} aria-hidden className="btn-arrow" />
+              </Link>
+
+              <Link
+                href="/sample-report"
+                className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-hairline decoration-1 underline-offset-[6px] transition-colors hover:decoration-accent"
+              >
+                See a sample report
+                <ArrowUpRight size={15} aria-hidden className="btn-arrow" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Real product, framed as an instrument panel. */}
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
+            className="rounded-xl border border-hairline bg-raised p-4 shadow-[var(--shadow-card)] sm:p-6"
+          >
+            <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
+            {scanState.scanId && (
+              <div className="mt-4">
+                <EngineContainer scanId={scanState.scanId} isDemo={scanState.isDemo} />
+              </div>
             )}
-          </div>
-
-
+          </motion.div>
         </div>
       </section>
 
-      {/* Counsel Advisory Component */}
+      {/* ═══ 2. Scope band — a single hairline strip, not a card row ═══════ */}
+      <section className="border-b border-hairline bg-paper-light">
+        <div className="mx-auto max-w-[1400px] px-5 py-6 sm:px-8">
+          <p className="font-mono text-[11px] leading-relaxed tracking-[0.14em] text-muted uppercase">
+            Public pages only. Source linked. Not legal advice.
+          </p>
+        </div>
+      </section>
+
+      {/* ═══ 3. What a review returns — asymmetric definition list ═════════
+          Sticky heading left, content right. Replaces the three equal cards. */}
+      <section className="border-b border-hairline">
+        <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-24 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20 lg:py-32">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Eyebrow>The deliverable</Eyebrow>
+            <h2 className="font-display mt-5 text-3xl font-medium text-ink sm:text-4xl">
+              What a review returns.
+            </h2>
+          </div>
+
+          <motion.dl
+            variants={reduce ? undefined : stagger}
+            initial={reduce ? false : "hidden"}
+            whileInView={reduce ? undefined : "show"}
+            viewport={{ once: true, amount: 0.25 }}
+            className="grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline"
+          >
+            {outcomes.map((item) => (
+              <motion.div
+                key={item.term}
+                variants={reduce ? undefined : riseIn}
+                className="group bg-paper p-8 transition-colors duration-300 hover:bg-paper-light sm:p-10"
+              >
+                <dt className="font-display text-xl font-medium text-ink sm:text-2xl">
+                  {item.term}
+                </dt>
+                <dd className="mt-3 max-w-[56ch] text-base leading-relaxed text-muted">
+                  {item.copy}
+                </dd>
+              </motion.div>
+            ))}
+          </motion.dl>
+        </div>
+      </section>
+
       <CounselAdvisory />
 
-      {/* ── 3. Three Outcomes (Re-themed for Dark) ── */}
-      <section className="border-b border-sand-deep/20 bg-paper-light/30 px-5 py-24 sm:px-8 md:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center max-w-2xl mx-auto">
-            <IndexLabel num="02" text="Platform Architecture" />
-            <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">
-              Intelligence, not just a score.
-            </h2>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              Designed for General Counsel, deal teams, and growth leaders to quantify risk without slowing down go-to-market execution.
-            </p>
+      {/* ═══ 4. Claim drift ═══════════════════════════════════════════════
+          ClaimDriftTimeline renders its own heading, so this section
+          contributes only the scroll-linked rule. Adding a heading here would
+          stack two headings, which is what shipped previously. */}
+      <section ref={evidenceRef} className="relative border-b border-hairline py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+          <div className="h-px w-full bg-hairline">
+            <motion.div
+              style={reduce ? undefined : { scaleX: ruleScale }}
+              className="h-px w-full origin-left bg-accent"
+            />
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                01 / EXPOSURE
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Find Exposure First</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Identify unsubstantiated biological mechanism claims, absolute safety promises, or guaranteed ROI statements before regulators or buyers do.
-              </p>
-            </div>
-
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                02 / REMEDIATION
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Correct Language</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Replace weak or overstated claims with evidence-anchored phrasing that preserves commercial power while eliminating legal risk.
-              </p>
-            </div>
-
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                03 / PROVENANCE
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Keep Record Current</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Maintain a dated, hash-chained record of public copy changes and evidentiary updates over time with automated S-Mark verification.
-              </p>
-            </div>
-          </div>
+        </div>
+        <div className="mt-16">
+          <ClaimDriftTimeline />
         </div>
       </section>
 
-      {/* ── 4. Claim Drift Timeline ── */}
-      <section className="border-b border-sand-deep/20 bg-paper py-24 sm:py-32">
-        <div className="text-center mb-16">
-          <IndexLabel num="03" text="The Record" />
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">Track evidence changes over time.</h2>
-        </div>
-        <ClaimDriftTimeline />
-      </section>
-
-      {/* ── 5. Proof Artifact Shelf ── */}
-      <section className="border-b border-sand-deep/20 bg-paper-light/30 py-24 sm:py-32">
-        <div className="text-center mb-16">
-          <IndexLabel num="04" text="Artifacts" />
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">Institutional evidence documents.</h2>
-        </div>
+      {/* ═══ 5. Artifacts — component owns its own heading ════════════════ */}
+      <section className="border-b border-hairline bg-paper-light py-24 lg:py-32">
         <ProofArtifactShelf />
       </section>
 
-      {/* ── 6. Final Scan CTA ── */}
-      <section id="snapshot" className="relative bg-paper px-5 py-24 sm:px-8 md:py-32 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bureau-sage/10 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="mx-auto max-w-4xl border border-sand-deep/30 bg-paper-light/50 backdrop-blur-md p-10 sm:p-16 text-center rounded-3xl relative z-10">
-          <h2 className="font-display text-3xl sm:text-5xl text-ink font-normal leading-tight">
-            Know what your public site is actually claiming.
+      {/* ═══ 6. Closing — full-bleed band, distinct from the hero ═════════ */}
+      <section id="snapshot" className="px-5 py-28 sm:px-8 lg:py-36">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto flex max-w-[1400px] flex-col gap-8 border-t border-hairline pt-14 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <h2 className="font-display max-w-[18ch] text-3xl font-medium text-ink sm:text-4xl lg:text-5xl">
+            See what your site is claiming today.
           </h2>
-          <p className="mt-6 text-base text-muted max-w-xl mx-auto font-light">
-            Paste any public marketing URL. Scrutexity generates a free point-in-time claim snapshot delivered to your inbox.
-          </p>
-          <div className="mt-10 flex justify-center">
-            <Link
-              href={SNAPSHOT_URL}
-              onClick={() => trackEvent("cta_click", { cta_label: "Run Free Snapshot", section: "final-cta" })}
-              className="inline-flex min-h-12 items-center gap-2 bg-bureau-sage px-8 py-3.5 text-xs font-semibold tracking-wider text-[#070708] rounded-xl hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-shadow"
-            >
-              Run Free Snapshot <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
+          <Link
+            href={SNAPSHOT_URL}
+            onClick={() =>
+              trackEvent("cta_click", { cta_label: PRIMARY_CTA, section: "final-cta" })
+            }
+            className="group inline-flex min-h-12 shrink-0 items-center gap-2 self-start rounded-full bg-accent px-8 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98] lg:self-auto"
+          >
+            {PRIMARY_CTA}
+            <ArrowRight size={15} aria-hidden className="btn-arrow" />
+          </Link>
+        </motion.div>
+      </section>
     </div>
   );
 }

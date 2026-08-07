@@ -44,7 +44,7 @@ const EVENTS = [
     status: "REVIEW REQUIRED",
     statusType: "red",
     oldText: "S-Mark Status: ACTIVE (Age: 30d)",
-    newText: "S-Mark Status: EXPIRED (Age: 60d — Audit Due)",
+    newText: "S-Mark Status: EXPIRED (Age: 60d, audit due)",
     note: "Hash record requires re-verification.",
   },
 ];
