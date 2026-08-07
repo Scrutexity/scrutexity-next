@@ -58,39 +58,49 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
   const [annual, setAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="border-t border-black/5 px-5 py-20 sm:px-8">
+    <section id="pricing" className={`transition-colors duration-500 px-5 py-24 sm:px-8 ${
+      isLight ? 'bg-[#f4f6fa] text-[#14142d]' : 'bg-[#14142d] text-[#ebedfa]'
+    }`}>
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
-          <div className="mx-auto max-w-[640px] text-center">
+          <div className="mx-auto max-w-[700px] text-center">
             <Kicker>Pricing</Kicker>
-            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
+            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl ${
               isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
             }`}>
-              Evidence for costly decisions, priced plainly.
+              Your smart claim intelligence,{' '}
+              <span className="inline-block rounded-full bg-[#d9ff5c] px-5 py-1 text-[#14142d] shadow-sm">
+                starting free
+              </span>
             </h2>
-            <p className={`mt-4 text-[15px] ${
+            <p className={`mt-4 text-base ${
               isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
             }`}>
-              Start free. Upgrade when you need depth. Watch when exposure is
-              continuous.
+              Simple plans for agencies and teams. No contracts, no hidden fees. Upgrade, downgrade, or cancel anytime.
             </p>
           </div>
         </Reveal>
 
-        {/* Annual/Monthly toggle */}
+        {/* Annual/Monthly pill switcher matching screenshot */}
         <Reveal delay={0.06}>
-          <div className="mt-8 flex justify-center">
-            <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] p-1">
-              {(['monthly', 'annual'] as const).map((mode) => {
+          <div className="mt-10 flex justify-center">
+            <div className={`inline-flex items-center rounded-full p-1.5 shadow-xs ${
+              isLight ? 'bg-[#e2e7f0] border border-black/5' : 'bg-white/10 border border-white/10'
+            }`}>
+              {(['annual', 'monthly'] as const).map((mode) => {
                 const active = annual === (mode === 'annual');
                 return (
                   <button
                     key={mode}
                     type="button"
                     onClick={() => setAnnual(mode === 'annual')}
-                    className={`rounded-full px-5 py-2 text-[13px] font-semibold transition-all ${
+                    className={`rounded-full px-6 py-2 text-xs font-bold transition-all duration-300 ${
                       active
-                        ? 'bg-[#d9ff5c] text-[#14142d]'
+                        ? isLight
+                          ? 'bg-white text-[#14142d] shadow-sm'
+                          : 'bg-[#d9ff5c] text-[#14142d]'
+                        : isLight
+                        ? 'text-[#5a6072] hover:text-[#14142d]'
                         : 'text-[#9391b8] hover:text-[#ebedfa]'
                     }`}
                   >
@@ -102,53 +112,65 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        {/* Pricing Cards Grid */}
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {TIERS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.08} className="h-full">
               <GlassCard
-                hover={false}
+                hover={true}
                 isLight={isLight}
-                className={`relative flex h-full flex-col p-7 ${
-                  t.highlight ? 'border-[#d9ff5c] bg-[#d9ff5c]/[0.08]' : ''
+                className={`relative flex h-full flex-col p-8 sm:p-9 ${
+                  t.highlight
+                    ? 'border-[#d9ff5c] ring-2 ring-[#d9ff5c]/30 shadow-xl'
+                    : ''
                 }`}
               >
                 {t.highlight && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#d9ff5c] px-3.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#14142d]">
-                    Most used
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#d9ff5c] px-4 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#14142d] shadow-sm">
+                    Most Popular
                   </span>
                 )}
 
-                <h3 className={`text-[17px] font-semibold ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>{t.name}</h3>
-                <p className={`mt-1 text-[12.5px] ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>{t.tagline}</p>
+                <h3 className={`text-2xl font-bold ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                  {t.name}
+                </h3>
+                <p className={`mt-1.5 text-xs ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
+                  {t.tagline}
+                </p>
 
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className={`text-5xl font-bold tracking-tight ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                <div className="mt-6 flex items-baseline gap-1">
+                  <span className={`text-5xl font-extrabold tracking-tight ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
                     ${annual ? t.annual : t.monthly}
                   </span>
-                  <span className={`text-[13px] ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
-                    /mo{annual ? ' · billed annually' : ''}
+                  <span className={`text-xs font-medium ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
+                    /mo
                   </span>
                 </div>
+                <span className={`mt-1 text-[11px] font-medium ${isLight ? 'text-[#7a8194]' : 'text-[#9391b8]'}`}>
+                  per workspace
+                </span>
 
-                <ul className="mt-6 flex-1 space-y-2.5">
-                  {t.features.map((f) => (
-                    <li key={f} className={`flex items-start gap-2.5 text-[13px] ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
-                      <Check size={15} className="mt-0.5 shrink-0 text-[#5E7A5A]" />
-                      <span className={f.endsWith(':') ? `font-semibold ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}` : ''}>
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-7">
+                <div className="mt-8">
                   <CTAButton
                     href={t.cta.href}
                     variant={t.highlight ? 'lime' : 'ghost'}
-                    className="w-full py-3"
+                    className="w-full py-3.5 text-sm"
                   >
                     {t.cta.label}
                   </CTAButton>
+                </div>
+
+                <div className="mt-8 border-t border-black/5 pt-6 dark:border-white/10">
+                  <ul className="space-y-3">
+                    {t.features.map((f) => (
+                      <li key={f} className={`flex items-start gap-3 text-xs ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                        <Check size={16} className="mt-0.5 shrink-0 text-[#5E7A5A]" />
+                        <span className={f.endsWith(':') ? `font-semibold ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}` : ''}>
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </GlassCard>
             </Reveal>
