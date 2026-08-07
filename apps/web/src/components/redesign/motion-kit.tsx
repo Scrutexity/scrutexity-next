@@ -87,17 +87,21 @@ export function CountUp({
   );
 }
 
-/** Uppercase, letter-spaced kicker label (Makro muted periwinkle). */
+/** Uppercase, letter-spaced kicker label. */
 export function Kicker({
   children,
   className = '',
+  isLight = true,
 }: {
   children: ReactNode;
   className?: string;
+  isLight?: boolean;
 }) {
   return (
     <p
-      className={`text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9391b8] ${className}`}
+      className={`text-[11px] font-bold uppercase tracking-[0.22em] ${
+        isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+      } ${className}`}
     >
       {children}
     </p>
