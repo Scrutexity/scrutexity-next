@@ -28,10 +28,10 @@ export function CounselAdvisory() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="bg-[#132a24] text-[#ffffff] rounded-[2rem] p-10 sm:p-16 lg:p-24 overflow-hidden relative shadow-2xl"
+        className="bg-paper-light text-ink rounded-[2rem] p-10 sm:p-16 lg:p-24 overflow-hidden relative shadow-2xl border border-border-deep"
       >
         {/* Decorative background gradient */}
-        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[500px] h-[500px] bg-[#274f44] rounded-full mix-blend-screen filter blur-[120px] opacity-40 animate-float pointer-events-none" />
+        <div className="absolute top-0 right-0 -mr-32 -mt-32 w-[500px] h-[500px] bg-bureau-sage/10 rounded-full mix-blend-screen filter blur-[120px] opacity-40 animate-float pointer-events-none" />
         
         <div className="relative z-10 grid gap-16 lg:grid-cols-12 items-center">
           
@@ -43,7 +43,7 @@ export function CounselAdvisory() {
               "The days of manual claim review are over. Institutional capital requires cryptographic certainty."
             </motion.h2>
             
-            <motion.div variants={revealUp} className="space-y-6 text-[#879f98] text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
+            <motion.div variants={revealUp} className="space-y-6 text-muted text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
               <p>
                 Regulators no longer tolerate analog compliance. When an FDA warning letter or FTC civil investigative demand arrives, diligence teams need to know exactly what was claimed, when it was modified, and the cryptographic hash of the raw DOM at the exact moment of exposure.
               </p>
@@ -55,23 +55,23 @@ export function CounselAdvisory() {
 
           <motion.div 
             variants={revealUp} 
-            className="lg:col-span-4 lg:border-l lg:border-[#274f44] lg:pl-12 flex flex-col gap-6"
+            className="lg:col-span-4 lg:border-l lg:border-border-deep lg:pl-12 flex flex-col gap-6"
           >
-            <div className="w-16 h-16 rounded-full bg-[#f5f7f6] text-[#132a24] flex items-center justify-center font-bold text-2xl">
-              AJ
+            <div className="w-16 h-16 rounded-full bg-border-deep text-ink flex items-center justify-center font-bold text-2xl border border-bureau-sage/30 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+              <span className="text-bureau-sage text-sm font-mono tracking-widest">STND</span>
             </div>
             <div>
-              <p className="text-white font-medium text-lg">Arthur Judson</p>
-              <p className="text-[#78A184] text-sm tracking-widest uppercase mt-1 font-light">Former Regulatory Counsel</p>
-              <p className="text-[#879f98] text-sm mt-3 font-light leading-relaxed">
-                Specialized in FTC Section 5 enforcement and institutional M&A risk mitigation.
+              <p className="text-ink font-medium text-lg">Scrutexity Operating Standard</p>
+              <p className="text-bureau-sage text-sm tracking-widest uppercase mt-1 font-light">Institutional Intelligence</p>
+              <p className="text-muted text-sm mt-3 font-light leading-relaxed">
+                Designed to meet the evidentiary requirements of regulatory enforcement and M&A diligence.
               </p>
             </div>
             
-            <div className="pt-8 mt-8 border-t border-[#274f44]">
+            <div className="pt-8 mt-8 border-t border-border-deep">
               <a 
                 href="/methodology" 
-                className="inline-flex items-center text-[#ffffff] hover:text-[#78A184] transition-colors font-light text-sm tracking-widest uppercase group"
+                className="inline-flex items-center text-ink hover:text-bureau-sage transition-colors font-light text-sm tracking-widest uppercase group"
               >
                 Read the Methodology
                 <span className="ml-3 group-hover:translate-x-1 transition-transform">→</span>
