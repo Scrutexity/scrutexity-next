@@ -12,6 +12,7 @@ import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifac
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { InstantPreview } from "@/components/scrutexity/motion/instant-preview";
 import { Reveal } from "@/components/redesign/motion-kit";
+import { TiltCard, Magnetic, Parallax } from "@/components/redesign/reactive";
 
 const SNAPSHOT_URL = "/snapshot";
 /** One label per intent. Matches the header CTA in site-nav verbatim so the
@@ -145,7 +146,9 @@ export default function UmbrellaHomepage() {
             transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
             className="mx-auto mt-12 max-w-4xl"
           >
-            <InstantPreview />
+            <TiltCard intensity={4}>
+              <InstantPreview />
+            </TiltCard>
           </motion.div>
 
           {/* Boundary notice, promoted out of footer small print. For a
@@ -245,14 +248,19 @@ export default function UmbrellaHomepage() {
               <motion.div
                 key={item.term}
                 variants={reduce ? undefined : riseIn}
-                className="grid grid-cols-1 gap-x-10 gap-y-3 border-b border-hairline py-10 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] lg:py-12"
+                className="border-b border-hairline"
               >
-                <dt className="font-display text-xl font-medium tracking-tight text-accent-text sm:text-2xl">
-                  {item.term}
-                </dt>
-                <dd className="max-w-[62ch] text-base leading-relaxed text-ink-soft sm:text-lg">
-                  {item.copy}
-                </dd>
+                <TiltCard
+                  intensity={2}
+                  className="grid grid-cols-1 gap-x-10 gap-y-3 py-10 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] lg:py-12"
+                >
+                  <dt className="font-display text-xl font-medium tracking-tight text-accent-text sm:text-2xl">
+                    {item.term}
+                  </dt>
+                  <dd className="max-w-[62ch] text-base leading-relaxed text-ink-soft sm:text-lg">
+                    {item.copy}
+                  </dd>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.dl>
@@ -275,14 +283,18 @@ export default function UmbrellaHomepage() {
           </div>
         </div>
         <Reveal className="mt-16" y={32}>
-          <ClaimDriftTimeline />
+          <Parallax distance={28}>
+            <ClaimDriftTimeline />
+          </Parallax>
         </Reveal>
       </section>
 
       {/* ═══ 5. Artifacts — component owns its own heading ════════════════ */}
       <section className="border-b border-hairline bg-paper-light py-32 lg:py-44">
         <Reveal y={32}>
-          <ProofArtifactShelf />
+          <Parallax distance={24}>
+            <ProofArtifactShelf />
+          </Parallax>
         </Reveal>
       </section>
 
@@ -299,6 +311,7 @@ export default function UmbrellaHomepage() {
             See what your site is claiming today.
           </h2>
 
+          <Magnetic strength={0.3}>
           <Link
             href={SNAPSHOT_URL}
             onClick={() =>
@@ -309,6 +322,7 @@ export default function UmbrellaHomepage() {
             {PRIMARY_CTA}
             <ArrowRight size={15} aria-hidden className="btn-arrow" />
           </Link>
+          </Magnetic>
         </motion.div>
       </section>
     </div>
