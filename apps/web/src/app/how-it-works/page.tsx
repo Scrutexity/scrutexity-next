@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Kicker, MONO } from '@/components/scrutexity/intel-kit';
+import * as motion from "framer-motion/client";
 
 export const metadata: Metadata = {
   title: 'How It Works | Scrutexity',
@@ -27,52 +28,80 @@ const STEPS = [
   }
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+const riseIn = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
+
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-cream text-bark">
-      <section className="border-b border-sand-deep/30 bg-bone px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
-        <div className="mx-auto max-w-4xl text-center">
-          <Kicker>Process</Kicker>
-          <h1 className="mt-6 font-display text-[2.5rem] leading-[1.07] text-espresso sm:text-5xl lg:text-6xl">
+    <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
+      <section className="border-b border-hairline bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
+        <motion.div variants={stagger} initial="hidden" animate="show" className="mx-auto max-w-4xl text-center">
+          <motion.div variants={riseIn}>
+            <Kicker>Process</Kicker>
+          </motion.div>
+          <motion.h1 variants={riseIn} className="mt-6 font-display text-[2.5rem] leading-[1.07] text-ink sm:text-5xl lg:text-6xl">
             How Scrutexity Works.
-          </h1>
-          <p className="mt-7 text-lg leading-8 text-bark">
+          </motion.h1>
+          <motion.p variants={riseIn} className="mt-7 text-lg leading-8 text-ink-soft">
             From public URL to dated intelligence record in three steps.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
-      <section className="border-b border-sand-deep/30 bg-cream px-5 py-20 sm:px-8 md:py-24">
-        <div className="mx-auto max-w-4xl space-y-12">
+      <section className="border-b border-hairline bg-paper px-5 py-20 sm:px-8 md:py-24">
+        <motion.div 
+          variants={stagger} 
+          initial="hidden" 
+          whileInView="show" 
+          viewport={{ once: true, amount: 0.2 }}
+          className="mx-auto max-w-4xl space-y-12"
+        >
           {STEPS.map((step) => (
-            <article key={step.num} className="p-8 md:p-12 rounded-xl border border-sand-deep/40 bg-bone flex flex-col md:flex-row gap-8 items-start">
-              <span className="text-4xl font-display text-clay shrink-0">
+            <motion.article 
+              variants={riseIn}
+              key={step.num} 
+              className="p-8 md:p-12 rounded-xl border border-hairline bg-raised flex flex-col md:flex-row gap-8 items-start shadow-[var(--shadow-card)]"
+            >
+              <span className="text-4xl font-display text-accent shrink-0">
                 {step.num}
               </span>
               <div>
-                <h2 className="font-display text-3xl text-espresso mb-4">{step.title}</h2>
-                <p className="text-lg leading-8 text-mist">{step.body}</p>
+                <h2 className="font-display text-3xl text-ink mb-4">{step.title}</h2>
+                <p className="text-lg leading-relaxed text-ink-soft">{step.body}</p>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      <section className="bg-bone px-5 py-24 sm:px-8 md:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="font-display text-4xl leading-tight text-espresso md:text-5xl">
+      <section className="bg-paper-light px-5 py-24 sm:px-8 md:py-28">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto max-w-4xl text-center"
+        >
+          <h2 className="font-display text-4xl leading-tight text-ink md:text-5xl">
             Ready to see it work?
           </h2>
           <div className="mt-10 flex justify-center">
             <Link
               href="/snapshot"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-espresso px-8 py-3 text-sm font-semibold text-cream transition-colors hover:bg-clay-deep"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
             >
               Run Your Free Snapshot
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

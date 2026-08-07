@@ -29,11 +29,12 @@ export default function SnapshotClient() {
     scanId: string | null;
     isDemo: boolean;
     synthetic: boolean;
+    token: string | null;
     error: string | null;
-  }>({ isScanning: false, scanId: null, isDemo: false, synthetic: false, error: null });
+  }>({ isScanning: false, scanId: null, isDemo: false, synthetic: false, token: null, error: null });
 
   const handleScan = async (url: string, industry: string) => {
-    setScanState({ isScanning: true, scanId: null, isDemo: false, synthetic: false, error: null });
+    setScanState({ isScanning: true, scanId: null, isDemo: false, synthetic: false, token: null, error: null });
     try {
       const res = await fetch("/api/funnel/scan", {
         method: "POST",
@@ -51,6 +52,7 @@ export default function SnapshotClient() {
           scanId: null,
           isDemo: false,
           synthetic: false,
+          token: null,
           error:
             detail.error ??
             "We could not complete a review of that page. Nothing was analysed.",
@@ -69,6 +71,7 @@ export default function SnapshotClient() {
         scanId,
         isDemo,
         synthetic: Boolean(synthetic),
+        token: scanToken ?? null,
         error: null,
       });
       trackEvent("snapshot_scan_complete", { url, industry });
@@ -79,6 +82,7 @@ export default function SnapshotClient() {
         scanId: null,
         isDemo: false,
         synthetic: false,
+          token: null,
         error: "We could not reach that page. Check the URL and try again.",
       });
     }
@@ -135,7 +139,11 @@ export default function SnapshotClient() {
 
           {scanState.scanId && (
             <div className="mt-6">
-              <EngineContainer scanId={scanState.scanId} isDemo={scanState.isDemo} />
+              <EngineContainer
+                scanId={scanState.scanId}
+                isDemo={scanState.isDemo}
+                token={scanState.token}
+              />
             </div>
           )}
         </motion.div>

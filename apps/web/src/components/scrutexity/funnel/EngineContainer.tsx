@@ -11,10 +11,11 @@ import { UnlockedState } from "./states/UnlockedState";
 interface EngineContainerProps {
   scanId: string | null;
   isDemo?: boolean;
+  token?: string | null;
 }
 
-export function EngineContainer({ scanId, isDemo = false }: EngineContainerProps) {
-  const { token, saveToken } = useScanToken();
+export function EngineContainer({ scanId, isDemo = false, token = null }: EngineContainerProps) {
+  const { saveToken } = useScanToken();
   const { payload } = useFunnelResult(scanId, token, isDemo);
 
   // TODO: Add demo override behavior if `isDemo` is true and no scanId

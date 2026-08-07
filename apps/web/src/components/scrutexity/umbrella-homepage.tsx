@@ -50,7 +50,8 @@ export default function UmbrellaHomepage() {
     isScanning: boolean;
     scanId: string | null;
     isDemo: boolean;
-  }>({ isScanning: false, scanId: null, isDemo: false });
+    token: string | null;
+  }>({ isScanning: false, scanId: null, isDemo: false, token: null });
 
   /* Scroll-linked rule in the evidence section. Motivated: it reports how far
      through the evidence sequence the reader is, which a static divider cannot.
@@ -63,7 +64,7 @@ export default function UmbrellaHomepage() {
   const ruleScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   const handleScan = async (url: string, industry: string) => {
-    setScanState({ isScanning: true, scanId: null, isDemo: false });
+    setScanState({ isScanning: true, scanId: null, isDemo: false, token: null });
     try {
       const res = await fetch("/api/funnel/scan", {
         method: "POST",
@@ -72,14 +73,16 @@ export default function UmbrellaHomepage() {
       });
       if (!res.ok) throw new Error("Failed to scan");
       const { scanId, scanToken, isDemo } = await res.json();
-      // See snapshot-client: the result route requires a token for demo scans
-      // too, so gating this on !isDemo made the funnel 401 and render nothing.
+      // Held in state and passed to EngineContainer directly. Reading it back
+      // from sessionStorage raced the container's first fetch, producing a
+      // wasted 401 before the retry succeeded. Still persisted so a reload
+      // inside the same tab can resume the scan.
       if (scanToken) sessionStorage.setItem("scrutexity_scan_token", scanToken);
-      setScanState({ isScanning: false, scanId, isDemo });
+      setScanState({ isScanning: false, scanId, isDemo, token: scanToken ?? null });
       trackEvent("demo_scan_complete", { url, industry });
     } catch (error) {
       console.error("Scan initialization failed:", error);
-      setScanState({ isScanning: false, scanId: null, isDemo: false });
+      setScanState({ isScanning: false, scanId: null, isDemo: false, token: null });
     }
   };
 
@@ -166,7 +169,11 @@ export default function UmbrellaHomepage() {
             <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
             {scanState.scanId && (
               <div className="mt-4">
-                <EngineContainer scanId={scanState.scanId} isDemo={scanState.isDemo} />
+                <EngineContainer
+                  scanId={scanState.scanId}
+                  isDemo={scanState.isDemo}
+                  token={scanState.token}
+                />
               </div>
             )}
           </motion.div>

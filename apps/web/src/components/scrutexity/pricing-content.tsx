@@ -22,7 +22,7 @@ function TierChip({ label }: { label: string }) {
 export default function PricingContent() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans">
-      <section className="border-b border-sand-deep/30 bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
+      <section className="border-b border-hairline/30 bg-paper-light px-5 pb-16 pt-28 sm:px-8 md:pb-20 md:pt-36">
         <div className="mx-auto max-w-6xl">
           <Kicker>Pricing</Kicker>
           <h1 className="mt-6 max-w-3xl font-display text-[2.5rem] leading-[1.07] text-ink sm:text-5xl lg:text-6xl">
@@ -47,7 +47,7 @@ export default function PricingContent() {
           </div>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {/* Triage — Free Snapshot */}
-            <article className="relative flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper-light p-8">
+            <article className="relative flex flex-col rounded-[2rem] border border-hairline/50 bg-paper-light p-8">
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="font-display text-2xl text-ink">Free Snapshot</h3>
@@ -61,15 +61,15 @@ export default function PricingContent() {
                   Automated point-in-time exposure preview. The low-friction entry.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-clay">•</span> 3 high-level flags</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Identify key claims</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> No sources linked</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Delivered by email</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> 3 high-level flags</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Identify key claims</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> No sources linked</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Delivered by email</li>
                 </ul>
               </div>
               <Link
                 href={SNAPSHOT_URL}
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-bureau-sage px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
               >
                 Run Your Free Snapshot <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -77,8 +77,8 @@ export default function PricingContent() {
 
             {/* Verification — Claim Support Review */}
             <MouseSpotlight className="rounded-[2rem]">
-            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-bureau-sage/40 bg-paper-light p-8 shadow-md">
-              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-bureau-sage px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-light" style={{ fontFamily: MONO }}>
+            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-accent/40 bg-paper-light p-8 shadow-md">
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper" style={{ fontFamily: MONO }}>
                 First paid record
               </div>
               <div className="flex-1">
@@ -94,17 +94,17 @@ export default function PricingContent() {
                   The first paid receipt. Establishes a formal, dated review trail.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted font-medium">
-                  <li className="flex gap-2"><span className="text-clay">✓</span> 1 deep-dive Exhibit A</li>
-                  <li className="flex gap-2"><span className="text-clay">✓</span> Exact claim captured</li>
-                  <li className="flex gap-2"><span className="text-clay">✓</span> Visible evidence found</li>
-                  <li className="flex gap-2"><span className="text-clay">✓</span> Evidence gap mapped</li>
-                  <li className="flex gap-2"><span className="text-clay">✓</span> Safer rewrite provided</li>
-                  <li className="flex gap-2"><span className="text-clay">✓</span> Dated review record</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> 1 deep-dive Exhibit A</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> Exact claim captured</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> Visible evidence found</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> Evidence gap mapped</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> Safer rewrite provided</li>
+                  <li className="flex gap-2"><span className="text-accent">✓</span> Dated review record</li>
                 </ul>
               </div>
               <Link
                 href="/snapshot"
-                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+                className="mt-8 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
               >
                 Get the Detailed Review <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -115,15 +115,15 @@ export default function PricingContent() {
       </section>
 
       {/* ── The threshold ── */}
-      <section className="border-y border-sand-deep/30 bg-paper-light px-5 py-10 sm:px-8">
+      <section className="border-y border-hairline/30 bg-paper-light px-5 py-10 sm:px-8">
         <div className="mx-auto max-w-4xl">
           <div className="flex items-center justify-center gap-4">
             <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
               Automated
             </span>
-            <span className="h-px w-16 bg-sand-deep" aria-hidden />
-            <ArrowDown size={14} className="text-clay" aria-hidden="true" />
-            <span className="h-px w-16 bg-sand-deep" aria-hidden />
+            <span className="h-px w-16 bg-hairline" aria-hidden />
+            <ArrowDown size={14} className="text-accent" aria-hidden="true" />
+            <span className="h-px w-16 bg-hairline" aria-hidden />
             <span className="text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
               Bespoke
             </span>
@@ -146,7 +146,7 @@ export default function PricingContent() {
           </div>
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {/* Assessment — Exposure Diagnostic */}
-            <article className="flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper p-8">
+            <article className="flex flex-col rounded-[2rem] border border-hairline/50 bg-paper p-8">
               <div className="flex-1">
                 <h3 className="font-display text-2xl text-ink">Exposure Diagnostic</h3>
                 <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
@@ -157,22 +157,22 @@ export default function PricingContent() {
                   Bespoke forensic assessment for specific operational risks.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-clay">•</span> Targeted public-footprint review</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> FTC / FDA pattern map</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Exposure brief</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Counsel-ready output</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Targeted public-footprint review</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> FTC / FDA pattern map</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Exposure brief</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Counsel-ready output</li>
                 </ul>
               </div>
               <Link
                 href="/claim-exposure-diagnostic"
-                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-sand-deep bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-bureau-sage"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-hairline bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-accent"
               >
                 Request a Diagnostic
               </Link>
             </article>
 
             {/* Deep Diligence — PE/M&A */}
-            <article className="flex flex-col rounded-[2rem] border border-sand-deep/50 bg-paper p-8">
+            <article className="flex flex-col rounded-[2rem] border border-hairline/50 bg-paper p-8">
               <div className="flex-1">
                 <h3 className="font-display text-2xl text-ink">PE / M&amp;A Diligence</h3>
                 <p className="mt-1 text-[11px] tracking-[0.14em] text-muted uppercase" style={{ fontFamily: MONO }}>
@@ -183,15 +183,15 @@ export default function PricingContent() {
                   Complete regulatory risk analysis for acquisitions and board reviews.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted">
-                  <li className="flex gap-2"><span className="text-clay">•</span> Claims + AI narrative inventory</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Diligence report</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Risk quantification for valuation</li>
-                  <li className="flex gap-2"><span className="text-clay">•</span> Board-ready brief</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Claims + AI narrative inventory</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Diligence report</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Risk quantification for valuation</li>
+                  <li className="flex gap-2"><span className="text-accent">•</span> Board-ready brief</li>
                 </ul>
               </div>
               <Link
                 href="/diligence"
-                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-sand-deep bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-bureau-sage"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full border border-hairline bg-paper-light px-6 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-accent"
               >
                 Request Diligence
               </Link>
@@ -199,8 +199,8 @@ export default function PricingContent() {
 
             {/* Continuous — Watch */}
             <MouseSpotlight className="rounded-[2rem]">
-            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-bureau-sage/40 bg-paper p-8 shadow-md">
-              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-bureau-sage px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper-light" style={{ fontFamily: MONO }}>
+            <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-accent/40 bg-paper p-8 shadow-md">
+              <div className="absolute right-0 top-0 rounded-bl-[2rem] bg-accent px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-paper" style={{ fontFamily: MONO }}>
                 Ongoing
               </div>
               <div className="flex-1">
@@ -219,7 +219,7 @@ export default function PricingContent() {
                     'Evidence changes — sources added, removed, or weakened',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span className="mt-2.5 h-1 w-1 shrink-0 bg-clay" aria-hidden />
+                      <span className="mt-2.5 h-1 w-1 shrink-0 bg-accent" aria-hidden />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -230,7 +230,7 @@ export default function PricingContent() {
               </div>
               <Link
                 href="/contact"
-                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+                className="mt-8 flex min-h-11 w-full items-center justify-center rounded-full bg-ink px-6 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
               >
                 Request Watch Access
               </Link>
@@ -249,7 +249,7 @@ export default function PricingContent() {
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href={SNAPSHOT_URL}
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-bureau-sage px-8 py-3 text-sm font-semibold text-paper-light transition-colors hover:bg-clay-deep"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-paper transition-colors hover:bg-accent-bright"
             >
               Run Your Free Snapshot
               <ArrowRight size={16} aria-hidden="true" />
