@@ -41,7 +41,11 @@ export default function SnapshotClient() {
       });
       if (!res.ok) throw new Error("Scan failed");
       const { scanId, scanToken, isDemo } = await res.json();
-      if (!isDemo) sessionStorage.setItem("scrutexity_scan_token", scanToken);
+      // Store the token for demo scans too. /api/funnel/result/[scanId]
+      // requires a bearer token unconditionally, so skipping this for demos
+      // made every demo scan 401 and render nothing. The token is scoped to
+      // this scanId, so storing it grants no extra access.
+      if (scanToken) sessionStorage.setItem("scrutexity_scan_token", scanToken);
       setScanState({ isScanning: false, scanId, isDemo, error: null });
       trackEvent("snapshot_scan_complete", { url, industry });
     } catch (error) {

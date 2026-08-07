@@ -72,7 +72,9 @@ export default function UmbrellaHomepage() {
       });
       if (!res.ok) throw new Error("Failed to scan");
       const { scanId, scanToken, isDemo } = await res.json();
-      if (!isDemo) sessionStorage.setItem("scrutexity_scan_token", scanToken);
+      // See snapshot-client: the result route requires a token for demo scans
+      // too, so gating this on !isDemo made the funnel 401 and render nothing.
+      if (scanToken) sessionStorage.setItem("scrutexity_scan_token", scanToken);
       setScanState({ isScanning: false, scanId, isDemo });
       trackEvent("demo_scan_complete", { url, industry });
     } catch (error) {
