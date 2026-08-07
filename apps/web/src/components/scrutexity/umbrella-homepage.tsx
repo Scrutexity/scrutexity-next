@@ -10,6 +10,7 @@ import { EngineContainer } from "@/components/scrutexity/funnel/EngineContainer"
 import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-timeline";
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
+import { InstantPreview } from "@/components/scrutexity/motion/instant-preview";
 
 const SNAPSHOT_URL = "/snapshot";
 /** One label per intent. Matches the header CTA in site-nav verbatim so the
@@ -103,16 +104,18 @@ export default function UmbrellaHomepage() {
 
   return (
     <div className="overflow-x-hidden bg-paper text-ink font-sans">
-      {/* ═══ 1. Hero — asymmetric split ═══════════════════════════════════
-          Message left, live product right. The right column is the real scan
-          engine, not a mock: the strongest available proof is the thing
-          itself working. */}
+      {/* ═══ 1. Hero — centred statement over a live instrument ═══════════
+          The value has to land before the fold. Rather than describing the
+          product beside a form, the page states the question at display scale
+          and puts a working read of the visitor's own page directly beneath
+          it. Everything below the input is generated from their site. */}
       <section className="relative border-b border-hairline">
-        <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-5 pt-20 pb-20 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16 lg:pt-24 lg:pb-28">
+        <div className="mx-auto max-w-[1200px] px-5 pt-16 pb-20 sm:px-8 lg:pt-20 lg:pb-28">
           <motion.div
             variants={reduce ? undefined : stagger}
             initial={reduce ? false : "hidden"}
             animate={reduce ? undefined : "show"}
+            className="mx-auto max-w-4xl text-center"
           >
             <motion.div variants={reduce ? undefined : riseIn}>
               <Eyebrow>Claim evidence intelligence</Eyebrow>
@@ -120,63 +123,70 @@ export default function UmbrellaHomepage() {
 
             <motion.h1
               variants={reduce ? undefined : riseIn}
-              className="font-display mt-5 max-w-[15ch] text-4xl font-medium text-ink sm:text-5xl lg:text-6xl"
+              className="font-display mx-auto mt-6 max-w-[16ch] text-[2.75rem] font-medium leading-[0.98] text-ink sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
             >
-              Keep your clients&rsquo; claims{" "}
-              <span className="text-accent">defensible</span>.
+              See what your site is{" "}
+              <span className="text-accent">actually claiming</span>.
             </motion.h1>
 
             <motion.p
               variants={reduce ? undefined : riseIn}
-              className="mt-6 max-w-[52ch] text-base leading-relaxed text-ink-soft sm:text-lg"
+              className="mx-auto mt-7 max-w-[54ch] text-lg leading-relaxed text-ink-soft sm:text-xl"
             >
-              We review public marketing claims and AI answers, flag what the
-              evidence does not support, and return safer wording.
+              Paste your address. We read the page and quote back the exact
+              language a reviewer would stop on.
             </motion.p>
-
-            <motion.div
-              variants={reduce ? undefined : riseIn}
-              className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4"
-            >
-              <Link
-                href={SNAPSHOT_URL}
-                onClick={() =>
-                  trackEvent("cta_click", { cta_label: PRIMARY_CTA, section: "hero" })
-                }
-                className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-7 text-sm font-semibold text-paper transition-[background-color,transform] duration-300 hover:bg-accent-bright active:scale-[0.98]"
-              >
-                {PRIMARY_CTA}
-                <ArrowRight size={15} aria-hidden className="btn-arrow" />
-              </Link>
-
-              <Link
-                href="/sample-report"
-                className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-hairline decoration-1 underline-offset-[6px] transition-colors hover:decoration-accent"
-              >
-                See a sample report
-                <ArrowUpRight size={15} aria-hidden className="btn-arrow" />
-              </Link>
-            </motion.div>
           </motion.div>
 
-          {/* Real product, framed as an instrument panel. */}
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 24 }}
+            initial={reduce ? false : { opacity: 0, y: 28 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
-            className="rounded-xl border border-hairline bg-raised p-4 shadow-[var(--shadow-card)] sm:p-6"
+            transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
+            className="mx-auto mt-12 max-w-4xl"
           >
-            <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
-            {scanState.scanId && (
-              <div className="mt-4">
-                <EngineContainer
-                  scanId={scanState.scanId}
-                  isDemo={scanState.isDemo}
-                  token={scanState.token}
-                />
-              </div>
-            )}
+            <InstantPreview />
           </motion.div>
+
+          <motion.div
+            initial={reduce ? false : { opacity: 0 }}
+            animate={reduce ? undefined : { opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
+          >
+            <Link
+              href={SNAPSHOT_URL}
+              onClick={() =>
+                trackEvent("cta_click", { cta_label: PRIMARY_CTA, section: "hero" })
+              }
+              className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-hairline decoration-1 underline-offset-[6px] transition-colors hover:decoration-accent"
+            >
+              {PRIMARY_CTA}
+              <ArrowRight size={15} aria-hidden className="btn-arrow" />
+            </Link>
+            <Link
+              href="/sample-report"
+              className="group inline-flex items-center gap-1.5 text-sm font-medium text-ink underline decoration-hairline decoration-1 underline-offset-[6px] transition-colors hover:decoration-accent"
+            >
+              See a sample report
+              <ArrowUpRight size={15} aria-hidden className="btn-arrow" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ 1b. Full engine, below the instant read ══════════════════════ */}
+      <section className="border-b border-hairline bg-paper-light">
+        <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8">
+          <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
+          {scanState.scanId && (
+            <div className="mt-6">
+              <EngineContainer
+                scanId={scanState.scanId}
+                isDemo={scanState.isDemo}
+                token={scanState.token}
+              />
+            </div>
+          )}
         </div>
       </section>
 
