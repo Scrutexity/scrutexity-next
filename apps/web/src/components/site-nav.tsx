@@ -18,6 +18,12 @@ const links = [
 
 export function SiteNav() {
   const pathname = usePathname();
+  
+  // Hide global SiteNav on homepage and redesign routes where MakroNav is active
+  if (pathname === '/' || pathname === '/redesign') {
+    return null;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
