@@ -9,6 +9,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import { useEffect, useRef, type ReactNode } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -103,7 +104,7 @@ export function Kicker({
   );
 }
 
-/** Signature lime pill CTA. */
+/** Signature Makro Pill CTA with left circular arrow badge. */
 export function CTAButton({
   href = '#',
   children,
@@ -112,28 +113,42 @@ export function CTAButton({
 }: {
   href?: string;
   children: ReactNode;
-  variant?: 'lime' | 'ghost';
+  variant?: 'lime' | 'ghost' | 'dark';
   className?: string;
 }) {
-  const base =
-    'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300';
-  const styles =
-    variant === 'lime'
-      ? 'bg-[#d9ff5c] text-[#14142d] hover:bg-[#e4ff85] hover:shadow-[0_0_36px_rgba(217,255,92,0.35)]'
-      : 'border border-white/15 text-[#ebedfa] hover:border-white/30 hover:bg-white/5';
+  const isGhost = variant === 'ghost';
+  
   return (
     <motion.a
       href={href}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      className={`${base} ${styles} ${className}`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className={`group relative inline-flex items-center justify-between rounded-full p-1.5 transition-all duration-300 ${
+        isGhost
+          ? 'bg-[#ebeff5] text-[#35363b] hover:bg-[#e2e7f0]'
+          : 'bg-[#35363b] text-white hover:bg-[#2a2b2f] hover:shadow-[0_0_30px_rgba(217,255,92,0.2)]'
+      } ${className}`}
     >
-      {children}
+      {/* Left Circular Arrow Badge */}
+      <span
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-105 ${
+          isGhost
+            ? 'bg-white text-[#35363b] shadow-xs'
+            : 'bg-[#d9ff5c] text-[#14142d] shadow-sm'
+        }`}
+      >
+        <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+      </span>
+
+      {/* Button Text */}
+      <span className="flex-1 px-5 text-center text-xs sm:text-sm font-semibold tracking-tight">
+        {children}
+      </span>
     </motion.a>
   );
 }
 
-/** Glass card (Makro recipe: translucent fill + white/10 border, no blur). */
+/** Glass Card — Makro Framer Card recipe: clean white/translucent card with subtle border & hover shadow. */
 export function GlassCard({
   children,
   className = '',
@@ -145,9 +160,9 @@ export function GlassCard({
 }) {
   return (
     <div
-      className={`rounded-2xl border border-white/10 bg-white/[0.06] ${
+      className={`rounded-[1.75rem] border border-white/10 bg-white/[0.07] backdrop-blur-md ${
         hover
-          ? 'transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.09] hover:shadow-[0_18px_50px_-20px_rgba(0,0,0,0.7)]'
+          ? 'transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.10] hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]'
           : ''
       } ${className}`}
     >

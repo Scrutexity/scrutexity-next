@@ -121,82 +121,10 @@ html {
   letter-spacing: 0.02em;
 }
 
-/* ── Clay CTA ── */
-.clay-cta {
-  background: #B7896B;
-  color: #F8F3EA;
-  box-shadow: 0 12px 30px -10px rgba(183,137,107,0.50);
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.clay-cta:hover {
-  background: #8A533B;
-  box-shadow: 0 16px 40px -12px rgba(138,83,59,0.55);
-  transform: translateY(-1px);
-}
-
-/* ── Sage-deep CTA ── */
-.sage-cta {
-  background: #5E7A5A;
-  color: #F8F3EA;
-  box-shadow: 0 12px 30px -10px rgba(94,122,90,0.50);
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-.sage-cta:hover {
-  background: #4A6347;
-  box-shadow: 0 16px 40px -12px rgba(94,122,90,0.55);
-  transform: translateY(-1px);
-}
-
-/* ── Slider styling ── */
-.luxury-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 5px;
-  background: #E6DCC6;
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
-}
-.luxury-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #B7896B;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-  box-shadow: 0 2px 6px rgba(183,137,107,0.35);
-}
-.luxury-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
-.luxury-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #B7896B;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 6px rgba(183,137,107,0.35);
-}
-
-/* ── Scroll reveal (CSS fallback) ── */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  will-change: opacity, transform;
-}
-.scroll-reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ── Legacy GovButton fallback (patching unconverted subpages) ── */
-.govbtn {
-  background: #B7896B;
-  color: #F8F3EA;
+/* ── Makro Lime Pill CTA ── */
+.clay-cta, .sage-cta, .govbtn {
+  background: #d9ff5c;
+  color: #14142d;
   padding: 12px 24px;
   border-radius: 9999px;
   font-weight: 600;
@@ -204,48 +132,51 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 12px 30px -10px rgba(183, 137, 107, 0.5);
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 24px rgba(217, 255, 92, 0.2);
 }
-.govbtn:hover {
-  background: #8A533B;
-  transform: translateY(-1px);
+.clay-cta:hover, .sage-cta:hover, .govbtn:hover {
+  background: #e4ff85;
+  box-shadow: 0 0 36px rgba(217, 255, 92, 0.45);
+  transform: scale(1.02);
 }
+
+/* ── Makro Ghost Button ── */
 .btn-ghost {
-  border: 1px solid #D9CCB0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 12px 24px;
   border-radius: 9999px;
-  color: #5C4633;
+  color: #ebedfa;
   font-weight: 600;
   font-size: 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 .btn-ghost:hover {
-  border-color: #B7896B;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
 }
-.btn-md, .btn-sm, .btn-lg { /* size aliases — no-op, inherits from .govbtn */ }
+
+.btn-md, .btn-sm, .btn-lg { /* size aliases — inherits from .govbtn */ }
 .btn-arrow { transition: transform 0.3s ease; }
 .group:hover .btn-arrow { transform: translateX(4px); }
-/* Undefined Tailwind tokens used by unconverted subpages */
-.bg-ivory { background-color: #F8F3EA; }
-.bg-terracotta { background-color: #B7896B; }
-.text-terracotta { color: #B7896B; }
-.border-terracotta { border-color: #B7896B; }
 
-/* ── Sketch system styles (mosey-style) ── */
-.sketch-card {
+/* ── Makro Glass Cards ── */
+.sketch-card, .glass-card {
   border-radius: 1rem;
-  border: 1px solid rgba(217, 204, 176, 0.5);
-  background: #F8F3EA;
-  box-shadow: 0 4px 20px rgba(28, 24, 20, 0.04);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
-.sketch-card:hover {
-  border-color: rgba(197, 160, 89, 0.5);
-  box-shadow: 0 8px 30px rgba(28, 24, 20, 0.06);
+.sketch-card:hover, .glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.7);
+  transform: translateY(-2px);
 }
 .step-marker {
   display: flex;

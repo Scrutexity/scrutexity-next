@@ -143,7 +143,6 @@ export function MakroPricing() {
                     className="w-full py-3"
                   >
                     {t.cta.label}
-                    <ArrowRight size={15} />
                   </CTAButton>
                 </div>
               </GlassCard>
