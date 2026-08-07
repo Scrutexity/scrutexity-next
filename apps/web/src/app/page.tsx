@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import UmbrellaHomepage from '@/components/scrutexity/umbrella-homepage';
+import MakroRedesign from "@/components/redesign/makro-redesign";
 
 export const metadata: Metadata = {
   title: "Claim Review for Marketing and AI Claims | Scrutexity",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <UmbrellaHomepage />;
+  return <MakroRedesign />;
 }
