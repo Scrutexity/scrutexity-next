@@ -23,19 +23,21 @@
 
 @theme {
   /* ── Surfaces (light canvas, canonical) ──
-     Verified against makro.framer.website/home-alt: body background is
-     rgb(255,255,255), with #ebeff5 as the secondary band and translucent
-     white panels stacked over it. The design-DNA doc listed #14142d as the
-     dominant background; on the live page that value is the ink. */
-  --color-paper: #FFFFFF;
-  --color-paper-light: #EBEFF5;
+     Measured off makro.framer.website/home-alt by sampling what is actually
+     painted behind the hero, not by reading document.body. body computes to
+     white but is never visible: the hero section paints rgb(235,239,245),
+     which is the canvas the eye reads. White is the raised panel stacked on
+     top of it. The design-DNA doc had this inverted again, listing #14142d
+     as the dominant background when that value is the ink. */
+  --color-paper: #EBEFF5;
+  --color-paper-light: #F3F5FA;
   --color-raised: #FFFFFF;
-  --color-hairline: #DEE3ED;
+  --color-hairline: #D8DEEA;
 
   /* ── Ink ── */
   --color-ink: #242426;
   --color-ink-soft: #33335E;
-  --color-muted: #6E6E8A;
+  --color-muted: #616178;
 
   /* ── Accent ──
      Lime is the signature and is deliberately rationed: one primary CTA and
@@ -101,14 +103,14 @@
    stays a fill only: as text on a pale surface it cannot hold AA, so
    --color-accent-text carries emphasis type instead. */
 html[data-theme="light"] {
-  --color-paper: #FFFFFF;
-  --color-paper-light: #EBEFF5;
+  --color-paper: #EBEFF5;
+  --color-paper-light: #F3F5FA;
   --color-raised: #FFFFFF;
-  --color-hairline: #DEE3ED;
+  --color-hairline: #D8DEEA;
 
   --color-ink: #242426;
   --color-ink-soft: #33335E;
-  --color-muted: #6E6E8A;
+  --color-muted: #616178;
 
   --color-accent: #D9FF5C;
   --color-accent-bright: #C8F53F;
