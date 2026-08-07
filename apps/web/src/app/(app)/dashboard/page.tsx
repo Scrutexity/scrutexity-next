@@ -23,6 +23,13 @@ export default async function WatchDashboardHome() {
   // For MVP, just get the first domain
   const activeDomain = domains?.[0];
 
+  // Fetch alerts
+  const { data: alerts } = await supabase
+    .from('claim_drift_alerts')
+    .select('*')
+    .eq('domain_id', activeDomain?.id || '')
+    .order('detected_at', { ascending: false });
+
   return (
     <div className="max-w-5xl mx-auto space-y-12">
       <header className="mb-12">
@@ -38,7 +45,7 @@ export default async function WatchDashboardHome() {
 
       <IntelligenceOverview />
       
-      <AlertTriage />
+      <AlertTriage alerts={alerts || []} />
 
       <section>
         <header className="mb-8 flex items-center justify-between">
