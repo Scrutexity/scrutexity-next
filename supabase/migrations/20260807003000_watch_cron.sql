@@ -5,7 +5,7 @@ create extension if not exists pg_net;
 -- Create a view for Claim Drift Alerts
 -- An alert is triggered when a claim with HIGH severity appears in the latest scan of a domain,
 -- but was either not present or not HIGH severity in the immediately preceding scan.
-create or replace view claim_drift_alerts as
+create or replace view claim_drift_alerts with (security_invoker = true) as
 with ranked_scans as (
   select 
     id as scan_id,
