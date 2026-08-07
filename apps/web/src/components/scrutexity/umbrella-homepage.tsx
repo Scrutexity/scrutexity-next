@@ -11,6 +11,7 @@ import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-t
 import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { InstantPreview } from "@/components/scrutexity/motion/instant-preview";
+import { WebsiteXRayInteractive } from "@/components/scrutexity/motion/website-xray-interactive";
 
 const SNAPSHOT_URL = "/snapshot";
 /** One label per intent. Matches the header CTA in site-nav verbatim so the
@@ -253,6 +254,11 @@ export default function UmbrellaHomepage() {
         <div className="mt-16">
           <ClaimDriftTimeline />
         </div>
+      </section>
+
+      {/* ═══ 4b. Interactive Website X-Ray Artifact ═════════════════════════ */}
+      <section className="border-b border-hairline bg-paper-light/50 py-24 lg:py-32">
+        <WebsiteXRayInteractive />
       </section>
 
       {/* ═══ 5. Artifacts — component owns its own heading ════════════════ */}
