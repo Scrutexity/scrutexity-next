@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const revealUp = {
+const revealUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
@@ -11,7 +11,7 @@ const revealUp = {
   }
 };
 
-const blurFadeUp = {
+const blurFadeUp: Variants = {
   hidden: { opacity: 0, filter: "blur(16px)", y: 20 },
   visible: { 
     opacity: 1, 
