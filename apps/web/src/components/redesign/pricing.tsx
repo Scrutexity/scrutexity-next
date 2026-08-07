@@ -183,31 +183,34 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
 
 /* -------------------------------- Enterprise ------------------------------ */
 
-export function MakroEnterprise() {
+export function MakroEnterprise({ isLight = true }: { isLight?: boolean }) {
   return (
     <section className="px-5 pb-20 sm:px-8">
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
-          <GlassCard className="relative overflow-hidden p-8 sm:p-12">
+          <GlassCard isLight={isLight} className="relative overflow-hidden p-8 sm:p-12">
             <div
               aria-hidden
               className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#d9ff5c]/10 blur-[90px]"
             />
             <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div className="max-w-[520px]">
-                <Kicker>Enterprise</Kicker>
-                <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#ebedfa] sm:text-3xl">
+                <Kicker isLight={isLight}>Enterprise</Kicker>
+                <h3 className={`mt-3 text-2xl font-bold tracking-tight sm:text-3xl ${
+                  isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                }`}>
                   Diligence-scale evidence programs.
                 </h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-[#9391b8]">
+                <p className={`mt-3 text-[14.5px] leading-relaxed ${
+                  isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+                }`}>
                   Portfolios, deal pipelines, and recurring regulatory exposure
                   — with dedicated support and custom delivery.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <CTAButton href="/enterprise" className="px-7 py-3">
+                <CTAButton href="/enterprise" variant="lime" className="px-7 py-3">
                   Get custom pricing
-                  <ArrowRight size={15} />
                 </CTAButton>
                 <CTAButton href="/contact" variant="ghost" className="px-7 py-3">
                   Contact sales

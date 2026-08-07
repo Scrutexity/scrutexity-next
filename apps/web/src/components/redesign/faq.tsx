@@ -51,17 +51,21 @@ const FAQS: Record<FaqTab, { q: string; a: string }[]> = {
   ],
 };
 
-export function MakroFaq() {
+export function MakroFaq({ isLight = true }: { isLight?: boolean }) {
   const [tab, setTab] = useState<FaqTab>('General');
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
+    <section className={`transition-colors duration-500 px-5 py-24 sm:px-8 border-t ${
+      isLight ? 'bg-[#f4f6fa] border-black/5 text-[#14142d]' : 'bg-[#14142d] border-white/10 text-[#ebedfa]'
+    }`}>
       <div className="mx-auto max-w-[900px]">
         <Reveal>
           <div className="text-center">
-            <Kicker>FAQ</Kicker>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#ebedfa] sm:text-5xl">
+            <Kicker isLight={isLight}>FAQ</Kicker>
+            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
+              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+            }`}>
               We have the answers.
             </h2>
           </div>
@@ -78,9 +82,11 @@ export function MakroFaq() {
                   setTab(t);
                   setOpenIdx(0);
                 }}
-                className={`rounded-full px-4 py-2 text-[13px] font-semibold transition-all ${
+                className={`rounded-full px-5 py-2 text-[13px] font-bold transition-all ${
                   tab === t
-                    ? 'bg-[#d9ff5c] text-[#14142d]'
+                    ? 'bg-[#d9ff5c] text-[#14142d] shadow-sm'
+                    : isLight
+                    ? 'border border-black/10 bg-white text-[#5a6072] hover:text-[#14142d]'
                     : 'border border-white/10 bg-white/[0.04] text-[#9391b8] hover:text-[#ebedfa]'
                 }`}
               >
@@ -98,26 +104,38 @@ export function MakroFaq() {
               return (
                 <div
                   key={item.q}
-                  className={`overflow-hidden rounded-2xl border transition-colors ${
-                    open ? 'border-[#d9ff5c]/30 bg-white/[0.07]' : 'border-white/10 bg-white/[0.04]'
+                  className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
+                    open
+                      ? isLight
+                        ? 'border-[#5E7A5A] bg-white shadow-md'
+                        : 'border-[#d9ff5c]/30 bg-white/[0.07]'
+                      : isLight
+                      ? 'border-black/5 bg-white shadow-xs'
+                      : 'border-white/10 bg-white/[0.04]'
                   }`}
                 >
                   <button
                     type="button"
                     onClick={() => setOpenIdx(open ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-4.5 text-left"
                   >
-                    <span className="text-[14.5px] font-semibold text-[#ebedfa]">{item.q}</span>
+                    <span className={`text-[15px] font-bold ${
+                      isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                    }`}>{item.q}</span>
                     <ChevronDown
-                      size={17}
-                      className={`shrink-0 text-[#9391b8] transition-transform duration-300 ${
-                        open ? 'rotate-180 text-[#d9ff5c]' : ''
+                      size={18}
+                      className={`shrink-0 transition-transform duration-300 ${
+                        open
+                          ? 'rotate-180 text-[#5E7A5A] dark:text-[#d9ff5c]'
+                          : isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
                       }`}
                     />
                   </button>
                   {open && (
                     <div className="px-6 pb-5">
-                      <p className="text-[13.5px] leading-relaxed text-[#9391b8]">{item.a}</p>
+                      <p className={`text-[14px] leading-relaxed ${
+                        isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+                      }`}>{item.a}</p>
                     </div>
                   )}
                 </div>

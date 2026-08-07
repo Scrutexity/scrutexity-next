@@ -115,13 +115,13 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                 {/* Header bar inside frame */}
                 <div className="flex items-center justify-between border-b border-black/5 pb-4 dark:border-white/5">
                   <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-[#d9ff5c]" />
+                    <span className="h-3 w-3 rounded-full bg-[#d9ff5c] shadow-[0_0_8px_rgba(217,255,92,0.8)]" />
                     <span className="text-xs font-bold uppercase tracking-wider text-[#14142d] dark:text-white">
-                      Progress Overview
+                      Claim Audit Pipeline
                     </span>
                   </div>
                   <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-[11px] font-semibold text-[#5a6072] shadow-xs dark:border-white/10 dark:bg-white/10 dark:text-white">
-                    Year 2026
+                    Live Scan
                   </div>
                 </div>
 
@@ -129,10 +129,10 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                 <div className="mt-6 rounded-xl border border-black/5 bg-white p-5 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-[#5a6072] dark:text-[#9391b8]">
-                      Yearly evidence progress
+                      Evidence support rate over time
                     </span>
                     <span className="rounded-full bg-[#d9ff5c] px-2.5 py-0.5 text-[10px] font-bold text-[#14142d]">
-                      +24%
+                      94.2% verified
                     </span>
                   </div>
 
@@ -157,24 +157,24 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
                     <span className="text-[11px] font-medium text-[#5a6072] dark:text-[#9391b8]">
-                      Verified Evidence
+                      Public Claims Audited
                     </span>
                     <div className="mt-1 flex items-baseline gap-2">
                       <span className="text-xl font-bold text-[#14142d] dark:text-white">
-                        $8,500
+                        142
                       </span>
                       <span className="text-[10px] font-bold text-[#5E7A5A]">
-                        +18%
+                        +18% verified
                       </span>
                     </div>
                   </div>
 
                   <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
                     <span className="text-[11px] font-medium text-[#5a6072] dark:text-[#9391b8]">
-                      Retainers & Audit
+                      Evidence Gaps Sealed
                     </span>
                     <div className="mt-1 text-xl font-bold text-[#14142d] dark:text-white">
-                      48% / 32%
+                      32 / 32
                     </div>
                   </div>
                 </div>
@@ -186,26 +186,32 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
         {/* Daily AI Insights Card matching Screenshot 1 */}
         <div className="mt-16">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#6b8299] via-[#8fa4b8] to-[#eef2f7] p-8 text-center text-white shadow-xl sm:p-12">
-              <div className="mx-auto flex max-w-[500px] flex-col items-center">
+            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#475569] via-[#64748b] to-[#f4f6fa] p-8 text-center text-white shadow-xl sm:p-12">
+              <div className="mx-auto flex max-w-[550px] flex-col items-center">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold backdrop-blur-md">
-                  <Settings size={14} /> Control
+                  <Settings size={14} /> Claim Intelligence
                 </span>
                 <h3 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl text-white">
-                  Daily AI Insights
+                  Daily Claim & AI Signals
                 </h3>
                 <p className="mt-3 text-sm text-white/90">
-                  Get a brief AI summary of your top claim and evidence changes.
+                  Get an automated summary of public claim modifications, evidence drops, and AI narrative shifts.
                 </p>
 
-                {/* Curved icon arc from screenshot */}
+                {/* Curved icon arc from screenshot with Scrutexity claim audit icons */}
                 <div className="mt-10 flex items-center justify-center gap-6">
-                  {['✈️', '💵', '📊', '🏠'].map((icon, idx) => (
+                  {[
+                    { icon: '🔍', label: 'Public Scan' },
+                    { icon: '📜', label: 'Audit Record' },
+                    { icon: '🛡️', label: 'Hash Lock' },
+                    { icon: '⚖️', label: 'Institutional' },
+                  ].map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-xl text-[#14142d] shadow-lg transition-transform hover:scale-110"
+                      title={item.label}
+                      className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-[#14142d] shadow-lg transition-transform hover:scale-110"
                     >
-                      {icon}
+                      {item.icon}
                     </div>
                   ))}
                 </div>

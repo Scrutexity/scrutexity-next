@@ -46,17 +46,23 @@ const SPOTLIGHTS = [
   },
 ];
 
-export function MakroTestimonials() {
+export function MakroTestimonials({ isLight = true }: { isLight?: boolean }) {
   return (
-    <section className="border-t border-white/[0.07] px-5 py-20 sm:px-8">
+    <section className={`transition-colors duration-500 px-5 py-24 sm:px-8 border-t ${
+      isLight ? 'bg-[#f4f6fa] border-black/5 text-[#14142d]' : 'bg-[#14142d] border-white/10 text-[#ebedfa]'
+    }`}>
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <div className="max-w-[640px]">
-            <Kicker>Customer spotlight</Kicker>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#ebedfa] sm:text-5xl">
+            <Kicker isLight={isLight}>Customer spotlight</Kicker>
+            <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
+              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+            }`}>
               How teams use the record.
             </h2>
-            <p className="mt-4 text-[13px] italic text-[#9391b8]">
+            <p className={`mt-4 text-[13px] italic ${
+              isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+            }`}>
               Illustrative profiles for layout — no client identities or live
               metrics are fabricated.
             </p>
@@ -66,18 +72,28 @@ export function MakroTestimonials() {
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {SPOTLIGHTS.map((s, i) => (
             <Reveal key={s.name} delay={(i % 2) * 0.08} className="h-full">
-              <GlassCard className="flex h-full flex-col p-7">
-                <p className="text-[15px] leading-relaxed text-[#ebedfa]">
+              <GlassCard isLight={isLight} className="flex h-full flex-col p-7">
+                <p className={`text-[15px] font-medium leading-relaxed ${
+                  isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                }`}>
                   &ldquo;{s.quote}&rdquo;
                 </p>
-                <div className="mt-5 border-t border-white/[0.08] pt-4">
-                  <p className="text-[13px] font-semibold text-[#ebedfa]">{s.role}</p>
-                  <p className="text-[12px] text-[#9391b8]">{s.name}</p>
+                <div className={`mt-5 border-t pt-4 ${
+                  isLight ? 'border-black/10' : 'border-white/10'
+                }`}>
+                  <p className={`text-[13px] font-bold ${
+                    isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                  }`}>{s.role}</p>
+                  <p className={`text-[12px] ${
+                    isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+                  }`}>{s.name}</p>
                 </div>
                 <div className="mt-5 flex flex-wrap items-end justify-between gap-3">
                   <div>
-                    <p className="text-2xl font-bold text-[#d9ff5c]">{s.metric}</p>
-                    <p className="text-[11px] uppercase tracking-wide text-[#9391b8]">
+                    <p className="text-2xl font-bold text-[#5E7A5A] dark:text-[#d9ff5c]">{s.metric}</p>
+                    <p className={`text-[11px] font-bold uppercase tracking-wide ${
+                      isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+                    }`}>
                       {s.metricLabel}
                     </p>
                   </div>
@@ -85,7 +101,11 @@ export function MakroTestimonials() {
                     {s.uses.map((u) => (
                       <span
                         key={u}
-                        className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[11px] font-medium text-[#9391b8]"
+                        className={`rounded-full border px-3 py-1 text-[11px] font-semibold ${
+                          isLight
+                            ? 'border-black/10 bg-black/5 text-[#14142d]'
+                            : 'border-white/10 bg-white/5 text-[#9391b8]'
+                        }`}
                       >
                         {u}
                       </span>
