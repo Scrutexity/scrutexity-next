@@ -107,6 +107,10 @@ export async function POST(request: Request) {
 
   } catch (error: any) {
     console.error("Cron Execution Failed:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ 
+      error: error.message || "Unknown error", 
+      cause: error.cause ? String(error.cause) : undefined,
+      stack: error.stack
+    }, { status: 500 });
   }
 }
