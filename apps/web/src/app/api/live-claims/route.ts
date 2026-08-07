@@ -30,7 +30,7 @@ export async function GET() {
 
     if (error) {
       console.error('Failed to query live claims from Supabase:', error);
-      return NextResponse.json({ error: 'Database query failed' }, { status: 500 });
+      return NextResponse.json({ error: error.message, details: error.details, hint: error.hint }, { status: 500 });
     }
 
     if (!claims) {
