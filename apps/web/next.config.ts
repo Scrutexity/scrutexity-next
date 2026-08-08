@@ -1,6 +1,27 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Same-origin proxy for the health endpoint only.
+   *
+   * scrutexity-api is a separate Vercel project, so a client-side
+   * fetch('/api/health') would 404 here. Proxying keeps the call same-origin
+   * and avoids configuring CORS on the API.
+   *
+   * Deliberately NOT '/api/:path*'. This app owns 28 of its own API routes,
+   * including /api/funnel/preview and /api/funnel/scan which power the live
+   * scanner. A blanket rewrite would send all of them to the other project
+   * and break the scanner while still looking correct in the config.
+   */
+  async rewrites() {
+    return [
+      {
+        source: '/api/health',
+        destination: 'https://scrutexity-api.vercel.app/api/health',
+      },
+    ];
+  },
+
   async redirects() {
     return [
       {
