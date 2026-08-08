@@ -76,7 +76,7 @@ function CheckoutForm({ onSuccess, clientSecret, scanId }: { onSuccess: () => vo
         className={`w-full h-11 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
           isSuccess 
             ? "bg-paper border border-bureau-sage text-bureau-sage" 
-            : "bg-accent text-paper hover:bg-accent-bright active:scale-[0.98] transition-[background-color,transform] duration-300 disabled:opacity-50"
+            : "bg-accent text-on-accent hover:bg-accent-bright active:scale-[0.98] transition-[background-color,transform] duration-300 disabled:opacity-50"
         }`}
       >
         {isProcessing ? "Processing..." : isSuccess ? (

@@ -103,7 +103,7 @@ export function LiveDemoEngine({ onScan, isScanning }: LiveDemoEngineProps) {
           disabled={isScanning}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.95 }}
-          className="h-12 px-8 rounded-xl bg-accent text-paper font-semibold text-sm flex items-center justify-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent-bright active:scale-[0.98] transition-[background-color,transform] duration-300"
+          className="h-12 px-8 rounded-xl bg-accent text-on-accent font-semibold text-sm flex items-center justify-center gap-2 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-accent-bright active:scale-[0.98] transition-[background-color,transform] duration-300"
         >
           {isScanning ? "Scanning..." : "Run a Free Scan"} 
           {!isScanning && <ArrowRight size={16} />}

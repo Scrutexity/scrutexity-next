@@ -53,7 +53,7 @@ export function CopyLinkButton({
       type="button"
       data-print-hidden
       onClick={copyLink}
-      className="inline-flex min-h-9 items-center gap-2 border-b border-transparent text-xs font-semibold text-mist transition-colors hover:border-sage-deep hover:text-espresso focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+      className="inline-flex min-h-9 items-center gap-2 border-b border-transparent text-xs font-semibold text-muted transition-colors hover:border-sage-deep hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
       aria-label={`${label}: ${anchor}`}
     >
       {status === "copied" ? <Check size={13} aria-hidden="true" /> : <Link2 size={13} aria-hidden="true" />}

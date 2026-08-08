@@ -1,76 +1,166 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   MAKRO FRAMER PALETTE — Scrutexity Design System
+   SCRUTEXITY — INSTITUTIONAL EVIDENCE SYSTEM
    ────────────────────────────────────────────────────────────────────────
-   bg          #14142d — primary dark background
-   panels      #242426 / #33335e — raised surface & card panels
-   text        #ebedfa — primary light text
-   muted       #9391b8 — secondary muted text
-   lime        #d9ff5c — electric primary accent / action
-   periwinkle  #c0adff — secondary accent / highlight
-   ice         #b8deff — tertiary accent / info
-   blush       #e0c5b6 — warm accent highlight
+   Light is the canonical brand surface, matching the Makro reference
+   (verified live, not from the DNA doc, which had the canvas inverted). A
+   dark variant is derived from the same palette for the header toggle.
+
+   Both themes are defined by redeclaring the same `--color-*` custom
+   properties. Tailwind v4 compiles `bg-paper` to `var(--color-paper)`, so
+   swapping the variables under `html[data-theme=...]` re-themes every page
+   in the codebase without touching a single component. Every utility class
+   further down reads tokens only — no hardcoded hex — which is what keeps
+   legacy subpages readable in both themes.
+
+   Accent discipline: lime `--color-accent` is the signature and is rationed
+   to one primary CTA plus key highlight figures. It is a fill, not running
+   text: `--color-on-accent` is what sits on top of it, `--color-accent-text`
+   is what emphasis type uses (they differ in the light variant, where lime
+   cannot hold contrast as text).
    ═══════════════════════════════════════════════════════════════════════ */
 
 @theme {
-  --color-paper: #14142d;
-  --color-paper-light: #242426;
-  --color-ink: #ebedfa;
-  --color-muted: #9391b8;
-  --color-hairline: #33335e;
-  --color-accent: #d9ff5c;
-  --color-accent-bright: #e4ff85;
-  --color-on-accent: #14142d;
-  --color-bureau-sage: #d9ff5c;
-  --color-review-amber: #c0adff;
-  --color-exposure-red: #ff4d4d;
+  /* ── Surfaces (light canvas, canonical) ──
+     Measured off makro.framer.website/home-alt by sampling what is actually
+     painted behind the hero, not by reading document.body. body computes to
+     white but is never visible: the hero section paints rgb(235,239,245),
+     which is the canvas the eye reads. White is the raised panel stacked on
+     top of it. The design-DNA doc had this inverted again, listing #14142d
+     as the dominant background when that value is the ink. */
+  --color-paper: #EBEFF5;
+  --color-paper-light: #F3F5FA;
+  --color-raised: #FFFFFF;
+  --color-hairline: #D8DEEA;
 
-  --color-bone: #242426;
-  --color-cream: #14142d;
-  --color-cream-deep: #1a1a36;
-  --color-beige: #242426;
-  --color-sand: #33335e;
-  --color-sand-deep: #3d3d6b;
-  --color-clay: #d9ff5c;
-  --color-clay-deep: #c0adff;
-  --color-bark: #9391b8;
-  --color-espresso: #ebedfa;
-  --color-sage: #d9ff5c;
-  --color-sage-deep: #d9ff5c;
-  --color-sage-soft: #c0adff;
-  --color-mist: #9391b8;
+  /* ── Ink ── */
+  --color-ink: #242426;
+  --color-ink-soft: #33335E;
+  --color-muted: #616178;
 
-  --font-display: var(--font-geist-sans), system-ui, sans-serif;
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-geist: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* ── Accent ──
+     Lime is the signature and is deliberately rationed: one primary CTA and
+     key highlight figures. It is a FILL, never running text, because a light
+     lime cannot hold contrast as text on a light surface.
+     --color-on-accent is what sits on top of it, and is the reason buttons
+     no longer hardcode text-paper. */
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #E7FF95;
+  --color-on-accent: #14142D;
+  --color-accent-text: #33335E;
+  --color-highlight: #5B3FC4;
+  --color-exposure-red: #A93B32;
+  --color-review-amber: #7A5C18;
 
+  /* ── Legacy token mappings ──
+     Older pages reference the warm-earth names directly. Pointing them at
+     the new tokens keeps ~30 subpages rendering correctly during migration
+     instead of failing to a default. */
+  --color-bureau-sage: var(--color-accent);
+  --color-bone: var(--color-raised);
+  --color-cream: var(--color-paper);
+  --color-cream-deep: var(--color-paper-light);
+  --color-beige: var(--color-paper-light);
+  --color-sand: var(--color-raised);
+  --color-sand-deep: var(--color-hairline);
+  --color-clay: var(--color-accent);
+  --color-clay-deep: var(--color-accent-bright);
+  --color-bark: var(--color-ink-soft);
+  --color-espresso: var(--color-ink);
+  --color-sage: var(--color-accent);
+  --color-sage-deep: var(--color-accent-bright);
+  --color-sage-soft: var(--color-hairline);
+  --color-mist: var(--color-muted);
+  --color-border-deep: var(--color-hairline);
+
+  /* ── Typography ── */
+  --font-display: var(--font-geist), system-ui, sans-serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-geist: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Space + shape ──
+     Makro is a glass-card system: softly rounded panels, pill controls.
+     One scale, applied everywhere. */
   --spacing-nav-offset: 100px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* ── Motion ── */
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-cubic: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-card: 0 1px 2px rgb(20 20 45 / 0.05), 0 18px 44px -18px rgb(20 20 45 / 0.16);
+  --shadow-float: 0 30px 70px -22px rgb(20 20 45 / 0.22);
 }
 
-/* ── Global Body Styling ── */
+/* ═══ LIGHT THEME ═══════════════════════════════════════════════════════ */
+/* Light variant, derived from the same Makro palette rather than invented.
+   The navy becomes the ink, the light gray-blue becomes the field, and lime
+   stays a fill only: as text on a pale surface it cannot hold AA, so
+   --color-accent-text carries emphasis type instead. */
+html[data-theme="light"] {
+  --color-paper: #EBEFF5;
+  --color-paper-light: #F3F5FA;
+  --color-raised: #FFFFFF;
+  --color-hairline: #D8DEEA;
+
+  --color-ink: #242426;
+  --color-ink-soft: #33335E;
+  --color-muted: #616178;
+
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #C8F53F;
+  --color-on-accent: #14142D;
+  --color-accent-text: #33335E;
+  --color-highlight: #5B3FC4;
+  --color-exposure-red: #A93B32;
+  --color-review-amber: #7A5C18;
+
+  --shadow-card: 0 1px 2px rgb(20 20 45 / 0.05), 0 14px 36px -16px rgb(20 20 45 / 0.14);
+  --shadow-float: 0 30px 70px -22px rgb(20 20 45 / 0.22);
+}
+
+/* ═══ DARK THEME (canonical) ════════════════════════════════════════════
+   Canonical Makro canvas. Declared explicitly so neither direction of the
+   toggle depends on cascade order. */
+html[data-theme="dark"] {
+  --color-paper: #14142D;
+  --color-paper-light: #1B1B3A;
+  --color-raised: #33335E;
+  --color-hairline: #2E2E58;
+
+  --color-ink: #EBEDFA;
+  --color-ink-soft: #C6C8E4;
+  --color-muted: #9391B8;
+
+  --color-accent: #D9FF5C;
+  --color-accent-bright: #E7FF95;
+  --color-on-accent: #14142D;
+  /* On the navy canvas lime is legible as type, so emphasis text can use the
+     accent directly. The light variant cannot, hence the separate token. */
+  --color-accent-text: #D9FF5C;
+  --color-highlight: #C0ADFF;
+  --color-exposure-red: #FF8F86;
+  --color-review-amber: #F0C36A;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.40), 0 18px 44px -18px rgb(0 0 0 / 0.65);
+  --shadow-float: 0 30px 70px -22px rgb(0 0 0 / 0.75);
+}
+
+/* ── Base ── */
 body {
-  background-color: #14142d;
-  color: #ebedfa;
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
 }
-
-::selection {
-  background: rgba(217, 255, 92, 0.30);
-  color: #14142d;
-}
-
-::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: #14142d; }
-::-webkit-scrollbar-thumb { background: #33335e; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #d9ff5c; }
 
 html {
   scroll-behavior: smooth;
@@ -78,179 +168,271 @@ html {
   overflow-x: hidden;
 }
 
-/* ── Font Helpers ── */
-.font-display {
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  letter-spacing: 0;
-  font-feature-settings: 'ss01' on, 'ss02' on;
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 32%, transparent);
+  color: var(--color-ink);
 }
 
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+/* Focus visibility is a floor, not a style choice. */
 :focus-visible {
-  outline-color: #5E7A5A;
-  outline-offset: 3px;
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* ── Glassmorphism – paper-glass ── */
+/* ── Type helpers ──
+   Measured off the Makro reference: display type is 88px at weight 400 with
+   -3.52px tracking (-0.04em). The restraint is the point. A heavier weight
+   reads as a generic SaaS hero; the tight tracking at a light weight is what
+   makes the scale feel intentional. */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  font-variant-ligatures: common-ligatures;
+  text-wrap: balance;
+}
+
+h1.font-display,
+h2.font-display {
+  line-height: 0.98;
+}
+
+/* Tabular figures keep evidence numbers from shifting as they animate. */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ── Hairline rules (token-driven, work in both themes) ── */
+.hairline-x { border-top: 1px solid var(--color-hairline); border-bottom: 1px solid var(--color-hairline); }
+.hairline-y { border-left: 1px solid var(--color-hairline); border-right: 1px solid var(--color-hairline); }
+.editorial-rule { height: 1px; background: var(--color-hairline); }
+.editorial-rule-clay { height: 1px; background: var(--color-accent); opacity: 0.35; }
+
+/* ── Glass panels ──
+   Honest label: this is web glassmorphism via backdrop-filter, not any
+   vendor's official material. Solid fallback below for reduced transparency. */
 .paper-glass {
-  background: rgba(248, 243, 234, 0.72);
+  background: color-mix(in srgb, var(--color-paper-light) 72%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(230, 220, 198, 0.60);
-  box-shadow: 0 20px 50px rgba(28,24,20,0.06);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-card);
 }
 
 .paper-glass-sage {
-  background: rgba(143, 169, 138, 0.10);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(143, 169, 138, 0.25);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
-/* ── Sage trust pill ── */
+@media (prefers-reduced-transparency: reduce) {
+  .paper-glass, .paper-glass-sage {
+    background: var(--color-paper-light);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ── Buttons ──
+   Legacy class names preserved (used across ~30 subpages) but repointed at
+   tokens, so they no longer ship warm-earth hex onto a dark page. */
+.govbtn, .clay-cta, .sage-cta {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s var(--ease-lux), transform 0.3s var(--ease-lux);
+}
+
+.govbtn:hover, .clay-cta:hover, .sage-cta:hover {
+  background: var(--color-accent-bright);
+  color: var(--color-on-accent);
+  transform: translateY(-1px);
+}
+
+.govbtn:active, .clay-cta:active, .sage-cta:active {
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-hairline);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.3s var(--ease-lux), color 0.3s var(--ease-lux);
+}
+
+.btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent-bright); }
+
+.btn-md, .btn-sm, .btn-lg { /* size aliases — inherit from .govbtn */ }
+.btn-arrow { transition: transform 0.3s var(--ease-lux); }
+.group:hover .btn-arrow { transform: translateX(4px); }
+
+/* ── Pills + markers ── */
 .sage-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 11px;
   font-weight: 600;
-  color: #5E7A5A;
-  background: rgba(143, 169, 138, 0.12);
-  border: 1px solid rgba(143, 169, 138, 0.22);
+  color: var(--color-accent-bright);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
   padding: 5px 12px;
-  border-radius: 100px;
+  border-radius: var(--radius-full);
   letter-spacing: 0.02em;
 }
 
-/* ── Makro Lime Pill CTA ── */
-.clay-cta, .sage-cta, .govbtn {
-  background: #d9ff5c;
-  color: #14142d;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-weight: 600;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 24px rgba(217, 255, 92, 0.2);
-}
-.clay-cta:hover, .sage-cta:hover, .govbtn:hover {
-  background: #e4ff85;
-  box-shadow: 0 0 36px rgba(217, 255, 92, 0.45);
-  transform: scale(1.02);
-}
-
-/* ── Makro Ghost Button ── */
-.btn-ghost {
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 12px 24px;
-  border-radius: 9999px;
-  color: #ebedfa;
-  font-weight: 600;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-}
-.btn-ghost:hover {
-  border-color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.btn-md, .btn-sm, .btn-lg { /* size aliases — inherits from .govbtn */ }
-.btn-arrow { transition: transform 0.3s ease; }
-.group:hover .btn-arrow { transform: translateX(4px); }
-
-/* ── Makro Glass Cards ── */
-.sketch-card, .glass-card {
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
-.sketch-card:hover, .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.20);
-  background: rgba(255, 255, 255, 0.09);
-  box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.7);
-  transform: translateY(-2px);
-}
 .step-marker {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 9999px;
-  background: rgba(143, 169, 138, 0.1);
-  border: 1px solid rgba(143, 169, 138, 0.3);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #5E7A5A;
-  font-family: 'Geist Sans', sans-serif;
+  color: var(--color-accent-bright);
+  font-family: var(--font-mono);
   flex-shrink: 0;
 }
 
-/* ── Reduced motion ── */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal { opacity: 1; transform: none; }
-  .luxury-slider::-webkit-slider-thumb { transition: none; }
-  .clay-cta, .sage-cta { transition: none; }
-  .clay-cta:hover, .sage-cta:hover { transform: none; }
+/* Data containers are framed, not floated. A 1px accent rule on ivory reads
+   as an engineered document; a soft drop shadow reads as a web card. */
+.sketch-card {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-hairline);
+  background: var(--color-raised);
+  transition: border-color 0.3s var(--ease-lux);
 }
 
-@media print {
-  @page { margin: 16mm; }
+/* Framed exhibit: the deliberate teal-ruled container for evidence blocks. */
+.exhibit-frame {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  background: var(--color-raised);
+  border-radius: var(--radius-xl);
+}
 
-  header,
-  footer,
-  [data-mobile-sticky-cta],
-  [data-print-hidden] {
-    display: none !important;
+/* Boundary notice. The legal scope is promoted to a visible feature rather
+   than buried in footer small print, because for a regulated buyer the limits
+   are part of the credibility, not a disclaimer to hide. */
+.boundary-note {
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  border-radius: var(--radius-xl);
+}
+
+.sketch-card:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+}
+
+/* ── Range input ── */
+.luxury-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: var(--color-hairline);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.luxury-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-lux);
+}
+
+.luxury-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+.luxury-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: none;
+}
+
+/* ── Legacy token classes referenced by unconverted subpages ── */
+.bg-ivory { background-color: var(--color-paper); }
+.bg-terracotta { background-color: var(--color-accent); }
+.text-terracotta { color: var(--color-accent-bright); }
+.border-terracotta { border-color: var(--color-accent); }
+
+/* ── Escape hatches ──
+   Some subpages hardcode Tailwind's literal `bg-white` / `bg-black`, which
+   never follow the token system. Without these, a white band renders in the
+   middle of a dark page. Restored after being dropped in 8b407e4f. */
+html[data-theme="dark"] .bg-white { background-color: var(--color-raised); }
+html[data-theme="dark"] .bg-black { background-color: #060607; }
+
+/* `bg-espresso` is used two ways: as a dark section band, and as the primary
+   button fill. Rebinding --color-cream locally repairs every `text-cream`
+   descendant in one declaration instead of chasing each opacity variant. */
+html[data-theme="dark"] .bg-espresso {
+  background-color: #060607;
+  --color-cream: var(--color-ink);
+}
+
+html[data-theme="dark"] a.bg-espresso,
+html[data-theme="dark"] button.bg-espresso {
+  background-color: var(--color-accent);
+  --color-cream: var(--color-on-accent);
+}
+
+/* Deliberately dark in BOTH themes — for evidence bands that must stay dark. */
+.panel-contrast {
+  background-color: #101113;
+  color: #F4F3EF;
+  border-color: rgb(244 243 239 / 0.10);
+}
+
+/* The wordmark ships as black artwork; invert it on dark surfaces. */
+html[data-theme="dark"] .dark-invert { filter: invert(1) brightness(1.6) contrast(0.92); }
+
+/* Suppress transitions during a theme swap so colors cut over cleanly. */
+.theme-switching, .theme-switching * { transition: none !important; }
+
+/* ── Scroll reveal (CSS fallback for non-JS paths) ── */
+.scroll-reveal { opacity: 0; transform: translateY(24px); will-change: opacity, transform; }
+.scroll-reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ── Reduced motion ──
+   Everything above MOTION_INTENSITY 3 collapses to static here. Motion
+   components additionally gate on useReducedMotion() in JS. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
-  html,
-  body {
-    background: #fff !important;
-    color: #1C1814 !important;
-    overflow: visible !important;
-  }
-
-  main {
-    padding-top: 0 !important;
-  }
-
-  article {
-    break-inside: avoid;
-  }
-
-  h1,
-  h2,
-  h3 {
-    break-after: avoid;
-  }
-
-  a {
-    color: inherit !important;
-    text-decoration: none !important;
-  }
-
-  .print-document,
-  .print-document * {
-    background: transparent !important;
-    box-shadow: none !important;
-    color: #1C1814 !important;
-    text-shadow: none !important;
-  }
-
-  .print-document {
-    font-size: 11pt;
-  }
-
-  .print-page-break {
-    break-before: page;
-  }
+  .scroll-reveal { opacity: 1; transform: none; }
+  .govbtn:hover, .clay-cta:hover, .sage-cta:hover { transform: none; }
 }

@@ -12,7 +12,7 @@ export function SourceReference({
 }) {
   return (
     <p
-      className={`text-[10px] leading-5 ${tone === "light" ? "text-cream/60" : "text-mist"} ${className}`}
+      className={`text-[10px] leading-5 ${tone === "light" ? "text-cream/60" : "text-muted"} ${className}`}
       style={{ fontFamily: MONO }}
     >
       <span className="font-semibold">Source:</span> {surface} · reviewed{" "}
