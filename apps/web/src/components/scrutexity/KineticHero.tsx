@@ -12,7 +12,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
  *
  * Design-system compliance (VERIFIED tokens from globals.css @theme):
  * - `bg-paper`         (#F7F6F3)  — the ivory base (brief's #FAF9F6)
- * - `text-accent`      (#3F6B5C)  — the deep teal-sage anchor (brief's #0F766E)
+ * - `text-accent`      lime (#D9FF5C) — fill only; emphasis type uses accent-text
  * - `bg-review-amber`  (#8A6415)  — the gold accent (brief's #D4AF37)
  * - No new @theme tokens, no hardcoded hexes, no dead classes
  */

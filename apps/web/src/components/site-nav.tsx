@@ -20,14 +20,14 @@ const links = [
 export function SiteNav() {
   const pathname = usePathname();
   
-  // Hide global SiteNav on homepage and redesign routes where MakroNav is active
-  if (pathname === '/' || pathname === '/redesign') {
-    return null;
-  }
-
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Hide the global nav where the page supplies its own chrome. This gate must
+  // sit AFTER every hook: it previously preceded useState/useRef, so navigating
+  // between '/' and any other route changed the hook count and threw.
+  const suppressed = pathname === '/' || pathname === '/redesign';
   const mobileDrawerRef = useRef<HTMLDivElement>(null);
   const restoreMenuFocusRef = useRef(false);
 
@@ -90,6 +90,8 @@ export function SiteNav() {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
+
+  if (suppressed) return null;
 
   return (
     <>

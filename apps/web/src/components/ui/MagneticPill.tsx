@@ -20,7 +20,7 @@ const TONES: Record<Tone, string> = {
  *
  * Tones:
  * - `espresso` (default) — near-black ink pill, locked primary
- * - `accent`             — deep teal-sage (#3F6B5C), the MX "teal anchor"
+ * - `accent`             — lime (#D9FF5C), rationed to fills and badges
  *
  * Pure enhancement: without JS it still renders as a normal link/button.
  */

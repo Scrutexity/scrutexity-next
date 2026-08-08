@@ -127,7 +127,11 @@ export function EmbeddedCheckout({ onSuccess, scanId }: EmbeddedCheckoutProps) {
     variables: {
       // Stripe's appearance API needs a literal hex, so this mirrors the
       // light-theme --color-accent token rather than reading it.
-      colorPrimary: "#3F6B5C",
+      // Stripe's appearance API needs a literal hex and reverses white type
+      // out of colorPrimary, so this takes the ink rather than the lime
+      // accent: white on #D9FF5C is unreadable. Mirrors the black-pill
+      // primary CTA used everywhere else on the site.
+      colorPrimary: "#242426",
       colorBackground: "#0A0A0B", // paper-light
       colorText: "#FCFCFA", // ink
       colorDanger: "#FF4D4D", // exposure-red
