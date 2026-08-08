@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const links = [
   { name: 'Product', href: '/#product' },
@@ -12,6 +13,7 @@ const links = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'For Agencies', href: '/agency' },
   { name: 'Methodology', href: '/methodology' },
+  { name: 'Verify', href: '/verify' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -127,9 +129,12 @@ export function SiteNav() {
                 );
               })}
             </div>
+            {/* Restored: the redesign dropped this, leaving the dark theme
+                built but unreachable. */}
+            <ThemeToggle />
             <Link
               href="/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-nav"
-              className="rounded-md bg-espresso px-4 py-2.5 text-xs font-semibold text-cream transition-colors hover:bg-sage-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-deep focus-visible:ring-offset-2"
+              className="rounded-full bg-ink px-5 py-2.5 text-xs font-semibold text-paper-light transition-colors hover:bg-accent hover:text-on-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               Request the Sprint
             </Link>
