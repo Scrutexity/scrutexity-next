@@ -3,9 +3,10 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    SCRUTEXITY — INSTITUTIONAL EVIDENCE SYSTEM
    ────────────────────────────────────────────────────────────────────────
-   Light is the canonical brand surface, matching the Makro reference
-   (verified live, not from the DNA doc, which had the canvas inverted). A
-   dark variant is derived from the same palette for the header toggle.
+   Single theme. The Makro light canvas, verified against the live reference
+   by sampling the painted hero background rather than reading document.body.
+   Dark mode was removed deliberately: one surface, one set of contrast
+   guarantees, nothing to keep in sync.
 
    Both themes are defined by redeclaring the same `--color-*` custom
    properties. Tailwind v4 compiles `bg-paper` to `var(--color-paper)`, so
@@ -102,7 +103,7 @@
    The navy becomes the ink, the light gray-blue becomes the field, and lime
    stays a fill only: as text on a pale surface it cannot hold AA, so
    --color-accent-text carries emphasis type instead. */
-html[data-theme="light"] {
+:root {
   --color-paper: #EBEFF5;
   --color-paper-light: #F3F5FA;
   --color-raised: #FFFFFF;
@@ -124,32 +125,6 @@ html[data-theme="light"] {
   --shadow-float: 0 30px 70px -22px rgb(20 20 45 / 0.22);
 }
 
-/* ═══ DARK THEME (canonical) ════════════════════════════════════════════
-   Canonical Makro canvas. Declared explicitly so neither direction of the
-   toggle depends on cascade order. */
-html[data-theme="dark"] {
-  --color-paper: #14142D;
-  --color-paper-light: #1B1B3A;
-  --color-raised: #33335E;
-  --color-hairline: #2E2E58;
-
-  --color-ink: #EBEDFA;
-  --color-ink-soft: #C6C8E4;
-  --color-muted: #9391B8;
-
-  --color-accent: #D9FF5C;
-  --color-accent-bright: #E7FF95;
-  --color-on-accent: #14142D;
-  /* On the navy canvas lime is legible as type, so emphasis text can use the
-     accent directly. The light variant cannot, hence the separate token. */
-  --color-accent-text: #D9FF5C;
-  --color-highlight: #C0ADFF;
-  --color-exposure-red: #FF8F86;
-  --color-review-amber: #F0C36A;
-
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.40), 0 18px 44px -18px rgb(0 0 0 / 0.65);
-  --shadow-float: 0 30px 70px -22px rgb(0 0 0 / 0.75);
-}
 
 /* ── Base ── */
 body {
@@ -387,22 +362,11 @@ h2.font-display {
    Some subpages hardcode Tailwind's literal `bg-white` / `bg-black`, which
    never follow the token system. Without these, a white band renders in the
    middle of a dark page. Restored after being dropped in 8b407e4f. */
-html[data-theme="dark"] .bg-white { background-color: var(--color-raised); }
-html[data-theme="dark"] .bg-black { background-color: #060607; }
 
 /* `bg-espresso` is used two ways: as a dark section band, and as the primary
    button fill. Rebinding --color-cream locally repairs every `text-cream`
    descendant in one declaration instead of chasing each opacity variant. */
-html[data-theme="dark"] .bg-espresso {
-  background-color: #060607;
-  --color-cream: var(--color-ink);
-}
 
-html[data-theme="dark"] a.bg-espresso,
-html[data-theme="dark"] button.bg-espresso {
-  background-color: var(--color-accent);
-  --color-cream: var(--color-on-accent);
-}
 
 /* Deliberately dark in BOTH themes — for evidence bands that must stay dark. */
 .panel-contrast {
@@ -412,7 +376,6 @@ html[data-theme="dark"] button.bg-espresso {
 }
 
 /* The wordmark ships as black artwork; invert it on dark surfaces. */
-html[data-theme="dark"] .dark-invert { filter: invert(1) brightness(1.6) contrast(0.92); }
 
 /* Suppress transitions during a theme swap so colors cut over cleanly. */
 .theme-switching, .theme-switching * { transition: none !important; }

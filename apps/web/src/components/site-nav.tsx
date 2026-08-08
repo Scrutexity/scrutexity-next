@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from '@/components/theme-toggle';
 
 const links = [
   { name: 'Product', href: '/#product' },
@@ -129,9 +128,6 @@ export function SiteNav() {
                 );
               })}
             </div>
-            {/* Restored: the redesign dropped this, leaving the dark theme
-                built but unreachable. */}
-            <ThemeToggle />
             <Link
               href="/contact?intent=buyer-narrative-alignment-sprint&source=scrutexity-nav"
               className="rounded-full bg-ink px-5 py-2.5 text-xs font-semibold text-paper-light transition-colors hover:bg-accent hover:text-on-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
