@@ -1,53 +1,40 @@
-import { createElement } from "react";
-import type { ElementType, HTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from 'react';
+
+type GlassTone = 'paper' | 'sage';
 
 /**
- * GlassCard — the Makro panel surface.
+ * GlassCard — frosted-glass panel, token-compliant (MX "glass-card system").
  *
- * A white panel stacked over the #EBEFF5 canvas. The depth comes from a
- * two-part shadow, not from a border: a 1px contact shadow that seats the card
- * on the page, plus a wide, heavily negative-spread ambient shadow that lifts
- * it. Both are tinted to the canvas hue (20 20 45) rather than pure black,
- * which is what keeps it from looking like a generic Tailwind card.
+ * Uses the locked .paper-glass / .paper-glass-sage utilities from
+ * globals.css: color-mix paper-light @72%, backdrop blur 16px, hairline
+ * border, tinted shadow-card — with an automatic solid fallback under
+ * `prefers-reduced-transparency`. No hardcoded hexes, no dead tokens.
  *
- * `floating` renders the translucent variant used in stacked compositions,
- * where cards overlap and the canvas needs to read through them.
+ * Usage:
+ *   <GlassCard tone="sage" className="max-w-md">…</GlassCard>
  *
- * Colours come from tokens only. Nothing here hardcodes a hex, so a palette
- * change in globals.css carries through automatically.
+ * Notes:
+ * - `paper` = neutral glass (paper-light base)
+ * - `sage`  = brand-tinted glass (accent @10% base, accent border @25%)
+ * - Rounded to the locked radius scale (rounded-2xl = 16px), full-bleed
+ *   children inside; add your own padding.
  */
-
-const BASE =
-  "rounded-[20px] border border-hairline shadow-[0_1px_2px_rgb(20_20_45/0.05),0_18px_44px_-18px_rgb(20_20_45/0.16)]";
-
-type GlassCardProps = {
+export default function GlassCard({
+  children,
+  className = '',
+  tone = 'paper',
+}: {
   children: ReactNode;
   className?: string;
-  /** Translucent fill for overlapping/stacked layouts. */
-  floating?: boolean;
-  /** Render as a different element, e.g. "article" or "li". */
-  as?: ElementType;
-} & Omit<HTMLAttributes<HTMLElement>, "className" | "children">;
-
-export function GlassCard({
-  children,
-  className = "",
-  floating = false,
-  as: Tag = "div",
-  ...rest
-}: GlassCardProps) {
-  const surface = floating
-    ? "bg-raised/92 backdrop-blur-[2px]"
-    : "bg-raised";
-
-  // createElement rather than <Tag />: a polymorphic `as` combined with a
-  // props spread makes TS collapse the children prop to `never`. This keeps
-  // the component genuinely polymorphic without casting the props away.
-  return createElement(
-    Tag,
-    { className: `${surface} ${BASE} ${className}`, ...rest },
-    children
+  tone?: GlassTone;
+}) {
+  return (
+    <div
+      className={`relative h-full w-full overflow-hidden rounded-2xl ${
+        tone === 'sage' ? 'paper-glass-sage' : 'paper-glass'
+      } ${className}`}
+    >
+      {children}
+    </div>
   );
 }
-
-export default GlassCard;

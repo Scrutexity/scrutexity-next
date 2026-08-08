@@ -12,6 +12,8 @@ import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifac
 import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
 import { InstantPreview } from "@/components/scrutexity/motion/instant-preview";
 import { WebsiteXRayInteractive } from "@/components/scrutexity/motion/website-xray-interactive";
+import GlassCard from "@/components/ui/GlassCard";
+import ScanWebGL from "@/components/scrutexity/motion/ScanWebGL";
 
 const SNAPSHOT_URL = "/snapshot";
 /** One label per intent. Matches the header CTA in site-nav verbatim so the
@@ -179,6 +181,13 @@ export default function UmbrellaHomepage() {
       <section className="border-b border-hairline bg-paper-light">
         <div className="mx-auto max-w-[1200px] px-5 py-16 sm:px-8">
           <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
+          {scanState.isScanning && !scanState.scanId && (
+            <div className="relative mt-4 h-44">
+              <GlassCard tone="sage">
+                <ScanWebGL />
+              </GlassCard>
+            </div>
+          )}
           {scanState.scanId && (
             <div className="mt-6">
               <EngineContainer
