@@ -1,40 +1,63 @@
-import type { ReactNode } from 'react';
-
-type GlassTone = 'paper' | 'sage';
+import { createElement } from "react";
+import type { ElementType, HTMLAttributes, ReactNode } from "react";
 
 /**
- * GlassCard — frosted-glass panel, token-compliant (MX "glass-card system").
+ * GlassCard — the Makro panel surface.
  *
- * Uses the locked .paper-glass / .paper-glass-sage utilities from
- * globals.css: color-mix paper-light @72%, backdrop blur 16px, hairline
- * border, tinted shadow-card — with an automatic solid fallback under
- * `prefers-reduced-transparency`. No hardcoded hexes, no dead tokens.
+ * Reconciles two concurrently-written versions. One had `tone`
+ * ('paper' | 'sage', mapping to the .paper-glass utilities in globals.css);
+ * the other had `floating` (translucent fill for stacked layouts) and `as`
+ * (polymorphic element). Both were in use, and each overwrite silently broke
+ * the other's call sites. This supports all three so neither loses.
  *
- * Usage:
- *   <GlassCard tone="sage" className="max-w-md">…</GlassCard>
+ * Tones use the locked .paper-glass utilities, which carry their own
+ * backdrop blur, hairline border, tinted shadow, and a solid fallback under
+ * prefers-reduced-transparency. `floating` is the lighter translucent variant
+ * for panels stacked over another card, where the layer beneath should read
+ * through.
  *
- * Notes:
- * - `paper` = neutral glass (paper-light base)
- * - `sage`  = brand-tinted glass (accent @10% base, accent border @25%)
- * - Rounded to the locked radius scale (rounded-2xl = 16px), full-bleed
- *   children inside; add your own padding.
+ * No hardcoded colour: everything resolves through tokens, so a palette change
+ * in globals.css carries through without touching this file.
  */
-export default function GlassCard({
-  children,
-  className = '',
-  tone = 'paper',
-}: {
+
+export type GlassTone = "paper" | "sage";
+
+type GlassCardProps = {
   children: ReactNode;
   className?: string;
+  /** Surface treatment. 'sage' is the accent-tinted glass. */
   tone?: GlassTone;
-}) {
-  return (
-    <div
-      className={`relative h-full w-full overflow-hidden rounded-2xl ${
-        tone === 'sage' ? 'paper-glass-sage' : 'paper-glass'
-      } ${className}`}
-    >
-      {children}
-    </div>
+  /** Translucent fill for panels stacked over another surface. */
+  floating?: boolean;
+  /** Render as a different element, e.g. "article" or "li". */
+  as?: ElementType;
+} & Omit<HTMLAttributes<HTMLElement>, "className" | "children">;
+
+export function GlassCard({
+  children,
+  className = "",
+  tone = "paper",
+  floating = false,
+  as: Tag = "div",
+  ...rest
+}: GlassCardProps) {
+  const surface = floating
+    ? "bg-raised/92 backdrop-blur-[2px] border border-hairline"
+    : tone === "sage"
+      ? "paper-glass-sage"
+      : "paper-glass";
+
+  // createElement rather than <Tag />: a polymorphic `as` combined with a
+  // props spread makes TS collapse the children prop to `never`. This keeps
+  // the component genuinely polymorphic without casting the props away.
+  return createElement(
+    Tag,
+    {
+      className: `relative overflow-hidden rounded-2xl ${surface} ${className}`,
+      ...rest,
+    },
+    children
   );
 }
+
+export default GlassCard;
