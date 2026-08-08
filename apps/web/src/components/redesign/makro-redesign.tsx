@@ -38,8 +38,8 @@ export default function MakroRedesign() {
       }}
       className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
         isLight
-          ? 'bg-[#f4f6fa] text-[#14142d] selection:bg-[#d9ff5c] selection:text-[#14142d]'
-          : 'bg-[#14142d] text-[#ebedfa] selection:bg-[#d9ff5c]/30 selection:text-[#14142d]'
+          ? 'bg-paper-light text-ink selection:bg-accent selection:text-ink'
+          : 'bg-ink text-ink selection:bg-accent/30 selection:text-ink'
       }`}
     >
       <MakroNav heroOption={heroOption} setHeroOption={setHeroOption} isLight={isLight} />

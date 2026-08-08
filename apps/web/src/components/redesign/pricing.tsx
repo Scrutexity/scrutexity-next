@@ -59,22 +59,22 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
 
   return (
     <section id="pricing" className={`transition-colors duration-500 px-5 py-24 sm:px-8 ${
-      isLight ? 'bg-[#f4f6fa] text-[#14142d]' : 'bg-[#14142d] text-[#ebedfa]'
+      isLight ? 'bg-paper-light text-ink' : 'bg-ink text-ink'
     }`}>
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
           <div className="mx-auto max-w-[700px] text-center">
             <Kicker>Pricing</Kicker>
             <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl lg:text-6xl ${
-              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+              isLight ? 'text-ink' : 'text-ink'
             }`}>
               Your smart claim intelligence,{' '}
-              <span className="inline-block rounded-full bg-[#d9ff5c] px-5 py-1 text-[#14142d] shadow-sm">
+              <span className="inline-block rounded-full bg-accent px-5 py-1 text-ink shadow-sm">
                 starting free
               </span>
             </h2>
             <p className={`mt-4 text-base ${
-              isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+              isLight ? 'text-muted' : 'text-muted'
             }`}>
               Simple plans for agencies and teams. No contracts, no hidden fees. Upgrade, downgrade, or cancel anytime.
             </p>
@@ -85,7 +85,7 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
         <Reveal delay={0.06}>
           <div className="mt-10 flex justify-center">
             <div className={`inline-flex items-center rounded-full p-1.5 shadow-xs ${
-              isLight ? 'bg-[#e2e7f0] border border-black/5' : 'bg-white/10 border border-white/10'
+              isLight ? 'bg-hairline border border-black/5' : 'bg-white/10 border border-white/10'
             }`}>
               {(['annual', 'monthly'] as const).map((mode) => {
                 const active = annual === (mode === 'annual');
@@ -97,11 +97,11 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
                     className={`rounded-full px-6 py-2 text-xs font-bold transition-all duration-300 ${
                       active
                         ? isLight
-                          ? 'bg-white text-[#14142d] shadow-sm'
-                          : 'bg-[#d9ff5c] text-[#14142d]'
+                          ? 'bg-white text-ink shadow-sm'
+                          : 'bg-accent text-ink'
                         : isLight
-                        ? 'text-[#5a6072] hover:text-[#14142d]'
-                        : 'text-[#9391b8] hover:text-[#ebedfa]'
+                        ? 'text-muted hover:text-ink'
+                        : 'text-muted hover:text-ink'
                     }`}
                   >
                     {mode === 'annual' ? 'Annual' : 'Monthly'}
@@ -121,32 +121,32 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
                 isLight={isLight}
                 className={`relative flex h-full flex-col p-8 sm:p-9 ${
                   t.highlight
-                    ? 'border-[#d9ff5c] ring-2 ring-[#d9ff5c]/30 shadow-xl'
+                    ? 'border-accent ring-2 ring-accent/30 shadow-xl'
                     : ''
                 }`}
               >
                 {t.highlight && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-[#d9ff5c] px-4 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#14142d] shadow-sm">
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-ink shadow-sm">
                     Most Popular
                   </span>
                 )}
 
-                <h3 className={`text-2xl font-bold ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                <h3 className={`text-2xl font-bold ${isLight ? 'text-ink' : 'text-ink'}`}>
                   {t.name}
                 </h3>
-                <p className={`mt-1.5 text-xs ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
+                <p className={`mt-1.5 text-xs ${isLight ? 'text-muted' : 'text-muted'}`}>
                   {t.tagline}
                 </p>
 
                 <div className="mt-6 flex items-baseline gap-1">
-                  <span className={`text-5xl font-extrabold tracking-tight ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
+                  <span className={`text-5xl font-extrabold tracking-tight ${isLight ? 'text-ink' : 'text-ink'}`}>
                     ${annual ? t.annual : t.monthly}
                   </span>
-                  <span className={`text-xs font-medium ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>
+                  <span className={`text-xs font-medium ${isLight ? 'text-muted' : 'text-muted'}`}>
                     /mo
                   </span>
                 </div>
-                <span className={`mt-1 text-[11px] font-medium ${isLight ? 'text-[#7a8194]' : 'text-[#9391b8]'}`}>
+                <span className={`mt-1 text-[11px] font-medium ${isLight ? 'text-muted' : 'text-muted'}`}>
                   per workspace
                 </span>
 
@@ -163,9 +163,9 @@ export function MakroPricing({ isLight = true }: { isLight?: boolean }) {
                 <div className="mt-8 border-t border-black/5 pt-6 dark:border-white/10">
                   <ul className="space-y-3">
                     {t.features.map((f) => (
-                      <li key={f} className={`flex items-start gap-3 text-xs ${isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'}`}>
-                        <Check size={16} className="mt-0.5 shrink-0 text-[#5E7A5A]" />
-                        <span className={f.endsWith(':') ? `font-semibold ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}` : ''}>
+                      <li key={f} className={`flex items-start gap-3 text-xs ${isLight ? 'text-ink' : 'text-ink'}`}>
+                        <Check size={16} className="mt-0.5 shrink-0 text-accent-text" />
+                        <span className={f.endsWith(':') ? `font-semibold ${isLight ? 'text-muted' : 'text-muted'}` : ''}>
                           {f}
                         </span>
                       </li>
@@ -191,18 +191,18 @@ export function MakroEnterprise({ isLight = true }: { isLight?: boolean }) {
           <GlassCard isLight={isLight} className="relative overflow-hidden p-8 sm:p-12">
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#d9ff5c]/10 blur-[90px]"
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-[90px]"
             />
             <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div className="max-w-[520px]">
                 <Kicker isLight={isLight}>Enterprise</Kicker>
                 <h3 className={`mt-3 text-2xl font-bold tracking-tight sm:text-3xl ${
-                  isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                  isLight ? 'text-ink' : 'text-ink'
                 }`}>
                   Diligence-scale evidence programs.
                 </h3>
                 <p className={`mt-3 text-[14.5px] leading-relaxed ${
-                  isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+                  isLight ? 'text-ink-soft' : 'text-muted'
                 }`}>
                   Portfolios, deal pipelines, and recurring regulatory exposure
                   — with dedicated support and custom delivery.

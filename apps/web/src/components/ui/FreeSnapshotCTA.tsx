@@ -27,7 +27,7 @@ export default function FreeSnapshotCTA({ source }: FreeSnapshotCTAProps) {
         
         <div className="relative inline-block group">
           {/* Animated glow behind button */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-sage to-[#d8b17a] rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-sage to-accent-bright rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
           
           <Link
             href={`/claim-audit?intent=claim-audit&source=${source}`}

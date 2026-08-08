@@ -173,7 +173,7 @@ function PEReportContentInner() {
               <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 50% 0%, var(--color-clay-deep), transparent 70%)' }} />
               <span className="text-[10px] uppercase tracking-[0.18em] text-mist/60 mb-2" style={{ fontFamily: MONO_STACK }}>Overall Risk Score</span>
               <div className="flex items-baseline gap-2">
-                <span className={`font-display text-7xl tabular-nums tracking-[-0.03em] leading-none ${score < 50 ? 'text-clay-deep' : score < 80 ? 'text-[#D4AF37]' : 'text-sage-deep'}`}>
+                <span className={`font-display text-7xl tabular-nums tracking-[-0.03em] leading-none ${score < 50 ? 'text-clay-deep' : score < 80 ? 'text-accent-text' : 'text-sage-deep'}`}>
                   {score}
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.16em] text-mist/40" style={{ fontFamily: MONO_STACK }}>/ 100</span>

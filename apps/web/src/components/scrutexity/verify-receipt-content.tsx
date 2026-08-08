@@ -73,7 +73,7 @@ export default function VerifyReceiptContent() {
               <div className="col-span-1 bg-ink rounded-2xl p-8 flex flex-col items-center justify-center text-cream">
                 <span className="text-[10px] uppercase tracking-[0.18em] text-mist/60 mb-2" style={{ fontFamily: MONO_STACK }}>Overall Risk Score</span>
                 <div className="flex items-baseline gap-2">
-                  <span className={`font-display text-7xl tabular-nums tracking-[-0.03em] leading-none ${verifiedData.score < 50 ? 'text-clay-deep' : verifiedData.score < 80 ? 'text-[#D4AF37]' : 'text-sage-deep'}`}>
+                  <span className={`font-display text-7xl tabular-nums tracking-[-0.03em] leading-none ${verifiedData.score < 50 ? 'text-clay-deep' : verifiedData.score < 80 ? 'text-accent-text' : 'text-sage-deep'}`}>
                     {verifiedData.score}
                   </span>
                   <span className="text-[10px] uppercase tracking-[0.16em] text-mist/40" style={{ fontFamily: MONO_STACK }}>/ 100</span>

@@ -42,7 +42,7 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
         <Reveal>
           <Kicker>Feature Overview</Kicker>
           <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
-            isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+            isLight ? 'text-ink' : 'text-ink'
           }`}>
             Master your claim evidence.
           </h2>
@@ -66,7 +66,7 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                     <div
                       className={`mr-4 w-1.5 rounded-full transition-all duration-300 ${
                         isActive
-                          ? 'bg-[#d9ff5c] shadow-[0_0_12px_rgba(217,255,92,0.8)]'
+                          ? 'bg-accent shadow-[0_0_12px_rgba(217,255,92,0.8)]'
                           : 'bg-transparent group-hover:bg-white/20'
                       }`}
                     />
@@ -76,11 +76,11 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                         className={`text-xl font-bold transition-colors ${
                           isActive
                             ? isLight
-                              ? 'text-[#14142d]'
+                              ? 'text-ink'
                               : 'text-white'
                             : isLight
-                            ? 'text-[#5a6072] group-hover:text-[#14142d]'
-                            : 'text-[#9391b8] group-hover:text-[#ebedfa]'
+                            ? 'text-muted group-hover:text-ink'
+                            : 'text-muted group-hover:text-ink'
                         }`}
                       >
                         {tab.title}
@@ -88,7 +88,7 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                       {isActive && (
                         <p
                           className={`mt-2 text-sm leading-relaxed ${
-                            isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+                            isLight ? 'text-muted' : 'text-muted'
                           }`}
                         >
                           {tab.subtitle}
@@ -111,27 +111,27 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
           <div className="lg:col-span-7">
             <GlassCard isLight={isLight} hover={false} className="relative overflow-hidden p-6 sm:p-8">
               {/* Outer frame gradient overlay */}
-              <div className="rounded-2xl border border-black/10 bg-[#f8fafc] p-6 shadow-2xl dark:border-white/10 dark:bg-[#1a1a2e]">
+              <div className="rounded-2xl border border-black/10 bg-paper-light p-6 shadow-2xl dark:border-white/10 dark:bg-ink">
                 {/* Header bar inside frame */}
                 <div className="flex items-center justify-between border-b border-black/5 pb-4 dark:border-white/5">
                   <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-[#d9ff5c] shadow-[0_0_8px_rgba(217,255,92,0.8)]" />
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#14142d] dark:text-white">
+                    <span className="h-3 w-3 rounded-full bg-accent shadow-[0_0_8px_rgba(217,255,92,0.8)]" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-ink dark:text-white">
                       Claim Audit Pipeline
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-[11px] font-semibold text-[#5a6072] shadow-xs dark:border-white/10 dark:bg-white/10 dark:text-white">
+                  <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-[11px] font-semibold text-muted shadow-xs dark:border-white/10 dark:bg-white/10 dark:text-white">
                     Live Scan
                   </div>
                 </div>
 
                 {/* Main Bar Chart Graphic */}
-                <div className="mt-6 rounded-xl border border-black/5 bg-white p-5 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
+                <div className="mt-6 rounded-xl border border-black/5 bg-white p-5 shadow-xs dark:border-white/5 dark:bg-ink">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-[#5a6072] dark:text-[#9391b8]">
+                    <span className="text-xs font-semibold text-muted dark:text-muted">
                       Evidence support rate over time
                     </span>
-                    <span className="rounded-full bg-[#d9ff5c] px-2.5 py-0.5 text-[10px] font-bold text-[#14142d]">
+                    <span className="rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-bold text-ink">
                       94.2% verified
                     </span>
                   </div>
@@ -144,8 +144,8 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                           style={{ height: `${h}%` }}
                           className={`w-full rounded-t-sm transition-all duration-500 ${
                             i === 11 || i === 8
-                              ? 'bg-[#d9ff5c] shadow-[0_0_10px_rgba(217,255,92,0.5)]'
-                              : 'bg-[#5a6072]/30 dark:bg-white/20'
+                              ? 'bg-accent shadow-[0_0_10px_rgba(217,255,92,0.5)]'
+                              : 'bg-muted/30 dark:bg-white/20'
                           }`}
                         />
                       </div>
@@ -155,25 +155,25 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
 
                 {/* Bottom Metric Cards */}
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
-                    <span className="text-[11px] font-medium text-[#5a6072] dark:text-[#9391b8]">
+                  <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-ink">
+                    <span className="text-[11px] font-medium text-muted dark:text-muted">
                       Public Claims Audited
                     </span>
                     <div className="mt-1 flex items-baseline gap-2">
-                      <span className="text-xl font-bold text-[#14142d] dark:text-white">
+                      <span className="text-xl font-bold text-ink dark:text-white">
                         142
                       </span>
-                      <span className="text-[10px] font-bold text-[#5E7A5A]">
+                      <span className="text-[10px] font-bold text-accent-text">
                         +18% verified
                       </span>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-[#24243e]">
-                    <span className="text-[11px] font-medium text-[#5a6072] dark:text-[#9391b8]">
+                  <div className="rounded-xl border border-black/5 bg-white p-4 shadow-xs dark:border-white/5 dark:bg-ink">
+                    <span className="text-[11px] font-medium text-muted dark:text-muted">
                       Evidence Gaps Sealed
                     </span>
-                    <div className="mt-1 text-xl font-bold text-[#14142d] dark:text-white">
+                    <div className="mt-1 text-xl font-bold text-ink dark:text-white">
                       32 / 32
                     </div>
                   </div>
@@ -186,7 +186,7 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
         {/* Daily AI Insights Card matching Screenshot 1 */}
         <div className="mt-16">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#475569] via-[#64748b] to-[#f4f6fa] p-8 text-center text-white shadow-xl sm:p-12">
+            <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-b from-ink-soft via-muted to-paper-light p-8 text-center text-white shadow-xl sm:p-12">
               <div className="mx-auto flex max-w-[550px] flex-col items-center">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold backdrop-blur-md">
                   <Settings size={14} /> Claim Intelligence
@@ -209,7 +209,7 @@ export function MakroFeatureTabs({ isLight = true }: { isLight?: boolean }) {
                     <div
                       key={idx}
                       title={item.label}
-                      className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-[#14142d] shadow-lg transition-transform hover:scale-110"
+                      className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-ink shadow-lg transition-transform hover:scale-110"
                     >
                       {item.icon}
                     </div>

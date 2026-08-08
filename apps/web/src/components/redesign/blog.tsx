@@ -30,7 +30,7 @@ const POSTS = [
 export function MakroBlog({ isLight = true }: { isLight?: boolean }) {
   return (
     <section className={`transition-colors duration-500 px-5 py-24 sm:px-8 border-t ${
-      isLight ? 'bg-[#f4f6fa] border-black/5 text-[#14142d]' : 'bg-[#14142d] border-white/10 text-[#ebedfa]'
+      isLight ? 'bg-paper-light border-black/5 text-ink' : 'bg-ink border-white/10 text-ink'
     }`}>
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
@@ -38,7 +38,7 @@ export function MakroBlog({ isLight = true }: { isLight?: boolean }) {
             <div>
               <Kicker isLight={isLight}>Insights</Kicker>
               <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
-                isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                isLight ? 'text-ink' : 'text-ink'
               }`}>
                 Latest insights.
               </h2>
@@ -46,7 +46,7 @@ export function MakroBlog({ isLight = true }: { isLight?: boolean }) {
             <a
               href="/insights"
               className={`inline-flex items-center gap-1.5 text-[13px] font-bold underline transition-colors ${
-                isLight ? 'text-[#14142d] hover:text-[#5E7A5A]' : 'text-[#d9ff5c] hover:text-[#e4ff85]'
+                isLight ? 'text-ink hover:text-accent-text' : 'text-accent-text hover:text-accent-text'
               }`}
             >
               View all articles
@@ -61,26 +61,26 @@ export function MakroBlog({ isLight = true }: { isLight?: boolean }) {
               <a href={p.href} className="block h-full">
                 <GlassCard isLight={isLight} className="flex h-full flex-col p-6">
                   <div className="flex items-center gap-3">
-                    <span className="rounded-full bg-[#d9ff5c] px-3 py-1 text-[10.5px] font-bold uppercase tracking-wide text-[#14142d] shadow-xs">
+                    <span className="rounded-full bg-accent px-3 py-1 text-[10.5px] font-bold uppercase tracking-wide text-ink shadow-xs">
                       {p.category}
                     </span>
-                    <span className={`text-[11px] font-medium ${isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'}`}>{p.date}</span>
+                    <span className={`text-[11px] font-medium ${isLight ? 'text-muted' : 'text-muted'}`}>{p.date}</span>
                   </div>
 
                   <h3 className={`mt-4 text-base font-bold transition-colors ${
-                    isLight ? 'text-[#14142d] group-hover:text-[#5E7A5A]' : 'text-[#ebedfa] group-hover:text-[#d9ff5c]'
+                    isLight ? 'text-ink group-hover:text-accent-text' : 'text-ink group-hover:text-accent-text'
                   }`}>
                     {p.title}
                   </h3>
 
                   <p className={`mt-2 flex-1 text-[13px] leading-relaxed ${
-                    isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+                    isLight ? 'text-ink-soft' : 'text-muted'
                   }`}>
                     {p.desc}
                   </p>
 
                   <span className={`mt-4 inline-flex items-center gap-1 text-[12.5px] font-bold ${
-                    isLight ? 'text-[#14142d]' : 'text-[#d9ff5c]'
+                    isLight ? 'text-ink' : 'text-accent-text'
                   }`}>
                     Read article <ArrowRight size={13} />
                   </span>

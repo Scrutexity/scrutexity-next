@@ -100,7 +100,7 @@ export function Kicker({
   return (
     <p
       className={`text-[11px] font-bold uppercase tracking-[0.22em] ${
-        isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+        isLight ? 'text-ink-soft' : 'text-muted'
       } ${className}`}
     >
       {children}
@@ -129,16 +129,16 @@ export function CTAButton({
       whileTap={{ scale: 0.98 }}
       className={`group relative inline-flex items-center justify-between rounded-full p-1.5 transition-all duration-300 ${
         isGhost
-          ? 'bg-[#ebeff5] text-[#35363b] hover:bg-[#e2e7f0]'
-          : 'bg-[#35363b] text-white hover:bg-[#2a2b2f] hover:shadow-[0_0_30px_rgba(217,255,92,0.2)]'
+          ? 'bg-paper text-ink-soft hover:bg-hairline'
+          : 'bg-ink-soft text-white hover:bg-ink-soft hover:shadow-[0_0_30px_rgba(217,255,92,0.2)]'
       } ${className}`}
     >
       {/* Left Circular Arrow Badge */}
       <span
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-105 ${
           isGhost
-            ? 'bg-white text-[#35363b] shadow-xs'
-            : 'bg-[#d9ff5c] text-[#14142d] shadow-sm'
+            ? 'bg-white text-ink-soft shadow-xs'
+            : 'bg-accent text-ink shadow-sm'
         }`}
       >
         <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -168,8 +168,8 @@ export function GlassCard({
     <div
       className={`rounded-[1.75rem] backdrop-blur-md transition-all duration-300 ${
         isLight
-          ? 'border border-black/5 bg-white shadow-[0_10px_30px_-10px_rgba(20,20,45,0.05)] text-[#14142d]'
-          : 'border border-white/10 bg-white/[0.07] text-[#ebedfa]'
+          ? 'border border-black/5 bg-white shadow-[0_10px_30px_-10px_rgba(20,20,45,0.05)] text-ink'
+          : 'border border-white/10 bg-white/[0.07] text-ink'
       } ${
         hover
           ? isLight

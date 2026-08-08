@@ -136,7 +136,7 @@ export default function ContactIntakeForm({
       </label>
 
       <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-mist">
-        <input className="mt-1 h-4 w-4 accent-[#5e7a5a]" name="consent" type="checkbox" required />
+        <input className="mt-1 h-4 w-4 accent-accent" name="consent" type="checkbox" required />
         <span>I agree that Scrutexity may use these details to respond to this request. I will not submit confidential, patient, or regulated personal data.</span>
       </label>
 

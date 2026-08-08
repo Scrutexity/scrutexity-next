@@ -57,14 +57,14 @@ export function MakroFaq({ isLight = true }: { isLight?: boolean }) {
 
   return (
     <section className={`transition-colors duration-500 px-5 py-24 sm:px-8 border-t ${
-      isLight ? 'bg-[#f4f6fa] border-black/5 text-[#14142d]' : 'bg-[#14142d] border-white/10 text-[#ebedfa]'
+      isLight ? 'bg-paper-light border-black/5 text-ink' : 'bg-ink border-white/10 text-ink'
     }`}>
       <div className="mx-auto max-w-[900px]">
         <Reveal>
           <div className="text-center">
             <Kicker isLight={isLight}>FAQ</Kicker>
             <h2 className={`mt-3 text-3xl font-bold tracking-tight sm:text-5xl ${
-              isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+              isLight ? 'text-ink' : 'text-ink'
             }`}>
               We have the answers.
             </h2>
@@ -84,10 +84,10 @@ export function MakroFaq({ isLight = true }: { isLight?: boolean }) {
                 }}
                 className={`rounded-full px-5 py-2 text-[13px] font-bold transition-all ${
                   tab === t
-                    ? 'bg-[#d9ff5c] text-[#14142d] shadow-sm'
+                    ? 'bg-accent text-ink shadow-sm'
                     : isLight
-                    ? 'border border-black/10 bg-white text-[#5a6072] hover:text-[#14142d]'
-                    : 'border border-white/10 bg-white/[0.04] text-[#9391b8] hover:text-[#ebedfa]'
+                    ? 'border border-black/10 bg-white text-muted hover:text-ink'
+                    : 'border border-white/10 bg-white/[0.04] text-muted hover:text-ink'
                 }`}
               >
                 {t}
@@ -107,8 +107,8 @@ export function MakroFaq({ isLight = true }: { isLight?: boolean }) {
                   className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
                     open
                       ? isLight
-                        ? 'border-[#5E7A5A] bg-white shadow-md'
-                        : 'border-[#d9ff5c]/30 bg-white/[0.07]'
+                        ? 'border-accent bg-white shadow-md'
+                        : 'border-accent/30 bg-white/[0.07]'
                       : isLight
                       ? 'border-black/5 bg-white shadow-xs'
                       : 'border-white/10 bg-white/[0.04]'
@@ -120,21 +120,21 @@ export function MakroFaq({ isLight = true }: { isLight?: boolean }) {
                     className="flex w-full items-center justify-between gap-4 px-6 py-4.5 text-left"
                   >
                     <span className={`text-[15px] font-bold ${
-                      isLight ? 'text-[#14142d]' : 'text-[#ebedfa]'
+                      isLight ? 'text-ink' : 'text-ink'
                     }`}>{item.q}</span>
                     <ChevronDown
                       size={18}
                       className={`shrink-0 transition-transform duration-300 ${
                         open
-                          ? 'rotate-180 text-[#5E7A5A] dark:text-[#d9ff5c]'
-                          : isLight ? 'text-[#5a6072]' : 'text-[#9391b8]'
+                          ? 'rotate-180 text-accent-text dark:text-accent-text'
+                          : isLight ? 'text-muted' : 'text-muted'
                       }`}
                     />
                   </button>
                   {open && (
                     <div className="px-6 pb-5">
                       <p className={`text-[14px] leading-relaxed ${
-                        isLight ? 'text-[#35363b]' : 'text-[#9391b8]'
+                        isLight ? 'text-ink-soft' : 'text-muted'
                       }`}>{item.a}</p>
                     </div>
                   )}
