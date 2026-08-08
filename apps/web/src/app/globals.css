@@ -76,9 +76,12 @@
   --color-border-deep: var(--color-hairline);
 
   /* ── Typography ── */
-  --font-display: var(--font-geist), system-ui, sans-serif;
-  --font-sans: var(--font-geist), system-ui, sans-serif;
-  --font-geist: var(--font-geist), system-ui, sans-serif;
+  /* Must match the variable names next/font actually emits in layout.tsx
+     (--font-geist-sans). Pointing at --font-geist left these undefined, so
+     every heading silently fell back to system-ui. */
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-geist: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ── Space + shape ──
