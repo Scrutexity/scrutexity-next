@@ -13,14 +13,14 @@ const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-int
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", variable: "--font-jetbrains-mono" });
 const siteUrl = "https://www.scrutexity.com";
 const title = "Scrutexity — Production Intelligence for Specialty Contractors";
-const description = "Know what is actually ready before you move the crew. Scrutexity creates contractor-controlled prospective records of deployment decisions, field evidence, execution outcomes, and production impact.";
+const description = "See the observed site state before you move the crew. Scrutexity creates contractor-controlled prospective records of planned starts, field evidence, deployment decisions, actual execution, and production impact.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
   alternates: { canonical: "/" },
-  keywords: ["contractor production intelligence", "specialty contractor workfront readiness", "crew deployment decision record", "construction production control", "prospective field record"],
+  keywords: ["contractor production intelligence", "specialty contractor observed site state", "crew deployment decision record", "construction production control", "prospective field record"],
   openGraph: { title, description, url: siteUrl, siteName: "Scrutexity", type: "website" },
   twitter: { card: "summary_large_image", title, description },
 };
