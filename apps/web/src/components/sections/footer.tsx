@@ -1,101 +1,10 @@
-import Image from "next/image";
+import Link from "next/link";
 
 const columns = [
-  {
-    title: "Intelligence",
-    links: [
-      ["AI & Regulatory Diligence", "/diligence"],
-      ["For Counsel", "/counsel"],
-      ["Enterprise Exposure Assessment", "/enterprise"],
-      ["AI Narrative Integrity", "/ai-narrative-integrity"],
-      ["Scrutexity Watch", "/watch"],
-    ],
-  },
-  {
-    title: "Engage",
-    links: [
-      ["Request a Private Assessment", "/private-assessment"],
-      ["Claim Exposure Diagnostic", "/claim-exposure-diagnostic"],
-      ["Pricing", "/pricing"],
-      ["Sample Report", "/sample-report"],
-      ["Contact", "/contact"],
-    ],
-  },
-  {
-    title: "Evidence",
-    links: [
-      ["Methodology", "/methodology"],
-      ["Proof", "/proof"],
-      ["Verify a Record", "/verify"],
-      ["Safety Architecture", "/safety-architecture"],
-      ["About", "/about"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Data Handling", "/data-handling"],
-      ["Privacy", "/privacy"],
-      ["Terms", "/terms"],
-      ["Email Nick", "mailto:nick@scrutexity.com?subject=Scrutexity%20inquiry"],
-    ],
-  },
+  ["Product",[["How It Works","/#how-it-works"],["Decision Record","/#decision-record"],["Diagnostic","/#diagnostic"]]],
+  ["Company",[["About","/about"],["Contact","/contact"]]],
+  ["Principles",[["Independence","/#independence"],["Data Control","/#independence"]]],
+  ["Legal",[["Privacy","/privacy"],["Terms","/terms"]]],
 ] as const;
 
-export default function Footer() {
-  return (
-    <footer className="bg-espresso px-5 py-14 text-cream sm:px-8 lg:py-18">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.3fr_repeat(4,1fr)]">
-          <div>
-            <Image
-              src="/logo-wordmark-green.png"
-              alt="Scrutexity"
-              width={180}
-              height={38}
-              className="h-7 w-auto"
-            />
-            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/70">
-              Forensic Intelligence for AI, Claims &amp; Regulatory Risk.
-            </p>
-            <p className="mt-3 max-w-xs text-xs leading-5 text-cream/55">
-              Scrutexity documents the gap between what a company claims, what its evidence
-              supports, and what AI systems and the public say about it.
-            </p>
-            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/45">
-              AuditGPT is the public-claim diagnostic instrument powered by Scrutexity.
-            </p>
-          </div>
-
-          {columns.map((column) => (
-            <div key={column.title}>
-              <p className="text-xs font-semibold text-cream/45">{column.title}</p>
-              <ul className="mt-4 space-y-3">
-                {column.links.map(([label, href]) => (
-                  <li key={label}>
-                    <a href={href} className="text-xs text-cream/70 transition-colors hover:text-sage-soft">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 border-t border-cream/10 pt-7">
-          <p id="disclaimer" className="max-w-4xl text-xs leading-5 text-cream/55">
-            Scrutexity is an intelligence and evidence company. It is not a law firm and does not
-            provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings
-            are observations drawn from publicly available material and AI answer-system outputs,
-            recorded with their sources and capture dates. Nothing on this site is a legal opinion,
-            a valuation opinion, or a determination of liability or non-compliance.
-          </p>
-          <p className="mt-5 text-xs text-cream/35">
-            &copy; {new Date().getFullYear()} Scrutexity. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
+export default function Footer(){return <footer className="bg-sx-bg px-4 pb-8 pt-24"><div className="sx-container"><div className="grid gap-14 border-t border-sx-border pt-12 lg:grid-cols-[1.3fr_.7fr]"><div><p className="text-sm font-semibold tracking-[.18em]">SCRUTEXITY</p><p className="mt-5 max-w-md text-3xl font-medium tracking-[-.04em]">Contractor-side production intelligence.</p><p className="mt-5 max-w-md text-sm leading-6 text-sx-muted">Scrutexity preserves prospective physical deployment records for specialty contractors.</p></div><div className="grid grid-cols-2 gap-8 sm:grid-cols-4">{columns.map(([title,links])=><div key={title}><p className="sx-mono text-sx-muted">{title}</p><ul className="mt-5 space-y-3">{links.map(([label,href])=><li key={label}><Link className="text-xs hover:underline" href={href}>{label}</Link></li>)}</ul></div>)}</div></div><div className="mt-16 grid gap-6 border-t border-sx-border pt-6 text-[10px] leading-5 text-sx-muted lg:grid-cols-[1.5fr_.5fr]"><p>Scrutexity provides observational production intelligence. It does not certify workfront readiness, direct field operations, determine legal responsibility, or provide legal advice. Contractors retain all operational decisions.</p><p className="lg:text-right">© {new Date().getFullYear()} Scrutexity. All rights reserved.</p></div></div></footer>}

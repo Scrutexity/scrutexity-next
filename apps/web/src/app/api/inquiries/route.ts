@@ -20,6 +20,7 @@ const inquirySchema = z.object({
     'counsel-review',
     'ai-narrative-integrity',
     'private-assessment',
+    'construction-diagnostic',
   ]),
   context: z.string().trim().max(2000).optional().default(''),
   source: z.string().trim().max(100).optional().default('contact'),

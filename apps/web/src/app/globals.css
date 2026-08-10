@@ -582,3 +582,94 @@ h2.font-display {
 .motion-lux {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* Construction 2026 — editorial industrial system */
+@theme {
+  --color-concrete: #f1efe9;
+  --color-graphite: #171816;
+  --color-safety-orange: #ff5a1f;
+  --color-steel-mist: #d9ddd8;
+  --font-display: var(--font-inter-tight), Arial, sans-serif;
+  --font-sans: var(--font-inter-tight), Arial, sans-serif;
+}
+
+.construction-shell {
+  --construction-rule: color-mix(
+    in srgb,
+    var(--color-graphite) 22%,
+    transparent
+  );
+  font-family: var(--font-inter-tight), Arial, sans-serif;
+}
+
+.construction-grid {
+  background-image:
+    linear-gradient(to right, rgba(23, 24, 22, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 24, 22, 0.065) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.78) 65%,
+    transparent 100%
+  );
+}
+
+.construction-kicker {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.construction-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.construction-button:hover {
+  transform: translateY(-2px);
+}
+.construction-button-primary {
+  background: var(--color-safety-orange);
+  color: var(--color-graphite);
+}
+.construction-button-primary:hover {
+  background: var(--color-graphite);
+  color: var(--color-concrete);
+}
+.construction-button-secondary {
+  border: 1px solid var(--construction-rule);
+  color: var(--color-graphite);
+}
+.construction-button-secondary:hover {
+  border-color: var(--color-graphite);
+}
+
+.construction-dossier {
+  box-shadow: 16px 16px 0 rgba(23, 24, 22, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construction-button {
+    transition: none;
+  }
+  .construction-button:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,64 @@
+name: Web CI
+
+on:
+  pull_request:
+    paths:
+      - "apps/web/**"
+      - ".github/workflows/web-ci.yml"
+  push:
+    branches:
+      - redesign/construction-2026
+    paths:
+      - "apps/web/**"
+      - ".github/workflows/web-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - name: Lint construction experience
+        run: >-
+          npx eslint
+          src/app/layout.tsx
+          src/app/page.tsx
+          src/app/contact/page.tsx
+          src/app/api/inquiries/route.ts
+          src/components/site-nav.tsx
+          src/components/sections/footer.tsx
+          src/components/scrutexity/mobile-sticky-cta.tsx
+          src/components/scrutexity/contact-intake-form.tsx
+          src/components/scrutexity/umbrella-homepage.tsx
+          src/components/scrutexity/construction-homepage.tsx
+          src/components/scrutexity/construction-artifacts.tsx
+          src/components/scrutexity/construction-spatial-field.tsx
+          src/lib/inquiries.ts
+      - run: npx tsc --noEmit -p tsconfig.construction.json
+      - run: npm run build
+      - name: Check public routes
+        shell: bash
+        run: |
+          npm run start -- -p 3000 > /tmp/scrutexity-next.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3000/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          for route in / /contact /blog /about /privacy /terms; do
+            curl --fail --silent --show-error "http://127.0.0.1:3000${route}" > /dev/null
+          done
