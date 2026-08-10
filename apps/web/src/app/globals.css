@@ -582,12 +582,15 @@ h2.font-display {
 .motion-lux {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 /* Construction 2026 — editorial industrial system */
 @theme {
   --color-concrete: #f1efe9;
   --color-graphite: #171816;
   --color-safety-orange: #ff5a1f;
   --color-steel-mist: #d9ddd8;
+  --font-display: var(--font-inter-tight), Arial, sans-serif;
+  --font-sans: var(--font-inter-tight), Arial, sans-serif;
 }
 
 .construction-shell {
