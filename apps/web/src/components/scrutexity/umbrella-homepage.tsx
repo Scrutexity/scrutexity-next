@@ -111,7 +111,7 @@ export default function UmbrellaHomepage() {
             </div>
           </div>
 
-          <div className="grid border border-graphite/25 bg-concrete/90 sm:grid-cols-2 lg:grid-cols-5">
+          <div id="sectors" className="grid scroll-mt-28 border border-graphite/25 bg-concrete/90 sm:grid-cols-2 lg:grid-cols-5">
             {sectors.map((sector, index) => (
               <div
                 key={sector}
@@ -129,7 +129,7 @@ export default function UmbrellaHomepage() {
         </div>
       </section>
 
-      <section className="bg-graphite px-5 py-20 text-concrete sm:px-8 sm:py-28">
+      <section id="signals" className="scroll-mt-20 bg-graphite px-5 py-20 text-concrete sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-[.72fr_1.28fr]">
           <div>
             <p className="construction-kicker text-safety-orange">
