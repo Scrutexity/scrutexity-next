@@ -12,15 +12,15 @@ import { MobileStickyCTA } from "@/components/scrutexity/mobile-sticky-cta";
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 const jetBrainsMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", variable: "--font-jetbrains-mono" });
 const siteUrl = "https://www.scrutexity.com";
-const title = "Scrutexity — Production Intelligence for Specialty Contractors";
-const description = "See the observed site state before you move the crew. Scrutexity creates contractor-controlled prospective records of planned starts, field evidence, deployment decisions, actual execution, and production impact.";
+const title = "Scrutexity — Contractor-Side Production Control";
+const description = "Know what was actually observed before you move the crew. Scrutexity preserves planned starts, observed field evidence, contractor decisions, actual execution, and sealed lineage.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
   alternates: { canonical: "/" },
-  keywords: ["contractor production intelligence", "specialty contractor observed site state", "crew deployment decision record", "construction production control", "prospective field record"],
+  keywords: ["contractor production control", "specialty contractor observed site state", "crew deployment decision record", "construction production control", "prospective field record"],
   openGraph: { title, description, url: siteUrl, siteName: "Scrutexity", type: "website" },
   twitter: { card: "summary_large_image", title, description },
 };
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 const jsonLdData = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Scrutexity", url: siteUrl, slogan: "Contractor-side production intelligence", description, email: "hello@scrutexity.com" },
-    { "@type": "Service", "@id": `${siteUrl}/#diagnostic`, name: "5-Day Production Control Diagnostic", serviceType: "Observational production intelligence for specialty contractors", provider: { "@id": `${siteUrl}/#organization` }, description: "A bounded five-working-day diagnostic that preserves planned deployment, pre-deployment site state, new evidence, contractor decisions, actual execution, and observed production impact." },
+    { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "Scrutexity", url: siteUrl, slogan: "Contractor-side production control", description, email: "hello@scrutexity.com" },
+    { "@type": "Service", "@id": `${siteUrl}/#diagnostic`, name: "5-Day Production Control Diagnostic", serviceType: "Contractor-side production control diagnostic", provider: { "@id": `${siteUrl}/#organization` }, description: "A bounded five-working-day diagnostic that preserves planned deployment, observed prerequisite state, source evidence, contractor decisions, actual execution where available, unresolved verification gaps, and sealed lineage." },
     { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: "Scrutexity", publisher: { "@id": `${siteUrl}/#organization` } }
   ]
 };
