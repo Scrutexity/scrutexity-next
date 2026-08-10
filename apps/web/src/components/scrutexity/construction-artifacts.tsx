@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Camera, FileText, LockKeyhole, MessageSquareText, ShieldCheck } from "lucide-react";
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 
 export function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number; eager?: boolean }) {
   const reduced = useReducedMotion();
@@ -35,18 +35,29 @@ export function OperationalMoment() {
 }
 
 export function DeploymentRecord() {
+  const plate = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: plate, offset: ["start end", "end start"] });
+  const rawRotateX = useTransform(scrollYProgress, [0, .45, 1], [7, 0, -3]);
+  const rawScale = useTransform(scrollYProgress, [0, .35, .75, 1], [.955, 1, 1, .985]);
+  const rawY = useTransform(scrollYProgress, [0, .42, 1], [46, 0, -18]);
+  const rotateX = useSpring(rawRotateX, { stiffness: 90, damping: 24 });
+  const scale = useSpring(rawScale, { stiffness: 90, damping: 24 });
+  const y = useSpring(rawY, { stiffness: 90, damping: 24 });
   const observations = [["Taping complete", "PREREQUISITE OBSERVED"], ["Material staged", "PREREQUISITE OBSERVED"], ["Corridor clearance", "VERIFICATION INCOMPLETE"]] as const;
   const evidence = [["PHOTO", "15:42:08"], ["FIELD UPDATE", "15:47:31"], ["PM DECISION", "15:53:12"]] as const;
-  return <article className="sx-gold-record" aria-label="GR-0001 sealed deployment record">
-    <header className="sx-gold-header"><div><p className="sx-record-id">GR-0001</p><p className="sx-mono mt-2 text-sx-muted">L4 · WEST · CORRIDOR 04W</p></div><div className="text-right"><State>RECORD SEALED</State><p className="sx-mono mt-3 text-sx-muted">15:56:28</p></div></header>
+  const enter = reduced ? undefined : { opacity: 0, y: 24 };
+  return <div ref={plate} className="sx-plate-scene"><motion.article className="sx-gold-record" aria-label="GR-0001 sealed deployment record" style={reduced ? undefined : { rotateX, scale, y }}>
+    <span className="sx-plate-edge" aria-hidden/><span className="sx-plate-glint" aria-hidden/><span className="sx-plate-corner sx-plate-corner-tl" aria-hidden/><span className="sx-plate-corner sx-plate-corner-br" aria-hidden/>
+    <motion.header className="sx-gold-header" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .7 }} transition={{ duration: .7, ease: [.16,1,.3,1] }}><div><p className="sx-record-id">GR-0001</p><p className="sx-mono mt-2 text-sx-muted">L4 · WEST · CORRIDOR 04W</p></div><div className="text-right"><State>RECORD SEALED</State><p className="sx-mono mt-3 text-sx-muted">15:56:28</p></div></motion.header>
     <div className="sx-gold-body">
-      <section className="sx-gold-section"><p className="sx-mono text-sx-muted">PLANNED DEPLOYMENT</p><div className="sx-record-values"><Value label="CREW">Crew 02</Value><Value label="SCOPE">Primer</Value><Value label="PLANNED START">Monday · 07:00</Value></div></section>
-      <section className="sx-gold-section"><p className="sx-mono text-sx-muted">PRE-DEPLOYMENT OBSERVED STATE</p><div className="sx-condition-list">{observations.map(([label, state], index) => <motion.div className="sx-condition-row" key={label} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: .1 + index * .12 }}><span>{label}</span><State>{state}</State></motion.div>)}</div></section>
-      <section className="sx-gold-section sx-record-split"><div><p className="sx-mono text-sx-muted">DECISION RECORD</p><p className="mt-5 text-xl font-medium tracking-[-.03em]">Deployment intent changed</p><p className="mt-2 text-sm leading-6 text-sx-muted">Crew held pending corridor verification.</p><p className="sx-mono mt-5 text-sx-muted">15:53:12 · CONTRACTOR DECISION</p></div><div><p className="sx-mono text-sx-muted">ACTUAL EXECUTION</p><p className="mt-5 text-sm leading-6">Recorded separately after execution.</p><p className="mt-3 text-sm leading-6 text-sx-muted">Subsequent events do not rewrite what was observable before the decision.</p></div></section>
-      <section className="sx-gold-section"><p className="sx-mono text-sx-muted">SOURCE EVIDENCE</p><div className="sx-evidence-row">{evidence.map(([label, time], index) => <motion.div key={label} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: .55 + index * .1 }}><span className="sx-evidence-icon">{index === 0 ? <Camera size={14}/> : index === 1 ? <MessageSquareText size={14}/> : <FileText size={14}/>}</span><Value label={label}>{time}</Value></motion.div>)}</div></section>
-      <footer className="sx-record-seal"><div><p className="sx-mono text-sx-muted">RECORD SEALED</p><p className="sx-mono mt-2">SHA256 · 8e2f…91ad</p></div><div className="flex items-center gap-3"><LockKeyhole size={16}/><span className="sx-mono">CONTRACTOR CONTROLLED</span></div></footer>
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .65, delay: .08 }}><p className="sx-mono text-sx-muted">PLANNED DEPLOYMENT</p><div className="sx-record-values"><Value label="CREW">Crew 02</Value><Value label="SCOPE">Primer</Value><Value label="PLANNED START">Monday · 07:00</Value></div></motion.section>
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><p className="sx-mono text-sx-muted">PRE-DEPLOYMENT OBSERVED STATE</p><div className="sx-condition-list">{observations.map(([label, state], index) => <motion.div className="sx-condition-row" key={label} initial={reduced ? false : { opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .5, delay: .12 + index * .14 }}><span>{label}</span><State>{state}</State></motion.div>)}</div></motion.section>
+      <motion.section className="sx-gold-section sx-record-split" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><div><p className="sx-mono text-sx-muted">DECISION RECORD</p><p className="mt-5 text-xl font-medium tracking-[-.03em]">Deployment intent changed</p><p className="mt-2 text-sm leading-6 text-sx-muted">Crew held pending corridor verification.</p><p className="sx-mono mt-5 text-sx-muted">15:53:12 · CONTRACTOR DECISION</p></div><div><p className="sx-mono text-sx-muted">ACTUAL EXECUTION</p><p className="mt-5 text-sm leading-6">Recorded separately after execution.</p><p className="mt-3 text-sm leading-6 text-sx-muted">Subsequent events do not rewrite what was observable before the decision.</p></div></motion.section>
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><p className="sx-mono text-sx-muted">SOURCE EVIDENCE</p><div className="sx-evidence-row">{evidence.map(([label, time], index) => <motion.div key={label} initial={reduced ? false : { opacity: 0, y: 12, scale: .96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ duration: .5, delay: .1 + index * .12 }}><span className="sx-evidence-icon">{index === 0 ? <Camera size={14}/> : index === 1 ? <MessageSquareText size={14}/> : <FileText size={14}/>}</span><Value label={label}>{time}</Value></motion.div>)}</div></motion.section>
+      <motion.footer className="sx-record-seal" initial={reduced ? false : { opacity: 0, scale: .97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .8 }} transition={{ duration: .7, ease: [.16,1,.3,1] }}><div><p className="sx-mono text-sx-muted">RECORD SEALED</p><p className="sx-mono mt-2">SHA256 · 8e2f…91ad</p></div><motion.div className="sx-seal-lock" initial={reduced ? false : { boxShadow: "0 0 0 0 rgba(220,138,54,0)" }} whileInView={{ boxShadow: ["0 0 0 0 rgba(220,138,54,0)", "0 0 0 8px rgba(220,138,54,.18)", "0 0 0 0 rgba(220,138,54,0)"] }} viewport={{ once: true }} transition={{ duration: 1.2, delay: .25 }}><LockKeyhole size={16}/><span className="sx-mono">CONTRACTOR CONTROLLED</span></motion.div></motion.footer>
     </div>
-  </article>;
+  </motion.article></div>;
 }
 
 const steps = [
