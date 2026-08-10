@@ -1,99 +1,59 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
-const columns = [
-  {
-    title: "Intelligence",
-    links: [
-      ["AI & Regulatory Diligence", "/diligence"],
-      ["For Counsel", "/counsel"],
-      ["Enterprise Exposure Assessment", "/enterprise"],
-      ["AI Narrative Integrity", "/ai-narrative-integrity"],
-      ["Scrutexity Watch", "/watch"],
-    ],
-  },
-  {
-    title: "Engage",
-    links: [
-      ["Request a Private Assessment", "/private-assessment"],
-      ["Claim Exposure Diagnostic", "/claim-exposure-diagnostic"],
-      ["Pricing", "/pricing"],
-      ["Sample Report", "/sample-report"],
-      ["Contact", "/contact"],
-    ],
-  },
-  {
-    title: "Evidence",
-    links: [
-      ["Methodology", "/methodology"],
-      ["Proof", "/proof"],
-      ["Verify a Record", "/verify"],
-      ["Safety Architecture", "/safety-architecture"],
-      ["About", "/about"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Data Handling", "/data-handling"],
-      ["Privacy", "/privacy"],
-      ["Terms", "/terms"],
-      ["Email Nick", "mailto:nick@scrutexity.com?subject=Scrutexity%20inquiry"],
-    ],
-  },
+const links = [
+  ["Capabilities", "/#capabilities"],
+  ["Intelligence", "/intelligence"],
+  ["Industries", "/industries"],
+  ["Field Notes", "/blog"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
 ] as const;
 
 export default function Footer() {
   return (
-    <footer className="bg-espresso px-5 py-14 text-cream sm:px-8 lg:py-18">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid gap-12 md:grid-cols-[1.3fr_repeat(4,1fr)]">
+    <footer className="bg-graphite px-5 py-14 text-concrete sm:px-8 lg:py-20">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-14 border-b border-concrete/20 pb-14 lg:grid-cols-[1.15fr_.85fr]">
           <div>
             <Image
               src="/logo-wordmark-green.png"
               alt="Scrutexity"
-              width={180}
-              height={38}
-              className="h-7 w-auto"
+              width={190}
+              height={40}
+              className="h-7 w-auto brightness-0 invert"
             />
-            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/70">
-              Forensic Intelligence for AI, Claims &amp; Regulatory Risk.
-            </p>
-            <p className="mt-3 max-w-xs text-xs leading-5 text-cream/55">
-              Scrutexity documents the gap between what a company claims, what its evidence
-              supports, and what AI systems and the public say about it.
-            </p>
-            <p className="mt-5 max-w-xs text-xs leading-5 text-cream/45">
-              AuditGPT is the public-claim diagnostic instrument powered by Scrutexity.
+            <p className="mt-6 max-w-xl font-display text-3xl font-semibold uppercase leading-[0.98] tracking-[-0.04em] sm:text-5xl">
+              Intelligence for the systems reshaping how the world gets built.
             </p>
           </div>
-
-          {columns.map((column) => (
-            <div key={column.title}>
-              <p className="text-xs font-semibold text-cream/45">{column.title}</p>
-              <ul className="mt-4 space-y-3">
-                {column.links.map(([label, href]) => (
-                  <li key={label}>
-                    <a href={href} className="text-xs text-cream/70 transition-colors hover:text-sage-soft">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-4 self-end sm:grid-cols-3">
+            {links.map(([label, href]) => (
+              <Link
+                key={label}
+                href={href}
+                className="flex items-center justify-between border-b border-concrete/20 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-concrete/65 transition-colors hover:border-safety-orange hover:text-safety-orange"
+              >
+                {label}
+                <ArrowUpRight size={12} />
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-12 border-t border-cream/10 pt-7">
-          <p id="disclaimer" className="max-w-4xl text-xs leading-5 text-cream/55">
-            Scrutexity is an intelligence and evidence company. It is not a law firm and does not
-            provide legal advice, clinical advice, certification, or guaranteed outcomes. Findings
-            are observations drawn from publicly available material and AI answer-system outputs,
-            recorded with their sources and capture dates. Nothing on this site is a legal opinion,
-            a valuation opinion, or a determination of liability or non-compliance.
+        <div className="grid gap-8 pt-8 text-[10px] leading-relaxed text-concrete/45 md:grid-cols-[1.3fr_.7fr]">
+          <p>
+            Scrutexity provides research and strategic intelligence, not
+            engineering, legal, investment, procurement, or safety advice.
+            Findings reflect available sources and stated confidence levels;
+            field performance requires independent verification.
           </p>
-          <p className="mt-5 text-xs text-cream/35">
-            &copy; {new Date().getFullYear()} Scrutexity. All rights reserved.
-          </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+            <span>© {new Date().getFullYear()} Scrutexity</span>
+          </div>
         </div>
       </div>
     </footer>
