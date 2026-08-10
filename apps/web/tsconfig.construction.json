@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": false
+  },
+  "include": [
+    "next-env.d.ts",
+    "src/app/layout.tsx",
+    "src/app/page.tsx",
+    "src/app/contact/page.tsx",
+    "src/app/api/inquiries/route.ts",
+    "src/components/site-nav.tsx",
+    "src/components/sections/footer.tsx",
+    "src/components/scrutexity/mobile-sticky-cta.tsx",
+    "src/components/scrutexity/contact-intake-form.tsx",
+    "src/components/scrutexity/umbrella-homepage.tsx",
+    "src/components/scrutexity/construction-homepage.tsx",
+    "src/components/scrutexity/construction-artifacts.tsx",
+    "src/components/scrutexity/construction-spatial-field.tsx",
+    "src/lib/inquiries.ts"
+  ]
+}

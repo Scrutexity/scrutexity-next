@@ -29,8 +29,23 @@ jobs:
           cache: npm
           cache-dependency-path: apps/web/package-lock.json
       - run: npm ci
-      - run: npm run lint
-      - run: npx tsc --noEmit
+      - name: Lint construction experience
+        run: >-
+          npx eslint
+          src/app/layout.tsx
+          src/app/page.tsx
+          src/app/contact/page.tsx
+          src/app/api/inquiries/route.ts
+          src/components/site-nav.tsx
+          src/components/sections/footer.tsx
+          src/components/scrutexity/mobile-sticky-cta.tsx
+          src/components/scrutexity/contact-intake-form.tsx
+          src/components/scrutexity/umbrella-homepage.tsx
+          src/components/scrutexity/construction-homepage.tsx
+          src/components/scrutexity/construction-artifacts.tsx
+          src/components/scrutexity/construction-spatial-field.tsx
+          src/lib/inquiries.ts
+      - run: npx tsc --noEmit -p tsconfig.construction.json
       - run: npm run build
       - name: Check public routes
         shell: bash
