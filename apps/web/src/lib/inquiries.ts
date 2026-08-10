@@ -14,7 +14,8 @@ export type InquiryOffer =
   | 'ai-regulatory-diligence'
   | 'counsel-review'
   | 'ai-narrative-integrity'
-  | 'private-assessment';
+  | 'private-assessment'
+  | 'construction-diagnostic';
 
 export interface InquiryRecord {
   id: string;
