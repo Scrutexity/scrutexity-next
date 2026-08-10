@@ -4,8 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 
 const links = [
   ["Capabilities", "/#capabilities"],
-  ["Intelligence", "/intelligence"],
-  ["Industries", "/industries"],
+  ["Intelligence", "/#signals"],
+  ["Industries", "/#sectors"],
   ["Field Notes", "/blog"],
   ["About", "/about"],
   ["Contact", "/contact"],
