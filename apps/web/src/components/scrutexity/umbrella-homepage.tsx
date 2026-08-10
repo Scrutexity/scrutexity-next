@@ -1,225 +1,292 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, ShieldCheck, Lock } from "lucide-react";
-import { trackEvent } from "@/utils/analytics";
-import { LiveDemoEngine } from "@/components/scrutexity/motion/live-demo-engine";
-import { EngineContainer } from "@/components/scrutexity/funnel/EngineContainer";
-import { ClaimDriftTimeline } from "@/components/scrutexity/motion/claim-drift-timeline";
-import { ProofArtifactShelf } from "@/components/scrutexity/motion/proof-artifact-shelf";
-import { CounselAdvisory } from "@/components/scrutexity/CounselAdvisory";
-import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Building2,
+  ChartNoAxesCombined,
+  Cpu,
+  FileSearch,
+  Radar,
+  ShieldCheck,
+} from "lucide-react";
 
-const MONO = 'var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, Monaco, monospace';
-const SNAPSHOT_URL = "/snapshot";
+const sectors = [
+  "Construction robotics",
+  "Smart-site systems",
+  "Digital twins + BIM",
+  "Embodied intelligence",
+  "Policy + procurement",
+];
 
-function IndexLabel({ num, text }: { num: string; text: string }) {
-  return (
-    <div className="flex items-center justify-center gap-3 text-[10px] font-mono tracking-[0.14em] uppercase text-muted" style={{ fontFamily: MONO }}>
-      <span className="text-bureau-sage">{num}</span>
-      <span className="h-px w-6 bg-sand-deep/40" aria-hidden />
-      <span>{text}</span>
-    </div>
-  );
-}
+const capabilities = [
+  {
+    number: "01",
+    icon: Radar,
+    title: "Market intelligence",
+    copy: "Track vendors, deployments, tenders, standards, subsidies, and capital flows across fast-moving construction technology markets.",
+  },
+  {
+    number: "02",
+    icon: FileSearch,
+    title: "Technical diligence",
+    copy: "Separate production-ready capability from laboratory theater with source-linked reviews of throughput, autonomy, integration, and field evidence.",
+  },
+  {
+    number: "03",
+    icon: ChartNoAxesCombined,
+    title: "Deployment strategy",
+    copy: "Translate intelligence into a ranked action plan: where to pilot, what to buy, which partners to approach, and what must be proven first.",
+  },
+];
+
+const signals = [
+  [
+    "ROB",
+    "Robotics",
+    "Trade-specific systems moving into commercial deployment",
+  ],
+  [
+    "DTW",
+    "Digital twin",
+    "BIM-linked operating layers connecting site reality to plans",
+  ],
+  [
+    "POL",
+    "Policy",
+    "Standards, directories, and incentives shaping procurement",
+  ],
+  [
+    "AI",
+    "Embodied AI",
+    "Perception and planning stacks crossing into field equipment",
+  ],
+] as const;
 
 export default function UmbrellaHomepage() {
-  const [scanState, setScanState] = useState<{ 
-    isScanning: boolean; 
-    scanId: string | null;
-    isDemo: boolean;
-  }>({
-    isScanning: false,
-    scanId: null,
-    isDemo: false
-  });
-
-  const handleScan = async (url: string, industry: string) => {
-    setScanState({ isScanning: true, scanId: null, isDemo: false });
-    
-    try {
-      const res = await fetch('/api/funnel/scan', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ targetUrl: url })
-      });
-      
-      if (!res.ok) throw new Error("Failed to scan");
-      
-      const { scanId, scanToken, isDemo } = await res.json();
-      
-      if (!isDemo) {
-        sessionStorage.setItem("scrutexity_scan_token", scanToken);
-      }
-      
-      setScanState({ isScanning: false, scanId, isDemo });
-      trackEvent("demo_scan_complete", { url, industry });
-    } catch (error) {
-      console.error("Scan initialization failed:", error);
-      setScanState({ isScanning: false, scanId: null, isDemo: false });
-    }
-  };
-
   return (
-    <div className="min-h-screen overflow-x-hidden bg-paper text-ink font-sans selection:bg-bureau-sage/30">
-      
-      {/* ── 1 & 2. Hero + Engine Section ── */}
-      <section className="relative overflow-hidden border-b border-border-deep/50 pt-32 pb-24 sm:pt-40 sm:pb-32 px-5 sm:px-8">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-bureau-sage/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="mx-auto max-w-5xl relative z-10 flex flex-col items-center text-center">
-          
-          <IndexLabel num="01" text="Claim Intelligence Standard" />
-          
-          <h1 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl text-ink font-normal leading-[1.08] tracking-tight max-w-3xl">
-            Keep your clients&rsquo;<br/>claims <span className="text-bureau-sage">defensible.</span>
-          </h1>
-          
-          <p className="mt-6 text-base sm:text-lg leading-relaxed text-ink/80 max-w-2xl font-normal">
-            Scrutexity reviews your clients&rsquo; public marketing claims and AI outputs, flags what lacks buyer-visible support, and gives you evidence notes plus safer replacement wording.
-          </p>
-          
-          <p className="mt-4 text-xs leading-relaxed text-muted font-mono" style={{ fontFamily: MONO }}>
-            Built for agencies that serve med spas, wellness clinics, telehealth, and other regulated businesses — every review ends in a dated, hash-chained record.
-          </p>
-          
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link href={SNAPSHOT_URL} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-bureau-sage px-7 py-3 text-xs font-semibold uppercase tracking-wider text-paper-light transition-colors hover:bg-clay-deep" style={{ fontFamily: MONO }}>
-              Run Your Free Snapshot <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-            <Link href="/sample-report" className="inline-flex items-center gap-1 text-xs font-mono text-ink underline decoration-sand-deep underline-offset-4 hover:decoration-bureau-sage" style={{ fontFamily: MONO }}>
-              Inspect Sample Report <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-          
-          <div className="mt-8 pt-4 border-t border-sand-deep/60 flex items-center justify-center gap-3 text-[10px] font-mono text-muted" style={{ fontFamily: MONO }}>
-            <span className="h-1.5 w-1.5 rounded-full bg-bureau-sage" aria-hidden />
-            <span>PUBLIC PAGES ONLY &middot; SOURCE-LINKED &middot; NOT LEGAL ADVICE</span>
+    <div className="construction-shell min-h-screen overflow-hidden bg-concrete text-graphite">
+      <section className="relative border-b border-graphite/20 px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-28">
+        <div
+          className="construction-grid absolute inset-0 opacity-60"
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-[1400px]">
+          <div className="flex items-center justify-between border-y border-graphite/25 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-graphite/60">
+            <span>Scrutexity / Built Environment Intelligence</span>
+            <span className="hidden sm:block">New York · Global coverage</span>
           </div>
 
-          {/* Live Demo Engine */}
-          <LiveDemoEngine onScan={handleScan} isScanning={scanState.isScanning} />
-          
-          {/* Result Preview (Triggered by Engine) */}
-          <div className="w-full mt-4 min-h-[400px]">
-            {scanState.scanId ? (
-              <EngineContainer scanId={scanState.scanId} isDemo={scanState.isDemo} />
-            ) : (
-              /* Floating Exhibit Preview (Default State) */
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="mt-16 inline-flex flex-col items-center opacity-60 hover:opacity-100 transition-opacity"
+          <div className="grid gap-12 py-14 lg:grid-cols-[1.35fr_.65fr] lg:items-end lg:py-20">
+            <div>
+              <p className="mb-7 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-safety-orange">
+                <span className="h-2 w-2 bg-safety-orange" aria-hidden />
+                Intelligence for construction’s next operating system
+              </p>
+              <h1 className="max-w-5xl font-display text-[clamp(3.6rem,8.7vw,8.8rem)] font-semibold uppercase leading-[0.82] tracking-[-0.065em]">
+                Build with
+                <span className="block text-safety-orange">better signal.</span>
+              </h1>
+            </div>
+
+            <div className="border-l-2 border-safety-orange pl-6 lg:mb-2">
+              <p className="max-w-md text-lg leading-relaxed text-graphite/75">
+                Scrutexity helps construction leaders understand emerging
+                technology, verify what is ready, and make higher-conviction
+                deployment decisions.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/contact?intent=construction-brief"
+                  className="construction-button construction-button-primary"
+                >
+                  Request an intelligence brief <ArrowRight size={16} />
+                </Link>
+                <Link
+                  href="#capabilities"
+                  className="construction-button construction-button-secondary"
+                >
+                  Explore capabilities <ArrowUpRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid border border-graphite/25 bg-concrete/90 sm:grid-cols-2 lg:grid-cols-5">
+            {sectors.map((sector, index) => (
+              <div
+                key={sector}
+                className="border-b border-graphite/20 p-4 last:border-b-0 sm:border-r lg:border-b-0 lg:last:border-r-0"
               >
-                <div className="bg-paper-light border border-sand-deep/40 p-4 rounded-xl shadow-2xl backdrop-blur-sm text-left max-w-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono text-bureau-sage bg-bureau-sage/10 px-2 py-0.5 rounded" style={{ fontFamily: MONO }}>Exhibit A Preview</span>
-                    <Lock size={12} className="text-muted" />
-                  </div>
-                  <p className="text-xs text-muted font-mono leading-relaxed truncate" style={{ fontFamily: MONO }}>
-                    SHA256: — awaiting live scan record
-                  </p>
-                </div>
-              </motion.div>
-            )}
+                <span className="font-mono text-[9px] text-safety-orange">
+                  0{index + 1}
+                </span>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.08em]">
+                  {sector}
+                </p>
+              </div>
+            ))}
           </div>
-
-
         </div>
       </section>
 
-      {/* Counsel Advisory Component */}
-      <CounselAdvisory />
-
-      {/* ── 3. Three Outcomes (Re-themed for Dark) ── */}
-      <section className="border-b border-sand-deep/20 bg-paper-light/30 px-5 py-24 sm:px-8 md:py-32">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center max-w-2xl mx-auto">
-            <IndexLabel num="02" text="Platform Architecture" />
-            <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">
-              Intelligence, not just a score.
+      <section className="bg-graphite px-5 py-20 text-concrete sm:px-8 sm:py-28">
+        <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-[.72fr_1.28fr]">
+          <div>
+            <p className="construction-kicker text-safety-orange">
+              The decision gap
+            </p>
+            <h2 className="mt-5 max-w-xl font-display text-5xl font-semibold uppercase leading-[0.92] tracking-[-0.045em] sm:text-7xl">
+              The market moves faster than the evidence.
             </h2>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              Designed for General Counsel, deal teams, and growth leaders to quantify risk without slowing down go-to-market execution.
+          </div>
+          <div className="grid gap-px self-end bg-concrete/20 sm:grid-cols-2">
+            {signals.map(([code, title, copy]) => (
+              <article
+                key={code}
+                className="min-h-56 bg-graphite p-7 transition-colors hover:bg-concrete/[0.04]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-concrete/45">
+                    SIGNAL / {code}
+                  </span>
+                  <span className="h-2 w-2 bg-safety-orange" aria-hidden />
+                </div>
+                <h3 className="mt-14 text-xl font-semibold uppercase tracking-[-0.02em]">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-concrete/60">
+                  {copy}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="capabilities"
+        className="border-b border-graphite/20 px-5 py-20 sm:px-8 sm:py-28"
+      >
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid gap-8 border-b border-graphite/25 pb-10 lg:grid-cols-2 lg:items-end">
+            <div>
+              <p className="construction-kicker">What we do</p>
+              <h2 className="mt-5 font-display text-5xl font-semibold uppercase leading-[0.9] tracking-[-0.045em] sm:text-7xl">
+                From noise to field decision.
+              </h2>
+            </div>
+            <p className="max-w-xl text-base leading-relaxed text-graphite/65 lg:justify-self-end">
+              Focused research and decision support for owners, developers,
+              contractors, technology companies, investors, and public-sector
+              teams navigating intelligent construction.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                01 / EXPOSURE
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Find Exposure First</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Identify unsubstantiated biological mechanism claims, absolute safety promises, or guaranteed ROI statements before regulators or buyers do.
-              </p>
-            </div>
+          <div className="grid lg:grid-cols-3">
+            {capabilities.map(({ number, icon: Icon, title, copy }) => (
+              <article
+                key={number}
+                className="group border-b border-graphite/20 py-10 lg:border-b-0 lg:border-r lg:px-8 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-safety-orange">
+                    {number} / 03
+                  </span>
+                  <Icon
+                    size={24}
+                    strokeWidth={1.5}
+                    className="text-graphite/55 transition-transform duration-300 group-hover:-translate-y-1"
+                  />
+                </div>
+                <h3 className="mt-16 font-display text-3xl font-semibold uppercase tracking-[-0.035em]">
+                  {title}
+                </h3>
+                <p className="mt-4 max-w-sm text-sm leading-7 text-graphite/65">
+                  {copy}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                02 / REMEDIATION
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Correct Language</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Replace weak or overstated claims with evidence-anchored phrasing that preserves commercial power while eliminating legal risk.
-              </p>
+      <section className="px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="construction-dossier grid overflow-hidden border border-graphite/25 bg-steel-mist lg:grid-cols-[.8fr_1.2fr]">
+            <div className="flex min-h-[420px] flex-col justify-between border-b border-graphite/20 p-8 lg:border-b-0 lg:border-r sm:p-12">
+              <div className="flex items-center justify-between">
+                <Building2 size={30} strokeWidth={1.4} />
+                <span className="font-mono text-[10px] tracking-[0.18em]">
+                  FIELD NOTE / 2026
+                </span>
+              </div>
+              <div>
+                <p className="construction-kicker text-safety-orange">
+                  Current focus
+                </p>
+                <h2 className="mt-5 font-display text-5xl font-semibold uppercase leading-[0.9] tracking-[-0.045em] sm:text-6xl">
+                  Intelligent construction in China.
+                </h2>
+              </div>
             </div>
-
-            <div className="bg-paper border border-sand-deep/30 p-8 rounded-2xl hover:border-bureau-sage/30 transition-colors">
-              <span className="text-[10px] font-mono text-muted uppercase tracking-[0.14em]" style={{ fontFamily: MONO }}>
-                03 / PROVENANCE
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink font-normal">Keep Record Current</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted font-light">
-                Maintain a dated, hash-chained record of public copy changes and evidentiary updates over time with automated S-Mark verification.
+            <div className="p-8 sm:p-12">
+              <p className="max-w-2xl text-xl leading-relaxed tracking-[-0.015em] sm:text-2xl">
+                A live intelligence lens on specialty-trade robotics, smart-site
+                platforms, embodied AI, digital twins, policy incentives, and
+                enterprise deployment signals.
               </p>
+              <div className="mt-12 grid gap-px bg-graphite/20 sm:grid-cols-3">
+                {[
+                  "Vendor landscape",
+                  "Deployment evidence",
+                  "Policy catalyst",
+                ].map((item, index) => (
+                  <div key={item} className="bg-steel-mist p-5">
+                    <span className="font-mono text-[9px] text-safety-orange">
+                      0{index + 1}
+                    </span>
+                    <p className="mt-8 text-xs font-semibold uppercase tracking-[0.08em]">
+                      {item}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/contact?intent=china-construction-intelligence"
+                className="mt-10 inline-flex items-center gap-2 border-b border-graphite pb-1 text-sm font-semibold uppercase tracking-[0.08em]"
+              >
+                Ask for the market brief <ArrowUpRight size={15} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. Claim Drift Timeline ── */}
-      <section className="border-b border-sand-deep/20 bg-paper py-24 sm:py-32">
-        <div className="text-center mb-16">
-          <IndexLabel num="03" text="The Record" />
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">Track evidence changes over time.</h2>
-        </div>
-        <ClaimDriftTimeline />
-      </section>
-
-      {/* ── 5. Proof Artifact Shelf ── */}
-      <section className="border-b border-sand-deep/20 bg-paper-light/30 py-24 sm:py-32">
-        <div className="text-center mb-16">
-          <IndexLabel num="04" text="Artifacts" />
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl text-ink font-normal">Institutional evidence documents.</h2>
-        </div>
-        <ProofArtifactShelf />
-      </section>
-
-      {/* ── 6. Final Scan CTA ── */}
-      <section id="snapshot" className="relative bg-paper px-5 py-24 sm:px-8 md:py-32 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bureau-sage/10 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="mx-auto max-w-4xl border border-sand-deep/30 bg-paper-light/50 backdrop-blur-md p-10 sm:p-16 text-center rounded-3xl relative z-10">
-          <h2 className="font-display text-3xl sm:text-5xl text-ink font-normal leading-tight">
-            Know what your public site is actually claiming.
-          </h2>
-          <p className="mt-6 text-base text-muted max-w-xl mx-auto font-light">
-            Paste any public marketing URL. Scrutexity generates a free point-in-time claim snapshot delivered to your inbox.
-          </p>
-          <div className="mt-10 flex justify-center">
+      <section className="border-t border-graphite/20 bg-safety-orange px-5 py-20 sm:px-8 sm:py-24">
+        <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[1.35fr_.65fr] lg:items-end">
+          <div>
+            <p className="construction-kicker">Start with one decision</p>
+            <h2 className="mt-5 max-w-5xl font-display text-5xl font-semibold uppercase leading-[0.88] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
+              What do you need to know before you build?
+            </h2>
+          </div>
+          <div>
+            <div className="mb-8 flex items-start gap-3 text-sm leading-relaxed">
+              <ShieldCheck size={20} className="mt-0.5 shrink-0" />
+              <p>
+                Source-linked intelligence. Clear confidence levels. No vendor
+                theater and no guaranteed outcomes.
+              </p>
+            </div>
             <Link
-              href={SNAPSHOT_URL}
-              onClick={() => trackEvent("cta_click", { cta_label: "Run Free Snapshot", section: "final-cta" })}
-              className="inline-flex min-h-12 items-center gap-2 bg-bureau-sage px-8 py-3.5 text-xs font-semibold tracking-wider text-[#070708] rounded-xl hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-shadow"
+              href="/contact?intent=construction-brief"
+              className="construction-button w-full justify-between bg-graphite text-concrete hover:bg-graphite/90"
             >
-              Run Free Snapshot <ArrowRight size={14} aria-hidden="true" />
+              Request a private brief <ArrowRight size={17} />
             </Link>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
