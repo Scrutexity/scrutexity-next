@@ -9,8 +9,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const links = [
   { name: "Capabilities", href: "/#capabilities" },
-  { name: "Intelligence", href: "/intelligence" },
-  { name: "Industries", href: "/industries" },
+  { name: "Intelligence", href: "/#signals" },
+  { name: "Industries", href: "/#sectors" },
   { name: "Field Notes", href: "/blog" },
   { name: "About", href: "/about" },
 ] as const;
