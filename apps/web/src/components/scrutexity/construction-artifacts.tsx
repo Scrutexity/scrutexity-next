@@ -1,53 +1,17 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
-import {
-  ArrowRight,
-  Camera,
-  Check,
-  Clock3,
-  FileImage,
-  LockKeyhole,
-  MapPin,
-  MessageSquareText,
-  ShieldCheck,
-} from "lucide-react";
-import { useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { Camera, FileText, LockKeyhole, MessageSquareText, ShieldCheck } from "lucide-react";
+import { useRef, type ReactNode } from "react";
 
-export function Reveal({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-  eager?: boolean;
-}) {
+export function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number; eager?: boolean }) {
   const reduced = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduced ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16 }}
-      transition={{ duration: reduced ? 0 : 0.72, delay: reduced ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .14 }} transition={{ duration: reduced ? 0 : .65, delay: reduced ? 0 : delay, ease: [.16, 1, .3, 1] }}>{children}</motion.div>;
 }
 
 const stateClass: Record<string, string> = {
   "PREREQUISITE OBSERVED": "sx-state-observed",
+  "PREREQUISITES OBSERVED": "sx-state-observed",
   "VERIFICATION INCOMPLETE": "sx-state-incomplete",
   "OBSERVED BLOCKER": "sx-state-blocker",
   "NO OBSERVED BLOCKER": "sx-state-neutral",
@@ -55,271 +19,71 @@ const stateClass: Record<string, string> = {
   "RECORD SEALED": "sx-state-sealed",
 };
 
-function State({ children }: { children: string }) {
+export function State({ children }: { children: string }) {
   return <span className={`sx-system-state ${stateClass[children] ?? "sx-state-neutral"}`}>{children}</span>;
 }
 
+function Value({ label, children }: { label: string; children: ReactNode }) {
+  return <div><p className="sx-mono text-sx-muted">{label}</p><p className="mt-2 text-sm font-medium">{children}</p></div>;
+}
+
+export function OperationalMoment() {
+  return <div className="sx-moment">
+    <div><p className="sx-mono text-sx-muted">MONDAY · 06:42</p><p className="mt-4 text-xl font-medium tracking-[-.03em] md:text-2xl">Crew 02 is planned for primer on Level 4 West at 07:00.</p></div>
+    <p className="sx-moment-question">What do you actually know?</p>
+  </div>;
+}
+
 export function DeploymentRecord() {
+  const plate = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const rx = useSpring(useTransform(my, [0, 1], [2, -2]), { stiffness: 120, damping: 20 });
-  const ry = useSpring(useTransform(mx, [0, 1], [-2, 2]), { stiffness: 120, damping: 20 });
-
-  function move(event: MouseEvent<HTMLDivElement>) {
-    if (reduced) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    mx.set((event.clientX - bounds.left) / bounds.width);
-    my.set((event.clientY - bounds.top) / bounds.height);
-  }
-
-  return (
-    <motion.div
-      className="sx-gold-shell"
-      onMouseMove={move}
-      onMouseLeave={() => {
-        mx.set(0.5);
-        my.set(0.5);
-      }}
-      style={reduced ? undefined : { rotateX: rx, rotateY: ry }}
-    >
-      <article className="sx-gold-record" aria-label="GR-0001 sealed deployment record">
-        <header className="sx-gold-header">
-          <div>
-            <p className="sx-mono text-sx-muted">GR-0001</p>
-            <p className="mt-2 text-sm font-medium tracking-[-.02em]">L4 · WEST · CORRIDOR 04W</p>
-          </div>
-          <div className="text-right">
-            <State>RECORD SEALED</State>
-            <p className="sx-mono mt-3 text-sx-muted">15:56:28</p>
-          </div>
-        </header>
-
-        <div className="sx-gold-body">
-          <section className="sx-gold-section sx-gold-plan">
-            <p className="sx-mono text-sx-muted">PLANNED DEPLOYMENT</p>
-            <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3">
-              <RecordValue label="CREW">Crew 02</RecordValue>
-              <RecordValue label="SCOPE">Primer</RecordValue>
-              <RecordValue label="PLANNED START">Monday · 07:00</RecordValue>
-            </div>
-          </section>
-
-          <section className="sx-gold-section">
-            <p className="sx-mono text-sx-muted">PRE-DEPLOYMENT OBSERVED STATE</p>
-            <div className="mt-5 divide-y divide-sx-border">
-              <ConditionRow label="Taping complete" state="PREREQUISITE OBSERVED" />
-              <ConditionRow label="Material staged" state="PREREQUISITE OBSERVED" />
-              <ConditionRow label="Access available" state="PREREQUISITE OBSERVED" />
-              <ConditionRow label="Corridor clearance" state="VERIFICATION INCOMPLETE" />
-            </div>
-          </section>
-
-          <section className="sx-gold-section">
-            <p className="sx-mono text-sx-muted">EVENT LINEAGE</p>
-            <div className="mt-5 divide-y divide-sx-border">
-              <EventRow time="15:31:04" title="DEPLOYMENT INTENT LOCKED" detail="Crew 02 · L4 West · Primer" icon={<LockKeyhole size={15} />} />
-              <EventRow time="15:42:18" title="FIELD EVIDENCE RECEIVED" detail="PHOTO · IMG_2841" icon={<Camera size={15} />} />
-              <EventRow time="15:53:11" title="CONTRACTOR DECISION" detail="REASSIGN → L3 EAST" icon={<ArrowRight size={15} />} />
-              <EventRow time="07:11:09" title="ACTUAL EXECUTION" detail="Crew began alternate workfront" icon={<Clock3 size={15} />} />
-            </div>
-          </section>
-
-          <section className="sx-gold-section sx-economic-row">
-            <div>
-              <p className="sx-mono text-sx-muted">ECONOMIC CONSEQUENCE</p>
-              <p className="mt-3 text-2xl font-medium tracking-[-.04em]">10 affected labor-hours</p>
-              <p className="sx-mono mt-2 text-sx-muted">Dollar basis · NOT PROVIDED</p>
-            </div>
-            <div className="sx-integrity-grid">
-              <RecordValue label="SHA256">8e2f…91ad</RecordValue>
-              <RecordValue label="EVENTS">14</RecordValue>
-              <RecordValue label="DISCLOSURE">CONTRACTOR CONTROLLED</RecordValue>
-            </div>
-          </section>
-        </div>
-      </article>
-    </motion.div>
-  );
-}
-
-function RecordValue({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <div>
-      <p className="sx-mono text-sx-muted">{label}</p>
-      <p className="mt-2 text-sm font-medium">{children}</p>
+  const { scrollYProgress } = useScroll({ target: plate, offset: ["start end", "end start"] });
+  const rawRotateX = useTransform(scrollYProgress, [0, .45, 1], [7, 0, -3]);
+  const rawScale = useTransform(scrollYProgress, [0, .35, .75, 1], [.955, 1, 1, .985]);
+  const rawY = useTransform(scrollYProgress, [0, .42, 1], [46, 0, -18]);
+  const rotateX = useSpring(rawRotateX, { stiffness: 90, damping: 24 });
+  const scale = useSpring(rawScale, { stiffness: 90, damping: 24 });
+  const y = useSpring(rawY, { stiffness: 90, damping: 24 });
+  const observations = [["Taping complete", "PREREQUISITE OBSERVED"], ["Material staged", "PREREQUISITE OBSERVED"], ["Corridor clearance", "VERIFICATION INCOMPLETE"]] as const;
+  const evidence = [["PHOTO", "15:42:08"], ["FIELD UPDATE", "15:47:31"], ["PM DECISION", "15:53:12"]] as const;
+  const enter = reduced ? undefined : { opacity: 0, y: 24 };
+  return <div ref={plate} className="sx-plate-scene"><motion.article className="sx-gold-record" aria-label="GR-0001 sealed deployment record" style={reduced ? undefined : { rotateX, scale, y }}>
+    <span className="sx-plate-edge" aria-hidden/><span className="sx-plate-glint" aria-hidden/><span className="sx-plate-corner sx-plate-corner-tl" aria-hidden/><span className="sx-plate-corner sx-plate-corner-br" aria-hidden/>
+    <motion.header className="sx-gold-header" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .7 }} transition={{ duration: .7, ease: [.16,1,.3,1] }}><div><p className="sx-record-id">GR-0001</p><p className="sx-mono mt-2 text-sx-muted">L4 · WEST · CORRIDOR 04W</p></div><div className="text-right"><State>RECORD SEALED</State><p className="sx-mono mt-3 text-sx-muted">15:56:28</p></div></motion.header>
+    <div className="sx-gold-body">
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .45 }} transition={{ duration: .65, delay: .08 }}><p className="sx-mono text-sx-muted">PLANNED DEPLOYMENT</p><div className="sx-record-values"><Value label="CREW">Crew 02</Value><Value label="SCOPE">Primer</Value><Value label="PLANNED START">Monday · 07:00</Value></div></motion.section>
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><p className="sx-mono text-sx-muted">PRE-DEPLOYMENT OBSERVED STATE</p><div className="sx-condition-list">{observations.map(([label, state], index) => <motion.div className="sx-condition-row" key={label} initial={reduced ? false : { opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .5, delay: .12 + index * .14 }}><span>{label}</span><State>{state}</State></motion.div>)}</div></motion.section>
+      <motion.section className="sx-gold-section sx-record-split" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><div><p className="sx-mono text-sx-muted">DECISION RECORD</p><p className="mt-5 text-xl font-medium tracking-[-.03em]">Deployment intent changed</p><p className="mt-2 text-sm leading-6 text-sx-muted">Crew held pending corridor verification.</p><p className="sx-mono mt-5 text-sx-muted">15:53:12 · CONTRACTOR DECISION</p></div><div><p className="sx-mono text-sx-muted">ACTUAL EXECUTION</p><p className="mt-5 text-sm leading-6">Recorded separately after execution.</p><p className="mt-3 text-sm leading-6 text-sx-muted">Subsequent events do not rewrite what was observable before the decision.</p></div></motion.section>
+      <motion.section className="sx-gold-section" initial={enter} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: .65 }}><p className="sx-mono text-sx-muted">SOURCE EVIDENCE</p><div className="sx-evidence-row">{evidence.map(([label, time], index) => <motion.div key={label} initial={reduced ? false : { opacity: 0, y: 12, scale: .96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ duration: .5, delay: .1 + index * .12 }}><span className="sx-evidence-icon">{index === 0 ? <Camera size={14}/> : index === 1 ? <MessageSquareText size={14}/> : <FileText size={14}/>}</span><Value label={label}>{time}</Value></motion.div>)}</div></motion.section>
+      <motion.footer className="sx-record-seal" initial={reduced ? false : { opacity: 0, scale: .97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: .8 }} transition={{ duration: .7, ease: [.16,1,.3,1] }}><div><p className="sx-mono text-sx-muted">RECORD SEALED</p><p className="sx-mono mt-2">SHA256 · 8e2f…91ad</p></div><motion.div className="sx-seal-lock" initial={reduced ? false : { boxShadow: "0 0 0 0 rgba(220,138,54,0)" }} whileInView={{ boxShadow: ["0 0 0 0 rgba(220,138,54,0)", "0 0 0 8px rgba(220,138,54,.18)", "0 0 0 0 rgba(220,138,54,0)"] }} viewport={{ once: true }} transition={{ duration: 1.2, delay: .25 }}><LockKeyhole size={16}/><span className="sx-mono">CONTRACTOR CONTROLLED</span></motion.div></motion.footer>
     </div>
-  );
+  </motion.article></div>;
 }
 
-function ConditionRow({ label, state }: { label: string; state: string }) {
-  return (
-    <div className="sx-condition-row">
-      <span className="text-sm font-medium">{label}</span>
-      <State>{state}</State>
-    </div>
-  );
-}
-
-function EventRow({ time, title, detail, icon }: { time: string; title: string; detail: string; icon: ReactNode }) {
-  return (
-    <div className="sx-event-row">
-      <span className="sx-event-icon">{icon}</span>
-      <p className="sx-mono text-sx-muted">{time}</p>
-      <div>
-        <p className="sx-mono !text-[9px] text-sx-ink">{title}</p>
-        <p className="mt-1 text-sm text-sx-muted">{detail}</p>
-      </div>
-    </div>
-  );
-}
-
-const railSteps = [
-  ["INTENT", "15:31", "LOCKED"],
-  ["STATE", "15:38", "3 OBSERVED"],
-  ["EVIDENCE", "15:42", "IMG_2841"],
-  ["DECISION", "15:53", "REASSIGN"],
-  ["ACTUAL", "07:11", "L3 EAST"],
-  ["SEAL", "15:56", "8e2f…91ad"],
+const steps = [
+  ["01", "OBSERVE", "Existing photos, updates, calls, and field evidence are organized around a specific workfront and planned start."],
+  ["02", "DECIDE", "The contractor sees the observed prerequisite state and retains the deployment decision."],
+  ["03", "RECORD", "Intent, evidence, decision, and subsequent actual execution become a contractor-controlled record."],
 ] as const;
 
-export function ExecutionRail() {
-  return (
-    <div className="sx-execution-rail" aria-label="Deployment record lineage">
-      <motion.div
-        className="sx-rail-progress"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-      />
-      {railSteps.map(([name, time, value], index) => (
-        <div className="sx-rail-object" key={name}>
-          <div className="flex items-center justify-between">
-            <span className="sx-mono text-sx-muted">0{index + 1}</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-sx-accent" />
-          </div>
-          <p className="sx-mono mt-8 text-sx-ink">{name}</p>
-          <p className="mt-2 text-sm font-medium">{value}</p>
-          <p className="sx-mono mt-2 text-sx-muted">{time}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const workfronts = [
-  { id: "04W-A", state: "NO OBSERVED BLOCKER", note: "Current observations contain no blocker.", action: "Continue observation" },
-  { id: "04W-B", state: "VERIFICATION INCOMPLETE", note: "Corridor clearance · no current observation", action: "Field confirmation required" },
-  { id: "04W-C", state: "OBSERVED BLOCKER", note: "Material staging occupies access path", action: "Contractor decision required" },
-] as const;
-
-export function WorkfrontMap() {
-  const [active, setActive] = useState(1);
-  const item = workfronts[active];
-  return (
-    <div className="sx-workfront-artifact">
-      <div className="sx-workfront-top">
-        <div>
-          <p className="sx-mono text-sx-muted">SPATIAL WORKFRONT</p>
-          <h3 className="mt-3 text-2xl font-medium tracking-[-.04em]">LEVEL 04 · WEST</h3>
-        </div>
-        <MapPin size={19} />
-      </div>
-      <div className="sx-workfront-grid">
-        {workfronts.map((workfront, index) => (
-          <button
-            type="button"
-            key={workfront.id}
-            className={`sx-workfront-cell ${active === index ? "is-active" : ""}`}
-            onMouseEnter={() => setActive(index)}
-            onFocus={() => setActive(index)}
-            onClick={() => setActive(index)}
-            aria-pressed={active === index}
-          >
-            <span className="sx-mono text-sx-muted">{workfront.id}</span>
-            <State>{workfront.state}</State>
-          </button>
-        ))}
-      </div>
-      <div className="sx-workfront-detail" aria-live="polite">
-        <div><p className="sx-mono text-sx-muted">OBSERVED STATE</p><State>{item.state}</State></div>
-        <div><p className="sx-mono text-sx-muted">LAST EVIDENCE</p><p className="mt-2 text-sm">{item.note}</p></div>
-        <div><p className="sx-mono text-sx-muted">ACTION</p><p className="mt-2 text-sm font-medium">{item.action}</p></div>
-      </div>
-    </div>
-  );
-}
-
-export function FieldEvidenceCapture() {
-  return (
-    <div className="sx-field-capture">
-      <div className="sx-capture-chrome"><span>FIELD EVIDENCE</span><span>3:42 PM</span></div>
-      <div className="sx-capture-photo">
-        <div className="sx-photo-grid" aria-hidden />
-        <span className="sx-photo-label"><FileImage size={15} /> PHOTO · WEST CORRIDOR</span>
-      </div>
-      <div className="sx-message-object">
-        <MessageSquareText size={17} />
-        <p>“Still staging material here.<br />Probably another hour.”</p>
-      </div>
-      <div className="sx-capture-meta">
-        <RecordValue label="SOURCE">Field MMS</RecordValue>
-        <RecordValue label="OBSERVATION">Access condition unresolved</RecordValue>
-      </div>
-    </div>
-  );
+export function OperatingSteps() {
+  return <div><div className="sx-operating-steps">{steps.map(([n, title, copy]) => <div className="sx-operating-step" key={title}><p className="sx-mono text-sx-muted">{n}</p><h3>{title}</h3><p>{copy}</p></div>)}</div><div className="sx-lineage"><span>Intent</span><i>→</i><span>State</span><i>→</i><span>Evidence</span><i>→</i><span>Decision</span><i>→</i><span>Actual</span><i>→</i><span>Seal</span></div></div>;
 }
 
 export function PlanObservationSplit() {
-  return (
-    <div className="sx-contradiction">
-      <div className="sx-contrast-panel">
-        <p className="sx-mono text-sx-muted">PROJECT PLAN</p>
-        <h3 className="mt-9 text-3xl font-medium tracking-[-.05em]">L4 WEST</h3>
-        <p className="mt-2 text-sm">PRIMER · START 07:00</p>
-        <div className="mt-12"><State>INTENT LOCKED</State></div>
-      </div>
-      <div className="sx-not-equal" aria-label="does not equal">≠</div>
-      <div className="sx-contrast-panel sx-contrast-observed">
-        <p className="sx-mono text-sx-muted">OBSERVED STATE · 15:42</p>
-        <h3 className="mt-9 text-3xl font-medium tracking-[-.05em]">L4 WEST</h3>
-        <p className="mt-2 text-sm">CORRIDOR CLEARANCE</p>
-        <div className="mt-12"><State>VERIFICATION INCOMPLETE</State></div>
-      </div>
-    </div>
-  );
+  return <div className="sx-contradiction"><div className="sx-contrast-panel"><p className="sx-mono text-sx-muted">PLANNED START</p><h3>L4 WEST</h3><p>PRIMER · MONDAY · 07:00</p><State>INTENT LOCKED</State></div><div className="sx-not-equal" aria-label="does not equal">≠</div><div className="sx-contrast-panel sx-contrast-observed"><p className="sx-mono text-sx-muted">OBSERVED STATE · 15:42</p><h3>L4 WEST</h3><p>CORRIDOR CLEARANCE</p><State>VERIFICATION INCOMPLETE</State></div></div>;
 }
 
-const layers = ["INTENT", "SITE STATE", "EVIDENCE", "DECISION", "ACTUAL", "IMPACT"] as const;
-
-export function ExplodedRecord() {
-  const target = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target, offset: ["start end", "end start"] });
-  const spread = useTransform(scrollYProgress, [0.12, 0.45, 0.78], [0, 1, 0]);
-
-  return (
-    <div ref={target} className="sx-exploded-wrap">
-      <div className="sx-exploded-sticky">
-        <div className="sx-exploded-head"><span className="sx-mono">GR-0001</span><State>RECORD SEALED</State></div>
-        <div className="sx-exploded-stack">
-          {layers.map((layer, index) => <ExplodedLayer key={layer} label={layer} index={index} spread={spread} reduced={Boolean(reduced)} />)}
-        </div>
-        <div className="sx-exploded-foot"><ShieldCheck size={16} /><span className="sx-mono">SEALED RECORD · 14 CONSTITUENT EVENTS</span></div>
-      </div>
-    </div>
-  );
+export function FieldEvidence() {
+  return <div className="sx-field-evidence"><div className="sx-field-image" role="img" aria-label="Abstracted field capture of an unfinished corridor"><span>PHOTO · WEST CORRIDOR</span></div><div className="sx-field-note"><p className="sx-mono text-sx-muted">FIELD MMS · 15:42</p><blockquote>“Still staging material here. Probably another hour.”</blockquote><div><Value label="OBSERVATION">Access condition unresolved</Value><Value label="SOURCE">Field communication</Value></div></div></div>;
 }
 
-function ExplodedLayer({ label, index, spread, reduced }: { label: string; index: number; spread: MotionValue<number>; reduced: boolean }) {
-  const direction = index - (layers.length - 1) / 2;
-  const y = useTransform(spread, [0, 1], [0, direction * 23]);
-  return (
-    <motion.div className="sx-exploded-layer" style={reduced ? undefined : { y }}>
-      <span className="sx-mono text-sx-muted">0{index + 1}</span>
-      <span className="sx-mono text-sx-ink">{label}</span>
-      <Check size={14} />
-    </motion.div>
-  );
+export function DiagnosticTimeline() {
+  const days = [["MONDAY", "Select one project, one workfront, and an upcoming crew deployment."], ["TUESDAY–THURSDAY", "Build the prospective record from evidence available through the contractor’s existing workflow."], ["FRIDAY", "Deliver the production-control record and disclose unresolved verification gaps."]] as const;
+  const deliverables = ["Planned start", "Observed prerequisite state", "Retained source evidence", "Contractor decision", "Actual execution where available", "Unresolved verification gaps", "Sealed lineage"];
+  return <div className="sx-diagnostic-grid"><div className="sx-diagnostic-days">{days.map(([day, copy]) => <div key={day}><p className="sx-mono">{day}</p><p>{copy}</p></div>)}</div><div className="sx-deliverable"><p className="sx-mono text-sx-muted">FRIDAY DELIVERABLE</p><ul>{deliverables.map(item => <li key={item}>{item}</li>)}</ul><div className="sx-disclosure"><p>Affected labor-hours <strong>NOT ESTABLISHED</strong></p><p>Dollar basis <strong>NOT PROVIDED</strong></p></div></div></div>;
+}
+
+export function StackDisclosure() {
+  return <div className="sx-stack-disclosure"><div><p className="sx-mono text-sx-muted">SUPPORTED INGESTION</p><p>Submitted field photos, field updates, call notes, and provided schedule or lookahead exports.</p></div><div><p className="sx-mono text-sx-muted">PLANNED INTEGRATIONS</p><p>No third-party integration is represented as live on this page.</p></div><div className="sx-stack-assurance"><ShieldCheck size={18}/><p><strong>No new field app required.</strong><br/>Designed to work alongside existing contractor communication and production systems.</p></div></div>;
 }
