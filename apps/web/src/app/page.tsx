@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import UmbrellaHomepage from '@/components/scrutexity/umbrella-homepage';
+import UmbrellaHomepage from "@/components/scrutexity/umbrella-homepage";
 
 export const metadata: Metadata = {
-  title: "Claim Review for Marketing and AI Claims | Scrutexity",
+  title: "Construction Technology Intelligence | Scrutexity",
   description:
-    "Scrutexity reviews public marketing claims and customer-facing AI outputs for agencies and regulated businesses — flags unsupported claims, adds evidence notes, and issues a dated, hash-chained audit record.",
+    "Market intelligence, technical diligence, and deployment strategy for construction robotics, smart sites, digital twins, embodied AI, and intelligent construction.",
 };
 
 export default function HomePage() {
